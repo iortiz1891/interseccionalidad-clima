@@ -28,7 +28,7 @@ import requests
 
 OPENAI = "https://api.openai.com/v1"
 DATA = Path("data")
-PROMPT = Path("agents/prompts/bowleg_eval_v3.md")
+PROMPT = Path("prompts/bowleg_eval_v3.md")
 
 
 def load_key():

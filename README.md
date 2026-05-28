@@ -36,47 +36,66 @@ Una sola página que recorre el marco, el corpus, los hallazgos y el método. In
 
 - **Mapa temático interactivo** (33 tópicos): se puede colorear por tópico, por nivel RSI del trabajo o por RSI medio del vecindario; resaltar el sub-corpus de la tesis; y, al hacer clic en un punto, ver la **justificación del modelo por cada criterio**.
 - **Figuras explicativas** (perfil por criterio, embudo del gate, ranking de tópicos, asimetría por idioma…).
-- **Herramienta de validación** ([dashboard/v6_validacion.html](dashboard/v6_validacion.html)): interfaz para codificar a ciegas una submuestra y calcular la concordancia humano–modelo (κ de Cohen).
+- **Herramienta de validación** ([site/validacion.html](site/validacion.html)): interfaz para codificar a ciegas una submuestra y calcular la concordancia humano–modelo (κ de Cohen).
 
-## Estructura del repositorio
+## Arquitectura del repositorio
+
+Separación clara entre el **sitio publicado**, los **datos**, el **pipeline** y la **documentación**:
 
 ```
 .
-├── index.html                 # redirige al dashboard (entrada de GitHub Pages)
-├── dashboard/
-│   ├── v6_dashboard.html       # dashboard principal (autocontenido)
-│   ├── v6_datamap_interactive.html
-│   └── v6_validacion.html      # herramienta de validación humana
-├── data/                       # datos procesados (corpus, puntajes, tópicos, stats)
-├── assets/                     # figuras y mapas
-├── agents/
-│   ├── prompts/                # prompts de la RSI (v3)
-│   └── scripts/                # pipeline de análisis
-└── docs/
-    └── rubrica_RSI_fundamentacion.md   # fundamentación teórica de la RSI
+├── index.html              # redirección a site/ (entrada de GitHub Pages)
+├── site/                   # SITIO PUBLICADO (autocontenido)
+│   ├── index.html          #   · dashboard principal
+│   ├── mapa.html           #   · mapa temático interactivo
+│   └── validacion.html     #   · herramienta de validación humana
+├── data/                   # datos procesados (corpus, puntajes, tópicos, estadísticas)
+├── assets/                 # figuras y mapas estáticos
+├── prompts/                # prompts del modelo (Rúbrica de Sustantividad Interseccional)
+├── pipeline/               # scripts de reproducción, en orden lógico (01 → 12)
+├── docs/                   # fundamentación teórica de la RSI
+├── requirements.txt
+└── LICENSE
 ```
+
+El **pipeline** está numerado según el flujo real de datos:
+
+| # | Script | Qué hace |
+|---|--------|----------|
+| 01 | `ingesta_corpus.py` | Consolida las bases Scopus (EN + ES) en el corpus de trabajo |
+| 02 | `scoring_rsi.py` | Aplica la rúbrica RSI con el modelo de lenguaje (Batch API) |
+| 03 | `modelado_topicos.py` | BERTopic + optimización de hiperparámetros |
+| 04 | `etiquetado_topicos.py` | Etiqueta los tópicos con un modelo de lenguaje |
+| 05 | `analisis_cruzados.py` | Cruces RSI × tópico / idioma / país |
+| 06 | `estadisticas.py` | Estadística descriptiva del corpus |
+| 07 | `figuras.py` | Figuras base (distribución, PRISMA, temporal…) |
+| 08 | `figuras_explicativas.py` | Figuras del método (perfil por criterio, embudo…) |
+| 09 | `insights_topicos.py` | Estadísticas por tópico + ranking de sustantividad |
+| 10 | `mapa_interactivo.py` | Mapa temático interactivo (`site/mapa.html`) |
+| 11 | `validacion.py` | Herramienta de validación humana (`site/validacion.html`) |
+| 12 | `dashboard.py` | Ensambla el dashboard final (`site/index.html`) |
 
 ## Ver el dashboard
 
 - **En línea:** https://iortiz1891.github.io/interseccionalidad-clima/
-- **En local:** desde la raíz del repo, `python3 -m http.server 8001` y abre `http://localhost:8001/dashboard/v6_dashboard.html`.
+- **En local:** desde la raíz del repo, `python3 -m http.server 8001` y abre `http://localhost:8001/site/`.
 
 ## Reproducir
 
-Los datos procesados están incluidos, así que el dashboard se regenera sin re-correr el modelo de lenguaje:
+Los datos procesados están incluidos, así que el dashboard se regenera **sin re-correr el modelo de lenguaje**. Desde la raíz del repo:
 
 ```bash
 pip install -r requirements.txt
-# desde la raíz del repo:
-python3 agents/scripts/20_v1_figures.py          # figuras base
-python3 agents/scripts/32_v1_paper_figures.py    # figuras explicativas A–F
-python3 agents/scripts/33_v1_topic_insights.py   # stats por tópico + ranking
-python3 agents/scripts/28_v1_datamapplot_enhanced.py  # mapa temático interactivo
-python3 agents/scripts/34_v1_validation_tool.py  # herramienta de validación
-python3 agents/scripts/21_v1_dashboard.py        # dashboard final
+
+python3 pipeline/07_figuras.py               # figuras base
+python3 pipeline/08_figuras_explicativas.py  # figuras del método
+python3 pipeline/09_insights_topicos.py      # stats por tópico + ranking
+python3 pipeline/10_mapa_interactivo.py      # mapa temático → site/mapa.html
+python3 pipeline/11_validacion.py            # validación → site/validacion.html
+python3 pipeline/12_dashboard.py             # dashboard → site/index.html
 ```
 
-La cadena completa desde las bases Scopus crudas (ingest → scoring RSI con la API de OpenAI → BERTopic → etiquetado) está documentada en los scripts `30`, `31`, `25` y `27`. Las bases crudas (`.xlsx`) no se incluyen por términos de redistribución.
+La cadena completa desde las bases Scopus crudas (`01` ingesta → `02` scoring con la API de OpenAI → `03` BERTopic → `04` etiquetado → `05`/`06` análisis) requiere las bases crudas (`.xlsx`), que **no se incluyen** por términos de redistribución, y una clave de API de OpenAI para el scoring.
 
 ## Créditos
 

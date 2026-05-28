@@ -115,7 +115,7 @@
         <a href="#docs">Documentos</a>
         <a href="#refs">Referencias</a>
         <div class="nav-group">Herramientas</div>
-        <a href="v6_validacion.html" class="nav-tool">✓ Validar la rúbrica</a>
+        <a href="validacion.html" class="nav-tool">✓ Validar la rúbrica</a>
       </nav>
     </aside>
     
@@ -250,7 +250,7 @@
 </div>
 
 <details open>
-<summary><b>Prompt 1 — Scoring RSI</b> (agents/prompts/bowleg_eval_v3.md)</summary>
+<summary><b>Prompt 1 — Scoring RSI</b> (prompts/bowleg_eval_v3.md)</summary>
 <pre class="code-block"># Rúbrica de Sustantividad Interseccional (RSI) — v3
 
 Eres un investigador experto en interseccionalidad y cambio climático. Evalúas qué tan **sustantivamente** un paper aplica el marco interseccional. El corpus completo es el objeto de estudio: **NO excluyes papers**, solo puntúas. Un score bajo es un dato sobre el campo, no un defecto.
@@ -344,7 +344,7 @@ El total NO lo calculas tú; lo computa el pipeline a partir de estos campos. Si
 </details>
 
 <details>
-<summary><b>Prompt 2 — Razonamiento</b> (agents/prompts/reasoning_v3.md)</summary>
+<summary><b>Prompt 2 — Razonamiento</b> (prompts/reasoning_v3.md)</summary>
 <pre class="code-block"># Razonamiento RSI — v3
 
 Eres un investigador experto en interseccionalidad y cambio climático. Tu trabajo es generar un razonamiento explicativo, conciso y auditable, sobre por qué un paper recibió un determinado puntaje RSI.
@@ -673,12 +673,12 @@ tráfico/transporte (sentido vial de "intersection"), reportes corporativos, cit
 </p>
 
 <div style="width:100%;height:920px;margin:16px 0;border:1px solid #ddd;border-radius:6px;overflow:hidden;">
-  <iframe src="v6_datamap_interactive.html" width="100%" height="100%" style="border:none;"></iframe>
+  <iframe src="mapa.html" width="100%" height="100%" style="border:none;"></iframe>
 </div>
 
 <p style="font-size:12px;color:#666;">
   <strong>Otras versiones:</strong>
-  <a href="v6_datamap_interactive.html" target="_blank">datamapplot standalone (full screen)</a> ·
+  <a href="mapa.html" target="_blank">datamapplot standalone (full screen)</a> ·
   <a href="../assets/v6_fig09_topic_map_interactive.html" target="_blank">Plotly alternativo</a> ·
   <a href="../assets/v6_fig09_topic_map.png" target="_blank">PNG estático</a>
 </p>
@@ -1091,7 +1091,7 @@ tráfico/transporte (sentido vial de "intersection"), reportes corporativos, cit
 <h2 id="docs">13 · Documentos generados</h2>
 <p>
   <a class="doc-link" href="../docs/rubrica_RSI_fundamentacion.md">📋 Fundamentación RSI</a>
-  <a class="doc-link" href="../agents/prompts/bowleg_eval_v3.md">⚙ Prompt RSI v3</a>
+  <a class="doc-link" href="../prompts/bowleg_eval_v3.md">⚙ Prompt RSI v3</a>
   <a class="doc-link" href="../data/v1_corpus_scored.csv">📊 Corpus + scores (CSV)</a>
   <a class="doc-link" href="../data/v1_daniel_subcorpus.csv">📊 Sub-corpus Daniel (CSV)</a>
 </p>
@@ -1111,7 +1111,7 @@ Dedup DOI + título: −3 ·
 </p>
 <p style="font-size: 12px;">
 Scoring RSI: <code>gpt-4.1</code> via OpenAI Batch API, prompt
-<code>agents/prompts/bowleg_eval_v3.md</code> + razonamiento <code>reasoning_v3.md</code>.
+<code>prompts/bowleg_eval_v3.md</code> + razonamiento <code>reasoning_v3.md</code>.
 Rama paralela e independiente del corpus multi-base (4,702).
 </p>
 </details>

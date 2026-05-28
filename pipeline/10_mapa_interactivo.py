@@ -9,7 +9,7 @@ Genera el datamapplot interactivo y luego post-procesa el HTML inyectando:
 4. Hover mejorado vía CSS de tooltip
 
 Outputs:
-  dashboard/v6_datamap_interactive.html  (sobrescrito con versión mejorada)
+  dashboard/mapa.html  (sobrescrito con versión mejorada)
   assets/v6_fig10_datamap_interactive.html  (idem)
 """
 from __future__ import annotations
@@ -21,7 +21,7 @@ from pathlib import Path
 import datamapplot
 
 DATA = Path("data")
-DASHBOARD = Path("dashboard")
+DASHBOARD = Path("site")
 ASSETS = Path("assets")
 
 
@@ -294,7 +294,7 @@ def main():
         enable_search=True,
     )
 
-    base_html_path = DASHBOARD / 'v6_datamap_interactive.html'
+    base_html_path = DASHBOARD / 'mapa.html'
     plot.save(str(base_html_path))
     html = base_html_path.read_text()
     print(f"    base HTML: {len(html):,} chars")

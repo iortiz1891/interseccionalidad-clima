@@ -2,7 +2,7 @@
 """
 21_v1_dashboard.py — Fase 5: dashboard HTML v6 estático.
 
-Genera dashboard/v6_dashboard.html consolidando figuras, tablas y números clave.
+Genera site/index.html consolidando figuras, tablas y números clave.
 """
 from __future__ import annotations
 import pandas as pd
@@ -12,7 +12,7 @@ from pathlib import Path
 
 DATA = Path("data")
 ASSETS = Path("assets")
-DASHBOARD = Path("dashboard")
+DASHBOARD = Path("site")
 DASHBOARD.mkdir(exist_ok=True)
 
 
@@ -212,8 +212,8 @@ def main():
             parts = txt.split('---', 2)
             if len(parts) >= 3: txt = parts[2].strip()
         return _html.escape(txt)
-    prompt_scoring = _load_prompt('agents/prompts/bowleg_eval_v3.md')
-    prompt_reasoning = _load_prompt('agents/prompts/reasoning_v3.md')
+    prompt_scoring = _load_prompt('prompts/bowleg_eval_v3.md')
+    prompt_reasoning = _load_prompt('prompts/reasoning_v3.md')
 
     # Top 20 tópicos sustantivos
     topics_substantive = topics_bw[topics_bw['topic_id_clean'] >= 0].nlargest(15, 'pct_substantive')
@@ -340,7 +340,7 @@ def main():
         <a href="#docs">Documentos</a>
         <a href="#refs">Referencias</a>
         <div class="nav-group">Herramientas</div>
-        <a href="v6_validacion.html" class="nav-tool">✓ Validar la rúbrica</a>
+        <a href="validacion.html" class="nav-tool">✓ Validar la rúbrica</a>
       </nav>
     </aside>
     """
@@ -566,12 +566,12 @@ def main():
 </div>
 
 <details open>
-<summary><b>Prompt 1 — Scoring RSI</b> (agents/prompts/bowleg_eval_v3.md)</summary>
+<summary><b>Prompt 1 — Scoring RSI</b> (prompts/bowleg_eval_v3.md)</summary>
 <pre class="code-block">{prompt_scoring}</pre>
 </details>
 
 <details>
-<summary><b>Prompt 2 — Razonamiento</b> (agents/prompts/reasoning_v3.md)</summary>
+<summary><b>Prompt 2 — Razonamiento</b> (prompts/reasoning_v3.md)</summary>
 <pre class="code-block">{prompt_reasoning}</pre>
 </details>
 
@@ -665,12 +665,12 @@ tráfico/transporte (sentido vial de "intersection"), reportes corporativos, cit
 </p>
 
 <div style="width:100%;height:920px;margin:16px 0;border:1px solid #ddd;border-radius:6px;overflow:hidden;">
-  <iframe src="v6_datamap_interactive.html" width="100%" height="100%" style="border:none;"></iframe>
+  <iframe src="mapa.html" width="100%" height="100%" style="border:none;"></iframe>
 </div>
 
 <p style="font-size:12px;color:#666;">
   <strong>Otras versiones:</strong>
-  <a href="v6_datamap_interactive.html" target="_blank">datamapplot standalone (full screen)</a> ·
+  <a href="mapa.html" target="_blank">datamapplot standalone (full screen)</a> ·
   <a href="../assets/v6_fig09_topic_map_interactive.html" target="_blank">Plotly alternativo</a> ·
   <a href="../assets/v6_fig09_topic_map.png" target="_blank">PNG estático</a>
 </p>
@@ -778,7 +778,7 @@ tráfico/transporte (sentido vial de "intersection"), reportes corporativos, cit
 <h2 id="docs">13 · Documentos generados</h2>
 <p>
   <a class="doc-link" href="../docs/rubrica_RSI_fundamentacion.md">📋 Fundamentación RSI</a>
-  <a class="doc-link" href="../agents/prompts/bowleg_eval_v3.md">⚙ Prompt RSI v3</a>
+  <a class="doc-link" href="../prompts/bowleg_eval_v3.md">⚙ Prompt RSI v3</a>
   <a class="doc-link" href="../data/v1_corpus_scored.csv">📊 Corpus + scores (CSV)</a>
   <a class="doc-link" href="../data/v1_daniel_subcorpus.csv">📊 Sub-corpus Daniel (CSV)</a>
 </p>
@@ -798,7 +798,7 @@ Dedup DOI + título: −3 ·
 </p>
 <p style="font-size: 12px;">
 Scoring RSI: <code>gpt-4.1</code> via OpenAI Batch API, prompt
-<code>agents/prompts/bowleg_eval_v3.md</code> + razonamiento <code>reasoning_v3.md</code>.
+<code>prompts/bowleg_eval_v3.md</code> + razonamiento <code>reasoning_v3.md</code>.
 Rama paralela e independiente del corpus multi-base (4,702).
 </p>
 </details>
@@ -854,7 +854,7 @@ Interseccionalidad y Cambio Climático · Rúbrica de Sustantividad Interseccion
 </body>
 </html>
 """
-    out = DASHBOARD / 'v6_dashboard.html'
+    out = DASHBOARD / 'index.html'
     out.write_text(html)
     size_mb = out.stat().st_size / 1024 / 1024
     print(f"[OK] dashboard → {out} ({size_mb:.1f} MB)")

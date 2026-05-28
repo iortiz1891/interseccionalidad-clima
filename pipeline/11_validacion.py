@@ -9,7 +9,7 @@ exportar los códigos en CSV/JSON. Persistencia en localStorage (pausa/reanuda).
 
 Outputs:
   data/v1_validation_sample.json     muestra estratificada (~50 papers) + scores LLM ocultos
-  dashboard/v6_validacion.html       interfaz de codificación (tab independiente)
+  site/validacion.html       interfaz de codificación (tab independiente)
 """
 from __future__ import annotations
 import json
@@ -17,7 +17,7 @@ import math
 import pandas as pd
 from pathlib import Path
 
-DATA = Path("data"); DASHBOARD = Path("dashboard")
+DATA = Path("data"); DASHBOARD = Path("site")
 
 N_PER_CAT = 10           # papers por categoría (estratificado)
 SEED = 42
@@ -117,12 +117,12 @@ def main():
     (DATA / 'v1_validation_sample.json').write_text(json.dumps(out, ensure_ascii=False, indent=2))
     print(f"    → data/v1_validation_sample.json")
 
-    print("[3] Generando interfaz dashboard/v6_validacion.html")
+    print("[3] Generando interfaz site/validacion.html")
     html = HTML_TEMPLATE
     html = html.replace('__SAMPLE_JSON__', json.dumps(out, ensure_ascii=False))
     html = html.replace('__CRITERIA_JSON__', json.dumps(CRITERIA, ensure_ascii=False))
-    (DASHBOARD / 'v6_validacion.html').write_text(html)
-    print(f"    → dashboard/v6_validacion.html ({len(html):,} chars)")
+    (DASHBOARD / 'validacion.html').write_text(html)
+    print(f"    → site/validacion.html ({len(html):,} chars)")
 
 
 HTML_TEMPLATE = r"""<!DOCTYPE html>
@@ -198,7 +198,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <div class="top">
   <div class="inner">
     <h1>Validación humana de la RSI</h1>
-    <a href="v6_dashboard.html">← Volver al dashboard</a>
+    <a href="index.html">← Volver al dashboard</a>
   </div>
 </div>
 <div class="progress-wrap"><div class="progress-bar" id="pbar"></div></div>
