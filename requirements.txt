@@ -1,0 +1,18 @@
+# Pipeline de análisis y generación del dashboard
+pandas>=1.5
+numpy>=1.23
+matplotlib>=3.6
+openpyxl>=3.1            # lectura de bases Scopus (.xlsx) — solo para reproducción completa
+scikit-learn>=1.2
+
+# Modelado de tópicos (paso BERTopic)
+bertopic>=0.16
+umap-learn>=0.5
+hdbscan>=0.8
+sentence-transformers>=2.2
+
+# Mapa temático interactivo
+datamapplot>=0.6
+
+# Scoring con LLM vía OpenAI Batch API (solo para reproducción completa)
+openai>=1.30

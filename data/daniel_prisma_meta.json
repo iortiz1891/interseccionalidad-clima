@@ -1,0 +1,17 @@
+{
+  "fuentes": {
+    "Scopus EN (Daniel)": 752,
+    "Scopus ES (Daniel)": 219
+  },
+  "bruto": 987,
+  "sin_abstract": 13,
+  "dups": 3,
+  "final": 971,
+  "categorias_pct": {
+    "mencion_sin_aplicacion": 57.5,
+    "sustantivo_fuerte": 19.1,
+    "parcial": 12.4,
+    "nominal_debil": 6.6,
+    "sustantivo": 4.5
+  }
+}

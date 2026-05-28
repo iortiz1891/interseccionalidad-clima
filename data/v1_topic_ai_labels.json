@@ -1,0 +1,398 @@
+{
+  "0": {
+    "label": "Interseccionalidad y género",
+    "descripcion": "Explora las identidades interseccionales de género y su relación con la violencia y la educación en contextos latinoamericanos.",
+    "n_papers": 165,
+    "top_words": [
+      "en",
+      "women",
+      "chile",
+      "violence",
+      "latin"
+    ]
+  },
+  "1": {
+    "label": "Género y adaptación agrícola",
+    "descripcion": "Análisis de cómo las dinámicas de género influyen en las estrategias de adaptación al cambio climático en la agricultura y los medios de vida de las mujeres.",
+    "n_papers": 48,
+    "top_words": [
+      "farmers",
+      "adaptation",
+      "gendered",
+      "women",
+      "agriculture"
+    ]
+  },
+  "2": {
+    "label": "Patrimonio arqueológico en Argentina",
+    "descripcion": "Análisis de la intersección entre la arqueología, la cultura y el patrimonio en diversas regiones de Argentina.",
+    "n_papers": 38,
+    "top_words": [
+      "argentina",
+      "archaeological",
+      "en",
+      "site",
+      "period"
+    ]
+  },
+  "3": {
+    "label": "Justicia climática urbana",
+    "descripcion": "Análisis de cómo las políticas urbanas y la infraestructura afectan la equidad y la vulnerabilidad ante el cambio climático.",
+    "n_papers": 34,
+    "top_words": [
+      "urban",
+      "planning",
+      "cities",
+      "infrastructure",
+      "city"
+    ]
+  },
+  "4": {
+    "label": "Transición legal y ambiental",
+    "descripcion": "Análisis de la intersección entre leyes, adaptación al cambio climático y educación ambiental en el contexto de la sostenibilidad.",
+    "n_papers": 33,
+    "top_words": [
+      "law",
+      "legal",
+      "transition",
+      "water",
+      "economy"
+    ]
+  },
+  "5": {
+    "label": "Juventud y justicia climática",
+    "descripcion": "Explora el papel de los jóvenes en los movimientos por la justicia ambiental y su inclusión en la política democrática.",
+    "n_papers": 32,
+    "top_words": [
+      "youth",
+      "movement",
+      "young",
+      "environmental justice",
+      "activists"
+    ]
+  },
+  "6": {
+    "label": "Emprendimiento feminista",
+    "descripcion": "Explora el papel del emprendimiento feminista en la acción climática y la sostenibilidad.",
+    "n_papers": 32,
+    "top_words": [
+      "feminist",
+      "entrepreneurship",
+      "men",
+      "women",
+      "politics"
+    ]
+  },
+  "7": {
+    "label": "Gestión de riesgos de desastres",
+    "descripcion": "Análisis de mecanismos y políticas para la reducción de riesgos asociados a desastres climáticos y crisis interrelacionadas.",
+    "n_papers": 30,
+    "top_words": [
+      "disaster",
+      "risk",
+      "disaster risk",
+      "management",
+      "disasters"
+    ]
+  },
+  "8": {
+    "label": "Adaptación climática y género",
+    "descripcion": "Análisis de cómo las vulnerabilidades y la adaptación al cambio climático afectan de manera diferenciada a mujeres en India y el Himalaya.",
+    "n_papers": 25,
+    "top_words": [
+      "india",
+      "vulnerabilities",
+      "adaptation",
+      "solar",
+      "security"
+    ]
+  },
+  "9": {
+    "label": "Justicia climática e interseccionalidad",
+    "descripcion": "Explora la intersección entre derechos humanos, justicia climática y la protección de la naturaleza desde una perspectiva interseccional.",
+    "n_papers": 25,
+    "top_words": [
+      "human rights",
+      "animal",
+      "animals",
+      "indigenous",
+      "wildlife"
+    ]
+  },
+  "10": {
+    "label": "Movilidad y cambio climático",
+    "descripcion": "Explora las intersecciones entre la movilidad humana, el cambio climático y sus implicaciones éticas y sociales.",
+    "n_papers": 23,
+    "top_words": [
+      "migration",
+      "climtico",
+      "cambio",
+      "cambio climtico",
+      "en"
+    ]
+  },
+  "11": {
+    "label": "Gobernanza y sostenibilidad",
+    "descripcion": "Análisis de cómo la gobernanza influye en la conservación y sostenibilidad de ecosistemas marinos y terrestres en el contexto del cambio climático.",
+    "n_papers": 22,
+    "top_words": [
+      "forest",
+      "governance",
+      "redd",
+      "biodiversity",
+      "recreation"
+    ]
+  },
+  "12": {
+    "label": "Salud pública y clima",
+    "descripcion": "Explora la intersección entre el cambio climático y la salud pública, enfatizando la equidad y la gobernanza.",
+    "n_papers": 22,
+    "top_words": [
+      "public health",
+      "health equity",
+      "equity",
+      "planetary",
+      "global health"
+    ]
+  },
+  "13": {
+    "label": "Igualdad de género y cambio climático",
+    "descripcion": "Análisis de la intersección entre la igualdad de género y las políticas de adaptación al cambio climático.",
+    "n_papers": 20,
+    "top_words": [
+      "equality",
+      "gender equality",
+      "adaptation",
+      "european",
+      "skills"
+    ]
+  },
+  "14": {
+    "label": "Raza y desastres naturales",
+    "descripcion": "Análisis de la intersección entre raza, desastres naturales y sus impactos en comunidades afroamericanas, especialmente en el contexto de huracanes como Katrina y María.",
+    "n_papers": 19,
+    "top_words": [
+      "katrina",
+      "new orleans",
+      "orleans",
+      "river",
+      "hurricane katrina"
+    ]
+  },
+  "15": {
+    "label": "Transiciones energéticas y justicia",
+    "descripcion": "Análisis de la intersección entre la transición hacia energías renovables y la justicia social, incluyendo la pobreza energética y las preferencias de la población.",
+    "n_papers": 19,
+    "top_words": [
+      "energy",
+      "renewable",
+      "poverty",
+      "transition",
+      "electricity"
+    ]
+  },
+  "16": {
+    "label": "Conocimientos indígenas y adaptación",
+    "descripcion": "Explora cómo el conocimiento indígena y las experiencias de las comunidades afectan la adaptación al cambio climático.",
+    "n_papers": 19,
+    "top_words": [
+      "indigenous",
+      "indigenous peoples",
+      "peoples",
+      "distress",
+      "indigenous knowledge"
+    ]
+  },
+  "17": {
+    "label": "Riesgo y desastres costeros",
+    "descripcion": "Análisis de la intersección entre desastres naturales, riesgo y desigualdades sociales en comunidades costeras.",
+    "n_papers": 18,
+    "top_words": [
+      "disaster",
+      "disasters",
+      "hurricane",
+      "risk",
+      "coastal"
+    ]
+  },
+  "18": {
+    "label": "Salud mental y cambio climático",
+    "descripcion": "Explora la intersección entre la salud mental, la discapacidad y los riesgos psicológicos asociados al cambio climático.",
+    "n_papers": 18,
+    "top_words": [
+      "mental",
+      "disability",
+      "psychological",
+      "risks",
+      "mental health"
+    ]
+  },
+  "19": {
+    "label": "Nexo agua-carbono",
+    "descripcion": "Análisis de la interrelación entre la seguridad hídrica y la industria del carbón en diferentes contextos geográficos.",
+    "n_papers": 18,
+    "top_words": [
+      "water",
+      "security",
+      "law",
+      "water security",
+      "periurban"
+    ]
+  },
+  "20": {
+    "label": "Finanzas verdes y gobernanza",
+    "descripcion": "Análisis del papel de las finanzas verdes y la gobernanza en la mitigación del cambio climático, con un enfoque en China y políticas internacionales.",
+    "n_papers": 17,
+    "top_words": [
+      "carbon",
+      "arctic",
+      "finance",
+      "green",
+      "international"
+    ]
+  },
+  "21": {
+    "label": "Impacto del transporte",
+    "descripcion": "Análisis de cómo el transporte y la infraestructura afectan la calidad del aire y la resiliencia ante desastres naturales.",
+    "n_papers": 17,
+    "top_words": [
+      "traffic",
+      "transportation",
+      "emissions",
+      "signal",
+      "air"
+    ]
+  },
+  "22": {
+    "label": "Educación y sostenibilidad",
+    "descripcion": "Explora la intersección entre la educación, la sostenibilidad y la identidad en contextos académicos.",
+    "n_papers": 17,
+    "top_words": [
+      "students",
+      "course",
+      "education",
+      "sustainability",
+      "classroom"
+    ]
+  },
+  "23": {
+    "label": "Justicia agraria y clima",
+    "descripcion": "Análisis de la intersección entre la justicia agraria y los desafíos del cambio climático en diversas regiones.",
+    "n_papers": 14,
+    "top_words": [
+      "land",
+      "agrarian",
+      "philippines",
+      "south",
+      "poor"
+    ]
+  },
+  "24": {
+    "label": "Salud y olas de calor",
+    "descripcion": "Análisis de la relación entre las olas de calor, la contaminación del aire y sus efectos en la salud pública y desigualdades sociales.",
+    "n_papers": 12,
+    "top_words": [
+      "heat",
+      "exposure",
+      "traffic",
+      "heat exposure",
+      "heat waves"
+    ]
+  },
+  "25": {
+    "label": "Arte y cambio climático",
+    "descripcion": "Explora la intersección entre el arte contemporáneo y la comunicación sobre el cambio climático, abordando temas de justicia social y resistencia.",
+    "n_papers": 12,
+    "top_words": [
+      "art",
+      "science",
+      "cultural",
+      "poetry",
+      "visual"
+    ]
+  },
+  "26": {
+    "label": "Resiliencia y etnicidad",
+    "descripcion": "Análisis de la resiliencia de los hogares en Vietnam desde una perspectiva interseccional que incluye etnicidad y género.",
+    "n_papers": 10,
+    "top_words": [
+      "resilience",
+      "livelihood",
+      "household",
+      "vietnam",
+      "ethnic"
+    ]
+  },
+  "27": {
+    "label": "Medios y justicia climática",
+    "descripcion": "Análisis de cómo los medios de comunicación abordan la justicia climática y las perspectivas indígenas en la cobertura del cambio climático.",
+    "n_papers": 9,
+    "top_words": [
+      "news",
+      "media",
+      "indigenous",
+      "values",
+      "climate justice"
+    ]
+  },
+  "28": {
+    "label": "Mujeres, paz y seguridad",
+    "descripcion": "Análisis de la participación de las mujeres en la resolución de conflictos y la construcción de la paz, así como su relación con la violencia y el cambio climático.",
+    "n_papers": 9,
+    "top_words": [
+      "peace",
+      "conflict",
+      "security",
+      "peacebuilding",
+      "women"
+    ]
+  },
+  "29": {
+    "label": "Interseccionalidad de género en Bangladesh",
+    "descripcion": "Análisis de cómo la interseccionalidad de género y etnicidad afecta la adaptación al cambio climático y las vulnerabilidades en comunidades costeras de Bangladesh.",
+    "n_papers": 8,
+    "top_words": [
+      "bangladesh",
+      "coastal",
+      "social capital",
+      "capital",
+      "livelihood"
+    ]
+  },
+  "30": {
+    "label": "Justicia climática e interseccionalidad",
+    "descripcion": "Análisis de cómo la interseccionalidad y la teoría crítica de la raza influyen en la justicia climática y la adaptación al cambio climático.",
+    "n_papers": 8,
+    "top_words": [
+      "climate justice",
+      "edge",
+      "racism",
+      "race",
+      "injustices"
+    ]
+  },
+  "31": {
+    "label": "Violencia de género y desastres",
+    "descripcion": "Análisis de la intersección entre la violencia de género y los desastres naturales, enfocándose en su impacto en la salud y el bienestar de las mujeres y jóvenes.",
+    "n_papers": 8,
+    "top_words": [
+      "violence",
+      "genderbased violence",
+      "genderbased",
+      "disasters",
+      "disaster"
+    ]
+  },
+  "32": {
+    "label": "Interseccionalidad y desastres",
+    "descripcion": "Análisis de cómo el género, la raza y la clase afectan la experiencia y recuperación ante desastres naturales.",
+    "n_papers": 8,
+    "top_words": [
+      "trust",
+      "hurricane",
+      "disaster",
+      "recovery",
+      "katrina"
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "titulo": "New gender scenarios among the aymaras the north of Chile; [Nuevos escenarios de género entre los aymaras del norte chileno]",
+    "year": "2017",
+    "categoria": "Sustantiva fuerte",
+    "rsi_total": 4.0,
+    "gate": true,
+    "scores": {
+      "I": 1.0,
+      "II": 1.0,
+      "III": 1.0,
+      "IV": 1.0,
+      "V": 1.0,
+      "VI": 1.0
+    },
+    "evidencias": {
+      "I": "",
+      "II": "",
+      "III": "",
+      "IV": "",
+      "V": "El trabajo se orienta a visibilizar desafíos y liderazgos emergentes, con implicancias para la transformación de relaciones de género y justicia social.",
+      "VI": "Documenta apropiaciones, liderazgo femenino y estrategias de adaptación de las mujeres Aymara."
+    },
+    "gate_evidence": "El paper articula género y etnicidad (ser mujer Aymara) en relación con migración, economía y territorio, mostrando cómo se entrelazan en los nuevos escenarios sociales."
+  },
+  {
+    "titulo": "Participation in Climate Change Adaptation Programs in Nepal: An Intersectional Study",
+    "year": "2022",
+    "categoria": "Sustantiva fuerte",
+    "rsi_total": 4.0,
+    "gate": true,
+    "scores": {
+      "I": 1.0,
+      "II": 1.0,
+      "III": 1.0,
+      "IV": 1.0,
+      "V": 1.0,
+      "VI": 1.0
+    },
+    "evidencias": {
+      "I": "",
+      "II": "",
+      "III": "",
+      "IV": "",
+      "V": "Orienta el análisis a la transformación de desigualdades ('affirmative action', crítica a la homogeneización de 'mujeres').",
+      "VI": "Reconoce a las mujeres como agentes activas ('active players in adaptation', 'spaces to participate')."
+    },
+    "gate_evidence": "El abstract analiza cómo género, casta y etnicidad se relacionan en la participación de mujeres en programas de adaptación climática."
+  },
+  {
+    "titulo": "Gender, place, and agricultural extension: a mixed-methods approach to understand farmer needs in Liberia",
+    "year": "2021",
+    "categoria": "Parcial",
+    "rsi_total": 2.0,
+    "gate": true,
+    "scores": {
+      "I": 0.5,
+      "II": 0.5,
+      "III": 1.0,
+      "IV": 0.5,
+      "V": 0.5,
+      "VI": 0.5
+    },
+    "evidencias": {
+      "I": "",
+      "II": "",
+      "III": "",
+      "IV": "",
+      "V": "Se orienta a mejorar la equidad en servicios y resiliencia, pero la dimensión de justicia se menciona más en implicaciones prácticas que como marco crítico.",
+      "VI": "Se menciona agencia (deseo de más extensionistas mujeres, estrategias de adaptación), pero la agencia no es central en el análisis."
+    },
+    "gate_evidence": "El paper analiza cómo género y lugar/ruralidad se intersectan para afectar el acceso a servicios de extensión agrícola y resiliencia en Liberia."
+  },
+  {
+    "titulo": "Sustainability governance for agrarian transformation under climate change",
+    "year": "2024",
+    "categoria": "Mención sin aplicación",
+    "rsi_total": 0.0,
+    "gate": false,
+    "scores": {
+      "I": 0.0,
+      "II": 0.0,
+      "III": 0.0,
+      "IV": 0.0,
+      "V": 0.0,
+      "VI": 0.0
+    },
+    "evidencias": {
+      "I": "",
+      "II": "",
+      "III": "",
+      "IV": "",
+      "V": "No se aborda la justicia social desde una perspectiva interseccional.",
+      "VI": "No se discute agencia o resistencia de sujetos diferenciados socialmente."
+    },
+    "gate_evidence": "El abstract no articula dos o más ejes de diferenciación social relacionados entre sí; se enfoca en gobernanza, sostenibilidad y actores institucionales, sin referencia a identidades sociales entrelaz"
+  },
+  {
+    "titulo": "Reclaiming inclusion in an age of indignation",
+    "year": "2024",
+    "categoria": "Mención sin aplicación",
+    "rsi_total": 0.0,
+    "gate": false,
+    "scores": {
+      "I": 0.0,
+      "II": 0.0,
+      "III": 0.0,
+      "IV": 0.0,
+      "V": 0.0,
+      "VI": 0.0
+    },
+    "evidencias": {
+      "I": "",
+      "II": "",
+      "III": "",
+      "IV": "",
+      "V": "No desarrolla orientación a la justicia más allá de recomendaciones generales.",
+      "VI": "No documenta agencia o resistencia de sujetos."
+    },
+    "gate_evidence": "El abstract menciona 'identidades múltiples' y 'polémicas sobre inclusión', pero no articula cómo se relacionan ejes de diferenciación social; la interseccionalidad solo aparece como palabra clave."
+  }
+]

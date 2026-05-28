@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Credenciales y secretos (NUNCA versionar)
+*.env
+.env
+*creds*
+*credentials*
+*_key*
+*api_key*
+
+# Artefactos intermedios pesados (regenerables)
+*.jsonl
+*.log
+*.npy
+data/*_raw.*
+data/*_input.jsonl
+
+# Bases Scopus crudas (no redistribuibles)
+*.xlsx
+
+# SO
+.DS_Store
+Thumbs.db
