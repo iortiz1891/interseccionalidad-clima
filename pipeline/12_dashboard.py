@@ -323,6 +323,7 @@ def main():
         <div class="nav-group">Corpus</div>
         <a href="#nums">Números clave</a>
         <a href="#prisma">Flujo PRISMA</a>
+        <a href="#busqueda">Cadenas de búsqueda</a>
         <div class="nav-group">Hallazgos</div>
         <a href="#bowleg">Distribución RSI</a>
         <a href="#anatomia">Anatomía de la RSI</a>
@@ -606,6 +607,75 @@ def main():
 
 <h2 id="prisma">2 · Flujo PRISMA</h2>
 <img src="{figs['fig01']}" alt="PRISMA v6">
+
+<h2 id="busqueda">2b · Estrategia de búsqueda</h2>
+<p>Las cadenas se ejecutaron en <b>Scopus</b> (mayo 2026), con filtro por idioma y sin restricción temporal ni por tipo de documento. La selección teórica se delega al <b>scoring RSI</b>, no al filtro de búsqueda: la query es incluyente por diseño, la rúbrica descarta después.</p>
+
+<div class="grid-2" style="gap:16px;margin-top:12px;">
+  <div>
+    <h3 style="margin-top:0;">v1 · Inglés → 752 hits</h3>
+<pre style="background:#f8fafc;border:1px solid var(--line);border-radius:6px;padding:12px;font-size:11.5px;line-height:1.5;overflow-x:auto;"><code>( TITLE-ABS-KEY ( "intersection*" )
+  AND TITLE-ABS-KEY ( "climate change*" OR "hurricane*"
+                      OR "storm" OR "extreme weather events"
+                      OR "cyclone" )
+  AND TITLE-ABS-KEY ( "justice" OR "gender" OR "race"
+                      OR "ethnicity" OR "socioeconomic status"
+                      OR "health disparities" OR "governance"
+                      OR "power" OR "agency" OR "identity"
+                      OR "institution" OR "vulnerab*" OR "adapt*" ) )
+AND ( LIMIT-TO ( LANGUAGE , "English" ) )</code></pre>
+  </div>
+  <div>
+    <h3 style="margin-top:0;">v1 · Español → 219 hits</h3>
+<pre style="background:#f8fafc;border:1px solid var(--line);border-radius:6px;padding:12px;font-size:11.5px;line-height:1.5;overflow-x:auto;"><code>( ALL ( "interseccio*" )
+  AND ALL ( "cambio clim*" OR "hurac*" OR "torment*"
+            OR "evento clim*" OR "ciclo*" )
+  AND ALL ( "vulnerab*" OR "adapta*" OR "resilien*"
+            OR "justicia" OR "poder" OR "instituci*"
+            OR "gobernanza" OR "agenci*" OR "identida*"
+            OR "genero" OR "raza" OR "racia*" OR "etnic*"
+            OR "nivel soci*" OR "disparidad*" ) )
+AND ( LIMIT-TO ( LANGUAGE , "Spanish" ) )</code></pre>
+  </div>
+</div>
+
+<details style="margin-top:16px;">
+<summary><b>Diagnóstico de v1</b> — 6 debilidades detectadas</summary>
+<ul style="font-size:13px;line-height:1.7;margin-top:10px;">
+  <li><b>Asimetría de campos.</b> EN usa <code>TITLE-ABS-KEY</code>, ES usa <code>ALL</code> → cobertura desigual entre idiomas.</li>
+  <li><b>Falsos positivos en ES.</b> <code>ciclo*</code> captura <i>ciclón</i> pero también <i>ciclo hidrológico</i>, <i>ciclo económico</i>, <i>ciclo del carbono</i>.</li>
+  <li><b>Peligros climáticos incompletos.</b> Faltan <b>inundación</b>, <b>sequía</b>, <b>ola de calor</b>, <b>incendio forestal</b>, <b>aumento del nivel del mar</b>, <b>desplazamiento climático</b>.</li>
+  <li><b>Ejes de diferenciación incompletos.</b> Sin <b>discapacidad</b>, <b>sexualidad/LGBT</b>, <b>edad/generación</b>, <b>casta</b>, <b>indigeneidad</b>, <b>colonialidad</b>, <b>migración</b>.</li>
+  <li><b>Ancla léxica estrecha.</b> Solo raíz <code>intersection*</code> / <code>interseccio*</code>: quedan fuera papers que operan con <i>sistemas entrelazados</i>, <i>matriz de dominación</i>, <i>colonialidad de género</i> sin nombrar interseccionalidad.</li>
+  <li><b>Sin registro de ejecución.</b> No hay <code>search_log.csv</code> con fecha, versión, n de hits.</li>
+</ul>
+</details>
+
+<h3 style="margin-top:24px;">Propuesta v2 potenciada</h3>
+<p>Tres variantes con propósitos distintos. La <b>v2a</b> es la sucesora comparable de v1; la <b>v2b</b> es exploratoria (sin ancla léxica); la <b>v2c</b> aísla el sub-corpus de la tesis (ciclones × costera × LatAm).</p>
+
+<table class="data-table" style="margin-top:8px;">
+<tr><th style="width:110px;">Variante</th><th>Propósito</th><th>Cambios clave frente a v1</th></tr>
+<tr>
+  <td><b>v2a</b><br><span style="font-size:11px;color:var(--muted);">recomendada</span></td>
+  <td>Sucesora comparable de v1</td>
+  <td>Simetría <code>TITLE-ABS-KEY</code> en ambos idiomas · <code>ciclo*</code> → <code>ciclón*</code> · añade inundación, sequía, ola de calor, incendio, nivel del mar, marejada, erosión, desplazamiento · añade discapacidad, sexualidad/LGBT/cuir, edad, casta, indigeneidad, colonialidad, migración · añade sinónimos teóricos al ancla</td>
+</tr>
+<tr>
+  <td><b>v2b</b><br><span style="font-size:11px;color:var(--muted);">exploratoria</span></td>
+  <td>Auditar qué queda fuera de v2a</td>
+  <td>Reemplaza ancla léxica por marcos afines (<i>compounded vulnerability</i>, <i>intersecting inequalities</i>, ≥2 ejes). Requiere post-filtro con la rúbrica.</td>
+</tr>
+<tr>
+  <td><b>v2c</b><br><span style="font-size:11px;color:var(--muted);">tesis Daniel</span></td>
+  <td>Sub-corpus ciclones × costera × LatAm</td>
+  <td>Se aplica <b>dentro</b> de v2a como sub-consulta. Añade filtro geográfico Mexico/LatAm/Caribe/Mesoamérica + estados costeros mexicanos.</td>
+</tr>
+</table>
+
+<p style="margin-top:16px;">
+  <a class="doc-link" href="../docs/cadenas_busqueda.md">📋 Documento completo: cadenas de búsqueda v1 + v2a/v2b/v2c</a>
+</p>
 
 <h2 id="bowleg">3 · Distribución RSI</h2>
 <img src="{figs['fig02']}" alt="Distribución RSI">
