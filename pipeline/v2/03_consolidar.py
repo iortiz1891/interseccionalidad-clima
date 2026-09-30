@@ -55,6 +55,8 @@ def main():
 
     corpus = pd.read_csv(DATA / 'v2_corpus_consolidated.csv')
     ids = [r['paper_id'] for r in recs]
+    if '--parcial' in sys.argv:          # solo para probar el pipeline con lotes incompletos
+        corpus = corpus[corpus['paper_id'].isin(ids)].copy()
     faltan = sorted(set(corpus['paper_id']) - set(ids))
     dups = sorted({i for i in ids if ids.count(i) > 1})
     if faltan or dups:

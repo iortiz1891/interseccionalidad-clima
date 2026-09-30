@@ -118,12 +118,12 @@ def main():
     (DATA / 'v2_validation_sample.json').write_text(json.dumps(out, ensure_ascii=False, indent=2))
     print(f"    → data/v2_validation_sample.json")
 
-    print("[3] Generando interfaz site/validacion.html")
+    print(f"[3] Generando interfaz {DASHBOARD / 'validacion.html'}")
     html = HTML_TEMPLATE
     html = html.replace('__SAMPLE_JSON__', json.dumps(out, ensure_ascii=False))
     html = html.replace('__CRITERIA_JSON__', json.dumps(CRITERIA, ensure_ascii=False))
     (DASHBOARD / 'validacion.html').write_text(html)
-    print(f"    → site/validacion.html ({len(html):,} chars)")
+    print(f"    → {DASHBOARD / 'validacion.html'} ({len(html):,} chars)")
 
 
 HTML_TEMPLATE = r"""<!DOCTYPE html>

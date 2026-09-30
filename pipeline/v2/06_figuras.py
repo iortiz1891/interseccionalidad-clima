@@ -70,7 +70,7 @@ def hgrid(ax, axis='y'):
 # ── 01 · PRISMA ──
 def fig01_prisma(meta):
     fig, ax = plt.subplots(figsize=(10, 11.5))
-    ax.set_xlim(0, 10); ax.set_ylim(0, 13.2); ax.axis('off')
+    ax.set_xlim(0, 10); ax.set_ylim(1.1, 13.0); ax.axis('off')
 
     def box(x, y, w, h, txt, fc='#eef4fc', ec='#256abf', fs=9.5, bold=False):
         ax.add_patch(mpatches.FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.08",
@@ -199,7 +199,7 @@ def fig07_trend(yb):
     a2.plot(y.index, y['pct_substantive'], '-o', color=SERIES[0], lw=2, ms=6, mec='white', mew=1.5)
     for x, v in zip(y.index, y['pct_substantive']):
         a2.text(x, v + 2.5, f'{v:.0f}%', ha='center', fontsize=7.5)
-    a2.set_ylim(0, 100); a2.set_ylabel('% sustantivo (RSI ≥ 2.5)')
+    a2.set_ylim(0, max(20, 1.4 * y['pct_substantive'].max())); a2.set_ylabel('% sustantivo (RSI ≥ 2.5)')
     a2.set_title('Proporción con aplicación sustantiva', fontsize=10.5, loc='left'); hgrid(a2)
     a2.set_xlabel('Año (años con ≥ 10 trabajos; el último es parcial)')
     fig.suptitle('Tendencia temporal: volumen y rigor', fontweight='bold')
@@ -221,9 +221,10 @@ def figA(df):
         ax.barh(yy, p5, left=p0, color=RAMP[0], edgecolor='white', linewidth=2, label='Parcial (0.5)')
         ax.barh(yy, p1, left=np.add(p0, p5), color=RAMP[2], edgecolor='white', linewidth=2, label='Cumple (1)')
         for i, v in enumerate(p1):
-            ax.text(99, i, f'{v:.0f}% cumple', va='center', ha='right', fontsize=8.5, color='white', fontweight='bold')
+            ax.text(101.5, i, f'{v:.0f}% cumple', va='center', ha='left', fontsize=8.5, color=INK)
         ax.set_yticks(yy); ax.set_yticklabels([l for _, l in CRITS], fontsize=9)
-        ax.set_xlim(0, 100); ax.set_xlabel('% de trabajos'); ax.set_title(ttl, fontsize=10.5)
+        ax.set_xlim(0, 122); ax.set_xticks([0, 20, 40, 60, 80, 100])
+        ax.set_xlabel('% de trabajos'); ax.set_title(ttl, fontsize=10.5)
         ax.invert_yaxis()
     h, l = axes[0].get_legend_handles_labels()
     fig.legend(h, l, loc='lower center', ncol=3, fontsize=9, frameon=False, bbox_to_anchor=(0.5, 0.02))
