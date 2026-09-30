@@ -165,7 +165,190 @@ AND TITLE-ABS-KEY ( "Mexico" OR "México" OR "Latin America" OR "América Latina
 
 ---
 
-## 3. Expansión multi-base (pendiente)
+## 3. v2 ejecutada (30 de septiembre de 2026) — cadena bilingüe
+
+Sustituye a las propuestas v2a/v2b/v2c de la sección 2. Resuelve dos problemas que esas propuestas no resolvían:
+
+- **La raíz `intersection*` atrapa la palabra común**: cruces viales o frases como "at the intersection of climate and health". La v2 exige *intersectional* / *interseccional*, o bien "intersection" a ≤ 4 palabras de un eje social (`W/4`).
+- **Los trabajos en español casi siempre tienen el abstract solo en inglés.** Por eso una cadena con términos solo en español, limitada a `TITLE-ABS-KEY`, dependería del título. La v2 usa una única cadena con términos en inglés y en español.
+
+Decisiones de diseño:
+
+- **Sin bloque de ejes sociales.** Con el ancla estricta, ese bloque solo excluiría los trabajos que invocan el marco sin nombrar ejes, que son justo los usos nominales que se quieren medir.
+- **Bloque climático amplio.** Incluye desastres, mitigación enmarcada en clima, calor, glaciares, etc. Lo que no es climático se descarta en el cribado, con motivo.
+- **Límites:** desde 1989 (Crenshaw), inglés y español, todos los tipos de documento.
+
+### 3.1 Scopus (ejecutada)
+
+```
+TITLE-ABS-KEY (
+  "intersectional*" OR "interseccional*"
+  OR "intersecting inequalit*" OR "intersecting identit*" OR "intersecting oppression*"
+  OR ( intersection* W/4 ( gender OR race OR racial OR racism OR sex OR sexism
+       OR sexuality OR class OR ethnic* OR identit* OR oppression* OR disabilit*
+       OR indigen* OR caste ) )
+  OR ( intersecci* W/4 ( género OR genero OR raza OR racismo OR sexo OR sexualidad*
+       OR clase OR étnic* OR etnic* OR identidad* OR opresi* OR discapacidad*
+       OR indígena* OR indigena* ) )
+  OR "matrix of domination" OR "multiple jeopardy" OR kyriarch*
+  OR "coloniality of gender" OR "simultaneity of oppression*"
+  OR "entangled inequalit*" OR "multiple marginali*"
+  OR ( interlocking W/3 ( oppression* OR inequalit* OR domination ) )
+  OR "matriz de dominación" OR "matriz de opresión"
+  OR "colonialidad del género" OR "colonialidad de género"
+  OR "entronque patriarcal" OR consustancialidad OR "desigualdades entrelazadas"
+  OR ( imbricaci* W/3 ( opresi* OR dominaci* OR género OR raza OR clase ) )
+  OR ( entrelazad* W/3 ( opresi* OR dominaci* ) )
+)
+AND TITLE-ABS-KEY (
+  "climate change*" OR "changing climate*" OR "global warming"
+  OR "global environmental change" OR "climate crisis" OR "climate emergenc*"
+  OR "climate variab*" OR "climate justice" OR "climate adapt*"
+  OR "climate vulnerab*" OR "climate risk*" OR "climate resilien*"
+  OR "climate polic*" OR "climate action" OR "climate governance"
+  OR "climate mitigation" OR "climate finance" OR "climate migra*"
+  OR "climate mobilit*" OR "climate displace*" OR "climate impact*"
+  OR "climate hazard*" OR "climate extreme*" OR "climate shock*"
+  OR "climate-induced" OR "climate-related" OR "climate security"
+  OR "climate politic*" OR "climate activis*" OR "climate anxiety"
+  OR "extreme weather" OR "extreme event*" OR "extreme heat" OR "heat stress"
+  OR heatwave* OR "heat wave*" OR "heat-related" OR "urban heat"
+  OR hurricane* OR cyclone* OR typhoon* OR storm* OR flood* OR drought*
+  OR wildfire* OR bushfire* OR "forest fire*" OR "sea level*" OR "sea-level*"
+  OR "coastal erosion" OR monsoon* OR "el niño" OR "el nino" OR desertification
+  OR glacier* OR permafrost OR landslide* OR "cold wave*" OR hydrometeorolog*
+  OR disaster* OR "natural hazard*"
+  OR "cambio* clim*" OR "crisis clim*" OR "emergencia clim*"
+  OR "variabilidad clim*" OR "calentamiento global" OR "justicia clim*"
+  OR "adaptación clim*" OR "vulnerabilidad clim*" OR "riesgo* clim*"
+  OR "política* clim*" OR "acción clim*" OR "gobernanza clim*"
+  OR "migraci* clim*" OR "desplaza* clim*" OR "movilidad clim*"
+  OR "evento* clim*" OR "evento* extremo*" OR "fenómeno* extremo*"
+  OR hidrometeorol* OR hurac* OR ciclón* OR ciclon* OR tifón* OR tifon*
+  OR tormenta* OR marejada* OR inundaci* OR sequía* OR sequia*
+  OR "ola* de calor" OR "estrés térmico" OR "incendio* forestal*"
+  OR "nivel del mar" OR "erosión costera" OR desertificaci* OR glaciar*
+  OR "deslizamiento* de tierra*" OR desastre* OR "amenaza* natural*"
+)
+AND PUBYEAR > 1988
+AND ( LIMIT-TO ( LANGUAGE , "English" ) OR LIMIT-TO ( LANGUAGE , "Spanish" ) )
+```
+
+### 3.2 Web of Science Core Collection / SciELO Citation Index (pendiente de ejecutar)
+
+Misma lógica con la sintaxis de WoS. Al marcar el nivel del ancla, los registros que solo coinciden por KeyWords Plus se tratan como invocación por cita: KeyWords Plus se genera de los títulos de las referencias.
+
+```
+TS=(
+  "intersectional*" OR "interseccional*"
+  OR "intersecting inequalit*" OR "intersecting identit*" OR "intersecting oppression*"
+  OR (intersection* NEAR/4 (gender OR race OR racial OR racism OR sex OR sexism
+      OR sexuality OR class OR ethnic* OR identit* OR oppression* OR disabilit*
+      OR indigen* OR caste))
+  OR (intersecci* NEAR/4 (género OR genero OR raza OR racismo OR sexo OR sexualidad*
+      OR clase OR étnic* OR etnic* OR identidad* OR opresi* OR discapacidad*
+      OR indígena* OR indigena*))
+  OR "matrix of domination" OR "multiple jeopardy" OR kyriarch*
+  OR "coloniality of gender" OR "simultaneity of oppression*"
+  OR "entangled inequalit*" OR "multiple marginali*"
+  OR (interlocking NEAR/3 (oppression* OR inequalit* OR domination))
+  OR "matriz de dominación" OR "matriz de opresión"
+  OR "colonialidad del género" OR "colonialidad de género"
+  OR "entronque patriarcal" OR consustancialidad OR "desigualdades entrelazadas"
+  OR (imbricaci* NEAR/3 (opresi* OR dominaci* OR género OR raza OR clase))
+  OR (entrelazad* NEAR/3 (opresi* OR dominaci*))
+)
+AND TS=(
+  "climate change*" OR "changing climate*" OR "global warming"
+  OR "global environmental change" OR "climate crisis" OR "climate emergenc*"
+  OR "climate variab*" OR "climate justice" OR "climate adapt*"
+  OR "climate vulnerab*" OR "climate risk*" OR "climate resilien*"
+  OR "climate polic*" OR "climate action" OR "climate governance"
+  OR "climate mitigation" OR "climate finance" OR "climate migra*"
+  OR "climate mobilit*" OR "climate displace*" OR "climate impact*"
+  OR "climate hazard*" OR "climate extreme*" OR "climate shock*"
+  OR "climate-induced" OR "climate-related" OR "climate security"
+  OR "climate politic*" OR "climate activis*" OR "climate anxiety"
+  OR "extreme weather" OR "extreme event*" OR "extreme heat" OR "heat stress"
+  OR heatwave* OR "heat wave*" OR "heat-related" OR "urban heat"
+  OR hurricane* OR cyclone* OR typhoon* OR storm* OR flood* OR drought*
+  OR wildfire* OR bushfire* OR "forest fire*" OR "sea level*" OR "sea-level*"
+  OR "coastal erosion" OR monsoon* OR "el niño" OR "el nino" OR desertification
+  OR glacier* OR permafrost OR landslide* OR "cold wave*" OR hydrometeorolog*
+  OR disaster* OR "natural hazard*"
+  OR "cambio* clim*" OR "crisis clim*" OR "emergencia clim*"
+  OR "variabilidad clim*" OR "calentamiento global" OR "justicia clim*"
+  OR "adaptación clim*" OR "vulnerabilidad clim*" OR "riesgo* clim*"
+  OR "política* clim*" OR "acción clim*" OR "gobernanza clim*"
+  OR "migraci* clim*" OR "desplaza* clim*" OR "movilidad clim*"
+  OR "evento* clim*" OR "evento* extremo*" OR "fenómeno* extremo*"
+  OR hidrometeorol* OR hurac* OR ciclón* OR ciclon* OR tifón* OR tifon*
+  OR tormenta* OR marejada* OR inundaci* OR sequía* OR sequia*
+  OR "ola* de calor" OR "estrés térmico" OR "incendio* forestal*"
+  OR "nivel del mar" OR "erosión costera" OR desertificaci* OR glaciar*
+  OR "deslizamiento* de tierra*" OR desastre* OR "amenaza* natural*"
+)
+AND PY=(1989-2026)
+AND LA=(English OR Spanish)
+```
+
+### 3.3 Opcional: invocación solo por cita (Scopus)
+
+Trabajos climáticos que citan literatura interseccional sin nombrarla en título, abstract ni keywords. Su RSI requiere texto completo.
+
+```
+REFTITLE ( "intersectional*" OR "interseccional*"
+           OR "demarginalizing the intersection" OR "black feminist thought" )
+AND TITLE-ABS-KEY (
+  "climate change*" OR "changing climate*" OR "global warming"
+  OR "global environmental change" OR "climate crisis" OR "climate emergenc*"
+  OR "climate variab*" OR "climate justice" OR "climate adapt*"
+  OR "climate vulnerab*" OR "climate risk*" OR "climate resilien*"
+  OR "climate polic*" OR "climate action" OR "climate governance"
+  OR "climate mitigation" OR "climate finance" OR "climate migra*"
+  OR "climate mobilit*" OR "climate displace*" OR "climate impact*"
+  OR "climate hazard*" OR "climate extreme*" OR "climate shock*"
+  OR "climate-induced" OR "climate-related" OR "climate security"
+  OR "climate politic*" OR "climate activis*" OR "climate anxiety"
+  OR "extreme weather" OR "extreme event*" OR "extreme heat" OR "heat stress"
+  OR heatwave* OR "heat wave*" OR "heat-related" OR "urban heat"
+  OR hurricane* OR cyclone* OR typhoon* OR storm* OR flood* OR drought*
+  OR wildfire* OR bushfire* OR "forest fire*" OR "sea level*" OR "sea-level*"
+  OR "coastal erosion" OR monsoon* OR "el niño" OR "el nino" OR desertification
+  OR glacier* OR permafrost OR landslide* OR "cold wave*" OR hydrometeorolog*
+  OR disaster* OR "natural hazard*"
+  OR "cambio* clim*" OR "crisis clim*" OR "emergencia clim*"
+  OR "variabilidad clim*" OR "calentamiento global" OR "justicia clim*"
+  OR "adaptación clim*" OR "vulnerabilidad clim*" OR "riesgo* clim*"
+  OR "política* clim*" OR "acción clim*" OR "gobernanza clim*"
+  OR "migraci* clim*" OR "desplaza* clim*" OR "movilidad clim*"
+  OR "evento* clim*" OR "evento* extremo*" OR "fenómeno* extremo*"
+  OR hidrometeorol* OR hurac* OR ciclón* OR ciclon* OR tifón* OR tifon*
+  OR tormenta* OR marejada* OR inundaci* OR sequía* OR sequia*
+  OR "ola* de calor" OR "estrés térmico" OR "incendio* forestal*"
+  OR "nivel del mar" OR "erosión costera" OR desertificaci* OR glaciar*
+  OR "deslizamiento* de tierra*" OR desastre* OR "amenaza* natural*"
+)
+AND PUBYEAR > 1988
+AND ( LIMIT-TO ( LANGUAGE , "English" ) OR LIMIT-TO ( LANGUAGE , "Spanish" ) )
+```
+
+### 3.4 Resultados de la ejecución en Scopus
+
+| | Registros |
+|---|---|
+| Total (30-09-2026) | **1,751** |
+| Solo `intersectional*` / `interseccional*` | 1,449 |
+| + frases con `W/4` o "intersecting …" | 287 |
+| Solo vocabulario afín | 15 |
+| Idioma | 1,739 inglés · 19 español (7 en ambos) |
+| Tipo | 1,038 artículos · 331 capítulos · 138 reviews · 114 libros · 45 notas · 37 editoriales · 32 ponencias · 8 short surveys · 5 erratas · 3 conference reviews |
+
+El export (CSV con información de citación, bibliográfica, abstract y keywords, sin truncar) se guarda como `data/v2_scopus_raw.csv`. No se versiona, por los términos de Scopus. El flujo de exclusiones está en `data/v2_prisma_meta.json` y el cribado registro a registro en `data/v2_cribado.csv`.
+
+---
+
+## 4. Expansión multi-base (pendiente)
 
 Las mismas cadenas potenciadas se pueden portar a otras bases con ajustes de sintaxis. Ver `project_revisa_pending.md` para el toolkit fetcher previsto.
 
@@ -179,9 +362,9 @@ Las mismas cadenas potenciadas se pueden portar a otras bases con ajustes de sin
 
 ---
 
-## 4. Registro de ejecución
+## 5. Registro de ejecución
 
-Cada corrida debe registrar en `data/search_log.csv`:
+Cada corrida se registra en `data/search_log.csv`:
 
 - Fecha (UTC)
 - Base y plataforma (Scopus web, Scopus API, WoS, OpenAlex, …)
@@ -193,7 +376,7 @@ Cada corrida debe registrar en `data/search_log.csv`:
 
 ---
 
-## 5. Referencias sobre construcción de queries
+## 6. Referencias sobre construcción de queries
 
 - Booth, A., Sutton, A., Papaioannou, D. (2016). *Systematic Approaches to a Successful Literature Review*. Sage. — Cap. 5 (search strategy).
 - PRISMA-S (2021). *Reporting guideline for search strategies in systematic reviews*.

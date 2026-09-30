@@ -32,6 +32,12 @@ La rúbrica se aplica a escala de corpus con un modelo de lenguaje de gran escal
 
 ## El dashboard
 
+El dashboard tiene dos pestañas:
+
+- **v1 · corpus original** (mayo 2026): las 971 publicaciones de las cadenas de búsqueda originales.
+- **v2 · búsqueda ampliada** (septiembre 2026, [site/v2/](site/v2/index.html)): una cadena bilingüe nueva en Scopus ([docs/cadenas_busqueda.md §3](docs/cadenas_busqueda.md)). Agrega un cribado de elegibilidad antes de la RSI y se construye solo con esos datos, sin reutilizar registros ni puntajes de la v1.
+
+
 Una sola página que recorre el marco, el corpus, los hallazgos y el método. Incluye:
 
 - **Mapa temático interactivo** (33 tópicos): se puede colorear por tópico, por nivel RSI del trabajo o por RSI medio del vecindario; resaltar el sub-corpus de la tesis; y, al hacer clic en un punto, ver la **justificación del modelo por cada criterio**.
@@ -48,11 +54,13 @@ Separación clara entre el **sitio publicado**, los **datos**, el **pipeline** y
 ├── site/                   # SITIO PUBLICADO (autocontenido)
 │   ├── index.html          #   · dashboard principal
 │   ├── mapa.html           #   · mapa temático interactivo
-│   └── validacion.html     #   · herramienta de validación humana
+│   ├── validacion.html     #   · herramienta de validación humana
+│   └── v2/                 #   · pestaña v2 (index, mapa y validación de la búsqueda ampliada)
 ├── data/                   # datos procesados (corpus, puntajes, tópicos, estadísticas)
 ├── assets/                 # figuras y mapas estáticos
 ├── prompts/                # prompts del modelo (Rúbrica de Sustantividad Interseccional)
 ├── pipeline/               # scripts de reproducción, en orden lógico (01 → 12)
+│   └── v2/                 #   · pipeline de la búsqueda ampliada (01 → 09)
 ├── docs/                   # fundamentación teórica de la RSI
 ├── requirements.txt
 └── LICENSE
@@ -96,6 +104,23 @@ python3 pipeline/12_dashboard.py             # dashboard → site/index.html
 ```
 
 La cadena completa desde las bases Scopus crudas (`01` ingesta → `02` scoring con la API de OpenAI → `03` BERTopic → `04` etiquetado → `05`/`06` análisis) requiere las bases crudas (`.xlsx`), que **no se incluyen** por términos de redistribución, y una clave de API de OpenAI para el scoring.
+
+### Pipeline v2 (búsqueda ampliada)
+
+| # | Script | Qué hace |
+|---|--------|----------|
+| 01 | `v2/01_ingesta_scopus.py` | Ingesta del export de Scopus, exclusiones por regla, deduplicación y nivel del ancla |
+| 02 | `v2/02_preparar_lotes.py` | Divide el corpus en lotes para el cribado y la RSI |
+| — | `v2/validar_lote.py` | Valida cada lote contra el esquema de `prompts/v2_cribado_rsi.md` |
+| 03 | `v2/03_consolidar.py` | Une los lotes y calcula la RSI con la misma fórmula de la v1 |
+| 04 | `v2/04_topicos.py` | Embeddings, barrido UMAP × HDBSCAN y BERTopic sobre los elegibles |
+| 05 | `v2/05_analisis.py` | Cruces (tópico, idioma, año, lugar, tipo de estudio, amenaza) y estadística |
+| 06 | `v2/06_figuras.py` | Figuras de la v2 (`assets/v2_*.png`) |
+| 07 | `v2/07_mapa.py` | Mapa temático interactivo (`site/v2/mapa.html`) |
+| 08 | `v2/08_validacion.py` | Herramienta de validación humana (`site/v2/validacion.html`) |
+| 09 | `v2/09_dashboard.py` | Pestaña v2 (`site/v2/index.html`) |
+
+El cribado, la codificación y la RSI de la v2 los aplicó Claude (claude-opus-5-5) con `prompts/v2_cribado_rsi.md`, en lotes independientes. El export crudo de Scopus (`data/v2_scopus_raw.csv`) no se versiona.
 
 ## Créditos
 

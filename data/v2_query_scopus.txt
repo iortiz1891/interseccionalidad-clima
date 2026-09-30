@@ -1,0 +1,51 @@
+TITLE-ABS-KEY (
+  "intersectional*" OR "interseccional*"
+  OR "intersecting inequalit*" OR "intersecting identit*" OR "intersecting oppression*"
+  OR ( intersection* W/4 ( gender OR race OR racial OR racism OR sex OR sexism
+       OR sexuality OR class OR ethnic* OR identit* OR oppression* OR disabilit*
+       OR indigen* OR caste ) )
+  OR ( intersecci* W/4 ( género OR genero OR raza OR racismo OR sexo OR sexualidad*
+       OR clase OR étnic* OR etnic* OR identidad* OR opresi* OR discapacidad*
+       OR indígena* OR indigena* ) )
+  OR "matrix of domination" OR "multiple jeopardy" OR kyriarch*
+  OR "coloniality of gender" OR "simultaneity of oppression*"
+  OR "entangled inequalit*" OR "multiple marginali*"
+  OR ( interlocking W/3 ( oppression* OR inequalit* OR domination ) )
+  OR "matriz de dominación" OR "matriz de opresión"
+  OR "colonialidad del género" OR "colonialidad de género"
+  OR "entronque patriarcal" OR consustancialidad OR "desigualdades entrelazadas"
+  OR ( imbricaci* W/3 ( opresi* OR dominaci* OR género OR raza OR clase ) )
+  OR ( entrelazad* W/3 ( opresi* OR dominaci* ) )
+)
+AND TITLE-ABS-KEY (
+  "climate change*" OR "changing climate*" OR "global warming"
+  OR "global environmental change" OR "climate crisis" OR "climate emergenc*"
+  OR "climate variab*" OR "climate justice" OR "climate adapt*"
+  OR "climate vulnerab*" OR "climate risk*" OR "climate resilien*"
+  OR "climate polic*" OR "climate action" OR "climate governance"
+  OR "climate mitigation" OR "climate finance" OR "climate migra*"
+  OR "climate mobilit*" OR "climate displace*" OR "climate impact*"
+  OR "climate hazard*" OR "climate extreme*" OR "climate shock*"
+  OR "climate-induced" OR "climate-related" OR "climate security"
+  OR "climate politic*" OR "climate activis*" OR "climate anxiety"
+  OR "extreme weather" OR "extreme event*" OR "extreme heat" OR "heat stress"
+  OR heatwave* OR "heat wave*" OR "heat-related" OR "urban heat"
+  OR hurricane* OR cyclone* OR typhoon* OR storm* OR flood* OR drought*
+  OR wildfire* OR bushfire* OR "forest fire*" OR "sea level*" OR "sea-level*"
+  OR "coastal erosion" OR monsoon* OR "el niño" OR "el nino" OR desertification
+  OR glacier* OR permafrost OR landslide* OR "cold wave*" OR hydrometeorolog*
+  OR disaster* OR "natural hazard*"
+  OR "cambio* clim*" OR "crisis clim*" OR "emergencia clim*"
+  OR "variabilidad clim*" OR "calentamiento global" OR "justicia clim*"
+  OR "adaptación clim*" OR "vulnerabilidad clim*" OR "riesgo* clim*"
+  OR "política* clim*" OR "acción clim*" OR "gobernanza clim*"
+  OR "migraci* clim*" OR "desplaza* clim*" OR "movilidad clim*"
+  OR "evento* clim*" OR "evento* extremo*" OR "fenómeno* extremo*"
+  OR hidrometeorol* OR hurac* OR ciclón* OR ciclon* OR tifón* OR tifon*
+  OR tormenta* OR marejada* OR inundaci* OR sequía* OR sequia*
+  OR "ola* de calor" OR "estrés térmico" OR "incendio* forestal*"
+  OR "nivel del mar" OR "erosión costera" OR desertificaci* OR glaciar*
+  OR "deslizamiento* de tierra*" OR desastre* OR "amenaza* natural*"
+)
+AND PUBYEAR > 1988
+AND ( LIMIT-TO ( LANGUAGE , "English" ) OR LIMIT-TO ( LANGUAGE , "Spanish" ) )
