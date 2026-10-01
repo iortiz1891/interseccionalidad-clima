@@ -267,6 +267,7 @@ def main():
     query_v2 = _html.escape((DATA / 'v2_query_scopus.txt').read_text().strip())
     smeta = json.loads((DATA / 'v2_search_meta.json').read_text())
     pmeta = json.loads((DATA / 'v2_prisma_meta.json').read_text())
+    vmeta = json.loads((DATA / 'v2_validation_sample.json').read_text())['meta']
 
     def insight(label, body):
         return f'<div class="insight"><span class="lbl">{label}</span>{body}</div>'
@@ -362,6 +363,7 @@ def main():
         <a href="#refs">Referencias</a>
         <div class="nav-group">Herramientas</div>
         <a href="validacion.html" class="nav-tool">✓ Validar la rúbrica</a>
+        <a href="corpus.html" class="nav-tool nav-tool-alt">☰ Lista completa del corpus</a>
       </nav>
     </aside>
     """
@@ -402,6 +404,8 @@ def main():
   .sidebar-nav a.nav-tool {{ margin: 6px 14px 0; background: #1d4ed8; color: #fff; border-radius: 7px;
     font-weight: 600; text-align: center; border-left: none; padding: 9px 12px; }}
   .sidebar-nav a.nav-tool:hover {{ background: #2563eb; }}
+  .sidebar-nav a.nav-tool-alt {{ background: #334155; }}
+  .sidebar-nav a.nav-tool-alt:hover {{ background: #475569; }}
 
   .main {{ flex: 1; max-width: 980px; margin: 0 auto; padding: 0 40px 80px; min-width: 0; }}
   .topbar {{ padding: 30px 0 18px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }}
@@ -780,7 +784,8 @@ def main():
 <h2 id="valid">10 · Notas de validación</h2>
 <div class="theory-block">
   <p style="margin-top:0;">El cribado y el scoring RSI v3 de la v2 los aplicó <strong>Claude (claude-opus-5-5)</strong>, con un prompt versionado que aplica la rúbrica v3 al pie de la letra. La regla del gate se corrigió durante la aplicación y los registros afectados se reevaluaron (<code>data/v2_reevaluacion_gate.csv</code>). El procedimiento es transparente y reproducible: el prompt está versionado y cada puntaje incluye evidencia textual por criterio.</p>
-  <p style="margin-bottom:0;"><strong>Validación pendiente.</strong> Para consolidar la rúbrica como instrumento, resta una <strong>validación humana</strong>: la codificación a ciegas de una submuestra (40–50 trabajos) por un evaluador experto, para estimar la concordancia humano-modelo (κ de Cohen). Hasta entonces, los puntajes deben interpretarse como provisionales.</p>
+  <p><strong>Validación pendiente.</strong> Para consolidar la rúbrica como instrumento, resta una <strong>validación humana</strong>. Un evaluador experto repite a ciegas, sobre una muestra, los mismos pasos que siguió el modelo, con las mismas definiciones y reglas: <b>inclusión</b> (¿invoca la interseccionalidad en sentido social? ¿el objeto es climático?), <b>gate</b>, <b>criterios I–VI</b> e <b>integración</b>. La muestra tiene {vmeta["n"]} trabajos en {vmeta["bloques"]} bloques de {vmeta["por_bloque"]}: cada bloque trae 2 registros que el modelo excluyó y 1 de cada categoría RSI. La herramienta calcula la concordancia del cribado, del gate, de cada criterio y de la categoría RSI (κ de Cohen, κ ponderado e IC bootstrap), y estima el acuerdo para el corpus completo. Hasta entonces, los puntajes deben interpretarse como provisionales.</p>
+  <p style="margin-bottom:0;"><a href="validacion.html"><b>✓ Abrir la herramienta de validación</b></a> · <a href="corpus.html"><b>☰ Ver la lista completa del corpus</b></a> ({pmeta["a_cribado"]:,} registros cribados, con las respuestas del modelo; conviene revisarla después de codificar la muestra).</p>
 </div>
 
 <h2 id="daniel">11 · Sub-corpus tesis de Daniel</h2>

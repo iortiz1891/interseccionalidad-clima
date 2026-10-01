@@ -94,7 +94,8 @@ def main():
 
     # ── Cribado ──
     cr = pd.DataFrame([{k: r.get(k) for k in
-                        ['paper_id', 'elig_interseccional', 'elig_clima', 'elegible', 'motivo_exclusion']}
+                        ['paper_id', 'elig_interseccional', 'elig_clima', 'elegible', 'motivo_exclusion',
+                         'confidence']}
                        for r in recs])
     cr = corpus[['paper_id', 'Title', 'Year', 'Document Type', 'idioma', 'nivel_ancla']].merge(cr, on='paper_id')
     # Trabajos retractados: se excluyen por regla, aunque el cribado los haya dado por elegibles.

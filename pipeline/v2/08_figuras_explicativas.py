@@ -168,9 +168,12 @@ def figF(df):
 
 # ── C · Casos ejemplares (datos para tabla HTML) ──
 def casos(df, res):
-    m = df.merge(res[['paper_id','bowleg_I_evidence','bowleg_II_evidence','bowleg_III_evidence',
-                       'bowleg_IV_evidence','rsi_V_evidence','rsi_VI_evidence','gate_evidence']],
-                 on='paper_id', how='left')
+    ev_cols = ['bowleg_I_evidence','bowleg_II_evidence','bowleg_III_evidence',
+               'bowleg_IV_evidence','rsi_V_evidence','rsi_VI_evidence','gate_evidence']
+    # v2_corpus_scored ya trae las evidencias: sin este drop, el merge las renombra a _x/_y
+    # y los casos salen sin evidencia.
+    m = df.drop(columns=[c for c in ev_cols if c in df.columns]).merge(
+        res[['paper_id'] + ev_cols], on='paper_id', how='left')
     def pick(cond, n=1):
         sub = m[cond].sort_values('bowleg_total', ascending=False)
         return sub.head(n)
