@@ -91,7 +91,7 @@ def fig01_prisma(meta):
     box(1.5, 7.6, 5, 1.2, f"CRIBADO DE ELEGIBILIDAD\n¿invoca la interseccionalidad en sentido social?\n¿su objeto es climático?", bold=False)
     arrow(4, 9.6, 4, 8.8)
     box(7.0, 6.9, 2.8, 2.2, f"Excluidos\nn = {cr['excluidos']}\n\n{cr['solo_no_interseccional']} no interseccional\n"
-        f"{cr['solo_no_climatico']} no climático\n{cr['ambos']} ninguno de los dos",
+        f"{cr['solo_no_climatico']} no climático\n{cr['ambos']} ninguno de los dos\n{cr.get('retractados', 0)} retractado(s)",
         fc='#f5f5f4', ec=NEUTRAL, fs=8.5)
     arrow(6.5, 8.2, 7.0, 8.0)
     box(1.5, 5.4, 5, 1.2, f"CORPUS ELEGIBLE\nn = {cr['elegibles']:,}", fc='#dbe9fb', bold=True, fs=11)

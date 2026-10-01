@@ -1,0 +1,122 @@
+[
+  {
+    "titulo": "Environmental Reproductive Justice, Indigenous Health Knowledge and Indigenous Women on the Climate Frontlines",
+    "year": "2024",
+    "categoria": "Sustantiva fuerte",
+    "rsi_total": 4.0,
+    "gate": true,
+    "scores": {
+      "I": 1.0,
+      "II": 1.0,
+      "III": 1.0,
+      "IV": 1.0,
+      "V": 1.0,
+      "VI": 1.0
+    },
+    "evidencias": {
+      "I": "Analiza los saberes de salud generizados y situados de mujeres indígenas como posición específica ante el cambio ambiental.",
+      "II": "Colonialismo de asentamiento, extracción petrolera, desplazamiento y falta de reconocimiento federal como mecanismos estructurales.",
+      "III": "Tribu no reconocida federalmente del Golfo de EE. UU., con intrusión salina y pérdida de tierras; subraya desafíos únicos.",
+      "IV": "Entrevistas semiestructuradas a 31 mujeres de la tribu: muestreo intencional del subgrupo interseccional.",
+      "V": "Interpreta los hallazgos desde la justicia reproductiva ambiental, con crítica situada al colonialismo de asentamiento.",
+      "VI": "Documenta saberes indígenas de salud y sanación, y 'resilience and resistance' frente a fuerzas macroestructurales."
+    },
+    "gate_evidence": "Relaciona género e indigeneidad: saberes 'gendered and place-based' y colonialismo de asentamiento que recargan especialmente a mujeres indígenas."
+  },
+  {
+    "titulo": "Intersectionality, gender, and project-induced displacement in the informal city: The struggle over stormwater development in Los Platanitos, Dominican Republic",
+    "year": "2022",
+    "categoria": "Sustantiva fuerte",
+    "rsi_total": 4.0,
+    "gate": true,
+    "scores": {
+      "I": 1.0,
+      "II": 1.0,
+      "III": 1.0,
+      "IV": 1.0,
+      "V": 1.0,
+      "VI": 1.0
+    },
+    "evidencias": {
+      "I": "Impactos 'contingent on situated markers of difference': las mujeres los viven según edad, estado civil y derechos de propiedad.",
+      "II": "Mecanismo explícito: evaluaciones de género dicotómicas en proyectos de riesgo producen estrategias que replican roles tradicionales.",
+      "III": "Proyecto pluvial en Los Platanitos, Santo Domingo; asentamiento informal, prácticas hídricas informales y realidades situadas.",
+      "IV": "Estudio de caso que diferencia las experiencias de mujeres por edad, estado civil, propiedad y ubicación de las viviendas demolidas.",
+      "V": "Critica estrategias de reurbanización desempoderantes y reclama representación comunitaria genuina en la planificación.",
+      "VI": "La organización Mujeres Unidas presionó a las agencias estatales para obtener vivienda y representación."
+    },
+    "gate_evidence": "Relaciona género con edad, estado civil, derechos de propiedad y ubicación en los impactos del desplazamiento; menciona marcadores económicos y raciales."
+  },
+  {
+    "titulo": "Fostering leadership and gender equality in climate action among underserved, rural and Indigenous women: a qualitative exploration of opportunities and limitat",
+    "year": "2025",
+    "categoria": "Parcial",
+    "rsi_total": 2.0,
+    "gate": true,
+    "scores": {
+      "I": 0.5,
+      "II": 0.5,
+      "III": 0.5,
+      "IV": 1.0,
+      "V": 1.0,
+      "VI": 1.0
+    },
+    "evidencias": {
+      "I": "Los temas analizan impactos de género; la indigeneidad aparece en la muestra y en recomendaciones, sin análisis de co-construcción.",
+      "II": "Nombra 'systemic barriers', roles tradicionales de género y falta de voz, sin teorizar estructuras ni mecanismos.",
+      "III": "Costa norte, Amazonía y Andes centrales y sur del Perú, con desafíos climáticos distintos; sin historia política.",
+      "IV": "48 entrevistas caminando con muestreo intencional y bola de nieve de mujeres rurales e indígenas de varias regiones.",
+      "V": "Centra 'gender equity and social justice'; recomendaciones concretas de representación, preparación ante desastres y saberes indígenas.",
+      "VI": "Documenta comprensión local de los cambios, participación en gobernanza y respuestas comunitarias de las mujeres."
+    },
+    "gate_evidence": "Población definida por género, ruralidad e indigeneidad: 'rural and Indigenous Peruvian women'."
+  },
+  {
+    "titulo": "Engaging economies of change: Equitable partnerships for climate action",
+    "year": "2021",
+    "categoria": "Mención sin aplicación",
+    "rsi_total": 0.0,
+    "gate": false,
+    "scores": {
+      "I": 0.0,
+      "II": 0.0,
+      "III": 0.0,
+      "IV": 0.0,
+      "V": 0.0,
+      "VI": 0.0
+    },
+    "evidencias": {
+      "I": "No aplica: gate no superado.",
+      "II": "No aplica: gate no superado.",
+      "III": "No aplica: gate no superado.",
+      "IV": "No aplica: gate no superado.",
+      "V": "No aplica: gate no superado.",
+      "VI": "No aplica: gate no superado."
+    },
+    "gate_evidence": "'Intersectional feminism' y 'intersectional climate justice' son etiquetas programáticas; no se nombran ni relacionan ejes de diferenciación social."
+  },
+  {
+    "titulo": "GENDERING GREEN CRIMINOLOGY",
+    "year": "2023",
+    "categoria": "Mención sin aplicación",
+    "rsi_total": 0.0,
+    "gate": false,
+    "scores": {
+      "I": 0.0,
+      "II": 0.0,
+      "III": 0.0,
+      "IV": 0.0,
+      "V": 0.0,
+      "VI": 0.0
+    },
+    "evidencias": {
+      "I": "No aplica: gate no superado.",
+      "II": "No aplica: gate no superado.",
+      "III": "No aplica: gate no superado.",
+      "IV": "No aplica: gate no superado.",
+      "V": "No aplica: gate no superado.",
+      "VI": "No aplica: gate no superado."
+    },
+    "gate_evidence": "Anuncia análisis feminista e interseccional, pero el foco es el género sin relación con otros ejes."
+  }
+]

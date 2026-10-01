@@ -15,5 +15,31 @@
   "idioma": {
     "en": 1684,
     "es": 12
+  },
+  "cribado": {
+    "excluidos": 680,
+    "retractados": 1,
+    "solo_no_interseccional": 165,
+    "solo_no_climatico": 408,
+    "ambos": 106,
+    "elegibles": 1016
+  },
+  "rsi": {
+    "gate_pass": 571,
+    "categorias_n": {
+      "mencion_sin_aplicacion": 446,
+      "parcial": 295,
+      "nominal_debil": 157,
+      "sustantivo_fuerte": 60,
+      "sustantivo": 58
+    },
+    "categorias_pct": {
+      "mencion_sin_aplicacion": 43.9,
+      "parcial": 29.0,
+      "nominal_debil": 15.5,
+      "sustantivo_fuerte": 5.9,
+      "sustantivo": 5.7
+    },
+    "modelo": "claude-opus-5-5 (Claude Code) · prompts/v2_cribado_rsi.md"
   }
 }

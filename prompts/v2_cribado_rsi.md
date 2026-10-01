@@ -81,7 +81,14 @@ Estas reglas resuelven casos límite. Se enviaron a todos los lotes en curso, qu
 
 1. **Desastres sin amenaza especificada.** Los estudios de "desastres" o "amenazas naturales" en general son `elig_clima = true`, con `amenaza: ["desastres_multiples"]`. Quedan fuera los explícitamente no climáticos (sismos, tsunamis, volcanes, desastres tecnológicos, pandemias, conflictos o emergencias humanitarias sin vínculo climático).
 2. **Sentido de "intersectional".** Si es claramente "intersectorial" o "interdisciplinar", va `elig_interseccional = false`. Si es ambiguo, va `true` con `confidence: "low"`, y el gate decide.
-3. **Gate.** Exige al menos dos ejes de diferenciación identificables en el texto: nombrados, o implícitos sin ambigüedad en la población ("mujeres indígenas", "inmigrantes racializadas"). Hablar de "identidades múltiples" o "multidimensionales" sin ejes identificables no basta: `gate_pass = false`.
+3. **Gate (versión corregida).** Pasa si el texto relaciona dos o más ejes o categorías de diferenciación social como entrelazados. Cuenta cualquiera de estas tres situaciones:
+   - nombra al menos dos ejes y los relaciona entre sí;
+   - la población los implica sin ambigüedad ("mujeres indígenas", "inmigrantes racializadas");
+   - teoriza explícitamente que un eje se cruza con otras categorías sociales, o que las posiciones surgen de estructuras de poder basadas en varias categorías, aunque no las nombre. Por ejemplo: "gender … takes meaning from its intersection with other identities", o "situatedness in power structures based on … social categorisations".
+
+   No basta con poner la etiqueta "interseccional" a un solo eje sin relacionarlo con otras categorías, ni con listar grupos o ejes por separado, ni con mencionar la interseccionalidad solo como vacío de la literatura o agenda futura. En esos casos, `gate_pass = false`.
+
+   *Nota:* la primera versión de esta regla exigía dos ejes nombrados. Eso dejaba fuera del gate a textos teóricos que articulan categorías que se cruzan sin nombrarlas, por ejemplo Kaijser & Kronsell (2014). Los 421 registros afectados se reevaluaron con esta versión; el antes y el después de cada uno queda en `data/v2_reevaluacion_gate.csv`.
 4. **Métodos cuantitativos.** Si hay interacciones estadísticas, moderación o clasificación cruzada, y se interpretan como posiciones sociales combinadas, va I = 1 e IV = 1. Si los ejes entran como variables separadas o de control, va I = 0.5 (o 0) e IV = 0.
 5. **Registros no elegibles.** Llevan `confidence`, que expresa la confianza en la decisión de cribado, y un razonamiento de una oración (no 40–60 palabras). Los campos de codificación y de RSI van en `null`.
 

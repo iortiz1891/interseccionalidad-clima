@@ -53,6 +53,35 @@ def main():
     if errores:
         sys.exit('ERRORES DE ESQUEMA:\n' + '\n'.join(errores[:40]))
 
+    # ── Reevaluación del gate con la regla 3 corregida (work/v2_reevaluacion/re_*.jsonl) ──
+    # Reemplaza gate, criterios, evidencias y razonamiento; el cribado y la
+    # codificación se conservan siempre del registro original.
+    CONSERVAR = ['elig_interseccional', 'elig_clima', 'elegible', 'motivo_exclusion',
+                 'tipo_estudio', 'amenaza', 'lugar_estudio']
+    by_id = {r['paper_id']: r for r in recs}
+    auditoria = []
+    for f in sorted(Path('work/v2_reevaluacion').glob('re_*.jsonl')):
+        for n, line in enumerate(f.read_text().splitlines(), 1):
+            if not line.strip():
+                continue
+            d = json.loads(line)
+            orig = by_id[d['paper_id']]
+            d.update({c: orig[c] for c in CONSERVAR})
+            errs = check(d)
+            if errs:
+                sys.exit(f'{f.name}:{n} paper_id {d["paper_id"]}: {errs}')
+            auditoria.append({'paper_id': d['paper_id'],
+                              'gate_antes': orig['gate_pass'], 'gate_despues': d['gate_pass'],
+                              'total_antes': compute_total(orig), 'total_despues': compute_total(d),
+                              'gate_evidence_despues': d.get('gate_evidence', '')})
+            by_id[d['paper_id']] = d
+    recs = list(by_id.values())
+    if auditoria:
+        aud = pd.DataFrame(auditoria)
+        aud.to_csv(DATA / 'v2_reevaluacion_gate.csv', index=False)
+        print(f"[0] Reevaluados {len(aud)} gates: {int(aud['gate_despues'].sum())} pasan ahora "
+              f"(antes {int(aud['gate_antes'].sum())})")
+
     corpus = pd.read_csv(DATA / 'v2_corpus_consolidated.csv')
     ids = [r['paper_id'] for r in recs]
     if '--parcial' in sys.argv:          # solo para probar el pipeline con lotes incompletos
@@ -68,6 +97,12 @@ def main():
                         ['paper_id', 'elig_interseccional', 'elig_clima', 'elegible', 'motivo_exclusion']}
                        for r in recs])
     cr = corpus[['paper_id', 'Title', 'Year', 'Document Type', 'idioma', 'nivel_ancla']].merge(cr, on='paper_id')
+    # Trabajos retractados: se excluyen por regla, aunque el cribado los haya dado por elegibles.
+    retract = cr['Title'].fillna('').str.match(r'\s*RETRACTED', case=False)
+    cr['retractado'] = retract
+    cr.loc[retract, 'elegible'] = False
+    cr.loc[retract, 'motivo_exclusion'] = 'Trabajo retractado (excluido por regla).'
+    retract_ids = set(cr.loc[retract, 'paper_id'])
     cr.to_csv(DATA / 'v2_cribado.csv', index=False)
     print(f"[2] Elegibles: {int(cr['elegible'].sum())} / {len(cr)}")
 
@@ -75,7 +110,7 @@ def main():
     rows, razon = [], []
     for r in recs:
         razon.append({'paper_id': r['paper_id'], 'razonamiento': r.get('razonamiento', '')})
-        if not r['elegible']:
+        if not r['elegible'] or r['paper_id'] in retract_ids:
             continue
         rows.append({
             'paper_id': r['paper_id'],
@@ -105,10 +140,11 @@ def main():
 
     # ── PRISMA ──
     meta = json.loads((DATA / 'v2_prisma_meta.json').read_text())
-    no_int = ~cr['elig_interseccional']
-    no_cli = ~cr['elig_clima']
+    no_int = ~cr['elig_interseccional'] & ~cr['retractado']
+    no_cli = ~cr['elig_clima'] & ~cr['retractado']
     meta['cribado'] = {
         'excluidos': int((~cr['elegible']).sum()),
+        'retractados': int(cr['retractado'].sum()),
         'solo_no_interseccional': int((no_int & ~no_cli).sum()),
         'solo_no_climatico': int((no_cli & ~no_int).sum()),
         'ambos': int((no_int & no_cli).sum()),

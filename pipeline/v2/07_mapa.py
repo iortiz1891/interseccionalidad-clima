@@ -205,7 +205,7 @@ def main():
         s = ai_labels.get(str(tid))
         return s['label'] if s and s.get('label') else f'Topic {tid}'
 
-    merged = assignments.merge(final, on='paper_id', how='left')
+    merged = assignments.merge(final, on='paper_id', how='inner')   # solo elegibles con puntaje
     merged['bowleg_total'] = pd.to_numeric(merged['bowleg_total'], errors='coerce')
     merged['_cluster_label'] = merged['topic_id'].apply(label_of)
 

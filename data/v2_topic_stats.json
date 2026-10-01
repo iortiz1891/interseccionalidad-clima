@@ -1,0 +1,192 @@
+{
+  "topics": [
+    {
+      "topic_id": 10,
+      "label": "Mujeres indígenas y saberes propios",
+      "n": 23,
+      "rsi_mean": 2.35,
+      "gate_pct": 83.0,
+      "sust_pct": 43.0,
+      "es_pct": 0.0,
+      "en_pct": 100.0,
+      "pt_pct": 0.0,
+      "n_tesis": 17
+    },
+    {
+      "topic_id": 5,
+      "label": "India: género, casta y agua",
+      "n": 50,
+      "rsi_mean": 1.71,
+      "gate_pct": 76.0,
+      "sust_pct": 34.0,
+      "es_pct": 0.0,
+      "en_pct": 100.0,
+      "pt_pct": 0.0,
+      "n_tesis": 2
+    },
+    {
+      "topic_id": 4,
+      "label": "Adaptación agraria y pequeños productores",
+      "n": 62,
+      "rsi_mean": 1.65,
+      "gate_pct": 79.0,
+      "sust_pct": 24.0,
+      "es_pct": 0.0,
+      "en_pct": 100.0,
+      "pt_pct": 0.0,
+      "n_tesis": 8
+    },
+    {
+      "topic_id": 9,
+      "label": "Bangladesh costero: mujeres y adaptación",
+      "n": 26,
+      "rsi_mean": 1.54,
+      "gate_pct": 85.0,
+      "sust_pct": 19.0,
+      "es_pct": 0.0,
+      "en_pct": 100.0,
+      "pt_pct": 0.0,
+      "n_tesis": 14
+    },
+    {
+      "topic_id": 6,
+      "label": "Género, vulnerabilidad y medios de vida",
+      "n": 42,
+      "rsi_mean": 1.18,
+      "gate_pct": 67.0,
+      "sust_pct": 10.0,
+      "es_pct": 0.0,
+      "en_pct": 100.0,
+      "pt_pct": 0.0,
+      "n_tesis": 7
+    },
+    {
+      "topic_id": 0,
+      "label": "Desastres y riesgo: discapacidad, género y recuperación",
+      "n": 151,
+      "rsi_mean": 1.07,
+      "gate_pct": 65.0,
+      "sust_pct": 9.0,
+      "es_pct": 3.0,
+      "en_pct": 97.0,
+      "pt_pct": 0.0,
+      "n_tesis": 25
+    },
+    {
+      "topic_id": 3,
+      "label": "Teoría feminista e interseccional del cambio climático",
+      "n": 68,
+      "rsi_mean": 0.98,
+      "gate_pct": 59.0,
+      "sust_pct": 12.0,
+      "es_pct": 0.0,
+      "en_pct": 100.0,
+      "pt_pct": 0.0,
+      "n_tesis": 4
+    },
+    {
+      "topic_id": 12,
+      "label": "Calor extremo y salud",
+      "n": 21,
+      "rsi_mean": 0.88,
+      "gate_pct": 62.0,
+      "sust_pct": 5.0,
+      "es_pct": 0.0,
+      "en_pct": 100.0,
+      "pt_pct": 0.0,
+      "n_tesis": 0
+    },
+    {
+      "topic_id": 1,
+      "label": "Juventudes y activismo climático",
+      "n": 80,
+      "rsi_mean": 0.82,
+      "gate_pct": 40.0,
+      "sust_pct": 6.0,
+      "es_pct": 0.0,
+      "en_pct": 100.0,
+      "pt_pct": 0.0,
+      "n_tesis": 2
+    },
+    {
+      "topic_id": 7,
+      "label": "Ciudades: planificación urbana y equidad climática",
+      "n": 37,
+      "rsi_mean": 0.82,
+      "gate_pct": 41.0,
+      "sust_pct": 11.0,
+      "es_pct": 0.0,
+      "en_pct": 100.0,
+      "pt_pct": 0.0,
+      "n_tesis": 0
+    },
+    {
+      "topic_id": 2,
+      "label": "Justicia climática, derecho y litigio",
+      "n": 74,
+      "rsi_mean": 0.77,
+      "gate_pct": 43.0,
+      "sust_pct": 7.0,
+      "es_pct": 3.0,
+      "en_pct": 97.0,
+      "pt_pct": 0.0,
+      "n_tesis": 8
+    },
+    {
+      "topic_id": 11,
+      "label": "Transiciones energéticas justas",
+      "n": 22,
+      "rsi_mean": 0.5,
+      "gate_pct": 36.0,
+      "sust_pct": 0.0,
+      "es_pct": 0.0,
+      "en_pct": 100.0,
+      "pt_pct": 0.0,
+      "n_tesis": 1
+    },
+    {
+      "topic_id": 8,
+      "label": "Salud, salud mental y vulnerabilidad climática",
+      "n": 37,
+      "rsi_mean": 0.49,
+      "gate_pct": 38.0,
+      "sust_pct": 0.0,
+      "es_pct": 0.0,
+      "en_pct": 100.0,
+      "pt_pct": 0.0,
+      "n_tesis": 1
+    },
+    {
+      "topic_id": 13,
+      "label": "Narrativas, ficción y crisis climática",
+      "n": 18,
+      "rsi_mean": 0.44,
+      "gate_pct": 28.0,
+      "sust_pct": 6.0,
+      "es_pct": 0.0,
+      "en_pct": 100.0,
+      "pt_pct": 0.0,
+      "n_tesis": 0
+    },
+    {
+      "topic_id": 14,
+      "label": "Migración y (in)movilidad climática",
+      "n": 14,
+      "rsi_mean": 0.21,
+      "gate_pct": 21.0,
+      "sust_pct": 0.0,
+      "es_pct": 0.0,
+      "en_pct": 100.0,
+      "pt_pct": 0.0,
+      "n_tesis": 0
+    }
+  ],
+  "meta": {
+    "n_topics": 15,
+    "n_papers": 725,
+    "rsi_min": 0.21,
+    "rsi_max": 2.35,
+    "n_tesis_total": 89,
+    "n_topics_con_tesis": 11
+  }
+}

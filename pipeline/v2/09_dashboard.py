@@ -409,7 +409,7 @@ def main():
     <li><b>Adopción y aplicación.</b> Entre los elegibles, el <b>{p_gate_fail:.0f}%</b> invoca el marco sin articular ejes (RSI = 0); el <b>{p_sust:.0f}%</b> alcanza aplicación sustantiva (RSI ≥ 2.5) y el <b>{p_fuerte:.0f}%</b> sustantiva fuerte.</li>
     <li><b>El eslabón débil es el método.</b> Entre los que pasan el gate, solo el <b>{p_iv:.0f}%</b> cumple el criterio IV (método no aditivo); en estudios empíricos, el <b>{p_iv_emp:.0f}%</b>.</li>
     <li><b>El rigor se concentra.</b> Los tópicos con mayor RSI media: {tl}.</li>
-    <li><b>Para la tesis.</b> {ds['relevant_ge2_axes']} trabajos combinan ≥ 2 ejes temáticos de la tesis (RSI media {ds['relevant_bowleg_mean']:.2f}); solo {ds['mexico_AND_cyclonic']} cruzan México y ciclones.</li>
+    <li><b>Para la tesis.</b> {ds['relevant_ge2_axes']} trabajos combinan ≥ 2 ejes temáticos de la tesis (RSI media {ds['relevant_bowleg_mean']:.2f}); {('ninguno cruza México y ciclones' if ds['mexico_AND_cyclonic'] == 0 else ('solo ' + str(ds['mexico_AND_cyclonic']) + ' cruzan México y ciclones'))}.</li>
   </ul>
 </div>
 

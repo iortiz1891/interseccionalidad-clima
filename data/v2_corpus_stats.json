@@ -1,0 +1,132 @@
+{
+  "n_total": 1016,
+  "year_distribution": {
+    "1999": 1,
+    "2006": 1,
+    "2007": 1,
+    "2008": 1,
+    "2009": 3,
+    "2011": 1,
+    "2012": 4,
+    "2013": 2,
+    "2014": 8,
+    "2015": 7,
+    "2016": 23,
+    "2017": 5,
+    "2018": 17,
+    "2019": 29,
+    "2020": 38,
+    "2021": 71,
+    "2022": 80,
+    "2023": 110,
+    "2024": 174,
+    "2025": 214,
+    "2026": 226
+  },
+  "language_distribution": {
+    "en": 1010,
+    "es": 6
+  },
+  "doctype_distribution": {
+    "Article": 662,
+    "Book chapter": 170,
+    "Review": 91,
+    "Book": 43,
+    "Note": 20,
+    "Editorial": 13,
+    "Conference paper": 10,
+    "Short survey": 7
+  },
+  "tipo_estudio_distribution": {
+    "empirico_cualitativo": 346,
+    "conceptual_teorico": 338,
+    "revision": 160,
+    "empirico_cuantitativo": 81,
+    "empirico_mixto": 63,
+    "otro": 28
+  },
+  "ancla_distribution": {
+    "A_nucleo": 934,
+    "A_ampliada": 75,
+    "B_afin": 7
+  },
+  "bowleg_distribution": {
+    "0.0": 446,
+    "0.5": 24,
+    "1.0": 133,
+    "1.5": 88,
+    "2.0": 207,
+    "2.5": 35,
+    "3.0": 23,
+    "3.5": 42,
+    "4.0": 18
+  },
+  "category_distribution": {
+    "mencion_sin_aplicacion": 446,
+    "parcial": 295,
+    "nominal_debil": 157,
+    "sustantivo_fuerte": 60,
+    "sustantivo": 58
+  },
+  "category_percentages": {
+    "mencion_sin_aplicacion": 43.9,
+    "parcial": 29.04,
+    "nominal_debil": 15.45,
+    "sustantivo_fuerte": 5.91,
+    "sustantivo": 5.71
+  },
+  "confidence_distribution": {
+    "medium": 573,
+    "high": 258,
+    "low": 185
+  },
+  "n_gate": 571,
+  "criterios_cumple_gate_pct": {
+    "bowleg_I": 29.2,
+    "bowleg_II": 37.0,
+    "bowleg_III": 28.7,
+    "bowleg_IV": 21.5,
+    "rsi_V": 52.5,
+    "rsi_VI": 35.4
+  },
+  "top_lugares": {
+    "Global": 237,
+    "United States": 133,
+    "No especificado": 96,
+    "India": 68,
+    "Bangladesh": 41,
+    "Canada": 32,
+    "Australia": 28,
+    "United Kingdom": 27,
+    "Kenya": 24,
+    "Ghana": 23,
+    "South Africa": 22,
+    "Brazil": 16,
+    "Nigeria": 16,
+    "Africa": 13,
+    "Nepal": 13,
+    "Indonesia": 13,
+    "Global South": 12,
+    "New Zealand": 12,
+    "Europe": 12,
+    "Pakistan": 11,
+    "Sweden": 11,
+    "Spain": 11,
+    "Vietnam": 10,
+    "Latin America": 9,
+    "Colombia": 9
+  },
+  "daniel_subcorpus": {
+    "mexico": 10,
+    "cyclonic": 51,
+    "coastal": 54,
+    "indigenous": 123,
+    "gender_women": 556,
+    "mexico_AND_cyclonic": 0,
+    "mexico_cyclonic_gender_or_indigenous": 0,
+    "coastal_AND_cyclonic": 18,
+    "relevant_ge2_axes": 123,
+    "relevant_bowleg_mean": 1.7,
+    "relevant_substantive": 28
+  }
+}
