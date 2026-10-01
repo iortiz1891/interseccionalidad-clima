@@ -1,0 +1,17 @@
+topic_id_clean,n_papers,bowleg_mean,bowleg_median,n_substantive,n_nominal,pct_substantive,pct_nominal,topic_name
+-1,291,1.013745704467354,1.0,30,178,10.3,61.2,-1_climate_change_climate change_health
+0,151,1.0728476821192052,1.0,13,91,8.6,60.3,0_disaster_disasters_risk_disability
+1,80,0.81875,0.0,5,51,6.2,63.8,1_youth_young_climate_activism
+2,74,0.7702702702702703,0.0,5,51,6.8,68.9,2_climate_justice_climate justice_change
+3,68,0.9779411764705882,1.0,8,40,11.8,58.8,3_climate_gender_feminist_change
+4,62,1.653225806451613,2.0,15,22,24.2,35.5,4_farmers_adaptation_change_climate change
+5,50,1.71,2.0,17,19,34.0,38.0,5_india_gender_climate_change
+6,42,1.1785714285714286,1.0,4,24,9.5,57.1,6_gender_change_climate_climate change
+7,37,0.8243243243243243,0.0,4,24,10.8,64.9,7_urban_climate_planning_cities
+8,37,0.4864864864864865,0.0,0,30,0.0,81.1,8_health_mental_climate_change
+9,26,1.5384615384615385,1.5,5,8,19.2,30.8,9_bangladesh_climate_adaptation_women
+10,23,2.347826086956522,2.0,10,4,43.5,17.4,10_indigenous_climate_change_women
+11,22,0.5,0.0,0,18,0.0,81.8,11_energy_transition_transitions_systems
+12,21,0.8809523809523809,1.0,1,14,4.8,66.7,12_heat_health_exposure_extreme heat
+13,18,0.4444444444444444,0.0,1,15,5.6,83.3,13_crisis_climate_narratives_fiction
+14,14,0.21428571428571427,0.0,0,14,0.0,100.0,14_migration_immobility_mobility_climate

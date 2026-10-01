@@ -1,0 +1,167 @@
+{
+  "0": {
+    "label": "Desastres y riesgo: discapacidad, género y recuperación",
+    "n_papers": 152,
+    "top_words": [
+      "disaster",
+      "disasters",
+      "risk",
+      "disability",
+      "social"
+    ]
+  },
+  "1": {
+    "label": "Juventudes y activismo climático",
+    "n_papers": 80,
+    "top_words": [
+      "youth",
+      "young",
+      "climate",
+      "activism",
+      "justice"
+    ]
+  },
+  "2": {
+    "label": "Justicia climática, derecho y litigio",
+    "n_papers": 74,
+    "top_words": [
+      "climate",
+      "justice",
+      "climate justice",
+      "change",
+      "climate change"
+    ]
+  },
+  "3": {
+    "label": "Teoría feminista e interseccional del cambio climático",
+    "n_papers": 68,
+    "top_words": [
+      "climate",
+      "gender",
+      "feminist",
+      "change",
+      "climate change"
+    ]
+  },
+  "4": {
+    "label": "Adaptación agraria y pequeños productores",
+    "n_papers": 62,
+    "top_words": [
+      "farmers",
+      "adaptation",
+      "change",
+      "climate change",
+      "climate"
+    ]
+  },
+  "5": {
+    "label": "India: género, casta y agua",
+    "n_papers": 50,
+    "top_words": [
+      "india",
+      "gender",
+      "climate",
+      "change",
+      "climate change"
+    ]
+  },
+  "6": {
+    "label": "Género, vulnerabilidad y medios de vida",
+    "n_papers": 42,
+    "top_words": [
+      "gender",
+      "change",
+      "climate",
+      "climate change",
+      "adaptation"
+    ]
+  },
+  "7": {
+    "label": "Ciudades: planificación urbana y equidad climática",
+    "n_papers": 37,
+    "top_words": [
+      "urban",
+      "climate",
+      "planning",
+      "cities",
+      "justice"
+    ]
+  },
+  "8": {
+    "label": "Salud, salud mental y vulnerabilidad climática",
+    "n_papers": 37,
+    "top_words": [
+      "health",
+      "mental",
+      "climate",
+      "change",
+      "climate change"
+    ]
+  },
+  "9": {
+    "label": "Bangladesh costero: mujeres y adaptación",
+    "n_papers": 26,
+    "top_words": [
+      "bangladesh",
+      "climate",
+      "adaptation",
+      "women",
+      "coastal"
+    ]
+  },
+  "10": {
+    "label": "Mujeres indígenas y saberes propios",
+    "n_papers": 23,
+    "top_words": [
+      "indigenous",
+      "climate",
+      "change",
+      "women",
+      "climate change"
+    ]
+  },
+  "11": {
+    "label": "Transiciones energéticas justas",
+    "n_papers": 22,
+    "top_words": [
+      "energy",
+      "transition",
+      "transitions",
+      "systems",
+      "just"
+    ]
+  },
+  "12": {
+    "label": "Calor extremo y salud",
+    "n_papers": 21,
+    "top_words": [
+      "heat",
+      "health",
+      "exposure",
+      "extreme heat",
+      "extreme"
+    ]
+  },
+  "13": {
+    "label": "Narrativas, ficción y crisis climática",
+    "n_papers": 18,
+    "top_words": [
+      "crisis",
+      "climate",
+      "narratives",
+      "fiction",
+      "hope"
+    ]
+  },
+  "14": {
+    "label": "Migración y (in)movilidad climática",
+    "n_papers": 14,
+    "top_words": [
+      "migration",
+      "immobility",
+      "mobility",
+      "climate",
+      "relocation"
+    ]
+  }
+}

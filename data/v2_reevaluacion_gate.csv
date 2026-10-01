@@ -1,0 +1,422 @@
+paper_id,gate_antes,gate_despues,total_antes,total_despues,gate_evidence_despues
+4,False,True,0.0,1.5,"Su marco teoriza las estructuras interseccionales como dimensión constitutiva que condiciona el acceso de grupos vulnerables, aunque no nombra ejes."
+9,False,False,0.0,0.0,"'Intersectionality' designa el cruce entre discapacidad, cambio climático y rehabilitación; la raza se nombra pero no se relaciona con la discapacidad."
+10,False,False,0.0,0.0,Análisis centrado solo en género; la interseccionalidad aparece únicamente como agenda futura para entender experiencias diversas de las mujeres.
+13,False,True,0.0,2.0,"Afirma que desigualdades e identidades que se cruzan amplifican la vulnerabilidad climática de las mujeres, sobre todo en el Majority World."
+14,False,False,0.0,0.0,"'Intersectional' alude a desafíos transversales; salud, trabajo, roles de género e identidad cultural se listan como impactos separados."
+16,False,False,0.0,0.0,"Usa la 'postcolonial intersectionality' como marco interpretativo, pero el análisis identifica lógicas discursivas, no ejes sociales relacionados entre sí."
+30,False,False,0.0,0.0,Cruza identidad de género con capital social; 'intersectional' se aplica a un solo eje (diversidad de género) sin otras categorías sociales.
+33,False,False,0.0,0.0,Menciona 'intersectional oppression' como factor de vulnerabilidad climática sin articular qué categorías se cruzan ni cómo; descripción editorial del volumen.
+38,False,False,0.0,0.0,Los 'intersectional approaches' integran sostenibilidad ambiental y justicia social (cruce de campos); juventud y salud sexual se listan por separado.
+40,False,False,0.0,0.0,Eje único (mujeres); la interseccionalidad se menciona solo como vacío en la investigación y las políticas climáticas.
+41,False,False,0.0,0.0,El cruce es entre ciclismo y cuidado materno; el marco 'intersectional environmentalist' no relaciona el género con otras categorías sociales.
+42,False,True,0.0,1.0,"Critica la visión unidimensional y teoriza formas entrelazadas de discriminación estructural en la vulnerabilidad social, objeto central del artículo."
+43,False,False,0.0,0.0,Vulnerabilidad analizada solo por género; la interseccionalidad aparece como vacío ('few studies') y agenda futura ('more intersectional research is needed').
+46,False,False,0.0,0.0,"La interseccionalidad figura solo como meta del marco ('justice, equity, and intersectionality'), sin ejes ni relaciones entre categorías."
+49,False,True,0.0,1.0,Afirma que la metodología permite entender cómo posiciones sociales que se cruzan moldean vulnerabilidades y estrategias de adaptación.
+50,False,True,0.0,1.0,"Con lente interseccional analiza el efecto agravante de desigualdades sociales, culturales y económicas confluentes sobre el riesgo climático."
+51,False,False,0.0,0.0,"'Intersectional issue' significa problema transversal; las disparidades socioeconómicas y raciales se mencionan en paralelo, sin relacionarse entre sí."
+53,False,False,0.0,0.0,La interseccionalidad aparece como lente y como vacío de la literatura; no nombra ejes ni teoriza su cruce.
+66,False,False,0.0,0.0,Eje único (discapacidad intelectual y del desarrollo); 'intersectional climate vulnerability' es una etiqueta sin relación con otras categorías.
+71,False,True,0.0,2.0,"Sostiene que atributos interseccionales median las experiencias de los actores, ilustrado con una tipología, en comunidades rurales amazigh."
+72,False,False,0.0,0.0,Califica la violencia climática de 'fundamentally intersectional and structural' sin nombrar ejes ni articular su cruce; 'intersection' también designa clima y violencia.
+73,False,True,0.0,2.0,"Su marco Triple Loss explica cómo los impactos climáticos interactúan con desigualdades estructurales, corporales e interseccionales para producir desventaja acumulada."
+76,False,False,0.0,0.0,"'Intersectionality' designa el cruce del cambio climático con temas adolescentes (ecoansiedad, sistemas de poder); los grupos afectados no se especifican."
+80,False,False,0.0,0.0,Eje único (género del jefe de hogar) comparado entre países; 'intersectional perspective' es una etiqueta sin relación con otras categorías sociales.
+88,False,False,0.0,0.0,El abstract no nombra ejes de diferenciación; la interseccionalidad solo figura en las palabras clave y alude a 'vocabularies of oppression'.
+89,False,True,0.0,2.0,Presenta la experiencia del calor de personas con discapacidad como entrelazada con marginación sistémica y discriminación interseccional.
+96,False,False,0.0,0.0,El 'intersectional approach' se aplica a un solo eje (generaciones futuras); alude a vulnerabilidades diversas sin nombrar ni relacionar otras categorías.
+97,False,False,0.0,0.0,La interseccionalidad aparece solo como vacío ('insufficient intersectional perspectives'); poblaciones vulnerables y países de bajos ingresos sin ejes relacionados.
+100,False,False,0.0,0.0,"Las 'intersectional identities' de los jóvenes se vinculan a lazos intergeneracionales, campo y espacios online, no a ejes sociales relacionados entre sí."
+102,False,False,0.0,0.0,Eje único (discapacidad visual); la interseccionalidad aparece solo como vacío y como recomendación de investigación futura.
+112,False,False,0.0,0.0,"Eje único (género, incluida la diversidad de género); la interseccionalidad es componente de extracción y tema, sin relacionar categorías."
+114,False,False,0.0,0.0,'Intersection of gender and climate finance' es un cruce de temas; la interseccionalidad solo aparece en una lista de temas del libro.
+120,False,False,0.0,0.0,"Eje único (género); critica el esencialismo de las 'vulnerable women' y recomienda un enfoque interseccional, sin relacionar el género con otras categorías."
+121,False,False,0.0,0.0,"Invoca una 'gendered intersectional perspective', pero analiza solo género; la migración aparece como proceso, no como eje relacionado con el género."
+126,False,False,0.0,0.0,"Temas listados por separado (género, migración, saberes indígenas); la interseccionalidad aparece como etiqueta, vacío ('limited operationalization') y agenda futura."
+146,False,False,0.0,0.0,"'Intersectional groups' equivale a grupos vulnerables; personas mayores, con discapacidad y equilibrio de género se tratan por separado."
+148,False,True,0.0,2.0,Sostiene que el acceso a la movilidad está moldeado por relaciones de poder de género y desigualdades que se entrecruzan.
+149,False,False,0.0,0.0,'Intersectionality and decolonisation' es uno de cinco temas transversales del volumen; no se nombran ni relacionan ejes sociales.
+151,False,False,0.0,0.0,'Intersection of migration and climate change' es un cruce de temas; las perspectivas interseccionales solo se reivindican en la conclusión.
+163,False,False,0.0,0.0,"Reflexiona sobre el uso del enfoque interseccional en el activismo juvenil, pero el abstract no nombra ejes ni teoriza cómo se cruzan."
+167,False,True,0.0,3.5,"Muestra que categorías sociales de poder que se cruzan moldean pertenencia, ciudadanía y experiencias desiguales entre agricultores desplazados."
+170,False,False,0.0,0.0,Etiqueta 'intersectional vulnerabilities' sobre un solo eje (género); los aspectos de la identidad femenina no se relacionan con otras categorías.
+171,False,True,0.0,1.5,"Analiza las vulnerabilidades interseccionales de las mujeres y mapea zonas con alta concentración de vulnerabilidades entrecruzadas, aunque no nombra otros ejes."
+179,False,False,0.0,0.0,"La interseccionalidad solo figura en las palabras clave; el abstract trata inclusión, equidad y justicia sin nombrar ni relacionar ejes."
+181,False,False,0.0,0.0,"Perspectiva interseccional declarada, pero centrada en género; las 'multiple layers of vulnerability' no especifican ni relacionan otras categorías."
+183,False,False,0.0,0.0,"Menciona la 'intersectionality of these impacts' y su desigual distribución intracomunitaria, sin nombrar ejes ni teorizar cómo se cruzan."
+191,False,True,0.0,3.5,Teoriza la interseccionalidad como metodología que opera a escala individual y colectiva a través de estructuras de desigualdad superpuestas.
+196,False,True,0.0,2.0,"Analiza el solapamiento intra e interpersonal de múltiples vulnerabilidades: contexto individual, condiciones de vida y trabajo, factores sociales y espaciales."
+198,False,False,0.0,0.0,Eje único (mujeres); interseccionalidad y feminismo decolonial como lentes; el Sur Global intensifica el impacto sin articularse como eje.
+199,False,False,0.0,0.0,"El enfoque interseccional examina dimensiones sociales y ecológicas; la integración de género se extiende a otros grupos secuencialmente, sin entrelazarlos."
+202,False,False,0.0,0.0,El 'intersectional approach' es una práctica de defensa atribuida a los participantes; no se relacionan ejes de diferenciación social.
+209,False,False,0.0,0.0,"La interseccionalidad se enumera entre los fundamentos del índice (justicia ambiental, vulnerabilidad social, colonialismo de asentamiento), sin relacionar ejes."
+212,False,False,0.0,0.0,"Las 'intersectional and structural dimensions' remiten a gobernanza, tenencia, protección social y saberes indígenas, no a ejes sociales relacionados entre sí."
+214,False,False,0.0,0.0,Abordar 'intersecting social categories' aparece solo como dirección futura; explotación colonial y desigualdades socioeconómicas se mencionan por separado.
+216,False,True,0.0,2.0,Integra la teoría interseccional en un modelo sobre desigualdades de género y socioeconómicas que el clima intensifica en la escuela ghanesa.
+218,False,False,0.0,0.0,"Eje único (género); la interacción de raza, clase, capacidad y edad con el género se plantea solo como vacío y agenda."
+222,False,False,0.0,0.0,La co-constitución analizada es entre género y temporalidad estacional; no relaciona el género con otro eje de diferenciación social.
+226,False,False,0.0,0.0,Las 'intersectionally differentiated conditions' aparecen solo como ausencia en la literatura; no se nombran ni relacionan ejes.
+229,False,False,0.0,0.0,Propone lentes 'intersectional and interdisciplinary' para el trabajo social macro; habla de comunidades marginadas sin nombrar ni relacionar ejes.
+230,False,False,0.0,0.0,Comunidades del Sur Global y pueblos indígenas se enumeran; 'intersectional equity' es una etiqueta sin relación explícita entre categorías.
+231,False,False,0.0,0.0,"'Intersectional inequalities' aparece en una frase de riesgo, sin nombrar ejes ni teorizar su cruce."
+243,False,False,0.0,0.0,"Enumera mujeres, niñas y 'intersectionally marginalised groups' por separado; el análisis se centra en necesidades de género sin relacionar ejes."
+248,False,False,0.0,0.0,"Grupos vulnerables listados por separado (trabajadores al aire libre, mayores, indígenas, visitantes); 'intersectional vulnerabilities' sin articular cruces."
+251,False,False,0.0,0.0,"'Intersectional impacts and responsibilities' es una mención de contexto; el capítulo trata ética multiespecie, sin ejes sociales relacionados."
+252,False,False,0.0,0.0,"La 'intersectionality of risk, loss, and action' es un tema transversal ligado al colonialismo; no se nombran ni relacionan ejes sociales."
+263,False,True,0.0,1.5,Contrasta discursos de categorías homogéneas con uno que reconoce identidades entrecruzadas de comunidades marginadas en planes de transición justa.
+266,False,True,0.0,1.5,"Halla que las políticas presentan a las mujeres como homogéneamente vulnerables, ignorando identidades entrecruzadas y contextos locales."
+268,False,False,0.0,0.0,'Intersect' une valores universalistas y experiencias situadas; los grupos sociales no se especifican y lo interseccional queda como agenda futura.
+269,False,False,0.0,0.0,'Intersectional collaboration' significa colaboración interdisciplinar entre investigadores de trayectorias diversas; no hay ejes de diferenciación social.
+273,False,True,0.0,1.5,"Su marco define la vulnerabilidad como socialmente producida mediante desigualdades que se entrecruzan, sin nombrar ejes."
+283,False,False,0.0,0.0,'Intersectional compassionate pedagogy' es una etiqueta pedagógica; saberes indígenas y contextos jerárquicos se mencionan sin relacionar ejes sociales.
+289,False,False,0.0,0.0,"Solo agenda: propone indagar impulsores 'intersectional, systemic, and structural' de la vulnerabilidad; no nombra ni relaciona categorías sociales."
+290,False,False,0.0,0.0,"Pide 'intersectional approaches' y describe impulsores superpuestos de múltiples dimensiones, pero no nombra ni relaciona ejes de diferenciación social."
+291,False,False,0.0,0.0,"Entrevistas a personas con 'different vulnerabilities'; género e interseccionalidad solo en keywords, sin ejes nombrados ni relacionados en el abstract."
+298,False,False,0.0,0.0,"Eje único (mujeres/género); 'intersecting vulnerabilities' y 'embed intersectionality' funcionan como etiqueta o recomendación, sin otra categoría social relacionada."
+301,False,False,0.0,0.0,"Adopta un 'gender lens'; cultura y género aparecen como especificidades del bienestar, no como ejes de diferenciación relacionados entre sí."
+304,False,False,0.0,0.0,Lente 'intersectional positive psychology' aplicada solo a mujeres; las 'layered social and structural conditions' no se especifican como categorías sociales.
+305,False,False,0.0,0.0,"Las mujeres enfrentan 'intersectional vulnerabilities intensified by climate change, mechanization, and social exclusion': etiqueta sobre género con factores no categoriales."
+307,False,False,0.0,0.0,"Único eje generacional (Gen Z); 'intersectional' describe la militancia de las autoras e 'intersections' une imaginación, reflexión y acción."
+308,False,False,0.0,0.0,'Intersecting issues' refiere a temas; 'women and other marginalised groups' lista grupos; el análisis se centra solo en género y masculinidades.
+309,False,False,0.0,0.0,'Intersectional realities' e 'impact of identities' sin especificar categorías ni su cruce; el único eje explícito es la juventud.
+312,False,False,0.0,0.0,Analiza un solo eje (indígena-blanco); las 'intersecting oppressions' aparecen solo en una frase de vacío bibliográfico y meta de los movimientos.
+314,False,False,0.0,0.0,"La interseccionalidad figura como factor que moldea las visiones juveniles, sin nombrar ni relacionar categorías; eje único: juventud."
+316,False,False,0.0,0.0,Solo menciona la 'intersectional rage' de Audre Lorde como recurso; no aparecen ejes de diferenciación social ni su relación.
+327,False,False,0.0,0.0,"'Intersectional vulnerabilities ... experienced by women and girls': etiqueta sobre el eje de género; la intersección declarada es clima–VBG, no entre categorías."
+329,False,False,0.0,0.0,La interseccionalidad aparece solo como vacío pendiente ('exploring intersectionality'); no hay ejes de diferenciación social.
+330,False,False,0.0,0.0,"Revisa literatura sobre interseccionalidad y adaptación, pero no nombra ni relaciona ejes; solo alude a 'identity-based vulnerability' y agenda teórica."
+332,False,False,0.0,0.0,Aplica la interseccionalidad como lente para exponer lógicas institucionales tecnocráticas; no menciona ni relaciona categorías de diferenciación social.
+334,False,False,0.0,0.0,"El 'intersectional analysis' cruza poder, salud y cambio ambiental; los grupos de 'lower power' no se desagregan por categorías sociales."
+336,False,False,0.0,0.0,"El 'Intersectional Framework' del título no se desarrolla; solo menciona 'vulnerable groups' y brecha socioeconómica, sin ejes relacionados."
+339,False,False,0.0,0.0,"Eje único (edad/edadismo); el 'intersectional lens' se refiere a colaboración intergeneracional, sin relacionar otra categoría social."
+350,False,False,0.0,0.0,Enumera 'communities of color and vulnerable populations' y pide un 'intersectional approach'; raza y clase no se relacionan entre sí.
+353,False,False,0.0,0.0,'Addressing intersectionality' es un ítem más en una lista de elementos de equidad distributiva; no hay ejes sociales relacionados.
+355,False,False,0.0,0.0,"'Intersecting gender norms, limited access to resources...' cruza género con factores no categoriales; la 'intersection of gender and disaster' es temática."
+362,False,False,0.0,0.0,"'Intersectional injustices' se atribuye a otra literatura; el eje trabajado es indígena/colonial, sin relacionarlo con otra categoría social."
+364,False,False,0.0,0.0,Anuncio de congreso; interseccionalidad solo en keywords y enfoque 'intersectoral'; habla de 'groups experiencing disadvantages' sin ejes.
+366,False,False,0.0,0.0,"Las 'intersectional narratives' conectan la justicia climática con luchas comunitarias; son cruces temáticos, no entre categorías sociales."
+373,False,False,0.0,0.0,"'Intersectional risks of heat exposure, homelessness, and methamphetamine use' combina riesgos; correlatos en regresión separados, sin cruce de categorías sociales."
+375,False,False,0.0,0.0,"Afirma que 'different dimensions of identity' determinan impactos desiguales, sin relacionarlas entre sí; el resto trata uso del suelo y planificación."
+379,False,False,0.0,0.0,Solo menciona muestreo de máxima variación para captar respuestas 'diverse and intersectional'; no nombra ni relaciona ejes sociales.
+380,False,False,0.0,0.0,"Las 'multiple intersectionalities' cruzan dimensiones social, económica, geográfica e infraestructural de vulnerabilidad, no ejes de diferenciación social."
+382,False,False,0.0,0.0,Comunidades 'marginalised and low-income' e 'intersectional adaptation praxis' como encuadre; clase y espacio no se relacionan con otras categorías.
+395,False,True,0.0,1.0,Hallazgo propio: 'the influence of intersecting identities' moldea las emociones climáticas; teoriza identidades que se cruzan sin nombrarlas (regla 3c).
+398,False,True,0.0,1.0,"Teoriza 'intersecting vulnerabilities and inequalities' que moldean cómo grupos e individuos viven el clima; argumento central, sin nombrar categorías (regla 3c)."
+401,False,False,0.0,0.0,"Lente de 'intersectionality and care' sobre mujeres; la intersección analizada es entre extremos climáticos, no entre categorías sociales."
+405,False,False,0.0,0.0,"Editorial: 'intersecting issues' alude a crisis entrelazadas; menciona 'diverse peoples, First Peoples' sin relacionar categorías sociales."
+411,False,False,0.0,0.0,'Intersectional threat' califica la amenaza climática a la salud materna; solo trabaja el eje de género (mujeres gestantes).
+412,False,False,0.0,0.0,'Intersectional data feminism' y enfoque no binario se aplican solo al género; no se nombra ni relaciona otro eje.
+415,False,False,0.0,0.0,"La 'intersection of disability, conflict, and natural disasters' cruza un eje con crisis; el desplazamiento aparece como escenario, no como categoría."
+418,False,False,0.0,0.0,"Las 'intersectional alliances' son una crítica externa; las líneas de conflicto (edad, afectación global, élite) se presentan por separado."
+424,False,False,0.0,0.0,"Pide relatos 'intersectionally diverse' y enumera perspectivas críticas (feminista, racial, queer); no relaciona categorías sociales."
+427,False,False,0.0,0.0,Interseccionalidad solo en keywords; menciona 'marginalized communities' sin ejes de diferenciación ni su relación.
+430,False,False,0.0,0.0,'Intersecting inequalities' se atribuye a los jóvenes como un solo grupo; el análisis se centra en el sesgo de edad.
+432,False,False,0.0,0.0,Pide perspectiva 'intersectional and especially gender-sensitive' y menciona aparte a comunidades indígenas; género e indigeneidad no se relacionan.
+436,False,False,0.0,0.0,"'Addressing intersectional inequalities' es una recomendación; los grupos ('marginalized communities, underrepresented stakeholders') se enumeran sin relacionarse."
+443,False,False,0.0,0.0,"Eje único (discapacidad), 'framed through climate justice and intersectionality'; los retos socioeconómicos explican vulnerabilidad, no forman categoría relacionada."
+448,False,False,0.0,0.0,Marco 'intersectional' aplicado a mujeres; 'structural inequalities' sin especificar y 'other marginalized populations' listadas aparte; ubicación geográfica como contexto.
+451,False,False,0.0,0.0,"Capítulo de cierre que invoca 'human rights and intersectionality' como perspectiva necesaria, sin nombrar ni relacionar ejes sociales."
+455,False,False,0.0,0.0,Análisis de redes 'intersectional' sobre 'actors' identities' sin especificar qué identidades ni su cruce; pueden ser institucionales.
+472,False,False,0.0,0.0,"Eje único (género, métodos GIC y GIA); la 'intersectional mobility justice' aparece como ausencia en los planes."
+482,False,False,0.0,0.0,Las 'intersections' son entre hidrógeno verde e igualdad de género; la interseccionalidad se invoca en el marco sin otro eje.
+483,False,False,0.0,0.0,Pide una 'intersectionally differentiated view on social inequalities' como principio de agenda; no nombra ni relaciona categorías.
+486,False,False,0.0,0.0,Editorial breve; interseccionalidad solo en keywords; no aparecen ejes de diferenciación social.
+487,False,False,0.0,0.0,Centrado en patriarcado verde y mujeres ('particularly in the Global South'); 'intersectional and decolonial approaches' solo como llamado.
+491,False,False,0.0,0.0,"La 'intersectionality of gender-mediated vulnerability, empowerment, and gender disparities' cruza constructos de un solo eje (género), no categorías."
+495,False,False,0.0,0.0,"Lista 'race, gender and sexuality' como tema de diversidad entre desplazados; no articula su entrelazamiento con el desplazamiento."
+500,False,False,0.0,0.0,"Eje único (niñez y juventud); 'intersectional, complex needs' es etiqueta sin otra categoría relacionada."
+501,False,True,0.0,1.0,En la discusión teoriza 'the intersection of disabilities with other factors of marginalization' como causa de la omisión (regla 3c).
+506,False,False,0.0,0.0,'Addressing intersectional vulnerabilities' figura solo como recomendación final; no hay ejes sociales nombrados ni relacionados.
+512,False,False,0.0,0.0,"Combina educación intercultural e interseccionalidad con el Antropoceno, pero no nombra ni relaciona ejes de diferenciación social."
+515,False,True,0.0,2.0,Objeto del estudio: 'intersecting inequalities and their structural drivers among diversely situated at-risk populations'; capas superpuestas de desventaja (regla 3c).
+520,False,False,0.0,0.0,"Los estratos 'intersectional' combinan rasgos regionales (temperatura, vivienda antigua, acceso a urgencias), no ejes de diferenciación social de personas."
+523,False,False,0.0,0.0,Presenta la interseccionalidad como vacío en Suecia y potencial futuro ('call for more empirical studies'); no relaciona categorías concretas.
+525,False,False,0.0,0.0,Analiza la interseccionalidad como concepto jurídico y sus aplicaciones; el abstract no nombra ni relaciona categorías sociales.
+534,False,False,0.0,0.0,"Cruza etnicidad con desigualdad percibida y resiliencia; efectos separados ('regardless of ethnicity'), un solo eje social."
+536,False,False,0.0,0.0,"Que el género sea 'relational, dynamic, and intersectional' solo se plantea como punto de partida para investigación futura; síntesis binaria."
+537,False,False,0.0,0.0,'Without intersectional approaches' describe ausencias en planes; 'historically marginalized groups' sin categorías relacionadas.
+539,False,False,0.0,0.0,"Menciona 'difference, intersectionality, and cooperation' y enumera mujeres y niños por separado; no relaciona categorías."
+540,False,False,0.0,0.0,"Las 'intersections between gender, climate change and energy transition' son temáticas; la interseccionalidad es una palanca propuesta."
+547,False,True,0.0,1.0,El diseño simula 'intersectional identities' en las consignas al modelo y evalúa si omite aspectos identitarios (regla 3c).
+556,False,False,0.0,0.0,"Lentes de 'intersectionality and ecofeminism', pero solo compara mujeres y hombres profesionales; no relaciona otro eje."
+564,False,False,0.0,0.0,'More intersectional social movement organising' es una aspiración del activismo; no hay ejes sociales nombrados ni relacionados.
+569,False,False,0.0,0.0,Menciona 'intersectional disadvantages' sin nombrar ni relacionar ejes; padres e hijos y ruralidad no se articulan como categorías entrelazadas.
+576,False,False,0.0,0.0,Alude a 'intersectional vulnerabilities' en América Latina sin nombrar ni relacionar ejes; las desigualdades socioeconómicas son contexto regional.
+587,False,False,0.0,0.0,"Aplica un Intersectionality-Based Policy Analysis y menciona colonialidad, pero el abstract no nombra ni relaciona ejes de diferenciación social."
+601,False,False,0.0,0.0,Cita la teoría de la interseccionalidad y lista 'women and marginalized groups in the Global South' sin relacionar ejes entre sí.
+602,False,False,0.0,0.0,Las 'intersectional perspectives' son un enfoque que adoptan las ciudades; no se nombran ni relacionan ejes de diferenciación social.
+609,False,False,0.0,0.0,La interseccionalidad es un tema de conversación en el aula; no se nombran ni relacionan ejes de diferenciación social.
+616,False,False,0.0,0.0,Solo menciona 'intersectional State obligations' en la opinión consultiva; no nombra ni relaciona ejes de diferenciación social.
+617,False,True,0.0,1.0,Relaciona género con desplazamiento: mujeres en campos de refugiados expuestas a explotación; también mujeres rurales cuidadoras. Articulación mínima.
+621,False,False,0.0,0.0,"Declara inspirarse en teoría feminista e interseccional, pero no nombra ni relaciona ejes; solo pregunta quién resulta más marginado."
+628,False,True,0.0,1.0,"Analiza cómo identidades sociodemográficas de los agricultores se cruzan con sus capitales de medios de vida, generando capacidades adaptativas desiguales."
+633,False,False,0.0,0.0,"Ensayo visual sobre vulnerabilidad material compartida; la interseccionalidad figura solo en keywords, sin ejes de diferenciación relacionados."
+634,False,False,0.0,0.0,"Invoca principios de justicia climática 'critical and intersectional' y la inclusión de grupos marginados, sin nombrar ni relacionar ejes."
+636,False,False,0.0,0.0,"Critica lógicas coloniales y menciona 'intersectional aspects' de prácticas ante el calor, sin nombrar ni relacionar ejes de diferenciación social."
+640,False,True,0.0,1.0,Teoriza la interseccionalidad como sistemas de opresión entrecruzados que producen experiencias diferenciadas y critica su uso como mera suma de identidades.
+642,False,False,0.0,0.0,"Alude a 'intersectional dimensions' de la desigualdad climática y a comunidades marginadas, sin nombrar ni relacionar ejes de diferenciación."
+650,False,False,0.0,0.0,"Menciona 'the intersectionalities experienced by vulnerable communities' y lista grupos de bajos ingresos o marginados, sin relacionar ejes."
+654,False,False,0.0,0.0,"La 'intersection' cruza factores sociales e individuales de exposición al calor, no ejes de diferenciación social relacionados."
+655,False,False,0.0,0.0,Lo 'intersectional' remite al cruce de sectores alimento-energía-agua y a la justicia; no nombra ni relaciona ejes de diferenciación social.
+656,False,False,0.0,0.0,Las experiencias 'gendered and intersectional' figuran solo como vacío de la literatura; el análisis bibliométrico no relaciona ejes.
+664,False,False,0.0,0.0,"Análisis de un solo eje (género) en mujeres rurales; 'intersectional' designa la combinación teológica, ecológica y feminista, no ejes relacionados."
+667,False,False,0.0,0.0,Las 'intersectional perspectives' significan cruce de disciplinas; trata fronteras y nacionalismo sin relacionar ejes de diferenciación social.
+668,False,False,0.0,0.0,La 'posthuman intersectionality' cruza un solo eje social (edad/generación) con lo no humano (bosques); no relaciona dos categorías sociales.
+670,False,False,0.0,0.0,Un solo eje (edad: jóvenes); 'intersectional youth perspectives' etiqueta la juventud sin relacionarla con otras categorías sociales.
+671,False,False,0.0,0.0,Nombra 'gendered immobility' y alude a 'intersectional positions' sin especificarlas ni relacionar el género con otras categorías.
+682,False,False,0.0,0.0,Las 'intersectional vulnerabilities' se reducen a vulnerabilidades de las mujeres; etiqueta interseccional sobre un solo eje (género).
+684,False,True,0.0,1.0,Relaciona la identidad queer con otras identidades: halla 'the added impact of intersecting identities' en los impactos climáticos.
+685,False,True,0.0,0.5,"El diseño usa mensajes con 'descriptors of intersecting identities': combina identidades sociales, aunque el abstract no las nombra."
+699,False,False,0.0,0.0,'Climate Justice & Intersectionality' es una de cinco narrativas identificadas; el abstract no nombra ni relaciona ejes de diferenciación.
+701,False,False,0.0,0.0,La intersección explícita es 'age and climate': un solo eje social cruzado con el clima; el caso KlimaSeniorinnen no se desarrolla.
+705,False,False,0.0,0.0,Centrado en género; 'women and other intersectional groups' etiqueta otros grupos sin relacionar el género con otras categorías.
+707,False,False,0.0,0.0,"Enumera ética, equidad, inclusión, interseccionalidad y decolonialidad como énfasis docentes, sin nombrar ni relacionar ejes de diferenciación."
+708,False,True,0.0,1.0,Vincula género con otras posiciones: mujeres y personas de género diverso con 'compounding and overlapping vulnerabilities due to... systems of oppression'.
+715,False,False,0.0,0.0,"Un solo eje (mujeres); 'intersectionality of vulnerabilities' alude a vulnerabilidades combinadas, no a categorías sociales relacionadas."
+717,False,False,0.0,0.0,La 'intersectional conception' une luchas climáticas y sociales en la percepción activista; no nombra ni relaciona ejes de diferenciación.
+721,False,True,0.0,2.0,"La población implica indigeneidad y género/edad: violencia contra el pueblo yanomami, 'especially women and children'; mención breve."
+725,False,False,0.0,0.0,"Las 'intersectionalities of space, time, difference, rule, and movement' son ángulos analíticos, no ejes de diferenciación social relacionados."
+727,False,False,0.0,0.0,"Habla de 'intersectional violences' y estructuras de poder, pero no nombra ni relaciona ejes de diferenciación social."
+731,False,False,0.0,0.0,"Los enfoques 'differential, intersectional and participatory' aparecen solo como necesidad futura; no relaciona ejes de diferenciación."
+737,False,False,0.0,0.0,Alude a 'systematic and intersectional inequalities' del desastre sin nombrar ni relacionar ejes de diferenciación social.
+738,False,False,0.0,0.0,Promueve 'justice-oriented and intersectional narratives' en libros infantiles; no nombra ni relaciona ejes de diferenciación social.
+739,False,True,0.0,1.0,"La población implica estatus migratorio y diversidad cultural-lingüística (refugiados y migrantes CALD), que el texto sitúa bajo 'intersectional appreciation'."
+742,False,False,0.0,0.0,Las prácticas y narrativas 'intersectional' de FFF visibilizan voces marginadas sin nombrar ni relacionar ejes de diferenciación social.
+747,False,False,0.0,0.0,"La 'intersectional relationship' cruza disparidades socioeconómicas, condiciones históricas y política regional; no relaciona ejes de diferenciación social."
+749,False,False,0.0,0.0,"Enumera raza, millennials, Gen Z, mujeres y migrantes como perspectivas separadas, sin relacionarlas entre sí."
+751,False,False,0.0,0.0,Se centra en adolescentes (edad) y menciona 'under-represented intersectional perspectives' sin relacionar ejes de diferenciación social.
+752,False,False,0.0,0.0,"Declara usar 'intersectional methodologies' y menciona la brecha Norte-Sur y utopías queer, sin relacionar ejes de diferenciación social."
+753,False,False,0.0,0.0,Jóvenes que demandan interseccionalidad y racismo sistémico en el activismo aparecen por separado; no relaciona edad y raza como posiciones entrelazadas.
+757,False,False,0.0,0.0,Las 'intersectional and inter-regional considerations' son una promesa del enfoque interamericano; no nombra ni relaciona ejes sociales.
+760,False,True,0.0,2.0,Relaciona discapacidad con otras posiciones: grupos de ayuda mutua de personas discapacitadas 'with multiple marginalized identities'.
+762,False,False,0.0,0.0,La interseccionalidad aparece como blanco de reacciones populistas y en la agenda de investigación; no relaciona ejes de diferenciación.
+766,False,True,0.0,1.5,Concluye que la vulnerabilidad posdesastre de PWUD se relaciona con 'multiple marginalized identities that intersect with illicit drug use'.
+767,False,False,0.0,0.0,"Propone coaliciones de 'intersectional organizing across a range of social identities': articula alianzas entre grupos, no posiciones entrelazadas."
+769,False,False,0.0,0.0,"Los enfoques interseccionales aparecen solo como necesidad futura; comunidades marginadas tratadas en bloque, sin relacionar ejes de diferenciación."
+784,False,False,0.0,0.0,Lista grupos vulnerables por separado y centra la población LGBTQ+; el 'intersectional analysis' activista no relaciona ejes concretos.
+785,False,True,0.0,0.0,"Halla que 'gender intersections with other social identities determine vulnerabilities', con impactos mayores en mujeres de contextos marginados."
+786,False,False,0.0,0.0,"Declara un 'intersectional framework', pero analiza solo el eje género en la CMNUCC, sin relacionarlo con otras categorías."
+789,False,False,0.0,0.0,"Centrado en jóvenes (edad); las 'intersectional injustices' son un tema del humor activista, sin relacionar ejes de diferenciación."
+795,False,True,0.0,2.0,Analiza cómo el género configura dinámicas de poder en la producción de conocimiento 'that intersect with other forms of discrimination'.
+800,False,False,0.0,0.0,"Compara hogares con jefatura masculina y femenina (un eje); la 'intersectionality perspective' alude a dimensiones de vulnerabilidad, no a ejes cruzados."
+802,False,False,0.0,0.0,Un solo eje (género) y la interseccionalidad solo como recomendación futura; no relaciona ejes de diferenciación social.
+803,False,False,0.0,0.0,"Usa marcos 'feminist and intersectional' pero analiza solo desigualdades de género de mujeres agricultoras, sin relacionarlas con otras categorías."
+805,False,False,0.0,0.0,Lista la interseccionalidad entre conceptos geográficos de vulnerabilidad; no nombra ni relaciona ejes de diferenciación social.
+808,False,False,0.0,0.0,"Habla de 'intersecting vulnerabilities' y desigualdades estructurales de residentes de primera línea, sin nombrar ni relacionar ejes de diferenciación."
+809,False,True,0.0,1.0,"Relaciona raza y clase como estructura conjunta: el mercado reproduce 'the historical structures of racial capitalism'; única articulación, al final."
+810,False,False,0.0,0.0,"Propone ampliar la justicia del desastre a dimensiones 'intersectional' de las brechas de justicia, sin nombrar ni relacionar ejes."
+813,False,False,0.0,0.0,La interseccionalidad figura solo en keywords; el texto revisa factores moderadores de vulnerabilidad sin nombrar ni relacionar ejes sociales.
+815,False,False,0.0,0.0,"Centrado en género; 'women, men, and other intersectional groups' etiqueta grupos sin relacionar el género con otras categorías."
+820,False,False,0.0,0.0,"Alude a 'intersectional factors' y enumera poblaciones por separado (ruralidad, refugiados, personas mayores, niñez) sin relacionarlas."
+830,False,False,0.0,0.0,Un solo eje (género y acceso a energía); los enfoques interseccionales aparecen solo en la agenda futura.
+836,False,False,0.0,0.0,"Alude a 'historical and compounding vulnerabilities' y justicia climática interseccional, sin nombrar ni relacionar ejes de diferenciación social."
+837,False,True,0.0,2.5,Teoriza explícitamente 'the intersection of inequalities as historically mutually constructing social relations' desde un feminismo decolonial.
+844,False,False,0.0,0.0,Solo enumera la interseccionalidad entre los temas del manual; no nombra ni relaciona ejes de diferenciación social.
+846,False,False,0.0,0.0,La interseccionalidad aparece solo al cierre como enfoque prometedor a futuro; no nombra ni relaciona ejes sociales.
+851,False,False,0.0,0.0,Propone un análisis de 'gender intersectionality' para tipificar agricultores: etiqueta sobre el género sin relacionarlo con otras categorías.
+860,False,False,0.0,0.0,"Declara un 'intersectional gender analysis'; cita mujeres y grupos marginados por separado, sin relacionar el género con otro eje."
+861,False,False,0.0,0.0,La interseccionalidad es una de cinco tendencias académicas; alude al colonialismo sin relacionar ejes de diferenciación social.
+863,False,False,0.0,0.0,'Intersectional' califica perspectivas docentes junto a lo transdisciplinar; no menciona ejes de diferenciación social.
+864,False,True,0.0,1.0,"Población de mujeres perinatales rurales bajo teoría feminista interseccional: cruza género, maternidad y ruralidad."
+876,False,True,0.0,1.0,"Teoriza individuos multidimensionales, identidades no predefinidas y relaciones de poder centrales: posiciones de varias categorías sin nombrarlas."
+887,False,False,0.0,0.0,"Llama 'intersectional design' a soluciones para comunidades marginadas con pocos recursos, sin nombrar ni relacionar ejes sociales."
+891,False,False,0.0,0.0,Invoca la interseccionalidad ante impactos climáticos complejos sin nombrar ejes sociales; el foco son sistemas interconectados.
+894,False,False,0.0,0.0,Centra a pueblos indígenas frente al colonialismo de asentamiento (un eje); la justicia ambiental interseccional es un llamado final.
+905,False,False,0.0,0.0,"Presenta la interseccionalidad como causa sistémica y vía de justicia, sin nombrar ni relacionar ejes de diferenciación social."
+907,False,False,0.0,0.0,"La 'intersectionality' combina factores demográficos, académicos y socioeconómicos como predictores; no relaciona ejes sociales entre sí."
+908,False,False,0.0,0.0,"Menciona 'intersectional disadvantage' y pueblos marginados en general, sin nombrar ejes ni teorizar cómo se cruzan."
+911,False,False,0.0,0.0,"Enumera injusticias sociales, raciales y ambientales y una 'intersectional lens' docente, sin relacionar ejes entre sí."
+921,False,False,0.0,0.0,Anuncia 'intersectional approaches' sobre migración y ODS sin nombrar ni relacionar ejes de diferenciación social.
+923,False,False,0.0,0.0,Lista determinantes 'intersectional' de la vulnerabilidad sin nombrar ejes ni teorizar su cruce; el foco es la gubernamentalidad.
+926,False,False,0.0,0.0,"Califica de 'intersectional' las dinámicas translocales de la migración, sin mencionar ejes de diferenciación social."
+927,False,False,0.0,0.0,Recomienda una 'more intersectional lens' para investigación futura; la desigualdad social aparece sin ejes relacionados.
+929,False,False,0.0,0.0,"Señala que los planes dan poco énfasis a la interseccionalidad: un vacío de las políticas, sin ejes relacionados."
+932,False,False,0.0,0.0,"Menciona lentes interseccionales, interespirituales e interreligiosas sin nombrar ni relacionar ejes de diferenciación social."
+937,False,False,0.0,0.0,"Alude a la naturaleza 'intersectional' de la migración y a posicionalidades diversas, sin nombrar ni relacionar ejes sociales."
+939,False,True,0.0,2.0,Jóvenes de comunidades históricamente marginadas como grupo de mayor riesgo: cruza edad y una marginación social no especificada.
+948,False,False,0.0,0.0,"Relaciona discapacidad con opresión animal (especie), no con otro eje de diferenciación social humana; queda un solo eje."
+951,False,False,0.0,0.0,"Enumera indigeneidad, etnia, edad, género, sexualidad, discapacidad y clase por separado; las 'intersectional threats' son amenazas que se cruzan."
+953,False,False,0.0,0.0,"Identifica facetas de identidad social y procesos estructurales, pero solo sugiere la lente interseccional; no relaciona categorías entre sí."
+960,False,False,0.0,0.0,"Usa enfoques feministas interseccionales para destacar el género como categoría; un solo eje, sin relación con otros."
+961,False,True,0.0,2.0,Las entrevistadas se ven con privilegios y desventajas 'based on their multifaceted identities': posiciones derivadas de varias categorías.
+963,False,False,0.0,0.0,"Análisis de género; concluye que las políticas carecen de interseccionalidad, citada solo como vacío y sin otros ejes."
+964,False,False,0.0,0.0,"Aplica la Teoría del Riesgo Interseccional, pero el resumen no nombra ejes sociales ni teoriza cómo se cruzan."
+971,False,False,0.0,0.0,"Pide políticas 'intersectional and inclusive' para personas sin hogar; un solo grupo, sin otros ejes relacionados."
+972,False,False,0.0,0.0,Inclusividad e interseccionalidad son uno de cuatro temas del libro; no nombra ni relaciona ejes sociales.
+974,False,False,0.0,0.0,"Anuncia un análisis interseccional de la diferenciación social maasái, pero el resumen no nombra ni relaciona ejes concretos."
+977,False,False,0.0,0.0,La interseccionalidad figura en una lista de principios para un plan futuro; no aborda ejes de diferenciación social.
+980,False,False,0.0,0.0,"Habla de la naturaleza 'intersectional' de las consecuencias del calentamiento, no de ejes sociales relacionados entre sí."
+982,False,False,0.0,0.0,Propone enfoques interseccionales como agenda futura de investigación; no nombra ni relaciona ejes sociales.
+984,False,False,0.0,0.0,"Declara una perspectiva interseccional y decolonial, pero no nombra ni relaciona ejes de diferenciación social."
+987,False,True,0.0,2.0,"Analiza cómo la asignación de culpa responde a 'interlocking systems of power', incluida la masculinidad hegemónica."
+990,False,False,0.0,0.0,Solo la palabra clave 'matrix of domination'; el texto nombra pobreza y exposición tóxica sin relacionar ejes.
+993,False,True,0.0,1.0,Afirma que la intersección de diversas disparidades sociales con el género reconfigura la vulnerabilidad rural a inundaciones.
+994,False,False,0.0,0.0,"Cruza marcos de justicia climática y de género con una lente 'interseccional', pero solo analiza el género."
+996,False,False,0.0,0.0,'Intersectional and multi-level efforts' alude a acciones intersectoriales; la feminización agrícola no se cruza con otros ejes.
+997,False,False,0.0,0.0,La 'justicia climática interseccional' es un componente narrativo no desarrollado; solo se abordan edad e intergeneracionalidad.
+1000,False,False,0.0,0.0,La 'intersectionality of factors' alude a factores de salud combinados; no relaciona ejes de diferenciación social.
+1004,False,False,0.0,0.0,"Analiza masculinidades y relaciones humano-animal; el género es el único eje social, sin cruces con otras categorías."
+1008,False,False,0.0,0.0,"La interseccionalidad es uno de cuatro principios enunciados, sin nombrar ejes ni explicar cómo se cruzan."
+1009,False,False,0.0,0.0,"Reseña breve centrada en la clase; la interseccionalidad solo figura como palabra clave, sin otros ejes."
+1012,False,True,0.0,1.5,Vulnerabilidades de género en comunidades agrarias marginadas y 'intersectional inequalities': cruza género y marginación agraria.
+1014,False,False,0.0,0.0,"Alude a injusticias interseccionales y opresiones sistémicas de forma genérica, sin relacionar ejes de diferenciación social."
+1021,False,False,0.0,0.0,"El feminismo interseccional es solo palabra clave; el ensayo destaca a mujeres artistas, un eje sin cruces."
+1022,False,True,0.0,2.0,"Comunidades BIPOC y de clase trabajadora blanca, con racismo sistémico y pobreza como condiciones: cruza raza y clase."
+1023,False,False,0.0,0.0,Incluye 'intersectional equity-driven needs assessment' en una lista de cuestiones de equidad; no relaciona ejes sociales.
+1027,False,False,0.0,0.0,"Anuncia análisis feminista e interseccional, pero el foco es el género sin relación con otros ejes."
+1030,False,False,0.0,0.0,Compara la perspectiva de género en acuerdos de riesgo; el enfoque interseccional solo figura como palabra clave.
+1033,False,False,0.0,0.0,"Sostiene que la interseccionalidad es necesaria para la igualdad de género, pero no relaciona el género con otras categorías."
+1038,False,False,0.0,0.0,"Pregunta cómo la literatura aborda género e interseccionalidad, pero los resultados solo tratan dimensiones de género."
+1040,False,True,0.0,3.5,Examina cómo 'disabilities intersect with social and structural injustices' económicas y socioculturales en contextos urbanos.
+1053,False,False,0.0,0.0,"Lista grupos raciales, étnicos y de bajo nivel socioeconómico por separado; las intersecciones son entre clima y cáncer."
+1054,False,True,0.0,1.5,Define la reflexión interseccional como análisis de cómo se interconectan diversas fuerzas de opresión sobre poblaciones marginadas.
+1056,False,False,0.0,0.0,"Llamado programático que enumera vínculos teóricos y metodológicos, sin relacionar categorías sociales ni teorizar su cruce."
+1062,False,False,0.0,0.0,"Describe el marco de justicia climática como 'intersectional', sin nombrar ni relacionar ejes de diferenciación social."
+1068,False,True,0.0,1.0,Articula raza y clase mediante el capitalismo racial e incorpora la interseccionalidad como uno de los ejes del marco.
+1070,False,False,0.0,0.0,"Atribuye 'intersectionality' a la discapacidad como eje único; los subgrupos son tipos de discapacidad, sin otras categorías."
+1072,False,False,0.0,0.0,"Menciona 'intersecting inequalities' y diferencia social como temas de la literatura, sin relacionar ejes concretos."
+1073,False,False,0.0,0.0,Pide adoptar 'intersectional approaches' en investigación futura de economía política; no articula ejes sociales.
+1079,False,False,0.0,0.0,Pide 'nuanced intersectional understandings' como dirección futura; trata la edad como eje único.
+1080,False,False,0.0,0.0,"Alude a diferencias de ubicación social y a una política antirracista, pero no relaciona categorías sociales como entrelazadas."
+1082,False,False,0.0,0.0,"Las 'intersectional plots' cruzan raza, colonialidad y clima como tramas temáticas; no articula dos ejes sociales entrelazados."
+1099,False,False,0.0,0.0,"Propone una 'intersectionality of urban identities', pero lo que superpone son factores geográficos y de planificación, no ejes sociales."
+1102,False,False,0.0,0.0,"Atribuye una 'intersectional nature' al cambio climático, que golpea a quienes viven en precariedad; sin ejes sociales relacionados."
+1103,False,False,0.0,0.0,"Usa un marco de análisis de políticas interseccional, pero solo aborda la juventud; no relaciona la edad con otros ejes."
+1106,False,False,0.0,0.0,Tipología de dimensiones de desigualdad listadas por separado; la interseccionalidad aparece solo como algo que el marco permitiría detectar.
+1120,False,True,0.0,2.0,"Situación 3: la segmentación agrupa a encuestados en 'intersectional, meaningful groups' según varias características sociales combinadas, aunque no las nombra."
+1125,False,False,0.0,0.0,"'Increasingly intersectional' parece significar intersectorial; solo menciona 'vulnerable populations', sin relacionar ejes de diferenciación social."
+1127,False,False,0.0,0.0,"El título anuncia examinar la interseccionalidad, pero el resumen solo alude a 'vulnerable and marginalized populations' sin relacionar ejes."
+1130,False,False,0.0,0.0,'Intersectional environmentalism' es una etiqueta; el resumen menciona antirracismo y estructuras sociales sin relacionar dos ejes de diferenciación.
+1137,False,False,0.0,0.0,"Revisión sobre herramientas digitales para ciudades climáticamente neutras; la interseccionalidad solo figura en keywords, sin ejes sociales en el resumen."
+1140,False,False,0.0,0.0,"Alude a experiencias vividas y trasfondos distintos, pero no nombra ni relaciona ejes; 'Intersectionalities' solo aparece en keywords."
+1142,False,True,0.0,1.0,Situación 3: define la interseccionalidad como análisis de 'overlapping and compounding oppressions and/or privileges' de individuos y grupos.
+1147,False,False,0.0,0.0,"Habla de 'multiple socioeconomic or environmental disadvantages' de áreas y grupos vulnerables, sin relacionar ejes de diferenciación social."
+1161,False,False,0.0,0.0,Un solo eje (juventud); 'intersectional aspects of environmental socialisation' es etiqueta sin relacionar la edad con otras categorías.
+1162,False,False,0.0,0.0,'Commoning intersectional relations of care and solidarity' es etiqueta; no nombra ni relaciona ejes de diferenciación social.
+1164,False,False,0.0,0.0,"Identidades viales (conductor, ciclista, peatón) no son ejes de diferenciación social; 'other forms of intersectional discrimination' queda sin especificar."
+1166,False,False,0.0,0.0,"'Intersectional feminist' rotula el pódcast; el resumen no relaciona ejes, y 'girls' solo aparece en keywords."
+1172,False,True,0.0,2.0,Situación 3: los musulmanes enfrentan islamofobia 'alongside multiple other intersecting inequalities'; un eje religioso cruzado con otros no nombrados.
+1176,False,False,0.0,0.0,"Revisión centrada en género; los enfoques interseccionales se describen en la literatura y se piden como agenda futura, sin relacionar ejes."
+1184,False,False,0.0,0.0,Adopta una 'posthumanist intersectionality-perspective' como rótulo; el análisis de política no nombra ni relaciona ejes de diferenciación social.
+1186,False,False,0.0,0.0,'Intersectional justice approach' cruza tipologías de éxito con dimensiones de justicia; clase y generación aparecen como métricas separadas.
+1189,False,False,0.0,0.0,Solo alude a desplazamiento desigual entre poblaciones e inequidades distributivas; la interseccionalidad figura en keywords sin ejes relacionados.
+1190,False,False,0.0,0.0,"'Critical, intersectional co-benefit delivery' es ambiguo (posiblemente intersectorial); solo menciona grupos vulnerables y desigualdades multiescalares."
+1193,False,False,0.0,0.0,"Critica que los índices no captan 'the intersectional nature of environmental justice concerns', sin nombrar ni relacionar ejes sociales."
+1195,False,True,0.0,1.0,Situación 3: 'gender is a key axis of social inequality that intersects with other systems of power and marginalization'.
+1196,False,False,0.0,0.0,"Pide atender 'the intersectionality of populations most at risk' como imperativo, sin nombrar ni relacionar ejes de diferenciación."
+1198,False,False,0.0,0.0,"Los 'multiple intersecting factors' son determinantes (circunstancias, condiciones materiales, salud, contexto), no categorías de diferenciación social relacionadas."
+1202,False,False,0.0,0.0,Eje único (discapacidad/capacitismo); la 'intersectional investment' aparece como vacío del campo de la comunicación ambiental.
+1203,False,False,0.0,0.0,"Propone mayor diálogo con 'intersectional and international feminist scholarship' como agenda, sin nombrar ni relacionar ejes sociales."
+1210,False,False,0.0,0.0,Las vulnerabilidades interseccionales solo aparecen como invitación a investigación futura; el análisis trata a la comunidad pesquera como un todo.
+1212,False,False,0.0,0.0,Libro colectivo que 'engage[s] with aspects of intersectionality in activism' sin nombrar ni relacionar ejes de diferenciación social.
+1213,False,False,0.0,0.0,"La interseccionalidad se menciona solo como necesidad de investigación futura, junto a la interdisciplinariedad; no hay ejes sociales."
+1218,False,False,0.0,0.0,"Declara una ontología que 'foregrounds relationality, intersectionality and situated knowledge', pero no relaciona ejes; solo 'Gender and disaster' en keywords."
+1219,False,True,0.0,0.5,"Situación 3: alude a 'people with intersecting HDSM identities' que sufren más las crisis ecológicas, con orientación feminista interseccional."
+1233,False,False,0.0,0.0,'Intersectional challenges' parece significar desafíos cruzados; habla de grupos socialmente vulnerables sin nombrar ni relacionar ejes.
+1235,False,True,0.0,2.0,"Situación 3: examina cómo 'the multiple subjectivities and identities that Indigenous peoples occupy produce unique vulnerabilities, capacities' ante la adaptación."
+1240,False,False,0.0,0.0,'Intersectional resilience outcomes' es etiqueta; el texto no nombra ni relaciona ejes de diferenciación social.
+1241,False,False,0.0,0.0,Solo un eje (personas migrantes desplazadas); el 'intersectional approach' se invoca sin relacionar categorías; resumen confuso e insuficiente.
+1244,False,True,0.0,3.0,Situación 3: teoriza cómo 'power dynamics produce and sustain multidimensional inequalities' y la formación de subjetividades interseccionales.
+1254,False,False,0.0,0.0,"Eje único (género, Women and Gender Constituency); la 'intersectional critical inquiry' rotula el marco sin relacionar categorías."
+1256,False,False,0.0,0.0,"Revisión centrada en mujeres; 'the importance of intersectionality' aparece como tema hallado, sin relacionar el género con otros ejes."
+1267,False,False,0.0,0.0,"Analiza a las comunidades LGBTQ+ como un solo grupo; los factores que se combinan son institucionales, no ejes sociales relacionados."
+1272,False,False,0.0,0.0,"Enumera ámbitos de desigualdad (salud, economía, relaciones de género, acceso) por separado; 'intersectional feminist analysis' rotula el método."
+1275,False,False,0.0,0.0,"'Intersectional social issues' designa problemas que se cruzan (clima, injusticia racial, COVID-19), no ejes de diferenciación social."
+1278,False,False,0.0,0.0,"'Intersectional justice' aparece como valor moral entre otros, sin nombrar ni relacionar ejes de diferenciación social."
+1280,False,False,0.0,0.0,Señala que los datos rara vez se desagregan por sexo o discapacidad; la interseccionalidad queda como vacío de la literatura.
+1281,False,False,0.0,0.0,"Eje único (igualdad de género, ODS 5); propone un enfoque 'SDG 5+' que considere la interseccionalidad como recomendación futura."
+1288,False,False,0.0,0.0,"Centrado en mujeres sursudanesas; 'gender-transformative, intersectional approach' se recomienda sin relacionar el género con otros ejes."
+1289,False,False,0.0,0.0,"Se cruzan crisis, no categorías sociales; 'gender, intersectionality and social inequalities' figura como rasgo deseable del campo propuesto."
+1294,False,False,0.0,0.0,'Intersectional categories' se menciona como foco de la lente cultural sin nombrar categorías ni teorizar su cruce; el curso de vida es temporal.
+1295,False,False,0.0,0.0,"Los 'three interconnected axes' son dimensiones analíticas de la movilidad; 'intersectional struggles' rotula, sin relacionar categorías sociales."
+1298,False,False,0.0,0.0,"Se cruzan 'complexities' ambientales, económicas, políticas y sociales y tipos de contexto, no ejes de diferenciación social relacionados."
+1307,False,False,0.0,0.0,Análisis literario de un cuento; alude a 'current social iniquities' e identidad sin nombrar ni relacionar ejes sociales.
+1311,False,False,0.0,0.0,'Intersectional demands for justice' califica reivindicaciones diversas de la protesta; no nombra ni relaciona ejes de diferenciación social.
+1315,False,False,0.0,0.0,Eje único: la herramienta se centra en mujeres y hombres; el concepto 'intersectional and non-binary gender+' se declara sin relacionar categorías.
+1320,False,False,0.0,0.0,"Extiende la interseccionalidad feminista a la especie, pero no relaciona la especie con otras categorías sociales en el resumen."
+1325,False,False,0.0,0.0,"La 'triad' clima-carbón-género cruza temas, no ejes; el género es la única categoría social analizada."
+1330,False,True,0.0,2.0,"Situación 3: busca evitar reforzar 'social hierarchies and interlocking systems of oppression', con teorías decoloniales y crítica racial."
+1332,False,False,0.0,0.0,El análisis interseccional cruza crisis (clima y COVID-19) y opera con lente feminista; no relaciona ejes de diferenciación social.
+1333,False,True,0.0,0.5,Situación 1: los impactos en mujeres varían por 'other intersectional demographic characteristics such as age and location'; género y edad relacionados.
+1334,False,False,0.0,0.0,"Las 'intersections' son entre cambio climático, derechos humanos y pobreza; la interseccionalidad se examina como marco sin relacionar ejes."
+1336,False,False,0.0,0.0,Lista grupos racializados y pide reconocer 'diversity and intersectionality'; lo que se cruza son la pandemia y el cambio climático.
+1340,False,True,0.0,1.0,Situación 3: identifica 'the difficulty of intersectional positions and situated marginalisation beyond commonly acknowledged identity markers' como problema.
+1341,False,True,0.0,1.0,"Situación 3: la vulnerabilidad varía 'between, or within conventional social categories' por 'the intersection and interplay of several underlying factors'."
+1345,False,True,0.0,1.0,Situación 3: con Plumwood revela 'harmful dualisms implicit in all forms of oppression' y entrelaza ecofeminismo con racismo sistémico.
+1346,False,True,0.0,2.0,Situación 3: 'Gendered and intersectional inequalities determine differential vulnerabilities'; aplica una lente de subjetividades interseccionales.
+1348,False,False,0.0,0.0,'Intersectional feminism' y 'intersectional climate justice' son etiquetas programáticas; no se nombran ni relacionan ejes de diferenciación social.
+1351,False,False,0.0,0.0,Eje único (género); pide 'further research ... to understand the intersectional complexity of gender' como agenda futura.
+1353,False,False,0.0,0.0,"Enumera desigualdades 'along gender, income, caste, and ethnic differences' por separado; el enfoque interseccional se propone como ampliación futura del ODS 5."
+1359,False,False,0.0,0.0,Eje único (género en la política climática de la UE); la interseccionalidad se menciona como enfoque de 'a handful of scholars'.
+1361,False,True,0.0,1.5,Situación 3: el informe discute 'the varying roles that gender—and its intersections with existing inequalities—plays' en los impactos climáticos.
+1364,False,True,0.0,1.0,Situación 3: estudia el poder en relación con el género y 'other intersecting social factors' en las instituciones climáticas.
+1368,False,False,0.0,0.0,"Solo menciona 'persistent and interlocking socioeconomic inequalities' y grupos marginados, sin nombrar ni relacionar categorías de diferenciación social."
+1370,False,False,0.0,0.0,"Se cruzan circunstancias (uso del suelo, clima, envejecimiento, vivir solo), no ejes sociales; 'analyze intersectionalities' queda como agenda futura."
+1375,False,True,0.0,2.0,Situación 3: el enfoque permite estudiar grupos 'through multiple axes of identity' y 'the kyriarchal multiple systems that dominate and oppress people'.
+1387,False,False,0.0,0.0,Solo aboga por una 'intersectional understanding' de la crisis climática desde masculinidades ecológicas; no relaciona el género con otros ejes sociales.
+1395,False,True,0.0,1.0,"Sostiene que el potencial de transformación se construye diferencialmente mediante 'intersectional social relations', desde un enfoque de género (regla 3, tercer supuesto)."
+1399,False,False,0.0,0.0,La interseccionalidad solo figura en keywords; el abstract habla de 'different societal groups' y poder sin nombrar ni relacionar ejes de diferenciación.
+1400,False,False,0.0,0.0,Un solo eje (discapacidad); la conclusión pide un enfoque 'intersectional and inclusive' sin relacionar la discapacidad con otras categorías sociales.
+1407,False,False,0.0,0.0,'Intersectional' califica una perspectiva de transición justa sobre trade-offs de política; no menciona ni relaciona ejes de diferenciación social.
+1410,False,False,0.0,0.0,Solo propone integrar 'intersectional critical legal perspectives' en la enseñanza del derecho de daños; no nombra ni relaciona ejes sociales.
+1411,False,True,0.0,1.0,Los hallazgos destacan 'intersecting social determinants that influence who can move and who cannot': posiciones de (in)movilidad surgen de categorías sociales entrecruzadas.
+1412,False,True,0.0,1.0,Teoriza la violencia estructural 'experienced at the intersection of political and social identities' y estructuras de poder que moldean experiencias climáticas.
+1416,False,False,0.0,0.0,Llama a practicar 'collectivity and intersectionality' en arquitectura ante la crisis climática; no nombra ni relaciona ejes de diferenciación social.
+1417,False,True,0.0,3.0,Teoriza 'intersections of social relations' y la interseccionalidad como 'interlocking systems of oppression' en la recuperación generizada de mujeres sobrevivientes.
+1419,False,False,0.0,0.0,Solo 'reviews' la interseccionalidad y la política identitaria; el análisis se centra en un eje (infancia/edad) sin relacionarlo con otras categorías.
+1425,False,False,0.0,0.0,"Las intersecciones son entre crisis y temas (clima, inmigración, salud pública, encarcelamiento masivo), no entre ejes de diferenciación social."
+1426,False,False,0.0,0.0,"Declara un 'intersectional approach to ecofeminism', pero analiza género y naturaleza; religión, historia y colonia aparecen como contextos, no como ejes relacionados."
+1427,False,False,0.0,0.0,Reclama un movimiento climático 'intersectional' desde la ecología queer; trabaja un solo eje (sexualidad) sin relacionarlo con otras categorías sociales.
+1432,False,False,0.0,0.0,"Enumera riesgos climáticos, falta de servicios y desigualdades de género por separado; la interseccionalidad solo figura en keywords."
+1441,False,False,0.0,0.0,Los 'intersectional determinants of health' se mencionan solo como oportunidad futura; no se nombran ni relacionan ejes de diferenciación social.
+1445,False,False,0.0,0.0,"Centrado en cultura/etnicidad; las 'intersections of social identities' solo aparecen como invitación final al lector, sin teorizarse ni relacionarse."
+1450,False,False,0.0,0.0,Aplica un 'intersectional lens' a discursos de género en las COP; las divisiones espaciales no se plantean como eje social entrelazado con el género.
+1452,False,True,0.0,0.5,Tema emergente: 'the intersectionality of disability with other dimensions of vulnerability'; relaciona un eje (discapacidad) con otras categorías sin nombrarlas.
+1453,False,False,0.0,0.0,"Enfoque neomaterialista sobre agencia humana y más-que-humana; la interseccionalidad solo aparece en keywords, sin ejes sociales nombrados ni relacionados."
+1454,False,False,0.0,0.0,La 'intersectionality of gender and the environment' cruza un eje con un campo temático; no relaciona el género con otras categorías sociales.
+1464,False,False,0.0,0.0,"El 'intersectional feminist analysis' se presenta como herramienta de la coalición, pero el abstract no nombra ni relaciona ejes más allá del género."
+1465,False,True,0.0,1.0,"Revisa cómo las tecnologías bajas en carbono afectan 'gender and social equity in intersectional ways', dentro de asimetrías estructurales de poder."
+1470,False,False,0.0,0.0,Enumera 'intersectional approaches' entre las perspectivas del número especial; no nombra ni relaciona ejes de diferenciación social.
+1473,False,False,0.0,0.0,"Enumera género, relación humano/no humano, territorio, conocimiento e imperio como temas; 'intersectional' califica las obras sin relacionar ejes sociales."
+1487,False,True,0.0,1.0,Teoriza la vulnerabilidad como resultado de 'different and interdependent societal stratification processes that result in multiple dimensions of marginalisation'.
+1488,False,False,0.0,0.0,'Intersectional ecosocialism' es solo un rótulo para el futuro preferido del movimiento; no nombra ni relaciona ejes de diferenciación social.
+1492,False,False,0.0,0.0,"Declara un 'intersectional approach' pero analiza solo el género (impactos diferenciados entre hombres y mujeres), sin relacionarlo con otros ejes."
+1504,False,False,0.0,0.0,La interseccionalidad figura como uno de cuatro valores del movimiento juvenil; no se nombran ni relacionan ejes de diferenciación social.
+1507,False,True,0.0,1.0,Afirma que el género 'intersects with other contextual conditions to shape vulnerabilities' y que la posición en la estructura social y de género importa.
+1508,False,False,0.0,0.0,"La interseccionalidad solo aparece como vacío: los estudios no usan epistemologías críticas para examinar 'politics, power, and intersectionality'."
+1511,False,False,0.0,0.0,"Califica de 'intersectional' a los ecoactivismos y alude a visiones queer, sin nombrar ni relacionar ejes de diferenciación social."
+1513,False,False,0.0,0.0,Solo menciona 'social and intersectional vulnerabilities to disasters' como objetivo didáctico; no nombra ni relaciona ejes de diferenciación social.
+1519,False,True,0.0,1.0,"Vulnerabilidades diferenciadas para 'women and men from different categories, groups and locations', fruto del entrecruzamiento de condiciones sociales, de género y económicas."
+1524,False,False,0.0,0.0,"Solo el género como eje social; los 'interlinked factors' son altitud, terreno y acceso a capitales, no categorías sociales relacionadas con el género."
+1525,False,False,0.0,0.0,"Lo 'intersectional' cruza escalas (personal, comunitaria, nacional) del activismo de ayuda; solo aparece la condición diaspórica, sin relacionarla con otros ejes."
+1526,False,False,0.0,0.0,"Destaca 'historical, spatial, and intersectional modes of analysis' como enfoque deseable, sin nombrar ni relacionar ejes de diferenciación social."
+1529,False,True,0.0,2.0,"Teoriza la 'matrix of domination' de Collins y una 'matrix of resistance' interseccional: estructuras de poder entrelazadas, aunque no nombra categorías."
+1531,False,False,0.0,0.0,"Combina perspectivas feministas y decoloniales sobre políticas del conocimiento, pero no relaciona género y colonialidad como ejes entrelazados de diferenciación."
+1542,False,False,0.0,0.0,Enumera 'intersectionality-based policy analysis' entre seis literaturas útiles para la EIS; no nombra ni relaciona ejes de diferenciación social.
+1548,False,False,0.0,0.0,Enumera 'feminist or intersectional approaches' junto a diversidad cultural y derechos humanos; no nombra ni relaciona ejes de diferenciación social.
+1556,False,False,0.0,0.0,'Class and intersectionality' es solo un eje temático de una agenda de investigación; no se articula cómo la clase se cruza con otras categorías.
+1557,False,False,0.0,0.0,"Propone un método 'rooted in intersectional feminist theory' y alude a la 'complexity of identity', sin relacionar ejes ni teorizar su cruce."
+1565,False,False,0.0,0.0,El abstract solo vincula cambio climático con 'various forms of inequality' y discriminación; no nombra ni relaciona ejes sociales.
+1566,False,False,0.0,0.0,El abstract solo describe efectos físicos y sanitarios del cambio climático; no menciona ejes de diferenciación social ni su relación.
+1574,False,False,0.0,0.0,La interseccionalidad es un tema de discusión metodológica del colectivo investigador; no se nombran ni relacionan ejes de diferenciación social.
+1578,False,True,0.0,1.0,Analiza 'the intersecting identities of homeless participants' y los 'intersecting traits and contextual factors that result in unequal disaster and environmental outcomes'.
+1583,False,False,0.0,0.0,La interseccionalidad solo aparece en la lista de campos de interés del libro; no se nombran ni relacionan ejes de diferenciación social.
+1601,False,False,0.0,0.0,"Menciona traer el enfoque de interseccionalidad al cambio ambiental global y sus retos metodológicos, sin nombrar ni relacionar ejes sociales."
+1603,False,True,0.0,1.0,Desde el título vincula género con 'intersecting inequalities' y teoriza impactos que moldean y son moldeados por dinámicas de poder sociales y políticas.
+1605,False,False,0.0,0.0,"Analiza roles y desigualdades de género de mujeres y hombres rurales; la ruralidad es el escenario, no un eje relacionado con el género."
+1609,False,False,0.0,0.0,"Las 'intersections of identity, experience, and the social environment' cruzan identidad, experiencia y entorno; no relaciona categorías sociales entre sí."
+1613,False,True,0.0,3.0,"Analiza, desde la teoría interseccional, cómo ignorar las 'intersecting relations of inequality' junto al género margina a ciertos grupos en REDD+."
+1614,False,True,0.0,1.0,"Afirma que 'an intersection of factors, most importantly gender, mediates how people experience flooding' y rechaza homogeneizar a las víctimas."
+1615,False,False,0.0,0.0,"Solo destaca la 'relevance of intersectional framings' en un artículo del número; el texto vincula género y cambio ambiental, no ejes sociales."
+1617,False,False,0.0,0.0,La interseccionalidad figura como uno de tres compromisos metodológicos; el abstract no nombra ni relaciona ejes de diferenciación social.
+1619,False,False,0.0,0.0,"Critica el binario hombres/mujeres y explora 'potential benefits' de perspectivas interseccionales, sin teorizar cómo el género se cruza con otras categorías."
+1624,False,False,0.0,0.0,Recomienda datos por sexo y edad y análisis 'intersectional' como pauta metodológica; enumera ejes sin relacionarlos.
+1634,False,False,0.0,0.0,La 'intersectionality of the cosmopolitan space' alude a pertenencias performativas en la gobernanza climática; no nombra ni relaciona ejes de diferenciación social.
+1641,False,True,0.0,1.5,"Contrapone marcos esencialistas de identidad al 'intersectional, situational character of identity' y lo operacionaliza para explicar vulnerabilidades diferenciadas a inundaciones."
+1643,False,True,0.0,2.0,Individuos y grupos se relacionan distinto con el clima por su 'situatedness in power structures based on context-specific and dynamic social categorisations'.
+1645,False,True,0.0,1.0,"Trata el género como 'a social categorization that takes meaning from its intersection with other identities, roles, and responsibilities'."
+1666,False,False,0.0,0.0,La intersección es entre agendas de justicia climática y reproductiva; el abstract no relaciona ejes de diferenciación social como entrelazados.
+1668,False,False,0.0,0.0,"Describe un giro 'from gendered vulnerability ... to fragmented identities and intersectionality' como zona de indagación, sin teorizar cruces de categorías."
+1673,False,True,0.0,0.5,Sostiene que 'multiple and complex inequalities shape the environmental impact of different populations' y que las relaciones ambientales se caracterizan por 'social intersectionality'.
+1690,False,True,0.0,2.0,Propone estudiar 'the ways that race intersects with other forms of inequality' y cómo las instituciones las reproducen; un eje cruzado con otros.

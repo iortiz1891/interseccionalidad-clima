@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """
-21_v1_dashboard.py — Fase 5: dashboard HTML v6 estático.
+12_dashboard.py — v2: réplica de pipeline/12_dashboard.py con la búsqueda ampliada.
 
-Genera site/index.html consolidando figuras, tablas y números clave.
+Genera site/v2/index.html con la misma estructura, figuras y textos que la v1. Cambian los datos
+(data/v2_*), la sección de estrategia de búsqueda (cadena v2) y los textos que en la v1 tenían
+cifras de la v1 escritas a mano, que aquí se calculan.
 """
 from __future__ import annotations
 import pandas as pd
@@ -12,7 +14,7 @@ from pathlib import Path
 
 DATA = Path("data")
 ASSETS = Path("assets")
-DASHBOARD = Path("site")
+DASHBOARD = Path("site/v2")
 DASHBOARD.mkdir(exist_ok=True)
 
 
@@ -34,35 +36,35 @@ CAT_LABELS = {
 
 
 def main():
-    stats = json.loads((DATA / 'v1_corpus_stats.json').read_text())
-    scored = pd.read_csv(DATA / 'v1_corpus_scored.csv')
-    topics_bw = pd.read_csv(DATA / 'v1_topics_x_bowleg.csv')
-    lang_bw = pd.read_csv(DATA / 'v1_lang_x_bowleg.csv')
-    country_bw = pd.read_csv(DATA / 'v1_country_x_bowleg.csv')
+    stats = json.loads((DATA / 'v2_corpus_stats.json').read_text())
+    scored = pd.read_csv(DATA / 'v2_corpus_scored.csv')
+    topics_bw = pd.read_csv(DATA / 'v2_topics_x_bowleg.csv')
+    lang_bw = pd.read_csv(DATA / 'v2_lang_x_bowleg.csv')
+    country_bw = pd.read_csv(DATA / 'v2_country_x_bowleg.csv')
 
     # Inline images
-    figs = {f"fig{n:02d}": img_b64(ASSETS / f"v6_fig{n:02d}_{name}.png")
+    figs = {f"fig{n:02d}": img_b64(ASSETS / f"v2_fig{n:02d}_{name}.png")
             for n, name in [
                 (1, 'prisma'), (2, 'bowleg_distribution'), (3, 'years'),
                 (4, 'topics_x_bowleg'), (5, 'lang_x_bowleg'),
                 (6, 'country_x_bowleg'), (7, 'year_trend'),
             ]}
     # Topic map estático (PNG) + interactivo (HTML embed)
-    figs['fig09'] = img_b64(ASSETS / 'v6_fig09_topic_map.png')
-    topic_map_embed = (ASSETS / 'v6_fig09_topic_map_embed.html').read_text()
+    figs['fig09'] = img_b64(ASSETS / 'v2_fig09_topic_map.png')
+    topic_map_embed = (ASSETS / 'v2_fig09_topic_map_embed.html').read_text()
     # Figuras explicativas del paper (A,B,D,E,F) + H (ranking de tópicos por RSI)
-    for k, fn in [('figA','v6_figA_criterios.png'), ('figB','v6_figB_embudo.png'),
-                  ('figD','v6_figD_cooc.png'), ('figE','v6_figE_integracion.png'),
-                  ('figF','v6_figF_violin.png'), ('figH','v6_figH_topic_ranking.png')]:
+    for k, fn in [('figA','v2_figA_criterios.png'), ('figB','v2_figB_embudo.png'),
+                  ('figD','v2_figD_cooc.png'), ('figE','v2_figE_integracion.png'),
+                  ('figF','v2_figF_violin.png'), ('figH','v2_figH_topic_ranking.png')]:
         p = ASSETS / fn
         if p.exists(): figs[k] = img_b64(p)
 
     # Stats por tópico (radiografía: RSI, gate%, idioma, n, n_tesis) — del script 33
     topic_stats = {}
-    if (DATA / 'v1_topic_stats.json').exists():
-        topic_stats = json.loads((DATA / 'v1_topic_stats.json').read_text())
+    if (DATA / 'v2_topic_stats.json').exists():
+        topic_stats = json.loads((DATA / 'v2_topic_stats.json').read_text())
     # Casos ejemplares (tabla C)
-    casos = json.loads((DATA / 'v1_casos_ejemplares.json').read_text()) if (DATA / 'v1_casos_ejemplares.json').exists() else []
+    casos = json.loads((DATA / 'v2_casos_ejemplares.json').read_text()) if (DATA / 'v2_casos_ejemplares.json').exists() else []
     def _casos_html():
         rows = []
         for c in casos:
@@ -147,7 +149,7 @@ def main():
   <p style="font-size:13px;color:#555;margin-top:0">
     <b>Encuadre.</b> El universo no es «la literatura sobre cambio climático», sino la literatura que
     <b>invoca explícitamente la interseccionalidad</b> en torno al cambio climático o a eventos extremos
-    (la búsqueda exige el término <code>intersection*</code> junto a clima y a un eje social). Por eso los
+    (la búsqueda v2 exige <code>intersectional*</code> / <code>interseccional*</code> —o frases como «intersection of race and gender»— junto a un término climático, y un cribado posterior excluye lo no pertinente). Por eso los
     hallazgos se leen <i>dentro</i> de ese corpus autoseleccionado por mención —lo que vuelve más
     contundente que aun así la mayoría no opere el concepto.
   </p>
@@ -156,14 +158,12 @@ def main():
       <b>{meta.get('rsi_min',0):.2f}</b> a <b>{meta.get('rsi_max',0):.2f}</b>: no se reparte al azar.
       Los vecindarios sustantivos son {top_names}. En cambio, tópicos como {cero_names} tienen RSI
       cercano a cero.</li>
-    <li><b>Tópicos de «trampa léxica».</b> Esos tópicos de RSI ≈ 0 son papers donde <code>intersection*</code>
-      coincide por otra razón (intersecciones viales, nexos agua-carbono, salud pública genérica): el mapa
-      permite separar la interseccionalidad crítica de la coincidencia de palabra.</li>
-    <li><b>Asimetría idioma × sustantividad.</b> Los tópicos sustantivos son mayoritariamente anglófonos;
-      los grandes tópicos hispanohablantes son más nominales (p. ej. {es_txt}). Conviene leerlo con cautela:
-      probablemente refleja una búsqueda en español más laxa y un tópico-«cajón» de género, no una jerarquía
-      entre tradiciones —el instrumento juzga la operacionalización, no la fidelidad teórica regional.</li>
-    <li><b>El nicho de la tesis no existe como cluster.</b> Los 97 papers del sub-corpus de Daniel
+    <li><b>Sin «trampas léxicas».</b> En la v2, el cribado ya retiró los registros donde «intersection»
+      coincidía por otra razón (vialidad, cruce de temas): los tópicos de RSI baja reúnen trabajos pertinentes
+      con un uso más nominal del marco.</li>
+    <li><b>Idioma.</b> En Scopus, casi toda la literatura elegible está en inglés: el mapa no permite comparar
+      tradiciones lingüísticas. Hace falta sumar bases con cobertura iberoamericana (SciELO, Redalyc).</li>
+    <li><b>El nicho de la tesis no existe como cluster.</b> Los {stats.get('daniel_subcorpus', {}).get('relevant_ge2_axes', 0)} papers del sub-corpus de Daniel ({meta.get('n_tesis_total', 0)} con tópico asignado)
       (México × ciclones × interseccionalidad costera) se <b>dispersan en {n_disp} tópicos</b>
       —sobre todo {tesis_txt}—: el campo no tiene un vecindario propio para ese cruce. Esa fragmentación
       <b>es</b> el vacío que justifica la tesis. (Usa el botón «Resaltar sub-corpus de la tesis» en el mapa.)</li>
@@ -173,7 +173,7 @@ def main():
 
     # ── Tabla de documentos del sub-corpus de Daniel (con links DOI) ──
     def _subcorpus_docs_html():
-        p = DATA / 'v1_daniel_subcorpus.csv'
+        p = DATA / 'v2_daniel_subcorpus.csv'
         if not p.exists(): return "<p>(sub-corpus no disponible)</p>"
         sub = pd.read_csv(p).sort_values('bowleg_total', ascending=False)
         def doi_link(d):
@@ -214,6 +214,7 @@ def main():
         return _html.escape(txt)
     prompt_scoring = _load_prompt('prompts/bowleg_eval_v3.md')
     prompt_reasoning = _load_prompt('prompts/reasoning_v3.md')
+    prompt_v2 = _load_prompt('prompts/v2_cribado_rsi.md')
 
     # Top 20 tópicos sustantivos
     topics_substantive = topics_bw[topics_bw['topic_id_clean'] >= 0].nlargest(15, 'pct_substantive')
@@ -249,6 +250,25 @@ def main():
     # Sub-corpus Daniel
     ds = stats.get('daniel_subcorpus', {})
 
+    _gpc = (lambda c: round(100 * (_gp[c] == 1).mean()) if len(_gp) else 0)
+    c_I, c_II, c_III, c_IV, c_V, c_VI = (_gpc(c) for c in ['bowleg_I', 'bowleg_II', 'bowleg_III', 'bowleg_IV', 'rsi_V', 'rsi_VI'])
+    _emp = _gp[_gp['tipo_estudio'].astype(str).str.startswith('empirico')]
+    c_IV_emp = round(100 * (_emp['bowleg_IV'] == 1).mean()) if len(_emp) else 0
+    tesis_mayoria = ('la mayoría de los trabajos la invocan' if pct_gate_fail > 50
+                     else f'una parte sustancial de los trabajos ({pct_gate_fail}%) la invoca')
+    n_es = int(stats.get('language_distribution', {}).get('Spanish', 0))
+    n_en = int(stats.get('language_distribution', {}).get('English', 0))
+    rsi_media_corpus = float(scored['bowleg_total'].mean())
+    _ts = [t for t in topic_stats.get('topics', []) if t['n'] >= 15]
+    top_topicos_txt = ', '.join(t['label'] for t in sorted(_ts, key=lambda t: -t['rsi_mean'])[:3]) or 'tópicos concretos'
+    _mx = ds.get('mexico_AND_cyclonic', 0)
+    tesis_cruce_txt = ('no aparece ningún trabajo que cruce México y ciclones' if _mx == 0
+                       else f'solo {_mx} trabajos cruzan México y ciclones')
+    query_v2 = _html.escape((DATA / 'v2_query_scopus.txt').read_text().strip())
+    smeta = json.loads((DATA / 'v2_search_meta.json').read_text())
+    pmeta = json.loads((DATA / 'v2_prisma_meta.json').read_text())
+    vmeta = json.loads((DATA / 'v2_validation_sample.json').read_text())['meta']
+
     def insight(label, body):
         return f'<div class="insight"><span class="lbl">{label}</span>{body}</div>'
 
@@ -264,8 +284,8 @@ def main():
         f"La sustantividad <b>no se distribuye de forma homogénea entre temas</b>. Concentra en tópicos "
         f"anclados en eventos y poblaciones concretas (p. ej. {', '.join(top3[:3])}), donde el contexto "
         f"situado y las identidades entrelazadas emergen naturalmente. En cambio, tópicos como "
-        f"{', '.join(art3[:3])} presentan sustantividad cercana a cero: o bien son falsos positivos de "
-        f"la búsqueda, o tratan la desigualdad de forma genérica. La interseccionalidad sustantiva "
+        f"{', '.join(art3[:3])} presentan la menor sustantividad: tratan la desigualdad de forma más genérica "
+        f"(el cribado de la v2 ya retiró los falsos positivos de la búsqueda). La interseccionalidad sustantiva "
         f"parece requerir un <b>anclaje empírico situado</b>.")
 
     ins_topicmap = insight("Lectura del dato",
@@ -275,20 +295,21 @@ def main():
         "aplicación sustantiva. El mapa permite, así, <b>localizar visualmente dónde el campo es más "
         "riguroso</b> y dónde solo nominal.")
 
-    _lang_body = ""
-    if en_p is not None and es_p is not None:
-        cmp = "ligeramente superior" if en_p >= es_p else "inferior"
-        _lang_body = (f"Los trabajos en inglés ({en_p:.0f}% sustantivo) muestran una proporción {cmp} "
-                      f"a la de los trabajos en español ({es_p:.0f}%). ")
     ins_lang = insight("Lectura del dato",
-        _lang_body +
-        "La diferencia es moderada y el subconjunto en español es pequeño, por lo que conviene leerla "
-        "con cautela. <b>No se observa una ventaja sustantiva de la producción iberoamericana</b> en "
-        "términos de aplicación del marco —un punto relevante frente a la expectativa de que el Sur "
-        "Global aplicaría la interseccionalidad de forma más rigurosa.")
+        f"En la v2 solo hay <b>{n_es}</b> trabajos elegibles en español, frente a {n_en:,} en inglés: con Scopus, "
+        f"la comparación por idioma <b>no es concluyente</b>. Para evaluarla hace falta sumar bases con buena "
+        f"cobertura iberoamericana (SciELO, Redalyc).")
 
     _pais_txt = (f"<b>{pais_top['country']}</b> ({pais_top['pct_substantive']:.0f}% sustantivo) "
                  if pais_top is not None else "")
+    ins_anatomia = insight("Lectura del dato",
+        f"El hallazgo más relevante está en el panel derecho (solo papers que pasan el gate): el <b>Criterio IV — método "
+        f"no aditivo</b> es el eslabón débil. Mientras el poder estructural (II) llega al {c_II}% y la praxis (V) al {c_V}%, "
+        f"solo el <b>{c_IV}%</b> operacionaliza metodológicamente las intersecciones ({c_IV_emp}% entre los estudios empíricos). "
+        f"Es decir: el campo <b>teoriza</b> la interseccionalidad mejor de lo que la <b>opera empíricamente</b>. "
+        f"La agencia (VI) llega al {c_VI}%. El uso no es solo nominal vs sustantivo: incluso en los trabajos sustantivos, "
+        f"la traducción del marco en diseño metodológico es la asignatura pendiente.")
+
     ins_paises = insight("Lectura del dato",
         f"El rigor en la aplicación del marco {('encabezado por ' + _pais_txt) if _pais_txt else ''}"
         f"no se correlaciona de forma simple con el volumen de producción: países con muchos trabajos "
@@ -304,10 +325,10 @@ def main():
 
     ins_daniel = insight("Lectura del dato",
         f"El nicho temático específico de la tesis —ciclones tropicales × México × género/indigeneidad— "
-        f"es <b>muy reducido</b>: solo {ds.get('mexico_AND_cyclonic','?')} trabajos combinan México y "
-        f"ciclones. Sin embargo, el sub-corpus ampliado (≥2 ejes temáticos, n={ds.get('relevant_ge2_axes','?')}) "
-        f"tiene una RSI media de <b>{ds.get('relevant_bowleg_mean',0):.1f}</b>, muy por encima del "
-        f"promedio del corpus: los trabajos que combinan estos ejes <b>tienden a ser de los más "
+        f"es <b>muy reducido</b>: {tesis_cruce_txt}. Sin embargo, el sub-corpus ampliado (≥2 ejes temáticos, n={ds.get('relevant_ge2_axes','?')}) "
+        f"tiene una RSI media de <b>{ds.get('relevant_bowleg_mean',0):.1f}</b>, "
+        f"{'muy por encima' if ds.get('relevant_bowleg_mean', 0) > 1.3 * rsi_media_corpus else 'por encima'} del "
+        f"promedio del corpus ({rsi_media_corpus:.2f}): los trabajos que combinan estos ejes <b>tienden a ser de los más "
         f"sustantivos</b>. Hay, por tanto, un vacío de literatura específica que la tesis puede ocupar, "
         f"apoyándose en un núcleo metodológicamente sólido.")
 
@@ -340,6 +361,9 @@ def main():
         <a href="#sintesis">Síntesis y discusión</a>
         <a href="#docs">Documentos</a>
         <a href="#refs">Referencias</a>
+        <div class="nav-group">Herramientas</div>
+        <a href="validacion.html" class="nav-tool">✓ Validar la rúbrica</a>
+        <a href="corpus.html" class="nav-tool nav-tool-alt">☰ Lista completa del corpus</a>
       </nav>
     </aside>
     """
@@ -349,7 +373,7 @@ def main():
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Interseccionalidad y Cambio Climático · Rúbrica de Sustantividad Interseccional</title>
+<title>Interseccionalidad y Cambio Climático · v2 · Rúbrica de Sustantividad Interseccional</title>
 <style>
   :root {{
     --accent: #2563eb; --accent-dark: #1e40af; --ink: #1f2937; --muted: #6b7280;
@@ -380,6 +404,8 @@ def main():
   .sidebar-nav a.nav-tool {{ margin: 6px 14px 0; background: #1d4ed8; color: #fff; border-radius: 7px;
     font-weight: 600; text-align: center; border-left: none; padding: 9px 12px; }}
   .sidebar-nav a.nav-tool:hover {{ background: #2563eb; }}
+  .sidebar-nav a.nav-tool-alt {{ background: #334155; }}
+  .sidebar-nav a.nav-tool-alt:hover {{ background: #475569; }}
 
   .main {{ flex: 1; max-width: 980px; margin: 0 auto; padding: 0 40px 80px; min-width: 0; }}
   .topbar {{ padding: 30px 0 18px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }}
@@ -444,17 +470,17 @@ def main():
 <div class="main">
 
 <nav class="version-tabs" aria-label="Versión del corpus">
-  <a href="index.html" class="active">v1 · corpus original<span>{n_tot} trabajos · mayo 2026</span></a>
-  <a href="v2/index.html">v2 · búsqueda ampliada<span>septiembre 2026</span></a>
+  <a href="../index.html">v1 · corpus original<span>mayo 2026</span></a>
+  <a href="index.html" class="active">v2 · búsqueda ampliada<span>{n_tot:,} trabajos · septiembre 2026</span></a>
 </nav>
 
 <div class="topbar">
   <h1>Interseccionalidad y Cambio Climático</h1>
-  <p>¿Aplicación sustantiva o invocación nominal? · 971 trabajos (Scopus EN + ES) medidos con la Rúbrica de Sustantividad Interseccional · <span class="badge badge-prov">scoring provisional</span></p>
+  <p>¿Aplicación sustantiva o invocación nominal? · {n_tot:,} trabajos elegibles (Scopus · búsqueda ampliada del {smeta['fecha_busqueda']}) medidos con la Rúbrica de Sustantividad Interseccional · <span class="badge badge-prov">scoring provisional</span></p>
 </div>
 
 <div class="caveat">
-  <strong>⚠ Nota:</strong> los puntajes RSI fueron generados con un modelo de lenguaje (<strong>gpt-4.1</strong>).
+  <strong>⚠ Nota:</strong> los puntajes RSI fueron generados con un modelo de lenguaje (<strong>Claude · claude-opus-5-5</strong>), después de un cribado de elegibilidad.
   Son <strong>provisionales</strong> hasta completar la validación humana sobre una submuestra (ver §10).
   El procedimiento es transparente y reproducible: prompt versionado y evidencia textual por criterio.
 </div>
@@ -462,7 +488,7 @@ def main():
 <div style="background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;border-radius:12px;padding:22px 26px;margin:20px 0;">
   <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.8;margin-bottom:8px;">Tesis</div>
   <p style="font-size:16.5px;line-height:1.55;margin:0;font-weight:500;">
-    En los estudios sobre cambio climático, la interseccionalidad funciona como un <strong>significante ampliamente adoptado pero débilmente operacionalizado</strong>: la mayoría de los trabajos la invocan sin articular ejes de diferenciación, y aun quienes lo hacen rara vez la traducen en diseño metodológico. La aplicación rigurosa <strong>no es una propiedad del campo, sino un fenómeno de nicho.</strong>
+    En los estudios sobre cambio climático, la interseccionalidad funciona como un <strong>significante ampliamente adoptado pero débilmente operacionalizado</strong>: {tesis_mayoria} sin articular ejes de diferenciación, y aun quienes lo hacen rara vez la traducen en diseño metodológico. La aplicación rigurosa <strong>no es una propiedad del campo, sino un fenómeno de nicho.</strong>
   </p>
 </div>
 
@@ -473,8 +499,8 @@ def main():
     <li><b>Instrumento.</b> Rúbrica de Sustantividad Interseccional (RSI): un criterio de entrada + 6 criterios + factor de integración, aplicada con un modelo de lenguaje a los {n_tot} trabajos del corpus.</li>
     <li><b>Adopción ≠ aplicación.</b> El <b>{pct_gate_fail}%</b> invoca el marco sin articular ejes de diferenciación; solo el <b>{pct_sust}%</b> alcanza aplicación sustantiva.</li>
     <li><b>El eslabón débil es el método.</b> Entre los trabajos que sí aplican el marco, solo el <b>{pct_metodo_gate}%</b> lo traduce en diseño metodológico (criterio IV): el campo teoriza mejor de lo que opera.</li>
-    <li><b>El rigor es de nicho.</b> La sustantividad se concentra en comunidades temáticas concretas (desastres situados, pueblos indígenas, género y agricultura), no se distribuye de forma pareja.</li>
-    <li><b>Para la tesis.</b> El nicho ciclones × México × género/indigeneidad está casi inexplorado, pero los pocos trabajos que lo tocan figuran entre los más sustantivos: un vacío con piso metodológico sólido.</li>
+    <li><b>El rigor es de nicho.</b> La sustantividad se concentra en comunidades temáticas concretas (p. ej. {top_topicos_txt}), no se distribuye de forma pareja.</li>
+    <li><b>Para la tesis.</b> En el corpus v2 {tesis_cruce_txt}; los {ds.get('relevant_ge2_axes', 0)} trabajos que combinan ≥ 2 ejes de la tesis tienen una RSI media de {ds.get('relevant_bowleg_mean', 0):.2f}, frente a {rsi_media_corpus:.2f} del corpus: un vacío temático con piso metodológico.</li>
   </ul>
 </div>
 
@@ -485,7 +511,7 @@ def main():
 
   <p><strong>El problema.</strong> La amplia difusión del concepto trajo consigo un riesgo que la propia literatura crítica ha diagnosticado: su invocación <strong>nominal</strong>: el término se cita como gesto de actualización teórica sin que el análisis empírico opere con sus principios. Davis (2008) lo caracterizó como <em>buzzword</em>; Bowleg (2012) denunció el uso aditivo que traiciona su lógica relacional; Carbado et al. (2013) señalaron los trabajos que lo citan sin movilizarlo analíticamente.</p>
 
-  <p><strong>Pregunta e instrumento.</strong> De allí la pregunta que organiza este trabajo: <em>¿en qué medida el campo aplica la interseccionalidad de forma sustantiva, y en qué medida solo la menciona?</em> Para responderla a escala de corpus, esta investigación propone la <strong>Rúbrica de Sustantividad Interseccional (RSI)</strong>, que traduce la crítica —hasta ahora ejercida caso por caso— en una variable medible. No se criba ningún trabajo: el corpus completo es el objeto de estudio y la <em>distribución</em> de los puntajes constituye el hallazgo central.</p>
+  <p><strong>Pregunta e instrumento.</strong> De allí la pregunta que organiza este trabajo: <em>¿en qué medida el campo aplica la interseccionalidad de forma sustantiva, y en qué medida solo la menciona?</em> Para responderla a escala de corpus, esta investigación propone la <strong>Rúbrica de Sustantividad Interseccional (RSI)</strong>, que traduce la crítica —hasta ahora ejercida caso por caso— en una variable medible. En la v2, un cribado de elegibilidad previo descarta lo que no es del tema (por ejemplo «intersection» en sentido vial o «clima» escolar); sobre el corpus elegible, la <em>distribución</em> de los puntajes constituye el hallazgo central.</p>
 
   <p style="margin-bottom:6px;"><strong>Procedimiento.</strong> La RSI aplica primero un <b>criterio de entrada (gate)</b>: solo si el trabajo articula dos o más ejes de diferenciación social como <em>relacionados entre sí</em> —y no meramente mencionados por separado— se procede a evaluar los seis criterios. Esto evita que un trabajo acumule puntaje por contexto o método sin tratar realmente las identidades entrelazadas.</p>
   <table class="data-table" style="margin-top:4px;">
@@ -541,7 +567,7 @@ def main():
 
   <p style="font-size:13px;color:#555;"><strong>Independencia teórica:</strong> la RSI evalúa la <em>operacionalización del concepto</em>, no la fidelidad a una autoría o región. Un paper puede puntuar alto con vocabulario diverso ("colonialidad de género", "compounded vulnerability"…) sin citar a ninguna autora canónica.</p>
 
-  <p style="font-size:13px;color:#999;margin-bottom:0;">Fundamentación completa con referencias: <a href="../docs/rubrica_RSI_fundamentacion.md">rubrica_RSI_fundamentacion.md</a>. Limitaciones reconocidas: validación humana pendiente · confiabilidad inter-modelo sensible al modelo · scoring basado en abstract · suma aditiva (v3 incorporará praxis e integración).</p>
+  <p style="font-size:13px;color:#999;margin-bottom:0;">Fundamentación completa con referencias: <a href="../../docs/rubrica_RSI_fundamentacion.md">rubrica_RSI_fundamentacion.md</a>. Limitaciones reconocidas: validación humana pendiente · confiabilidad inter-modelo sensible al modelo · scoring basado en abstract · suma aditiva (v3 incorporará praxis e integración).</p>
 </div>
 
 <h2 id="teoria">0b · Genealogía teórica de la interseccionalidad</h2>
@@ -564,25 +590,32 @@ def main():
 </div>
 
 <h2 id="prompts">0c · Cómo aplica la RSI el modelo de lenguaje (prompts)</h2>
-<p>La RSI se aplica mediante un agente LLM (gpt-4.1 vía OpenAI Batch API) en dos pasadas. Por <strong>transparencia metodológica</strong>, estos son los prompts exactos:</p>
+<p>En la v2, la RSI la aplicó un agente LLM (Claude · claude-opus-5-5) en una sola pasada por registro, que incluye cribado, codificación, RSI y razonamiento. Por <strong>transparencia metodológica</strong>, estos son los prompts exactos:</p>
 
 <div class="flow-diagram">
-  [Título + Abstract + Keywords del paper]<br>
+  [Título + Abstract + Keywords + tipo de documento + idioma]<br>
   ↓<br>
-  <b>Pasada 1 — Scoring</b> (prompt RSI) → gate + 6 criterios (I–VI) + integración + evidencia por criterio<br>
+  <b>Cribado</b> → ¿invoca la interseccionalidad en sentido social? · ¿objeto climático? (si no: excluido con motivo)<br>
   ↓<br>
-  <b>Pasada 2 — Razonamiento</b> (prompt reasoning) → explicación de ~50 palabras del porqué del score<br>
+  <b>Scoring RSI v3</b> (prompt RSI) → gate + 6 criterios (I–VI) + integración + evidencia por criterio<br>
   ↓<br>
-  [JSON estructurado por paper]
+  <b>Razonamiento</b> → explicación de ~50 palabras del porqué del score<br>
+  ↓<br>
+  [JSON estructurado por paper, validado contra el esquema]
 </div>
 
 <details open>
-<summary><b>Prompt 1 — Scoring RSI</b> (prompts/bowleg_eval_v3.md)</summary>
+<summary><b>Prompt v2 — Cribado, codificación y RSI</b> (prompts/v2_cribado_rsi.md)</summary>
+<pre class="code-block">{prompt_v2}</pre>
+</details>
+
+<details>
+<summary><b>Prompt RSI v3</b> (prompts/bowleg_eval_v3.md)</summary>
 <pre class="code-block">{prompt_scoring}</pre>
 </details>
 
 <details>
-<summary><b>Prompt 2 — Razonamiento</b> (prompts/reasoning_v3.md)</summary>
+<summary><b>Reglas del razonamiento</b> (prompts/reasoning_v3.md)</summary>
 <pre class="code-block">{prompt_reasoning}</pre>
 </details>
 
@@ -601,8 +634,8 @@ def main():
 
 <h2 id="nums">1 · Números clave</h2>
 <div class="stat-grid">
-  <div class="stat"><div class="stat-num">{len(scored):,}</div><div class="stat-lbl">Papers (corpus Daniel)</div></div>
-  <div class="stat"><div class="stat-num">2</div><div class="stat-lbl">Bases Scopus (EN + ES)</div></div>
+  <div class="stat"><div class="stat-num">{len(scored):,}</div><div class="stat-lbl">Papers (corpus v2 elegible)</div></div>
+  <div class="stat"><div class="stat-num">{pmeta['identificados_scopus']:,}</div><div class="stat-lbl">Registros identificados (Scopus)</div></div>
   <div class="stat"><div class="stat-num">{int((scored['bowleg_total'] >= 2.5).sum()):,}</div><div class="stat-lbl">RSI ≥ 2.5 (sustantivo)</div></div>
   <div class="stat"><div class="stat-num">{int((scored['bowleg_total'] <= 1.0).sum()):,}</div><div class="stat-lbl">RSI ≤ 1.0 (nominal/mención)</div></div>
   <div class="stat"><div class="stat-num">{cat_pct.get('sustantivo_fuerte', 0):.0f}%</div><div class="stat-lbl">Sustantiva fuerte (≥3.5)</div></div>
@@ -619,72 +652,20 @@ def main():
 <img src="{figs['fig01']}" alt="PRISMA v6">
 
 <h2 id="busqueda">2b · Estrategia de búsqueda</h2>
-<p>Las cadenas se ejecutaron en <b>Scopus</b> (mayo 2026), con filtro por idioma y sin restricción temporal ni por tipo de documento. La selección teórica se delega al <b>scoring RSI</b>, no al filtro de búsqueda: la query es incluyente por diseño, la rúbrica descarta después.</p>
+<p>La cadena se ejecutó en <b>Scopus</b> el {smeta['fecha_busqueda']} ({smeta['plataforma']}): una sola cadena bilingüe (inglés + español), con límites {smeta['limites']}. A diferencia de la v1, la selección no se delega solo al scoring: un <b>cribado de elegibilidad</b> separa antes lo que no es del tema (§2).</p>
 
-<div class="grid-2" style="gap:16px;margin-top:12px;">
-  <div>
-    <h3 style="margin-top:0;">v1 · Inglés → 752 hits</h3>
-<pre style="background:#f8fafc;border:1px solid var(--line);border-radius:6px;padding:12px;font-size:11.5px;line-height:1.5;overflow-x:auto;"><code>( TITLE-ABS-KEY ( "intersection*" )
-  AND TITLE-ABS-KEY ( "climate change*" OR "hurricane*"
-                      OR "storm" OR "extreme weather events"
-                      OR "cyclone" )
-  AND TITLE-ABS-KEY ( "justice" OR "gender" OR "race"
-                      OR "ethnicity" OR "socioeconomic status"
-                      OR "health disparities" OR "governance"
-                      OR "power" OR "agency" OR "identity"
-                      OR "institution" OR "vulnerab*" OR "adapt*" ) )
-AND ( LIMIT-TO ( LANGUAGE , "English" ) )</code></pre>
-  </div>
-  <div>
-    <h3 style="margin-top:0;">v1 · Español → 219 hits</h3>
-<pre style="background:#f8fafc;border:1px solid var(--line);border-radius:6px;padding:12px;font-size:11.5px;line-height:1.5;overflow-x:auto;"><code>( ALL ( "interseccio*" )
-  AND ALL ( "cambio clim*" OR "hurac*" OR "torment*"
-            OR "evento clim*" OR "ciclo*" )
-  AND ALL ( "vulnerab*" OR "adapta*" OR "resilien*"
-            OR "justicia" OR "poder" OR "instituci*"
-            OR "gobernanza" OR "agenci*" OR "identida*"
-            OR "genero" OR "raza" OR "racia*" OR "etnic*"
-            OR "nivel soci*" OR "disparidad*" ) )
-AND ( LIMIT-TO ( LANGUAGE , "Spanish" ) )</code></pre>
-  </div>
-</div>
-
-<details style="margin-top:16px;">
-<summary><b>Diagnóstico de v1</b> — 6 debilidades detectadas</summary>
-<ul style="font-size:13px;line-height:1.7;margin-top:10px;">
-  <li><b>Asimetría de campos.</b> EN usa <code>TITLE-ABS-KEY</code>, ES usa <code>ALL</code> → cobertura desigual entre idiomas.</li>
-  <li><b>Falsos positivos en ES.</b> <code>ciclo*</code> captura <i>ciclón</i> pero también <i>ciclo hidrológico</i>, <i>ciclo económico</i>, <i>ciclo del carbono</i>.</li>
-  <li><b>Peligros climáticos incompletos.</b> Faltan <b>inundación</b>, <b>sequía</b>, <b>ola de calor</b>, <b>incendio forestal</b>, <b>aumento del nivel del mar</b>, <b>desplazamiento climático</b>.</li>
-  <li><b>Ejes de diferenciación incompletos.</b> Sin <b>discapacidad</b>, <b>sexualidad/LGBT</b>, <b>edad/generación</b>, <b>casta</b>, <b>indigeneidad</b>, <b>colonialidad</b>, <b>migración</b>.</li>
-  <li><b>Ancla léxica estrecha.</b> Solo raíz <code>intersection*</code> / <code>interseccio*</code>: quedan fuera papers que operan con <i>sistemas entrelazados</i>, <i>matriz de dominación</i>, <i>colonialidad de género</i> sin nombrar interseccionalidad.</li>
-  <li><b>Sin registro de ejecución.</b> No hay <code>search_log.csv</code> con fecha, versión, n de hits.</li>
-</ul>
-</details>
-
-<h3 style="margin-top:24px;">Propuesta v2 potenciada</h3>
-<p>Tres variantes con propósitos distintos. La <b>v2a</b> es la sucesora comparable de v1; la <b>v2b</b> es exploratoria (sin ancla léxica); la <b>v2c</b> aísla el sub-corpus de la tesis (ciclones × costera × LatAm).</p>
+<pre style="background:#f8fafc;border:1px solid var(--line);border-radius:6px;padding:12px;font-size:11.5px;line-height:1.5;overflow-x:auto;"><code>{query_v2}</code></pre>
 
 <table class="data-table" style="margin-top:8px;">
-<tr><th style="width:110px;">Variante</th><th>Propósito</th><th>Cambios clave frente a v1</th></tr>
-<tr>
-  <td><b>v2a</b><br><span style="font-size:11px;color:var(--muted);">recomendada</span></td>
-  <td>Sucesora comparable de v1</td>
-  <td>Simetría <code>TITLE-ABS-KEY</code> en ambos idiomas · <code>ciclo*</code> → <code>ciclón*</code> · añade inundación, sequía, ola de calor, incendio, nivel del mar, marejada, erosión, desplazamiento · añade discapacidad, sexualidad/LGBT/cuir, edad, casta, indigeneidad, colonialidad, migración · añade sinónimos teóricos al ancla</td>
-</tr>
-<tr>
-  <td><b>v2b</b><br><span style="font-size:11px;color:var(--muted);">exploratoria</span></td>
-  <td>Auditar qué queda fuera de v2a</td>
-  <td>Reemplaza ancla léxica por marcos afines (<i>compounded vulnerability</i>, <i>intersecting inequalities</i>, ≥2 ejes). Requiere post-filtro con la rúbrica.</td>
-</tr>
-<tr>
-  <td><b>v2c</b><br><span style="font-size:11px;color:var(--muted);">tesis Daniel</span></td>
-  <td>Sub-corpus ciclones × costera × LatAm</td>
-  <td>Se aplica <b>dentro</b> de v2a como sub-consulta. Añade filtro geográfico Mexico/LatAm/Caribe/Mesoamérica + estados costeros mexicanos.</td>
-</tr>
+<tr><th>Parte del ancla</th><th>Registros</th></tr>
+<tr><td>Solo <code>intersectional*</code> / <code>interseccional*</code></td><td>{smeta['desglose_ancla']['nucleo_intersectional_interseccional']:,}</td></tr>
+<tr><td>Además, frases como «intersection of race and gender» (<code>W/4</code>) o «intersecting …»</td><td>{smeta['desglose_ancla']['ampliada_W4_intersecting']:,}</td></tr>
+<tr><td>Solo vocabulario afín</td><td>{smeta['desglose_ancla']['solo_vocabulario_afin']:,}</td></tr>
+<tr><td><b>Total</b></td><td><b>{smeta['resultados']:,}</b></td></tr>
 </table>
 
 <p style="margin-top:16px;">
-  <a class="doc-link" href="../docs/cadenas_busqueda.md">📋 Documento completo: cadenas de búsqueda v1 + v2a/v2b/v2c</a>
+  <a class="doc-link" href="../../docs/cadenas_busqueda.md">📋 Documento completo: cadenas de búsqueda (v1 y v2)</a>
 </p>
 
 <h2 id="bowleg">3 · Distribución RSI</h2>
@@ -699,7 +680,7 @@ AND ( LIMIT-TO ( LANGUAGE , "Spanish" ) )</code></pre>
 
 <h3>Perfil por criterio</h3>
 <img src="{figs['figA']}" alt="Perfil por criterio">
-{insight("Lectura del dato", "El hallazgo más relevante está en el panel derecho (solo papers que pasan el gate): el <b>Criterio IV — método no aditivo</b> es el eslabón débil. Mientras el poder estructural (II) y la praxis (V) superan el 70%, solo el <b>34%</b> operacionaliza metodológicamente las intersecciones. Es decir: el campo <b>teoriza</b> la interseccionalidad mejor de lo que la <b>opera empíricamente</b>. La agencia (VI) también queda rezagada (52%). El uso no es solo nominal vs sustantivo: incluso en los trabajos sustantivos, la traducción del marco en diseño metodológico es la asignatura pendiente.")}
+{ins_anatomia}
 
 <h3>¿Se articulan los criterios o se yuxtaponen?</h3>
 <div class="grid-2">
@@ -718,10 +699,9 @@ AND ( LIMIT-TO ( LANGUAGE , "Spanish" ) )</code></pre>
 {df_to_html_table(topics_substantive[['topic_id_clean','topic_name','n_papers','bowleg_mean','pct_substantive']], 15)}
 
 <details>
-<summary>Tópicos con menor rigor (probables artefactos)</summary>
+<summary>Tópicos con menor sustantividad media</summary>
 {df_to_html_table(topics_artifact[['topic_id_clean','topic_name','n_papers','bowleg_mean','pct_substantive']], 10)}
-<p style="font-size: 12px; color: #888;">Estos tópicos suelen capturar falsos positivos: arqueología andina,
-tráfico/transporte (sentido vial de "intersection"), reportes corporativos, citas in-line mal parseadas.</p>
+<p style="font-size: 12px; color: #888;">En la v2, el cribado ya excluyó los falsos positivos de la búsqueda: estos tópicos reúnen trabajos pertinentes con un uso más nominal del marco.</p>
 </details>
 {ins_topics}
 
@@ -734,7 +714,7 @@ tráfico/transporte (sentido vial de "intersection"), reportes corporativos, cit
   <li><b>Colorear por tópico</b> — color original por cluster (estructura temática).</li>
   <li><b>Colorear por nivel RSI del paper</b> — cada punto según su propia sustantividad (gris=mención → verde oscuro=sustantiva fuerte).</li>
   <li><b>Colorear por RSI medio del tópico</b> — pinta cada <i>vecindario</i> por su sustantividad media: revela de un vistazo qué regiones del campo operan el marco y cuáles solo lo mencionan.</li>
-  <li><b>Resaltar sub-corpus de la tesis (97)</b> — ilumina los papers de la tesis de Daniel (contorno morado) y atenúa el resto, para ver su dispersión.</li>
+  <li><b>Resaltar sub-corpus de la tesis ({ds.get('relevant_ge2_axes', 0)})</b> — ilumina los papers de la tesis de Daniel (contorno morado) y atenúa el resto, para ver su dispersión.</li>
 </ul>
 <p style="font-size:13px;background:#f8f9fa;padding:10px 14px;border-radius:6px;">
   <strong>Contorno por idioma:</strong>
@@ -751,8 +731,8 @@ tráfico/transporte (sentido vial de "intersection"), reportes corporativos, cit
 <p style="font-size:12px;color:#666;">
   <strong>Otras versiones:</strong>
   <a href="mapa.html" target="_blank">datamapplot standalone (full screen)</a> ·
-  <a href="../assets/v6_fig09_topic_map_interactive.html" target="_blank">Plotly alternativo</a> ·
-  <a href="../assets/v6_fig09_topic_map.png" target="_blank">PNG estático</a>
+  <a href="../../assets/v2_fig09_topic_map_interactive.html" target="_blank">Plotly alternativo</a> ·
+  <a href="../../assets/v2_fig09_topic_map.png" target="_blank">PNG estático</a>
 </p>
 
 {lectura_mapa_html}
@@ -803,8 +783,9 @@ tráfico/transporte (sentido vial de "intersection"), reportes corporativos, cit
 
 <h2 id="valid">10 · Notas de validación</h2>
 <div class="theory-block">
-  <p style="margin-top:0;">El scoring RSI v3 se aplicó con <strong>gpt-4.1</strong>, un modelo de alta capacidad seleccionado por su confiabilidad en tareas de juicio interpretativo estructurado. El procedimiento es transparente y reproducible: el prompt está versionado y cada puntaje incluye evidencia textual por criterio.</p>
-  <p style="margin-bottom:0;"><strong>Validación pendiente.</strong> Para consolidar la rúbrica como instrumento, resta una <strong>validación humana</strong>: la codificación a ciegas de una submuestra (40–50 trabajos) por un evaluador experto, para estimar la concordancia humano-modelo (κ de Cohen). Hasta entonces, los puntajes deben interpretarse como provisionales.</p>
+  <p style="margin-top:0;">El cribado y el scoring RSI v3 de la v2 los aplicó <strong>Claude (claude-opus-5-5)</strong>, con un prompt versionado que aplica la rúbrica v3 al pie de la letra. La regla del gate se corrigió durante la aplicación y los registros afectados se reevaluaron (<code>data/v2_reevaluacion_gate.csv</code>). El procedimiento es transparente y reproducible: el prompt está versionado y cada puntaje incluye evidencia textual por criterio.</p>
+  <p><strong>Validación pendiente.</strong> Para consolidar la rúbrica como instrumento, resta una <strong>validación humana</strong>. Un evaluador experto repite a ciegas, sobre una muestra, los mismos pasos que siguió el modelo, con las mismas definiciones y reglas: <b>inclusión</b> (¿invoca la interseccionalidad en sentido social? ¿el objeto es climático?), <b>gate</b>, <b>criterios I–VI</b> e <b>integración</b>. La muestra tiene {vmeta["n"]} trabajos en {vmeta["bloques"]} bloques de {vmeta["por_bloque"]}: cada bloque trae 2 registros que el modelo excluyó y 1 de cada categoría RSI. La herramienta calcula la concordancia del cribado, del gate, de cada criterio y de la categoría RSI (κ de Cohen, κ ponderado e IC bootstrap), y estima el acuerdo para el corpus completo. Hasta entonces, los puntajes deben interpretarse como provisionales.</p>
+  <p style="margin-bottom:0;"><a href="validacion.html"><b>✓ Abrir la herramienta de validación</b></a> · <a href="corpus.html"><b>☰ Ver la lista completa del corpus</b></a> ({pmeta["a_cribado"]:,} registros cribados, con las respuestas del modelo; conviene revisarla después de codificar la muestra).</p>
 </div>
 
 <h2 id="daniel">11 · Sub-corpus tesis de Daniel</h2>
@@ -835,51 +816,52 @@ tráfico/transporte (sentido vial de "intersection"), reportes corporativos, cit
 {ins_daniel}
 
 <h3>Documentos del sub-corpus (acceso directo)</h3>
-<p style="font-size:13px;">Los 97 trabajos con ≥2 ejes temáticos relevantes para la tesis, ordenados por puntaje RSI. Cada uno enlaza a su DOI para consulta directa.</p>
+<p style="font-size:13px;">Los {ds.get('relevant_ge2_axes', 0)} trabajos con ≥2 ejes temáticos relevantes para la tesis, ordenados por puntaje RSI. Cada uno enlaza a su DOI para consulta directa.</p>
 <details open>
 <summary>Ver listado completo ({stats['daniel_subcorpus'].get('relevant_ge2_axes','?')} trabajos · {stats['daniel_subcorpus'].get('relevant_substantive','?')} sustantivos)</summary>
 {subcorpus_docs_html}
 </details>
-<p style="font-size:12px;color:#666;">Exportado a <code>data/v1_daniel_subcorpus.csv</code> para análisis fino.</p>
+<p style="font-size:12px;color:#666;">Exportado a <code>data/v2_daniel_subcorpus.csv</code> para análisis fino.</p>
 
 <h2 id="sintesis">12 · Síntesis y discusión</h2>
 <div class="theory-block">
   <p style="margin-top:0;"><b>Una adopción que no es aplicación.</b> El embudo (§3b) muestra el primer hallazgo: de los {n_tot} trabajos que invocan la interseccionalidad, solo {n_gate} articulan dos o más ejes de diferenciación como relacionados, y apenas una fracción de ellos alcanza aplicación sustantiva. La amplia circulación del término no se corresponde con su uso analítico: predomina la mención.</p>
 
-  <p><b>Cuando se aplica, se teoriza más de lo que se opera.</b> El perfil por criterio (§3b) precisa <em>dónde</em> falla la aplicación. Entre los trabajos que pasan el criterio de entrada, el poder estructural y el contexto situado superan el 70 %, pero el <b>método no aditivo (criterio IV) se queda en {pct_metodo_gate}%</b>. La interseccionalidad se invoca como marco interpretativo, pero rara vez se traduce en decisiones de diseño —muestreo, codificación, modelos con interacciones—. Es el eslabón débil del campo.</p>
+  <p><b>Cuando se aplica, se teoriza más de lo que se opera.</b> El perfil por criterio (§3b) precisa <em>dónde</em> falla la aplicación. Entre los trabajos que pasan el criterio de entrada, el poder estructural llega al {c_II}% y el contexto situado al {c_III}%, pero el <b>método no aditivo (criterio IV) se queda en {pct_metodo_gate}%</b>. La interseccionalidad se invoca como marco interpretativo, pero rara vez se traduce en decisiones de diseño —muestreo, codificación, modelos con interacciones—. Es el eslabón débil del campo.</p>
 
-  <p><b>El rigor es de nicho, no del campo.</b> El análisis temático (§5) y el mapa (§5b) muestran que la sustantividad no se reparte de forma homogénea: se concentra en comunidades de investigación ancladas en contextos concretos (desastres situados, pueblos indígenas, género y agricultura). Ni el idioma (§6) ni el paso del tiempo (§8) modifican sustancialmente este patrón: no hay una ventaja iberoamericana ni una mejora temporal clara. La aplicación rigurosa parece depender de tradiciones disciplinares específicas más que de una maduración general del campo.</p>
+  <p><b>El rigor es de nicho, no del campo.</b> El análisis temático (§5) y el mapa (§5b) muestran que la sustantividad no se reparte de forma homogénea: se concentra en comunidades de investigación ancladas en contextos concretos ({top_topicos_txt}). El paso del tiempo (§8) no modifica sustancialmente este patrón, y el idioma (§6) no puede evaluarse con Scopus porque casi no hay literatura elegible en español. La aplicación rigurosa parece depender de tradiciones disciplinares específicas más que de una maduración general del campo.</p>
 
-  <p><b>Implicaciones.</b> (1) <em>Para el campo:</em> el reto no es adoptar más la interseccionalidad —ya está ampliamente adoptada— sino operacionalizarla metodológicamente. (2) <em>Para la práctica de investigación:</em> citar a Crenshaw o Collins no basta; la sustantividad exige traducir el marco en diseño empírico. (3) <em>Para esta tesis:</em> el cruce ciclones tropicales × México × género/indigeneidad está casi inexplorado (§11), pero los pocos trabajos que lo abordan están entre los más sustantivos del corpus. Hay, por tanto, un <b>vacío temático con un piso metodológico sólido</b>: un espacio donde la tesis puede contribuir sin partir de cero.</p>
+  <p><b>Implicaciones.</b> (1) <em>Para el campo:</em> el reto no es adoptar más la interseccionalidad —ya está ampliamente adoptada— sino operacionalizarla metodológicamente. (2) <em>Para la práctica de investigación:</em> citar a Crenshaw o Collins no basta; la sustantividad exige traducir el marco en diseño empírico. (3) <em>Para esta tesis:</em> en el corpus v2 {tesis_cruce_txt} (§11), pero los trabajos que combinan sus ejes temáticos están entre los más sustantivos del corpus. Hay, por tanto, un <b>vacío temático con un piso metodológico sólido</b>: un espacio donde la tesis puede contribuir sin partir de cero.</p>
 
   <p style="margin-bottom:0;"><b>Límites.</b> Los puntajes son provisionales (modelo de lenguaje, validación humana pendiente, evaluación sobre resúmenes); el criterio IV en particular puede subestimarse porque el diseño metodológico no siempre aparece en el abstract. Estas cautelas no alteran los patrones estructurales, pero sí los valores exactos.</p>
 </div>
 
 <h2 id="docs">13 · Documentos generados</h2>
 <p>
-  <a class="doc-link" href="../docs/rubrica_RSI_fundamentacion.md">📋 Fundamentación RSI</a>
-  <a class="doc-link" href="../prompts/bowleg_eval_v3.md">⚙ Prompt RSI v3</a>
-  <a class="doc-link" href="../data/v1_corpus_scored.csv">📊 Corpus + scores (CSV)</a>
-  <a class="doc-link" href="../data/v1_daniel_subcorpus.csv">📊 Sub-corpus Daniel (CSV)</a>
+  <a class="doc-link" href="../../docs/rubrica_RSI_fundamentacion.md">📋 Fundamentación RSI</a>
+  <a class="doc-link" href="../../prompts/v2_cribado_rsi.md">⚙ Prompt v2</a>
+  <a class="doc-link" href="../../prompts/bowleg_eval_v3.md">⚙ Prompt RSI v3</a>
+  <a class="doc-link" href="../../data/v2_corpus_scored.csv">📊 Corpus + scores (CSV)</a>
+  <a class="doc-link" href="../../data/v2_daniel_subcorpus.csv">📊 Sub-corpus Daniel (CSV)</a>
 </p>
 
 <details>
 <summary>Detalles de procedencia</summary>
 <table class="data-table">
 <tr><th>Fuente</th><th>Origen</th><th>n</th></tr>
-<tr><td>Scopus EN</td><td>Base construida manualmente por Daniel (scopus (17)_En.xlsx)</td><td>765</td></tr>
-<tr><td>Scopus ES</td><td>Base construida manualmente por Daniel (BD_2026_Scopus_Spanish.xlsx)</td><td>222</td></tr>
+<tr><td>Scopus</td><td>Cadena bilingüe v2 (docs/cadenas_busqueda.md §3.1), export del {smeta['fecha_busqueda']}</td><td>{pmeta['identificados_scopus']:,}</td></tr>
 </table>
 <p style="font-size: 12px;">
-Total bruto: 987 ·
-Filtro abstract ≥100 chars: −13 ·
-Dedup DOI + título: −3 ·
-<strong>Corpus Daniel consolidado: 971.</strong>
+Total identificado: {pmeta['identificados_scopus']:,} ·
+Filtro abstract ≥100 chars: −{pmeta['excluidos_regla']['sin_abstract']} ·
+Erratas y conference reviews: −{pmeta['excluidos_regla']['erratum_o_conference_review']} ·
+Dedup DOI + título: −{pmeta['duplicados']} ·
+Cribado de elegibilidad: −{pmeta['cribado']['excluidos']} ·
+<strong>Corpus v2 elegible: {pmeta['cribado']['elegibles']:,}.</strong>
 </p>
 <p style="font-size: 12px;">
-Scoring RSI: <code>gpt-4.1</code> via OpenAI Batch API, prompt
-<code>prompts/bowleg_eval_v3.md</code> + razonamiento <code>reasoning_v3.md</code>.
-Rama paralela e independiente del corpus multi-base (4,702).
+Cribado + scoring RSI: Claude (claude-opus-5-5), prompt <code>prompts/v2_cribado_rsi.md</code>
+(rúbrica <code>prompts/bowleg_eval_v3.md</code> + razonamiento <code>reasoning_v3.md</code>).
 </p>
 </details>
 
@@ -899,7 +881,7 @@ Rama paralela e independiente del corpus multi-base (4,702).
 </ol>
 
 <p style="text-align:center; color:#9ca3af; font-size:12px; margin-top:56px; padding-top:20px; border-top:1px solid var(--line);">
-Interseccionalidad y Cambio Climático · Rúbrica de Sustantividad Interseccional (RSI) · 2026
+Interseccionalidad y Cambio Climático · Rúbrica de Sustantividad Interseccional (RSI) · v2 · 2026
 </p>
 
 </div><!-- /main -->

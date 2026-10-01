@@ -1,0 +1,107 @@
+{
+  "n_total": 1016,
+  "year_distribution": {
+    "1999": 1,
+    "2006": 1,
+    "2007": 1,
+    "2008": 1,
+    "2009": 3,
+    "2011": 1,
+    "2012": 4,
+    "2013": 2,
+    "2014": 8,
+    "2015": 7,
+    "2016": 23,
+    "2017": 5,
+    "2018": 17,
+    "2019": 29,
+    "2020": 38,
+    "2021": 71,
+    "2022": 80,
+    "2023": 110,
+    "2024": 174,
+    "2025": 214,
+    "2026": 226
+  },
+  "language_distribution": {
+    "English": 1010,
+    "Spanish": 6
+  },
+  "source_distribution": {
+    "scopus_v2_en": 1010,
+    "scopus_v2_es": 6
+  },
+  "base_distribution": {
+    "scopus_v2": 1016
+  },
+  "top_countries": {
+    "United States": 648,
+    "United Kingdom": 258,
+    "Canada": 190,
+    "Australia": 178,
+    "India": 111,
+    "Spain": 104,
+    "Germany": 99,
+    "South Africa": 81,
+    "Sweden": 77,
+    "Brazil": 48,
+    "Kenya": 46,
+    "Bangladesh": 45,
+    "Netherlands": 41,
+    "Italy": 36,
+    "Austria": 32,
+    "Norway": 32,
+    "Ghana": 31,
+    "Switzerland": 28,
+    "New Zealand": 27,
+    "Indonesia": 23,
+    "Portugal": 23,
+    "Nepal": 20,
+    "Zimbabwe": 18,
+    "Uganda": 17,
+    "Viet Nam": 17
+  },
+  "bowleg_distribution": {
+    "0.0": 446,
+    "0.5": 24,
+    "1.0": 133,
+    "1.5": 88,
+    "2.0": 207,
+    "2.5": 35,
+    "3.0": 23,
+    "3.5": 42,
+    "4.0": 18
+  },
+  "category_distribution": {
+    "mencion_sin_aplicacion": 446,
+    "parcial": 295,
+    "nominal_debil": 157,
+    "sustantivo_fuerte": 60,
+    "sustantivo": 58
+  },
+  "category_percentages": {
+    "mencion_sin_aplicacion": 43.9,
+    "parcial": 29.04,
+    "nominal_debil": 15.45,
+    "sustantivo_fuerte": 5.91,
+    "sustantivo": 5.71
+  },
+  "confidence_distribution": {
+    "medium": 573,
+    "high": 258,
+    "low": 185
+  },
+  "daniel_subcorpus": {
+    "mexico": 10,
+    "cyclonic_events": 51,
+    "coastal": 54,
+    "indigenous": 121,
+    "gender_women": 556,
+    "mexico_AND_cyclonic": 0,
+    "mexico_cyclonic_gender_or_indigenous": 0,
+    "coastal_AND_cyclonic": 18,
+    "relevant_ge2_axes": 121,
+    "relevant_bowleg_mean": 1.6735537190082646,
+    "relevant_substantive": 27
+  }
+}

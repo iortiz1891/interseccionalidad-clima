@@ -1,0 +1,122 @@
+[
+  {
+    "titulo": "Environmental Reproductive Justice, Indigenous Health Knowledge and Indigenous Women on the Climate Frontlines",
+    "year": "2024",
+    "categoria": "Sustantiva fuerte",
+    "rsi_total": 4.0,
+    "gate": true,
+    "scores": {
+      "I": 1.0,
+      "II": 1.0,
+      "III": 1.0,
+      "IV": 1.0,
+      "V": 1.0,
+      "VI": 1.0
+    },
+    "evidencias": {
+      "I": "Analiza los saberes de salud generizados y situados de mujeres indígenas como posición específica ante el cambio ambiental.",
+      "II": "Colonialismo de asentamiento, extracción petrolera, desplazamiento y falta de reconocimiento federal como mecanismos estructurales.",
+      "III": "Tribu no reconocida federalmente del Golfo de EE. UU., con intrusión salina y pérdida de tierras; subraya desafíos únicos.",
+      "IV": "Entrevistas semiestructuradas a 31 mujeres de la tribu: muestreo intencional del subgrupo interseccional.",
+      "V": "Interpreta los hallazgos desde la justicia reproductiva ambiental, con crítica situada al colonialismo de asentamiento.",
+      "VI": "Documenta saberes indígenas de salud y sanación, y 'resilience and resistance' frente a fuerzas macroestructurales."
+    },
+    "gate_evidence": "Relaciona género e indigeneidad: saberes 'gendered and place-based' y colonialismo de asentamiento que recargan especialmente a mujeres indígenas."
+  },
+  {
+    "titulo": "Applying intersectionality to climate hazards: a theoretically informed study of wildfire in northern Saskatchewan",
+    "year": "2021",
+    "categoria": "Sustantiva fuerte",
+    "rsi_total": 4.0,
+    "gate": true,
+    "scores": {
+      "I": 1.0,
+      "II": 1.0,
+      "III": 1.0,
+      "IV": 1.0,
+      "V": 1.0,
+      "VI": 1.0
+    },
+    "evidencias": {
+      "I": "Analiza posiciones combinadas de lugar, raza, etnicidad, género y edad, no ejes por separado.",
+      "II": "Explica las diferencias por historias de colonización, normas de género y sistemas de poder; causas raíz de la vulnerabilidad.",
+      "III": "Incendio mayor en el norte de Saskatchewan; valores locales específicos y reconocimiento explícito de lo situado.",
+      "IV": "El marco interseccional guía el análisis empírico cruzando ejes para comparar impactos y pérdidas.",
+      "V": "Propone adaptación inclusiva y equitativa: ampliar impactos considerados, participación diversa y atender causas raíz.",
+      "VI": "Reconoce la agencia y lo que los residentes ya hacen frente a las amenazas."
+    },
+    "gate_evidence": "Identifica cómo impactos y pérdidas difieren 'across intersections of location, race, ethnicity, gender and age'."
+  },
+  {
+    "titulo": "Female Leadership and Everyday Hazards: Care Practices and Solidarity Networks in Campamento Dignidad",
+    "year": "2024",
+    "categoria": "Parcial",
+    "rsi_total": 2.0,
+    "gate": true,
+    "scores": {
+      "I": 0.5,
+      "II": 0.5,
+      "III": 0.5,
+      "IV": 0.5,
+      "V": 0.5,
+      "VI": 1.0
+    },
+    "evidencias": {
+      "I": "Mujeres de un asentamiento informal como posición situada, pero el abstract no analiza cómo se co-construyen género y marginación.",
+      "II": "Nombra el abandono estatal y la exclusión de la gobernanza urbana y del riesgo, sin teorizar mecanismos.",
+      "III": "Campamento Dignidad, Santiago de Chile, durante la COVID-19; contexto histórico-político apenas esbozado.",
+      "IV": "Estudio de caso centrado en lideresas del asentamiento; el abstract no describe análisis interaccional.",
+      "V": "Problematiza las categorías de género en la gobernanza del riesgo y reclama participación comunitaria, sin desarrollar propuestas.",
+      "VI": "Documenta autogestión, liderazgo femenino, prácticas de cuidado y redes de solidaridad impulsadas por mujeres."
+    },
+    "gate_evidence": "Relaciona género y marginación socioespacial: liderazgo femenino y cuidados en un asentamiento informal de Santiago bajo abandono estatal."
+  },
+  {
+    "titulo": "A Machine Learning Framework for Assessing Systemic Societal Vulnerability to Coastal Flooding",
+    "year": "2026",
+    "categoria": "Mención sin aplicación",
+    "rsi_total": 0.0,
+    "gate": false,
+    "scores": {
+      "I": 0.0,
+      "II": 0.0,
+      "III": 0.0,
+      "IV": 0.0,
+      "V": 0.0,
+      "VI": 0.0
+    },
+    "evidencias": {
+      "I": "No aplica: gate no superado.",
+      "II": "No aplica: gate no superado.",
+      "III": "No aplica: gate no superado.",
+      "IV": "No aplica: gate no superado.",
+      "V": "No aplica: gate no superado.",
+      "VI": "No aplica: gate no superado."
+    },
+    "gate_evidence": "Llama interseccional a la vulnerabilidad sistémica que combina educación, ingreso e infraestructura; no articula entre sí ejes de diferenciación social como género o etnia."
+  },
+  {
+    "titulo": "A scoping review of literature on adoption and impact of climate smart agricultural technologies by smallholder farmers in Africa",
+    "year": "2026",
+    "categoria": "Mención sin aplicación",
+    "rsi_total": 0.0,
+    "gate": false,
+    "scores": {
+      "I": 0.0,
+      "II": 0.0,
+      "III": 0.0,
+      "IV": 0.0,
+      "V": 0.0,
+      "VI": 0.0
+    },
+    "evidencias": {
+      "I": "No aplica: gate no superado.",
+      "II": "No aplica: gate no superado.",
+      "III": "No aplica: gate no superado.",
+      "IV": "No aplica: gate no superado.",
+      "V": "No aplica: gate no superado.",
+      "VI": "No aplica: gate no superado."
+    },
+    "gate_evidence": "Menciona la 'gender intersectionality' solo como vacío poco explorado; no articula ejes de diferenciación relacionados entre sí."
+  }
+]

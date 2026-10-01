@@ -27,3 +27,6 @@ data/*_input.jsonl
 # SO
 .DS_Store
 Thumbs.db
+
+# Trabajo intermedio de la v2 (lotes de cribado/RSI)
+work/

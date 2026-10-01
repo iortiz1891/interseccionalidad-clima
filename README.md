@@ -32,11 +32,18 @@ La rúbrica se aplica a escala de corpus con un modelo de lenguaje de gran escal
 
 ## El dashboard
 
+El dashboard tiene dos pestañas:
+
+- **v1 · corpus original** (mayo 2026): las 971 publicaciones de las cadenas de búsqueda originales.
+- **v2 · búsqueda ampliada** (septiembre 2026, [site/v2/](site/v2/index.html)): una cadena bilingüe nueva en Scopus ([docs/cadenas_busqueda.md §3](docs/cadenas_busqueda.md)). Agrega un cribado de elegibilidad antes de la RSI y se construye solo con esos datos, sin reutilizar registros ni puntajes de la v1.
+
+
 Una sola página que recorre el marco, el corpus, los hallazgos y el método. Incluye:
 
 - **Mapa temático interactivo** (33 tópicos): se puede colorear por tópico, por nivel RSI del trabajo o por RSI medio del vecindario; resaltar el sub-corpus de la tesis; y, al hacer clic en un punto, ver la **justificación del modelo por cada criterio**.
 - **Figuras explicativas** (perfil por criterio, embudo del gate, ranking de tópicos, asimetría por idioma…).
-- **Herramienta de validación** ([site/validacion.html](site/validacion.html)): interfaz para codificar a ciegas una submuestra y calcular la concordancia humano–modelo (κ de Cohen).
+- **Herramienta de validación**, en la pestaña v2 ([site/v2/validacion.html](site/v2/validacion.html)): un evaluador repite a ciegas los pasos del LLM sobre una muestra de 140 trabajos (20 bloques de 7, con registros incluidos y excluidos de todos los niveles). Los pasos son inclusión, gate, criterios I–VI e integración, con las mismas definiciones y reglas del prompt. La página calcula el puntaje RSI con la fórmula del pipeline y la concordancia del cribado, el gate, cada criterio y la categoría RSI (κ de Cohen, κ ponderado, IC bootstrap). Las respuestas del LLM no están en la página: se cargan solo al pedir la concordancia.
+- **Lista completa del corpus**, en la pestaña v2 ([site/v2/corpus.html](site/v2/corpus.html)): los 1,696 registros cribados con la decisión del LLM, el puntaje RSI, los criterios, la evidencia y el tópico. Tiene búsqueda, filtros compartibles por URL y descarga en CSV.
 
 ## Arquitectura del repositorio
 
@@ -48,11 +55,13 @@ Separación clara entre el **sitio publicado**, los **datos**, el **pipeline** y
 ├── site/                   # SITIO PUBLICADO (autocontenido)
 │   ├── index.html          #   · dashboard principal
 │   ├── mapa.html           #   · mapa temático interactivo
-│   └── validacion.html     #   · herramienta de validación humana
+│   ├── validacion.html     #   · herramienta de validación humana
+│   └── v2/                 #   · pestaña v2 (index, mapa, validación y lista del corpus de la búsqueda ampliada)
 ├── data/                   # datos procesados (corpus, puntajes, tópicos, estadísticas)
 ├── assets/                 # figuras y mapas estáticos
 ├── prompts/                # prompts del modelo (Rúbrica de Sustantividad Interseccional)
 ├── pipeline/               # scripts de reproducción, en orden lógico (01 → 12)
+│   └── v2/                 #   · pipeline de la búsqueda ampliada (01 → 13)
 ├── docs/                   # fundamentación teórica de la RSI
 ├── requirements.txt
 └── LICENSE
@@ -96,6 +105,24 @@ python3 pipeline/12_dashboard.py             # dashboard → site/index.html
 ```
 
 La cadena completa desde las bases Scopus crudas (`01` ingesta → `02` scoring con la API de OpenAI → `03` BERTopic → `04` etiquetado → `05`/`06` análisis) requiere las bases crudas (`.xlsx`), que **no se incluyen** por términos de redistribución, y una clave de API de OpenAI para el scoring.
+
+### Pipeline v2 (búsqueda ampliada)
+
+La pestaña v2 es una **réplica de la v1 con la búsqueda nueva**. Los pasos 05–12 son copias de los scripts de la v1 que cambian solo las rutas de datos (`data/v2_*`, `assets/v2_*`, `site/v2/`) y los textos que en la v1 tenían cifras escritas a mano.
+
+| # | Script | Qué hace |
+|---|--------|----------|
+| 01 | `v2/01_ingesta_scopus.py` | Ingesta del export de Scopus, exclusiones por regla, deduplicación y nivel del ancla |
+| 02 | `v2/02_preparar_lotes.py` | Divide el corpus en lotes para el cribado y la RSI |
+| — | `v2/validar_lote.py` | Valida cada lote contra el esquema de `prompts/v2_cribado_rsi.md` |
+| 03 | `v2/03_consolidar.py` | Une los lotes, aplica la reevaluación del gate y calcula la RSI con la misma fórmula de la v1 |
+| 04 | `v2/04_topicos.py` · `04b_etiquetas.py` | BERTopic sobre los elegibles y etiquetas de los tópicos |
+| 05–12 | `v2/05_analisis_cruzados.py` … `v2/12_dashboard.py` | Réplica de los pasos 05–12 de la v1 |
+| 09b | `v2/09b_mapa_estatico.py` | Mapa temático estático y versión Plotly (equivalente al paso de la v1 que no está en el repo) |
+| 11 | `v2/11_validacion.py` | Validación humana: muestra por bloques, inclusión + RSI, concordancia (`site/v2/validacion.html` + `validacion_llm.js`) |
+| 13 | `v2/13_lista_corpus.py` | Lista completa del corpus con búsqueda y filtros (`site/v2/corpus.html`) |
+
+El cribado, la codificación y la RSI de la v2 los aplicó Claude (claude-opus-5-5) con `prompts/v2_cribado_rsi.md`, en lotes independientes. El export crudo de Scopus (`data/v2_scopus_raw.csv`) no se versiona.
 
 ## Créditos
 

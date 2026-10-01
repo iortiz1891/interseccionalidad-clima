@@ -1,0 +1,58 @@
+{
+  "base": "Scopus",
+  "plataforma": "scopus.com (web, búsqueda avanzada), acceso institucional por VPN",
+  "fecha_busqueda": "2026-09-30",
+  "cadena": "docs/cadenas_busqueda.md §3.1 (v2 · cadena bilingüe)",
+  "limites": "PUBYEAR > 1988; idioma inglés o español; sin límite de tipo de documento",
+  "resultados": 1751,
+  "desglose_ancla": {
+    "nucleo_intersectional_interseccional": 1449,
+    "ampliada_W4_intersecting": 287,
+    "solo_vocabulario_afin": 15
+  },
+  "idioma_facetas": {
+    "English": 1739,
+    "Spanish": 19,
+    "nota": "7 documentos figuran en ambos idiomas"
+  },
+  "tipo_documento_facetas": {
+    "Article": 1038,
+    "Book chapter": 331,
+    "Review": 138,
+    "Book": 114,
+    "Note": 45,
+    "Editorial": 37,
+    "Conference paper": 32,
+    "Short survey": 8,
+    "Erratum": 5,
+    "Conference review": 3
+  },
+  "anio_facetas": {
+    "2026": 330,
+    "2025": 361,
+    "2024": 301,
+    "2023": 213,
+    "2022": 145,
+    "2021": 118,
+    "2020": 75,
+    "2019": 50,
+    "2018": 33,
+    "2017": 23,
+    "2016": 36,
+    "2015": 11,
+    "2014": 15,
+    "2013": 9,
+    "2012": 7,
+    "2011": 3,
+    "2010": 2,
+    "2009": 5,
+    "2008": 3,
+    "2007": 4,
+    "2006": 2,
+    "2001": 1,
+    "2000": 1,
+    "1999": 1,
+    "1998": 1,
+    "1997": 1
+  }
+}

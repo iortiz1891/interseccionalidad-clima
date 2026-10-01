@@ -1,0 +1,167 @@
+#!/usr/bin/env python3
+"""
+03_consolidar.py — v2: une y valida las salidas de cribado + RSI.
+
+Lee work/v2_salidas/lote_*.jsonl, valida cada línea contra el esquema de
+prompts/v2_cribado_rsi.md y calcula el total de la RSI con la misma fórmula de
+la v1 (pipeline/02_scoring_rsi.py::compute_total).
+
+Salidas:
+  data/v2_cribado.csv            todos los registros con su decisión de cribado
+  data/v2_bowleg_results.csv     puntajes RSI (mismo esquema que la v1 + codificación)
+  data/v2_reasoning_results.csv  razonamiento por registro
+  data/v2_corpus_scored.csv      corpus elegible + puntajes + categoría
+  data/v2_prisma_meta.json       se completa con el cribado y las categorías
+"""
+from __future__ import annotations
+import importlib.util
+import json
+import sys
+from pathlib import Path
+import pandas as pd
+
+DATA = Path("data")
+SALIDAS = Path("work/v2_salidas")
+
+sys.path.insert(0, str(Path(__file__).parent))
+from validar_lote import check  # noqa: E402
+
+_spec = importlib.util.spec_from_file_location('scoring_v1', 'pipeline/02_scoring_rsi.py')
+_scoring = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_scoring)
+compute_total = _scoring.compute_total
+
+
+def categoria(total: float) -> str:
+    if total >= 3.5: return 'sustantivo_fuerte'
+    if total >= 2.5: return 'sustantivo'
+    if total >= 1.5: return 'parcial'
+    if total > 0:    return 'nominal_debil'
+    return 'mencion_sin_aplicacion'
+
+
+def main():
+    recs, errores = [], []
+    for f in sorted(SALIDAS.glob('lote_*.jsonl')):
+        for n, line in enumerate(f.read_text().splitlines(), 1):
+            if not line.strip():
+                continue
+            d = json.loads(line)
+            for e in check(d):
+                errores.append(f'{f.name}:{n} paper_id {d.get("paper_id")}: {e}')
+            recs.append(d)
+    if errores:
+        sys.exit('ERRORES DE ESQUEMA:\n' + '\n'.join(errores[:40]))
+
+    # ── Reevaluación del gate con la regla 3 corregida (work/v2_reevaluacion/re_*.jsonl) ──
+    # Reemplaza gate, criterios, evidencias y razonamiento; el cribado y la
+    # codificación se conservan siempre del registro original.
+    CONSERVAR = ['elig_interseccional', 'elig_clima', 'elegible', 'motivo_exclusion',
+                 'tipo_estudio', 'amenaza', 'lugar_estudio']
+    by_id = {r['paper_id']: r for r in recs}
+    auditoria = []
+    for f in sorted(Path('work/v2_reevaluacion').glob('re_*.jsonl')):
+        for n, line in enumerate(f.read_text().splitlines(), 1):
+            if not line.strip():
+                continue
+            d = json.loads(line)
+            orig = by_id[d['paper_id']]
+            d.update({c: orig[c] for c in CONSERVAR})
+            errs = check(d)
+            if errs:
+                sys.exit(f'{f.name}:{n} paper_id {d["paper_id"]}: {errs}')
+            auditoria.append({'paper_id': d['paper_id'],
+                              'gate_antes': orig['gate_pass'], 'gate_despues': d['gate_pass'],
+                              'total_antes': compute_total(orig), 'total_despues': compute_total(d),
+                              'gate_evidence_despues': d.get('gate_evidence', '')})
+            by_id[d['paper_id']] = d
+    recs = list(by_id.values())
+    if auditoria:
+        aud = pd.DataFrame(auditoria)
+        aud.to_csv(DATA / 'v2_reevaluacion_gate.csv', index=False)
+        print(f"[0] Reevaluados {len(aud)} gates: {int(aud['gate_despues'].sum())} pasan ahora "
+              f"(antes {int(aud['gate_antes'].sum())})")
+
+    corpus = pd.read_csv(DATA / 'v2_corpus_consolidated.csv')
+    ids = [r['paper_id'] for r in recs]
+    if '--parcial' in sys.argv:          # solo para probar el pipeline con lotes incompletos
+        corpus = corpus[corpus['paper_id'].isin(ids)].copy()
+    faltan = sorted(set(corpus['paper_id']) - set(ids))
+    dups = sorted({i for i in ids if ids.count(i) > 1})
+    if faltan or dups:
+        sys.exit(f'Faltan {len(faltan)} registros ({faltan[:10]}) · duplicados {dups[:10]}')
+    print(f"[1] {len(recs)} registros válidos de {len(list(SALIDAS.glob('lote_*.jsonl')))} lotes")
+
+    # ── Cribado ──
+    cr = pd.DataFrame([{k: r.get(k) for k in
+                        ['paper_id', 'elig_interseccional', 'elig_clima', 'elegible', 'motivo_exclusion',
+                         'confidence']}
+                       for r in recs])
+    cr = corpus[['paper_id', 'Title', 'Year', 'Document Type', 'idioma', 'nivel_ancla']].merge(cr, on='paper_id')
+    # Trabajos retractados: se excluyen por regla, aunque el cribado los haya dado por elegibles.
+    retract = cr['Title'].fillna('').str.match(r'\s*RETRACTED', case=False)
+    cr['retractado'] = retract
+    cr.loc[retract, 'elegible'] = False
+    cr.loc[retract, 'motivo_exclusion'] = 'Trabajo retractado (excluido por regla).'
+    retract_ids = set(cr.loc[retract, 'paper_id'])
+    cr.to_csv(DATA / 'v2_cribado.csv', index=False)
+    print(f"[2] Elegibles: {int(cr['elegible'].sum())} / {len(cr)}")
+
+    # ── RSI (solo elegibles) ──
+    rows, razon = [], []
+    for r in recs:
+        razon.append({'paper_id': r['paper_id'], 'razonamiento': r.get('razonamiento', '')})
+        if not r['elegible'] or r['paper_id'] in retract_ids:
+            continue
+        rows.append({
+            'paper_id': r['paper_id'],
+            'bowleg_I': r['rsi_I'], 'bowleg_I_evidence': r.get('rsi_I_ev', ''),
+            'bowleg_II': r['rsi_II'], 'bowleg_II_evidence': r.get('rsi_II_ev', ''),
+            'bowleg_III': r['rsi_III'], 'bowleg_III_evidence': r.get('rsi_III_ev', ''),
+            'bowleg_IV': r['rsi_IV'], 'bowleg_IV_evidence': r.get('rsi_IV_ev', ''),
+            'bowleg_total': compute_total(r),
+            'confidence': r.get('confidence', 'medium'), 'confidence_note': '',
+            'rsi_V': r['rsi_V'], 'rsi_V_evidence': r.get('rsi_V_ev', ''),
+            'rsi_VI': r['rsi_VI'], 'rsi_VI_evidence': r.get('rsi_VI_ev', ''),
+            'gate_pass': r['gate_pass'], 'gate_evidence': r.get('gate_evidence', ''),
+            'integracion': r['integracion'], 'integracion_nota': r.get('integracion_nota', ''),
+            'tipo_estudio': r['tipo_estudio'],
+            'amenaza': '; '.join(r['amenaza']),
+            'lugar_estudio': '; '.join(r['lugar_estudio']),
+        })
+    res = pd.DataFrame(rows)
+    res.to_csv(DATA / 'v2_bowleg_results.csv', index=False)
+    pd.DataFrame(razon).to_csv(DATA / 'v2_reasoning_results.csv', index=False)
+
+    scored = corpus.merge(res, on='paper_id', how='inner')
+    scored['categoria_bowleg'] = scored['bowleg_total'].apply(categoria)
+    scored['_tag'] = 'scopus_v2_' + scored['idioma']      # equivalente al _tag de la v1
+    scored.to_csv(DATA / 'v2_corpus_scored.csv', index=False)
+    print(f"[3] Corpus puntuado: {len(scored)} · gate {int(scored['gate_pass'].sum())} · "
+          f"RSI 0: {100 * (scored['bowleg_total'] == 0).mean():.1f}%")
+
+    # ── PRISMA ──
+    meta = json.loads((DATA / 'v2_prisma_meta.json').read_text())
+    no_int = ~cr['elig_interseccional'] & ~cr['retractado']
+    no_cli = ~cr['elig_clima'] & ~cr['retractado']
+    meta['cribado'] = {
+        'excluidos': int((~cr['elegible']).sum()),
+        'retractados': int(cr['retractado'].sum()),
+        'solo_no_interseccional': int((no_int & ~no_cli).sum()),
+        'solo_no_climatico': int((no_cli & ~no_int).sum()),
+        'ambos': int((no_int & no_cli).sum()),
+        'elegibles': int(cr['elegible'].sum()),
+    }
+    meta['rsi'] = {
+        'gate_pass': int(scored['gate_pass'].sum()),
+        'categorias_n': scored['categoria_bowleg'].value_counts().to_dict(),
+        'categorias_pct': (scored['categoria_bowleg'].value_counts(normalize=True) * 100).round(1).to_dict(),
+        'modelo': 'claude-opus-5-5 (Claude Code) · prompts/v2_cribado_rsi.md',
+    }
+    (DATA / 'v2_prisma_meta.json').write_text(json.dumps(meta, indent=2, ensure_ascii=False))
+    print("[OK] data/v2_cribado.csv · v2_bowleg_results.csv · v2_reasoning_results.csv · "
+          "v2_corpus_scored.csv · v2_prisma_meta.json")
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,2 @@
+fecha,base,plataforma,version_cadena,idiomas,filtros,resultados_brutos,archivo_export,notas
+2026-09-30,Scopus,scopus.com (web; acceso institucional por VPN),v2 (docs/cadenas_busqueda.md §3.1),English;Spanish,"PUBYEAR > 1988; sin límite de tipo de documento",1751,data/v2_scopus_raw.csv (no versionado),"Export CSV sin truncar; campos: citación, bibliográficos (afiliaciones, idioma), abstract y keywords"
