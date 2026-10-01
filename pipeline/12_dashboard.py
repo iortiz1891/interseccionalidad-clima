@@ -340,8 +340,6 @@ def main():
         <a href="#sintesis">Síntesis y discusión</a>
         <a href="#docs">Documentos</a>
         <a href="#refs">Referencias</a>
-        <div class="nav-group">Herramientas</div>
-        <a href="validacion.html" class="nav-tool">✓ Validar la rúbrica</a>
       </nav>
     </aside>
     """

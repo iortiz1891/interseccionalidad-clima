@@ -42,7 +42,7 @@ Una sola página que recorre el marco, el corpus, los hallazgos y el método. In
 
 - **Mapa temático interactivo** (33 tópicos): se puede colorear por tópico, por nivel RSI del trabajo o por RSI medio del vecindario; resaltar el sub-corpus de la tesis; y, al hacer clic en un punto, ver la **justificación del modelo por cada criterio**.
 - **Figuras explicativas** (perfil por criterio, embudo del gate, ranking de tópicos, asimetría por idioma…).
-- **Herramienta de validación** ([site/validacion.html](site/validacion.html)): interfaz para codificar a ciegas una submuestra y calcular la concordancia humano–modelo (κ de Cohen).
+- **Herramienta de validación**, en la pestaña v2 ([site/v2/validacion.html](site/v2/validacion.html)): interfaz para codificar a ciegas una submuestra y calcular la concordancia humano–modelo (κ de Cohen).
 
 ## Arquitectura del repositorio
 
