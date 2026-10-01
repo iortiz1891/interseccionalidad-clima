@@ -1,139 +1,113 @@
-country,n,bowleg_mean,pct_gate_fail,pct_substantive,pct_strong
-Global,237.0,0.48,64.6,2.1,0.0
-United States,133.0,1.21,36.8,13.5,6.0
-No especificado,96.0,0.56,56.2,1.0,1.0
-India,68.0,1.6,27.9,27.9,13.2
-Bangladesh,41.0,1.29,26.8,12.2,2.4
-Canada,32.0,1.45,37.5,18.8,12.5
-Australia,28.0,0.77,60.7,10.7,3.6
-United Kingdom,27.0,1.2,40.7,11.1,0.0
-Kenya,24.0,1.5,33.3,20.8,16.7
-Ghana,23.0,1.52,17.4,21.7,4.3
-South Africa,22.0,1.8,27.3,31.8,27.3
-Brazil,16.0,1.22,37.5,12.5,6.2
-Nigeria,16.0,1.0,50.0,12.5,0.0
-Africa,13.0,0.62,61.5,0.0,0.0
-Nepal,13.0,1.88,23.1,38.5,30.8
-Indonesia,13.0,1.12,53.8,23.1,7.7
-Global South,12.0,0.96,41.7,0.0,0.0
-New Zealand,12.0,1.75,25.0,33.3,33.3
-Europe,12.0,0.46,66.7,0.0,0.0
-Pakistan,11.0,1.27,36.4,9.1,0.0
-Sweden,11.0,0.82,63.6,9.1,0.0
-Spain,11.0,1.23,36.4,9.1,9.1
-Vietnam,10.0,1.85,10.0,20.0,10.0
-Latin America,9.0,0.61,66.7,0.0,0.0
-Colombia,9.0,0.39,77.8,0.0,0.0
-Puerto Rico,9.0,1.22,44.4,22.2,0.0
-Germany,8.0,0.12,87.5,0.0,0.0
-Mexico,8.0,1.19,50.0,12.5,12.5
-Zimbabwe,8.0,1.75,12.5,12.5,12.5
-South Asia,8.0,0.44,62.5,0.0,0.0
-Chile,8.0,1.25,37.5,12.5,12.5
-Fiji,7.0,0.86,42.9,0.0,0.0
-Ethiopia,7.0,1.5,42.9,28.6,28.6
-Sub-Saharan Africa,7.0,0.43,57.1,0.0,0.0
-Tanzania,6.0,1.33,33.3,0.0,0.0
-Philippines,6.0,1.33,50.0,33.3,16.7
-Uganda,6.0,1.5,33.3,16.7,16.7
-Zambia,5.0,1.8,0.0,20.0,0.0
-Turkey,5.0,0.4,80.0,0.0,0.0
-Austria,5.0,1.6,0.0,0.0,0.0
-Peru,5.0,2.0,20.0,40.0,20.0
-Mozambique,4.0,1.12,25.0,0.0,0.0
-Arctic,4.0,1.88,0.0,25.0,0.0
-Vanuatu,4.0,0.5,75.0,0.0,0.0
-Malawi,4.0,2.0,0.0,25.0,0.0
-France,4.0,0.5,75.0,0.0,0.0
-Portugal,4.0,1.88,0.0,25.0,0.0
-Norway,4.0,1.0,50.0,0.0,0.0
-Netherlands,4.0,1.25,25.0,0.0,0.0
-Italy,3.0,0.67,66.7,0.0,0.0
-Sudan,3.0,0.0,100.0,0.0,0.0
-Iran,3.0,1.67,33.3,66.7,0.0
-Sri Lanka,3.0,1.67,33.3,33.3,33.3
-Low- and middle-income countries,3.0,1.0,33.3,0.0,0.0
-Palestine,3.0,0.67,66.7,0.0,0.0
-Maldives,3.0,0.33,66.7,0.0,0.0
-North America,3.0,0.67,66.7,0.0,0.0
-Oceania,3.0,0.33,66.7,0.0,0.0
-Hindu Kush Himalaya,3.0,0.67,33.3,0.0,0.0
-Senegal,3.0,1.5,33.3,33.3,33.3
-Haiti,3.0,1.83,33.3,33.3,33.3
-Ecuador,3.0,2.17,0.0,33.3,33.3
-China,3.0,1.33,66.7,33.3,33.3
-Thailand,3.0,0.5,66.7,0.0,0.0
-Cameroon,3.0,2.33,0.0,33.3,33.3
-Burkina Faso,3.0,1.0,66.7,33.3,0.0
-Global North,3.0,0.67,33.3,0.0,0.0
-Asia,3.0,1.0,33.3,0.0,0.0
-Botswana,2.0,1.75,0.0,50.0,0.0
-Bolivia,2.0,0.5,50.0,0.0,0.0
-Pacific Islands,2.0,0.0,100.0,0.0,0.0
-Ireland,2.0,2.0,0.0,0.0,0.0
-Bhutan,2.0,0.0,100.0,0.0,0.0
-Caribbean,2.0,2.0,0.0,0.0,0.0
-Poland,2.0,1.25,0.0,0.0,0.0
-Chad,2.0,0.0,100.0,0.0,0.0
-Czech Republic,2.0,1.75,50.0,50.0,50.0
-Americas,2.0,0.0,100.0,0.0,0.0
-Niger,2.0,0.0,100.0,0.0,0.0
-Nicaragua,2.0,0.5,50.0,0.0,0.0
-Denmark,2.0,0.0,100.0,0.0,0.0
-Dominica,2.0,1.0,50.0,0.0,0.0
-Iraq,2.0,0.0,100.0,0.0,0.0
-Myanmar,2.0,2.0,0.0,0.0,0.0
-High-income countries,2.0,0.0,100.0,0.0,0.0
-Israel,2.0,0.75,50.0,0.0,0.0
-Middle East and North Africa,2.0,1.0,50.0,0.0,0.0
-South Sudan,2.0,0.0,100.0,0.0,0.0
-Southern Africa,2.0,0.0,100.0,0.0,0.0
-Switzerland,2.0,2.75,0.0,100.0,0.0
-Honduras,2.0,0.0,100.0,0.0,0.0
-Mauritania,2.0,0.0,100.0,0.0,0.0
-Mali,2.0,0.0,100.0,0.0,0.0
-European Union,2.0,0.0,100.0,0.0,0.0
-Guatemala,2.0,1.5,0.0,0.0,0.0
-Russia,1.0,0.0,100.0,0.0,0.0
-Syria,1.0,1.0,0.0,0.0,0.0
-Solomon Islands,1.0,0.0,100.0,0.0,0.0
-Trinidad and Tobago,1.0,2.0,0.0,0.0,0.0
-Taiwan,1.0,2.0,0.0,0.0,0.0
-Somalia,1.0,0.0,100.0,0.0,0.0
-Tonga,1.0,0.0,100.0,0.0,0.0
-United Arab Emirates,1.0,0.0,100.0,0.0,0.0
-Ukraine,1.0,0.0,100.0,0.0,0.0
-South Korea,1.0,0.0,100.0,0.0,0.0
-Tajikistan,1.0,2.0,0.0,0.0,0.0
-Afghanistan,1.0,0.0,100.0,0.0,0.0
-Romania,1.0,2.0,0.0,0.0,0.0
-Gambia,1.0,2.0,0.0,0.0,0.0
-Andean region,1.0,0.0,100.0,0.0,0.0
-Antarctica,1.0,0.0,100.0,0.0,0.0
-Argentina,1.0,1.0,0.0,0.0,0.0
-Belgium,1.0,2.0,0.0,0.0,0.0
-Bulgaria,1.0,0.0,100.0,0.0,0.0
-Costa Rica,1.0,1.5,0.0,0.0,0.0
-Cyprus,1.0,0.0,100.0,0.0,0.0
-Dominican Republic,1.0,4.0,0.0,100.0,100.0
-East Africa,1.0,0.0,100.0,0.0,0.0
-East Central Europe,1.0,0.0,100.0,0.0,0.0
-Eastern Africa,1.0,2.0,0.0,0.0,0.0
-Egypt,1.0,0.0,100.0,0.0,0.0
-Eritrea,1.0,0.0,100.0,0.0,0.0
-Greece,1.0,0.0,100.0,0.0,0.0
-Panama,1.0,2.0,0.0,0.0,0.0
-Himalayan region,1.0,0.0,100.0,0.0,0.0
-Hong Kong,1.0,0.0,100.0,0.0,0.0
-Jamaica,1.0,2.0,0.0,0.0,0.0
-Lake Chad Basin,1.0,2.0,0.0,0.0,0.0
-Latin America and the Caribbean,1.0,0.0,100.0,0.0,0.0
-Lebanon,1.0,0.0,100.0,0.0,0.0
-Malaysia,1.0,0.0,100.0,0.0,0.0
-Mediterranean,1.0,0.0,100.0,0.0,0.0
-Middle East,1.0,0.0,100.0,0.0,0.0
-Morocco,1.0,2.0,0.0,0.0,0.0
-Northern Europe,1.0,0.0,100.0,0.0,0.0
-OECD countries,1.0,1.0,0.0,0.0,0.0
-Oman,1.0,0.0,100.0,0.0,0.0
-Liberia,1.0,1.0,0.0,0.0,0.0
+country,n,bowleg_mean,n_substantive,pct_substantive
+United States,329,1.05,38,11.6
+United Kingdom,165,1.06,22,13.3
+Australia,99,0.73,7,7.1
+Canada,94,1.21,12,12.8
+India,73,1.04,7,9.6
+Germany,66,0.99,7,10.6
+Sweden,55,0.85,6,10.9
+South Africa,54,1.25,8,14.8
+Spain,45,0.87,3,6.7
+Netherlands,32,1.19,4,12.5
+Italy,29,1.1,4,13.8
+Kenya,27,1.39,4,14.8
+Norway,26,0.98,4,15.4
+Bangladesh,24,1.25,2,8.3
+Austria,20,1.12,3,15.0
+Brazil,19,1.18,3,15.8
+Switzerland,19,1.18,3,15.8
+New Zealand,18,1.67,6,33.3
+Ghana,18,1.36,2,11.1
+Portugal,16,0.91,1,6.2
+Indonesia,14,0.61,1,7.1
+Finland,13,0.85,3,23.1
+Denmark,13,0.35,0,0.0
+Nepal,12,1.5,3,25.0
+Zimbabwe,12,1.33,1,8.3
+Japan,11,1.41,1,9.1
+Mexico,11,0.73,0,0.0
+Thailand,10,0.6,1,10.0
+Belgium,10,1.2,1,10.0
+Ireland,10,0.9,0,0.0
+Nigeria,10,1.0,0,0.0
+France,9,1.44,2,22.2
+Viet Nam,9,1.56,0,0.0
+Turkey,9,0.78,0,0.0
+China,8,1.12,1,12.5
+Chile,8,1.38,1,12.5
+Colombia,8,0.81,1,12.5
+Ethiopia,7,1.0,1,14.3
+Tanzania,7,1.0,0,0.0
+Uganda,7,0.57,0,0.0
+Philippines,7,1.07,0,0.0
+Malaysia,7,0.71,0,0.0
+Singapore,6,0.83,0,0.0
+Czech Republic,6,1.5,1,16.7
+Peru,6,1.42,1,16.7
+Pakistan,6,1.0,1,16.7
+Senegal,5,0.7,1,20.0
+United Arab Emirates,4,0.25,0,0.0
+Ecuador,4,1.12,1,25.0
+Puerto Rico,4,1.12,1,25.0
+South Korea,4,1.25,1,25.0
+Poland,3,0.33,0,0.0
+Uruguay,3,0.33,0,0.0
+Taiwan,3,0.67,0,0.0
+Zambia,3,1.67,0,0.0
+Mozambique,3,1.17,0,0.0
+Malawi,3,1.67,1,33.3
+Benin,3,0.5,0,0.0
+Fiji,3,1.17,0,0.0
+Costa Rica,3,0.83,0,0.0
+Cameroon,3,1.17,0,0.0
+Israel,3,0.5,0,0.0
+Iran,3,2.33,2,66.7
+Saudi Arabia,2,1.25,0,0.0
+Estonia,2,0.5,0,0.0
+Sri Lanka,2,1.0,0,0.0
+Sudan,2,0.5,0,0.0
+Egypt,2,0.0,0,0.0
+Tunisia,2,0.5,0,0.0
+Hong Kong,2,0.25,0,0.0
+Hungary,2,0.0,0,0.0
+Palestine,2,1.0,0,0.0
+Latvia,2,0.0,0,0.0
+Morocco,2,1.0,0,0.0
+Namibia,2,0.25,0,0.0
+Oman,2,0.5,0,0.0
+Ukraine,1,0.0,0,0.0
+Cyprus,1,0.0,0,0.0
+Eritrea,1,0.0,0,0.0
+Bahrain,1,0.0,0,0.0
+Bhutan,1,0.0,0,0.0
+University of Twente,1,0.0,0,0.0
+Croatia,1,1.0,0,0.0
+Cuba,1,2.0,0,0.0
+Bolivia,1,0.0,0,0.0
+Congo,1,0.0,0,0.0
+Bulgaria,1,0.0,0,0.0
+Burkina Faso,1,0.0,0,0.0
+España,1,1.5,0,0.0
+Argentina,1,0.0,0,0.0
+Somalia,1,0.0,0,0.0
+Solomon Islands,1,2.0,0,0.0
+Malta,1,0.0,0,0.0
+Madagascar,1,0.0,0,0.0
+Luxembourg,1,1.5,0,0.0
+Myanmar,1,0.0,0,0.0
+Liberia,1,1.0,0,0.0
+New Caledonia,1,1.0,0,0.0
+Jordan,1,2.0,0,0.0
+Iceland,1,1.5,0,0.0
+Honduras,1,0.0,0,0.0
+Pontificia Universidad Católica de Chile,1,2.0,0,0.0
+Haiti,1,0.0,0,0.0
+Gambia,1,2.0,0,0.0
+Qatar,1,2.0,0,0.0
+Romania,1,0.0,0,0.0
+Russian Federation,1,1.5,0,0.0
+Rwanda,1,0.0,0,0.0
+Mali,1,0.0,0,0.0
+Faroe Islands,1,1.5,0,0.0
+Slovakia,1,1.0,0,0.0
+ACT,1,0.0,0,0.0

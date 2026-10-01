@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-08_validacion.py — v2: herramienta de validación humana de la RSI.
-Copia adaptada de pipeline/11_validacion.py con los datos de la v2.
+11_validacion.py — v2: réplica de pipeline/11_validacion.py con la búsqueda ampliada.
 
 Genera una interfaz HTML amigable para que Daniel codifique a ciegas una
 submuestra del corpus (gate + criterios I–VI + integración) sin ver el puntaje
@@ -131,7 +130,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Validación humana de la RSI · v2</title>
+<title>Validación humana de la RSI · REVISA</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root { --accent:#1a73e8; --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --bg:#f3f4f6; }
@@ -198,7 +197,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <body>
 <div class="top">
   <div class="inner">
-    <h1>Validación humana de la RSI · v2</h1>
+    <h1>Validación humana de la RSI</h1>
     <a href="index.html">← Volver al dashboard</a>
   </div>
 </div>
@@ -419,11 +418,11 @@ function exportCSV() {
       ht, categoria(ht), it.llm.total, categoria(it.llm.total), c.conf||'', c.nota||''];
     out += row.map(esc).join(',') + '\n';
   });
-  download('validacion_RSI_v2_codigos.csv', out, 'text/csv');
+  download('validacion_RSI_codigos.csv', out, 'text/csv');
 }
 function exportJSON() {
   const payload = { meta: DATA.meta, generado: new Date().toISOString(), codigos: codes };
-  download('validacion_RSI_v2_codigos.json', JSON.stringify(payload, null, 2), 'application/json');
+  download('validacion_RSI_codigos.json', JSON.stringify(payload, null, 2), 'application/json');
 }
 
 document.getElementById('prev').onclick = () => go(-1);

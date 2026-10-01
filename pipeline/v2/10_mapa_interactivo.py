@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-07_mapa.py — v2: mapa temático interactivo. Copia adaptada de pipeline/10_mapa_interactivo.py
-(datamapplot + inyección de JS), leyendo los datos de la v2 y uniendo por paper_id.
+10_mapa_interactivo.py — v2: réplica de pipeline/10_mapa_interactivo.py con la búsqueda ampliada.
+
+Cambios de código: une por paper_id y calcula los conteos de la tesis (la v1 los tenía fijos).
 
 Genera el datamapplot interactivo y luego post-procesa el HTML inyectando:
 1. Panel de control overlay (selector de tópico, botón reset, leyenda)
@@ -11,7 +12,7 @@ Genera el datamapplot interactivo y luego post-procesa el HTML inyectando:
 
 Outputs:
   site/v2/mapa.html
-  assets/v2_mapa_interactivo.html  (copia)
+  assets/v2_fig10_datamap_interactive.html  (copia)
 """
 from __future__ import annotations
 import json
@@ -203,23 +204,34 @@ def main():
     def label_of(tid):
         if tid < 0: return 'Unlabelled'
         s = ai_labels.get(str(tid))
-        return s['label'] if s and s.get('label') else f'Topic {tid}'
+        if s and s.get('label'):
+            return s['label'].replace('[Artefacto] ', '')
+        return f'Topic {tid}'
 
-    merged = assignments.merge(final, on='paper_id', how='inner')   # solo elegibles con puntaje
+    # Merge por paper_id (solo elegibles con puntaje)
+    merged = assignments.merge(final, on='paper_id', how='inner')
     merged['bowleg_total'] = pd.to_numeric(merged['bowleg_total'], errors='coerce')
     merged['_cluster_label'] = merged['topic_id'].apply(label_of)
 
     coords = merged[['umap_x', 'umap_y']].to_numpy()
     point_labels = merged['_cluster_label'].to_numpy()
     hover_text = [build_hover(r) for _, r in merged.iterrows()]
+    # Versión extendida (con justificación por criterio) para el panel de click
     detail_text = [build_detail(r) for _, r in merged.iterrows()]
+
+    # Necesitamos cluster_id por punto para JS injection
     cluster_id_per_point = merged['topic_id'].to_numpy().astype(int)
+    # Lang por punto (para outlines)
     lang_per_point = merged['Language of Original Document'].fillna('').astype(str).to_numpy()
+    # RSI total por punto (para overlay de color por nivel de sustantividad)
     rsi_per_point = pd.to_numeric(merged['bowleg_total'], errors='coerce').fillna(0.0).to_numpy()
+    # RSI medio del tópico al que pertenece cada punto (overlay "vecindario")
     _bt = pd.to_numeric(merged['bowleg_total'], errors='coerce')
     _topic_mean = _bt.groupby(merged['topic_id']).transform('mean')
+    # los puntos sin tópico (topic_id < 0) quedan en 0 → gris
     _topic_mean = _topic_mean.where(merged['topic_id'] >= 0, 0.0).fillna(0.0)
     topic_rsi_per_point = _topic_mean.to_numpy()
+    # Marcar papers del sub-corpus de la tesis de Daniel (por paper_id)
     _sc_ids = set(pd.read_csv(DATA / 'v2_daniel_subcorpus.csv')['paper_id'])
     is_tesis_per_point = merged['paper_id'].isin(_sc_ids).to_numpy()
     print(f"    sub-corpus tesis marcado: {int(is_tesis_per_point.sum())} papers en el mapa")
@@ -389,11 +401,10 @@ def main():
   </select>
   <div class="revisa-legend" id="revisa-rsi-legend" style="display:none">
     <b>Nivel RSI (color del punto):</b><br>
-    <span class="swatch" style="border-color:#fff;background:#c9c8c3"></span>Mención (gate no pasa)<br>
-    <span class="swatch" style="border-color:#fff;background:#86b6ef"></span>Nominal
-    &nbsp;<span class="swatch" style="border-color:#fff;background:#5598e7"></span>Parcial<br>
-    <span class="swatch" style="border-color:#fff;background:#256abf"></span>Sustantiva (≥2.5)
-    &nbsp;<span class="swatch" style="border-color:#fff;background:#104281"></span>Fuerte (≥3.5)
+    <span class="swatch" style="border-color:#fff;background:#bdbdbd"></span>Mención (gate no pasa)
+    &nbsp;<span class="swatch" style="border-color:#fff;background:#ffd166"></span>Nominal / parcial<br>
+    <span class="swatch" style="border-color:#fff;background:#52b788"></span>Sustantiva (≥2.5)
+    &nbsp;<span class="swatch" style="border-color:#fff;background:#1b6b3a"></span>Sustantiva fuerte (≥3.5)
   </div>
   <div style="margin:8px 0">
     <button id="revisa-tesis-btn" class="secondary" style="background:#9c27b0;width:100%">
@@ -453,11 +464,11 @@ def main():
   // Paleta secuencial por nivel de sustantividad RSI (0–4).
   // El layout y los clusters NO cambian: esto solo recolorea los puntos.
   function rsiColor(v) {
-    if (v == null || isNaN(v) || v <= 0)   return [201, 200, 195, 235]; // mención (gate no pasa)
-    if (v < 1.5)  return [134, 182, 239, 240]; // nominal
-    if (v < 2.5)  return [85, 152, 231, 240];  // parcial
-    if (v < 3.5)  return [37, 106, 191, 245];  // sustantiva
-    return [16, 66, 129, 250];                 // sustantiva fuerte
+    if (v == null || isNaN(v) || v <= 0)   return [189, 189, 189, 235]; // mención (gate no pasa)
+    if (v < 1.5)  return [255, 209, 102, 240]; // nominal
+    if (v < 2.5)  return [243, 156, 53, 240];  // parcial
+    if (v < 3.5)  return [82, 183, 136, 245];  // sustantiva
+    return [27, 107, 58, 250];                 // sustantiva fuerte
   }
   // Modo de color actual: 'topic' (original) | 'rsi' (RSI del paper) | 'topic_rsi' (RSI medio del tópico)
   let colorMode = 'topic';
@@ -745,8 +756,8 @@ def main():
     print(f"[OK] enhanced → {base_html_path} ({len(html):,} chars)")
 
     # Copia a assets
-    (ASSETS / 'v2_mapa_interactivo.html').write_text(html)
-    print(f"[OK] copy → assets/v2_mapa_interactivo.html")
+    (ASSETS / 'v2_fig10_datamap_interactive.html').write_text(html)
+    print(f"[OK] copy → assets/v2_fig10_datamap_interactive.html")
 
 
 if __name__ == '__main__':

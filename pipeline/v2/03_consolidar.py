@@ -134,6 +134,7 @@ def main():
 
     scored = corpus.merge(res, on='paper_id', how='inner')
     scored['categoria_bowleg'] = scored['bowleg_total'].apply(categoria)
+    scored['_tag'] = 'scopus_v2_' + scored['idioma']      # equivalente al _tag de la v1
     scored.to_csv(DATA / 'v2_corpus_scored.csv', index=False)
     print(f"[3] Corpus puntuado: {len(scored)} · gate {int(scored['gate_pass'].sum())} · "
           f"RSI 0: {100 * (scored['bowleg_total'] == 0).mean():.1f}%")

@@ -1,3 +1,3 @@
-idioma,n,bowleg_mean,pct_gate_fail,pct_substantive,pct_strong
-en,1010.0,1.05,44.0,11.7,5.9
-es,6.0,1.08,33.3,0.0,0.0
+Language of Original Document,n,bowleg_mean,n_substantive,n_parcial,n_nominal,pct_substantive
+English,1010,1.05,118,292,600,11.7
+Spanish,6,1.08,0,3,3,0.0

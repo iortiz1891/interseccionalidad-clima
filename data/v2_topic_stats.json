@@ -10,7 +10,7 @@
       "es_pct": 0.0,
       "en_pct": 100.0,
       "pt_pct": 0.0,
-      "n_tesis": 17
+      "n_tesis": 16
     },
     {
       "topic_id": 5,
@@ -22,7 +22,7 @@
       "es_pct": 0.0,
       "en_pct": 100.0,
       "pt_pct": 0.0,
-      "n_tesis": 2
+      "n_tesis": 3
     },
     {
       "topic_id": 4,
@@ -70,7 +70,7 @@
       "es_pct": 3.0,
       "en_pct": 97.0,
       "pt_pct": 0.0,
-      "n_tesis": 25
+      "n_tesis": 24
     },
     {
       "topic_id": 3,
@@ -106,7 +106,7 @@
       "es_pct": 0.0,
       "en_pct": 100.0,
       "pt_pct": 0.0,
-      "n_tesis": 2
+      "n_tesis": 1
     },
     {
       "topic_id": 7,
@@ -186,7 +186,7 @@
     "n_papers": 725,
     "rsi_min": 0.21,
     "rsi_max": 2.35,
-    "n_tesis_total": 89,
+    "n_tesis_total": 87,
     "n_topics_con_tesis": 11
   }
 }

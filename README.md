@@ -107,18 +107,17 @@ La cadena completa desde las bases Scopus crudas (`01` ingesta → `02` scoring 
 
 ### Pipeline v2 (búsqueda ampliada)
 
+La pestaña v2 es una **réplica de la v1 con la búsqueda nueva**. Los pasos 05–12 son copias de los scripts de la v1 que cambian solo las rutas de datos (`data/v2_*`, `assets/v2_*`, `site/v2/`) y los textos que en la v1 tenían cifras escritas a mano.
+
 | # | Script | Qué hace |
 |---|--------|----------|
 | 01 | `v2/01_ingesta_scopus.py` | Ingesta del export de Scopus, exclusiones por regla, deduplicación y nivel del ancla |
 | 02 | `v2/02_preparar_lotes.py` | Divide el corpus en lotes para el cribado y la RSI |
 | — | `v2/validar_lote.py` | Valida cada lote contra el esquema de `prompts/v2_cribado_rsi.md` |
-| 03 | `v2/03_consolidar.py` | Une los lotes y calcula la RSI con la misma fórmula de la v1 |
-| 04 | `v2/04_topicos.py` | Embeddings, barrido UMAP × HDBSCAN y BERTopic sobre los elegibles |
-| 05 | `v2/05_analisis.py` | Cruces (tópico, idioma, año, lugar, tipo de estudio, amenaza) y estadística |
-| 06 | `v2/06_figuras.py` | Figuras de la v2 (`assets/v2_*.png`) |
-| 07 | `v2/07_mapa.py` | Mapa temático interactivo (`site/v2/mapa.html`) |
-| 08 | `v2/08_validacion.py` | Herramienta de validación humana (`site/v2/validacion.html`) |
-| 09 | `v2/09_dashboard.py` | Pestaña v2 (`site/v2/index.html`) |
+| 03 | `v2/03_consolidar.py` | Une los lotes, aplica la reevaluación del gate y calcula la RSI con la misma fórmula de la v1 |
+| 04 | `v2/04_topicos.py` · `04b_etiquetas.py` | BERTopic sobre los elegibles y etiquetas de los tópicos |
+| 05–12 | `v2/05_analisis_cruzados.py` … `v2/12_dashboard.py` | Réplica de los pasos 05–12 de la v1 |
+| 09b | `v2/09b_mapa_estatico.py` | Mapa temático estático y versión Plotly (equivalente al paso de la v1 que no está en el repo) |
 
 El cribado, la codificación y la RSI de la v2 los aplicó Claude (claude-opus-5-5) con `prompts/v2_cribado_rsi.md`, en lotes independientes. El export crudo de Scopus (`data/v2_scopus_raw.csv`) no se versiona.
 
