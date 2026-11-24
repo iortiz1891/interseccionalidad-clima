@@ -67,7 +67,7 @@ Separación clara entre el **sitio publicado**, los **datos**, el **pipeline** y
 
 ```
 .
-├── index.html              # redirección a site/ (entrada de GitHub Pages)
+├── index.html              # redirección a site/v3/ (entrada de GitHub Pages; la v1 está en site/index.html)
 ├── site/                   # SITIO PUBLICADO (autocontenido)
 │   ├── index.html          #   · dashboard principal
 │   ├── mapa.html           #   · mapa temático interactivo
