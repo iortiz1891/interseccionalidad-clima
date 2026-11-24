@@ -1,0 +1,122 @@
+[
+  {
+    "titulo": "Capabilities and challenges of Chinese women in community-based disaster management: evidence from urban, rural and minority rural communities",
+    "year": "2025",
+    "categoria": "Sustantiva fuerte",
+    "rsi_total": 4.0,
+    "gate": true,
+    "scores": {
+      "I": 1.0,
+      "II": 1.0,
+      "III": 1.0,
+      "IV": 1.0,
+      "V": 1.0,
+      "VI": 1.0
+    },
+    "evidencias": {
+      "I": "Muestra una exclusión específica de mujeres de comunidades rurales de minorías étnicas, producida por el cruce de género, etnia, clase y localidad.",
+      "II": "Gobernanza urbana estatal, sistemas rurales patriarcales, subrepresentación decisoria y normas de género como restricciones estructurales.",
+      "III": "Compara comunidades urbanas, rurales y rurales de minorías en China y atiende el 'intersectional impact of regional contexts'.",
+      "IV": "Diseño cualitativo en cuatro comunidades elegidas por localidad y etnicidad, que opera las intersecciones.",
+      "V": "Formula recomendaciones para una gobernanza del riesgo más inclusiva y vías de empoderamiento.",
+      "VI": "Documenta cuidados, redes informales, habilidades comunicativas y prácticas culturales de las mujeres en preparación y recuperación."
+    },
+    "gate_evidence": "'Intersectionality elucidates how ethnicity, socioeconomic status, and locality intersect with gender to deepen exclusion'."
+  },
+  {
+    "titulo": "Wildfire in the news media: An intersectional critical frame analysis",
+    "year": "2020",
+    "categoria": "Sustantiva fuerte",
+    "rsi_total": 4.0,
+    "gate": true,
+    "scores": {
+      "I": 1.0,
+      "II": 1.0,
+      "III": 1.0,
+      "IV": 1.0,
+      "V": 1.0,
+      "VI": 1.0
+    },
+    "evidencias": {
+      "I": "Dualismos que se intersectan: agencia para los hombres; mujeres y comunidades norteñas e indígenas como residentes pasivos.",
+      "II": "Patriarcado, racismo y colonialismo operan juntos; los medios reproducen desigualdades históricas mediante la construcción discursiva.",
+      "III": "Temporada de incendios de 2015 en el norte de Saskatchewan, mayor evacuación provincial, con desigualdades históricas y contemporáneas.",
+      "IV": "Análisis crítico de marcos modificado con lente interseccional, aplicado a dos medios locales y dos nacionales.",
+      "V": "Busca redefinir problemas de política y abordar mejor las dimensiones sociales de las amenazas ambientales.",
+      "VI": "Identifica discursos alternativos que desafían la narrativa dominante y reconocen la agencia comunitaria."
+    },
+    "gate_evidence": "Analiza cómo atributos identitarios que se intersectan (género, raza, indigeneidad) y relaciones de poder operan juntos en narrativas mediáticas."
+  },
+  {
+    "titulo": "Identifying groups at-risk to extreme heat: Intersections of age, race/ethnicity, and socioeconomic status",
+    "year": "2024",
+    "categoria": "Parcial",
+    "rsi_total": 2.0,
+    "gate": true,
+    "scores": {
+      "I": 1.0,
+      "II": 0.5,
+      "III": 0.5,
+      "IV": 1.0,
+      "V": 0.5,
+      "VI": 0.0
+    },
+    "evidencias": {
+      "I": "Critica ver identidades aisladas; identifica posiciones conjuntas (niñez y mayores marginados, mayores sin seguro) con exposición específica.",
+      "II": "Nombra injusticia ambiental y marginación social, sin explicar los mecanismos estructurales que producen la desigual exposición.",
+      "III": "Contexto geográfico (EE. UU. contiguo, secciones censales) sin anclaje histórico o político.",
+      "IV": "Clasificación cruzada por edad y categorías sociodemográficas con exposición ponderada y métricas de disparidad absoluta.",
+      "V": "Recomienda considerar las disparidades en intervenciones para la equidad en salud, sin desarrollarlo.",
+      "VI": "Los grupos aparecen solo como expuestos; no se aborda agencia ni estrategias."
+    },
+    "gate_evidence": "Enfoque interseccional de clasificación cruzada: edad cruzada con raza/etnia, nivel socioeconómico y discapacidad en la exposición al calor."
+  },
+  {
+    "titulo": "A Machine Learning Framework for Assessing Systemic Societal Vulnerability to Coastal Flooding",
+    "year": "2026",
+    "categoria": "Mención sin aplicación",
+    "rsi_total": 0.0,
+    "gate": false,
+    "scores": {
+      "I": 0.0,
+      "II": 0.0,
+      "III": 0.0,
+      "IV": 0.0,
+      "V": 0.0,
+      "VI": 0.0
+    },
+    "evidencias": {
+      "I": "No aplica: gate no superado.",
+      "II": "No aplica: gate no superado.",
+      "III": "No aplica: gate no superado.",
+      "IV": "No aplica: gate no superado.",
+      "V": "No aplica: gate no superado.",
+      "VI": "No aplica: gate no superado."
+    },
+    "gate_evidence": "Llama interseccional a la vulnerabilidad sistémica que combina educación, ingreso e infraestructura; no articula entre sí ejes de diferenciación social como género o etnia."
+  },
+  {
+    "titulo": "A hot agenda? Climate change and international student mobility: a scoping review of the literature",
+    "year": "2026",
+    "categoria": "Mención sin aplicación",
+    "rsi_total": 0.0,
+    "gate": false,
+    "scores": {
+      "I": 0.0,
+      "II": 0.0,
+      "III": 0.0,
+      "IV": 0.0,
+      "V": 0.0,
+      "VI": 0.0
+    },
+    "evidencias": {
+      "I": "No aplica: no supera el gate.",
+      "II": "No aplica: no supera el gate.",
+      "III": "No aplica: no supera el gate.",
+      "IV": "No aplica: no supera el gate.",
+      "V": "No aplica: no supera el gate.",
+      "VI": "No aplica: no supera el gate."
+    },
+    "gate_evidence": "El análisis interseccional se propone solo como agenda futura de investigación; la revisión no relaciona ejes concretos entre sí."
+  }
+]

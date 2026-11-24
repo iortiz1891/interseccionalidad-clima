@@ -1,0 +1,9 @@
+{
+  "min_cluster_size": 10.0,
+  "n_neighbors": 5.0,
+  "min_dist": 0.0,
+  "n_clusters": 19.0,
+  "pct_outliers": 0.197,
+  "silhouette": 0.5098,
+  "score": 0.247
+}

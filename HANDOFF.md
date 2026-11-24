@@ -12,6 +12,7 @@
 - **Corpus v1:** 971 registros Scopus (752 EN + 219 ES, mayo 2026) consolidados por Daniel, **sin cribado de elegibilidad**.
 - **Corpus v2:** 1,696 registros de la cadena bilingüe (30-09-2026); el cribado deja 1,016 elegibles. Solo 12 registros en español.
 - **Corpus v3:** cadenas trilingües en Scopus (API) y SciELO (24-11-2026): 1,844 registros a cribado, 1,088 elegibles (17 en español, 7 en portugués). 1,686 registros conservan la evaluación de la v2; los 158 nuevos se evaluaron con `prompts/v3_cribado_rsi.md`.
+- **Corpus v4:** el de la v3 más OpenAlex en español y portugués (24-11-2026): 2,273 registros a cribado, 1,212 elegibles (73 en español, 75 en portugués). Los 1,844 de la v3 conservan su evaluación; los 429 nuevos de OpenAlex se evaluaron con el mismo prompt.
 - **Instrumento:** Rúbrica de Sustantividad Interseccional (RSI) — gate + 6 criterios graduados + factor de integración. Fundamentada en Crenshaw, Collins, Hancock, McCall, Bowleg.
 - **Scoring vigente:** v1 con `gpt-4.1` vía Batch API de OpenAI (`prompts/bowleg_eval_v3.md` + `reasoning_v3.md`); v2 con Claude (claude-opus-5-5) en sesiones de Claude Code (`prompts/v2_cribado_rsi.md`). **Provisional** — pendiente validación humana con κ de Cohen.
 - **Resultado principal (v2):** 43.8% de los elegibles no pasa el gate (RSI=0); 16% alcanza RSI ≥ 2.5. El eslabón débil es el criterio IV (método no aditivo). En la v1: 57.5% y 25.7%, sobre un corpus sin cribar.
@@ -64,6 +65,13 @@ iortiz1891/interseccionalidad-clima
 ---
 
 ## 3. Historial de sesiones
+
+### 2026-11-24 — rama `feat/v4-openalex` (sobre `feat/v3-busqueda-revisada`)
+
+- Nueva pestaña **v4** = corpus v3 + trabajos en español y portugués de OpenAlex. Pipeline en `pipeline/v4/` (00 → 13), datos `data/v4_*`, figuras `assets/v4_*`, sitio `site/v4/`; las pestañas v1–v3 enlazan a la v4.
+- OpenAlex por la API (`00_openalex.py`, sin clave): las cadenas v3 traducidas a filtros `title_and_abstract.search` con términos unidos por `|` (`data/v4_query_openalex.json`); 8 consultas, 470 trabajos únicos. Tras exclusiones y deduplicación contra la v3 quedan 429 nuevos (107 tesis, 45 capítulos).
+- Los 429 se evaluaron en 11 lotes de 40 con subagentes de Claude Code (`prompts/v3_cribado_rsi.md`); salidas versionadas en `work/v4_salidas/`. Mucho ruido de búsqueda (OpenAlex lematiza *intersectional* → *intersection*): 124 elegibles.
+- Resultado: 1,212 elegibles; 45.3 % no pasa el gate y 15.0 % es sustantivo (v3: 44.3 % y 15.6 %). Los nuevos de OpenAlex pasan menos el gate (46 % frente a 56 % de los evaluados en la v2).
 
 ### 2026-11-24 — rama `feat/v3-busqueda-revisada` (sobre `fix/redondeo-rsi-y-textos`)
 
@@ -133,16 +141,18 @@ Las dos columnas no se comparan directamente: cambian el corpus, el modelo y las
 
 6. **Revisar casos dudosos de los lotes nuevos de la v3** — los evaluadores marcaron gates límite (v3 paper_id 143, 237, 278, 385, 412, 803, 1103, 1397) y climas incidentales (18, 123, 1611, 1697, 1805). El registro 295 tiene una inconsistencia en el resumen (cita el EACOP, un oleoducto de África oriental, en un caso del Delta del Níger): conviene verificarlo.
 
+7. **Revisar casos dudosos de los lotes de OpenAlex (v4)** — gates límite que pasaron: 1866, 1876, 1901, 1917 (resumen truncado o solo afiliación; gate por el título), 1997, 2049, 2082, 2093, 2109, 2150, 2184. Gates que no pasaron y podrían pasar: 1883, 1971, 2116, 2166. Clima discutible: 1855/1896, 1939, 1947, 1951, 1958, 1974, 1983, 2101, 2115, 2144, 2173, 2175, 2205, 2211. Capítulos que comparten el resumen del libro (movilidad humana y PNA: 1948, 1957, 1969, 1972, 1973, 1988, 2001, 2007, 2008, 2018, 2033, 2035; empleo de las mujeres y transición: 2042–2076): el título decide, conviene leerlos con el texto completo. 2201 y 2203 son el mismo trabajo (artículo y tesis). Unificar cómo se codifican los deslizamientos y las lluvias intensas (hoy «otro»).
+
 ### Media prioridad
 
-6. **Expansión multi-base** — toolkit fetcher para OpenAlex, SciELO, PubMed, CrossRef, DOAJ + bases manuales (WoS, Latindex, Redalyc, Dialnet, CLACSO, LILACS). Script base: `Daniel_databases_project/agents/scripts/14_scopus_fetcher.py` (solo Scopus API, extender).
+6. **Expansión multi-base** — OpenAlex (ES/PT) y SciELO ya están en la v4. Faltan: toolkit fetcher para PubMed, CrossRef, DOAJ + bases manuales (WoS, Latindex, Redalyc, Dialnet, CLACSO, LILACS). Script base: `Daniel_databases_project/agents/scripts/14_scopus_fetcher.py` (solo Scopus API, extender).
 7. **Documentar el drift local↔repo** — decidir si fusionar `agents/scripts/` histórico al repo o archivarlo.
 
 ### Baja prioridad
 
 8. Convertir `Daniel_databases_project/` en un clon git del repo (actualmente no lo es).
 9. Automatizar la regeneración del dashboard cuando cambian los datos (hoy requiere correr `12_dashboard.py` localmente a mano).
-10. El mapa incrustado en los dashboards v2 y v3 deja en la consola un `deck.gl: assertion failed` al cargar (el mapa se dibuja igual; `mapa.html` por separado no lo da).
+10. El mapa incrustado en los dashboards v2, v3 y v4 deja en la consola un `deck.gl: assertion failed` al cargar (el mapa se dibuja igual; `mapa.html` por separado no lo da).
 
 ---
 

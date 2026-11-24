@@ -1,0 +1,62 @@
+{
+  "fecha": "2026-11-24",
+  "fuente": "OpenAlex API (works)",
+  "consulta": "data/v4_query_openalex.json",
+  "consultas": 8,
+  "terminos_por_consulta": [
+    [
+      30,
+      45
+    ],
+    [
+      30,
+      45
+    ],
+    [
+      30,
+      45
+    ],
+    [
+      30,
+      42
+    ],
+    [
+      27,
+      45
+    ],
+    [
+      27,
+      45
+    ],
+    [
+      27,
+      45
+    ],
+    [
+      27,
+      42
+    ]
+  ],
+  "suma_conteos_con_repetidos": 776,
+  "registros_unicos": 470,
+  "sin_resumen": 13,
+  "idioma": {
+    "Portuguese": 272,
+    "Spanish": 198
+  },
+  "tipo": {
+    "article": 242,
+    "dissertation": 107,
+    "book chapter": 53,
+    "book": 20,
+    "conference paper": 14,
+    "editorial": 14,
+    "report": 8,
+    "preprint": 4,
+    "other": 4,
+    "dataset": 1,
+    "book review": 1,
+    "paratext": 1,
+    "review": 1
+  }
+}

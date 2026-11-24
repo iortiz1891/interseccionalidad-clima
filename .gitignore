@@ -33,3 +33,5 @@ Thumbs.db
 work/*
 !work/v3_salidas/
 !work/v3_salidas/*.jsonl
+!work/v4_salidas/
+!work/v4_salidas/*.jsonl
