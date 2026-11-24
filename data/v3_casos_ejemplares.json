@@ -48,28 +48,28 @@
     "gate_evidence": "Analiza cómo atributos identitarios que se intersectan (género, raza, indigeneidad) y relaciones de poder operan juntos en narrativas mediáticas."
   },
   {
-    "titulo": "Identifying groups at-risk to extreme heat: Intersections of age, race/ethnicity, and socioeconomic status",
-    "year": "2024",
+    "titulo": "Identities in Disasters: opportunities and challenges for developing inclusive disaster risk governance networks for gender and sexual minorities in Dominica an",
+    "year": "2025",
     "categoria": "Parcial",
     "rsi_total": 2.0,
     "gate": true,
     "scores": {
-      "I": 1.0,
+      "I": 0.5,
       "II": 0.5,
       "III": 0.5,
-      "IV": 1.0,
+      "IV": 0.5,
       "V": 0.5,
-      "VI": 0.0
+      "VI": 1.0
     },
     "evidencias": {
-      "I": "Critica ver identidades aisladas; identifica posiciones conjuntas (niñez y mayores marginados, mayores sin seguro) con exposición específica.",
-      "II": "Nombra injusticia ambiental y marginación social, sin explicar los mecanismos estructurales que producen la desigual exposición.",
-      "III": "Contexto geográfico (EE. UU. contiguo, secciones censales) sin anclaje histórico o político.",
-      "IV": "Clasificación cruzada por edad y categorías sociodemográficas con exposición ponderada y métricas de disparidad absoluta.",
-      "V": "Recomienda considerar las disparidades en intervenciones para la equidad en salud, sin desarrollarlo.",
-      "VI": "Los grupos aparecen solo como expuestos; no se aborda agencia ni estrategias."
+      "I": "Identidad de género y sexualidad aparecen entrelazadas ('navigating identities'), pero el abstract no muestra cómo se co-construyen.",
+      "II": "Tema 'how power defines access and agency': nombra el poder sin especificar estructuras ni mecanismos.",
+      "III": "Dominica y el Caribe; destaca lugar, escala y tiempo, pero sin detalle histórico o político en el abstract.",
+      "IV": "Declara un análisis interseccional de experiencias vividas sin describir muestreo ni codificación.",
+      "V": "Orientado a redes de gobernanza del riesgo inclusivas; sin recomendaciones desarrolladas en el abstract.",
+      "VI": "La agencia es un eje de resultados y destaca las 'needs, and capacities of GSM'."
     },
-    "gate_evidence": "Enfoque interseccional de clasificación cruzada: edad cruzada con raza/etnia, nivel socioeconómico y discapacidad en la exposición al calor."
+    "gate_evidence": "Análisis interseccional de minorías de género y sexuales en la gobernanza del riesgo, con el tema 'navigating identities'."
   },
   {
     "titulo": "A Machine Learning Framework for Assessing Systemic Societal Vulnerability to Coastal Flooding",

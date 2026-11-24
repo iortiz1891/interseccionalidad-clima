@@ -1,6 +1,4 @@
-Language of Original Document,n,bowleg_mean,n_substantive,n_parcial,n_nominal,pct_substantive
-English,1064,1.09,170,324,570,16.0
-Portuguese,75,0.96,7,23,45,9.3
-Spanish,66,0.76,5,16,45,7.6
-English; Spanish,5,0.8,0,2,3,0.0
-English; Spanish; Portuguese,2,1.75,0,2,0,0.0
+idioma,n,bowleg_mean,n_substantive,n_parcial,n_nominal,pct_gate,pct_substantive
+Inglés,1073,1.08,171,325,577,55.3,15.9
+Portugués,77,0.94,7,23,47,51.9,9.1
+Español,74,0.8,5,21,48,45.9,6.8

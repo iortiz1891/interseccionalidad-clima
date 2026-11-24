@@ -403,7 +403,7 @@ La cadena se corrió en search.scielo.org y se exportó en RIS (todas las refere
 | Ya en Scopus | — | −7 |
 | **A cribado** | **1,823** | **21** |
 
-Total a cribado: **1,844**. De ellos, 1,695 están en la v2 (por EID, DOI o título) y 1,686 tienen el mismo resumen (similitud ≥ 0.98 sin la línea de copyright): conservan la evaluación de la v2. Los 158 restantes se evaluaron con `prompts/v3_cribado_rsi.md`. Sin OpenAlex, el cribado deja **1,088 elegibles** (1,010 con evaluación de la v2, 78 nuevos); con OpenAlex (§8), 1,212.
+Total a cribado: **1,844**. De ellos, 1,695 están en la v2 (por EID, DOI o título) y 1,686 tienen el mismo resumen (similitud ≥ 0.98 sin la línea de copyright): conservan la evaluación de la v2. Los 158 restantes se evaluaron con `prompts/v3_cribado_rsi.md`. Sin OpenAlex, el cribado deja **1,088 elegibles** (1,010 con evaluación de la v2, 78 nuevos); con OpenAlex (§8), 1,212; con los resúmenes rescatados (§8.4), 1,221, y con los trabajos de OpenAlex con otra etiqueta de idioma (§8.6), 1,224.
 
 ---
 
@@ -444,9 +444,19 @@ Tipos de documento: 242 artículos, 107 tesis, 53 capítulos de libro, 20 libros
 | Ya en Scopus o SciELO (por DOI o título + año + primer autor) | −24 |
 | **Nuevos a cribado** | **429** (251 en portugués, 178 en español) |
 
-Los 1,844 registros de Scopus y SciELO conservan su paper_id (0–1843) y su evaluación; los 24 que OpenAlex también encontró quedan marcados en `_source` (`…+openalex`). Los 429 nuevos reciben paper_id 1844–2272. Total a cribado: **2,273**. Los 429 nuevos se evaluaron con el mismo prompt (`prompts/v3_cribado_rsi.md`), en lotes propios (`work/v3_salidas/oa_lote_*.jsonl`). El cribado deja **1,212 elegibles** (1,088 de Scopus y SciELO y 124 solo de OpenAlex: 56 en español y 68 en portugués). La mayoría de los nuevos que se excluyen son ruido de la lematización (*intersection* en sentido vial, cartográfico o de cruce de temas) o trabajos interseccionales sin objeto climático.
+Los 1,844 registros de Scopus y SciELO conservan su paper_id (0–1843) y su evaluación; los 24 que OpenAlex también encontró quedan marcados en `_source` (`…+openalex`). Los 429 nuevos reciben paper_id 1844–2272. Total a cribado: **2,273** (2,291 con los resúmenes rescatados, §8.4). Los 429 nuevos se evaluaron con el mismo prompt (`prompts/v3_cribado_rsi.md`), en lotes propios (`work/v3_salidas/oa_lote_*.jsonl`). El cribado deja **1,212 elegibles** (1,088 de Scopus y SciELO y 124 solo de OpenAlex: 56 en español y 68 en portugués). La mayoría de los nuevos que se excluyen son ruido de la lematización (*intersection* en sentido vial, cartográfico o de cruce de temas) o trabajos interseccionales sin objeto climático.
 
-### 8.4 Verificación con Redalyc (sin registros nuevos)
+### 8.4 Resúmenes rescatados de OpenAlex
+
+60 registros llegan sin resumen de su fuente (46 de Scopus, 13 de OpenAlex, 1 de SciELO): sobre todo capítulos de libro (24), editoriales (13) y notas (10). Para los 51 con DOI se buscó el resumen en OpenAlex, en cualquier idioma (`pipeline/v3/00c_resumenes_openalex.py` → `data/v3_resumenes_openalex.json`), y `pipeline/v3/01_ingesta.py` lo acepta solo si:
+
+- tiene ≥100 caracteres y ≥20 palabras sin contar el título (4 descartados: cortos o solo el título);
+- el DOI no lo comparte otro registro: los capítulos con el DOI del libro reciben la descripción del libro (3 descartados);
+- en un capítulo, no empieza con «This book / Este libro / Este livro» (1 descartado).
+
+Se rescatan **18** (todos de Scopus; paper_id 2273–2290, columna `resumen_fuente = openalex_doi`), que pasan las mismas exclusiones por tipo y la misma deduplicación y se evalúan con el mismo prompt en `work/v3_salidas/rs_lote_01.jsonl`: 9 elegibles, 3 pasan el gate. Los otros 42 siguen excluidos por falta de resumen. Total a cribado: **2,291**; elegibles: **1,221** (2,295 y 1,224 con §8.6).
+
+### 8.5 Verificación con Redalyc (sin registros nuevos)
 
 Redalyc no tiene una API pública de búsqueda ni exportación de resultados, y su buscador busca en el **texto completo**. Se corrió la cadena de SciELO (sin `subject:` ni filtro de idioma) en el buscador de redalyc.org, partiendo el bloque climático en tres grupos porque la cadena completa no carga, y se recorrieron todas las páginas de resultados en el navegador (`data/v3_redalyc_meta.json`):
 
@@ -459,6 +469,22 @@ Redalyc no tiene una API pública de búsqueda ni exportación de resultados, y 
 | **Nuevos frente a la v3** | **0** |
 
 Los 7 ya estaban en la v3 (por Scopus, SciELO u OpenAlex). Casi todo lo demás menciona los términos solo en el cuerpo del texto o en las referencias. Para esta pregunta, Redalyc no amplía el corpus: su contenido pertinente ya entra por las otras tres fuentes.
+
+### 8.6 Trabajos en español o portugués con otra etiqueta de idioma en OpenAlex
+
+OpenAlex asigna el idioma a partir del título y a veces se equivoca; la consulta de §8.1, filtrada por `language:es|pt`, deja fuera esos trabajos. Así faltaba, por ejemplo, un artículo en español sobre los huracanes Otis (2023) y John (2024) en Acapulco desde una perspectiva de género interseccional, etiquetado como inglés: el único del corpus que cruza México y ciclones.
+
+`pipeline/v3/00d_openalex_idioma.py` corre la misma consulta (mismos bloques climáticos y años) con dos cambios: el bloque interseccional se limita a los términos en español y portugués (desde «interseccional» hasta el final de la lista; un trabajo en inglés que solo dice *intersectional* lo cubre Scopus) y el filtro de idioma es el contrario, `language:!es,language:!pt`. Después estima el idioma real contando palabras funcionales del título y de los primeros 400 caracteres del resumen (varios resúmenes son bilingües).
+
+| Paso | n |
+|---|---:|
+| Resultados (8 consultas) | 26 |
+| En español o portugués según el título y el inicio del resumen | 6 (2 ES, 4 PT) |
+| Sin resumen | 1 |
+| Ya en el corpus | 1 |
+| **Nuevos a cribado** (paper_id 2291–2294) | **4** |
+
+Casi todos los demás están en catalán (15, fuera del alcance de idioma) o en inglés. Los 4 nuevos se evaluaron con el mismo prompt en `work/v3_salidas/oi_lote_01.jsonl`: 3 elegibles, 1 pasa el gate (el de Acapulco, RSI 1.5). Total a cribado: **2,295**; elegibles: **1,224**. Con ellos, el barrido de tópicos eligió otra configuración (13 tópicos; antes 19), que se reetiquetó.
 
 ---
 
