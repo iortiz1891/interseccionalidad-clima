@@ -48,8 +48,8 @@
     "gate_evidence": "Analiza cómo atributos identitarios que se intersectan (género, raza, indigeneidad) y relaciones de poder operan juntos en narrativas mediáticas."
   },
   {
-    "titulo": "Identifying groups at-risk to extreme heat: Intersections of age, race/ethnicity, and socioeconomic status",
-    "year": "2024",
+    "titulo": "Wildfire in Northern Saskatchewan: Reflections for Intersectional Climate Hazards Research and Adaptation Practice",
+    "year": "2022",
     "categoria": "Parcial",
     "rsi_total": 2.0,
     "gate": true,
@@ -57,19 +57,19 @@
       "I": 1.0,
       "II": 0.5,
       "III": 0.5,
-      "IV": 1.0,
+      "IV": 0.5,
       "V": 0.5,
-      "VI": 0.0
+      "VI": 0.5
     },
     "evidencias": {
-      "I": "Critica ver identidades aisladas; identifica posiciones conjuntas (niñez y mayores marginados, mayores sin seguro) con exposición específica.",
-      "II": "Nombra injusticia ambiental y marginación social, sin explicar los mecanismos estructurales que producen la desigual exposición.",
-      "III": "Contexto geográfico (EE. UU. contiguo, secciones censales) sin anclaje histórico o político.",
-      "IV": "Clasificación cruzada por edad y categorías sociodemográficas con exposición ponderada y métricas de disparidad absoluta.",
-      "V": "Recomienda considerar las disparidades en intervenciones para la equidad en salud, sin desarrollarlo.",
-      "VI": "Los grupos aparecen solo como expuestos; no se aborda agencia ni estrategias."
+      "I": "Análisis interseccional de cómo género y otras identidades se intersectan para producir experiencias diferenciales ante el incendio.",
+      "II": "Habla de paisajes sociales y desigualdades preexistentes sin nombrar estructuras ni mecanismos.",
+      "III": "Incendio de La Ronge 2015, Saskatchewan, comunidades forestales del Norte Global; sin detalle histórico-político.",
+      "IV": "Declara un análisis interseccional y reflexiona sobre el método, pero no describe cómo opera las intersecciones.",
+      "V": "Implicaciones para una planificación de emergencias y adaptación más inclusiva, sin desarrollar.",
+      "VI": "Menciona capacidades de respuesta diferenciales; agencia apenas aludida."
     },
-    "gate_evidence": "Enfoque interseccional de clasificación cruzada: edad cruzada con raza/etnia, nivel socioeconómico y discapacidad en la exposición al calor."
+    "gate_evidence": "Busca entender cómo el género y otras identidades sociales se intersectan de forma compleja para moldear experiencias y capacidades diferenciales."
   },
   {
     "titulo": "A Machine Learning Framework for Assessing Systemic Societal Vulnerability to Coastal Flooding",

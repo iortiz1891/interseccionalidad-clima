@@ -43,7 +43,7 @@ def main():
     # ─────────────────────────────────
     # Por idioma
     # ─────────────────────────────────
-    lang_dist = df['Language of Original Document'].fillna('Unknown').value_counts()
+    lang_dist = df['idioma'].map({'en': 'Inglés', 'es': 'Español', 'pt': 'Portugués'}).fillna('Otro').value_counts()   # idioma normalizado (en/es/pt)
     print("\n=== Por idioma (top 8) ===")
     print(lang_dist.head(8))
     stats['language_distribution'] = safe_dict_top(lang_dist, 15)

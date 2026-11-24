@@ -11,7 +11,7 @@
 - **Qué es:** revisión sistemática que mide, con una rúbrica (RSI) aplicada por LLM, en qué medida la investigación sobre cambio climático **aplica** interseccionalidad vs. solo la **menciona**.
 - **Corpus v1:** 971 registros Scopus (752 EN + 219 ES, mayo 2026) consolidados por Daniel, **sin cribado de elegibilidad**.
 - **Corpus v2:** 1,696 registros de la cadena bilingüe (30-09-2026); el cribado deja 1,016 elegibles. Solo 12 registros en español.
-- **Corpus v3 (vigente):** cadenas trilingües en Scopus (API) y SciELO, más OpenAlex en español y portugués (24-11-2026): 2,273 registros a cribado, 1,212 elegibles (73 en español, 75 en portugués). 1,686 registros conservan la evaluación de la v2; los 587 nuevos (158 de Scopus y SciELO, 429 de OpenAlex) se evaluaron con `prompts/v3_cribado_rsi.md`. 45.3 % no pasa el gate; 15.0 % es sustantivo.
+- **Corpus v3 (vigente):** cadenas trilingües en Scopus (API) y SciELO, más OpenAlex en español y portugués (24-11-2026): 2,291 registros a cribado, 1,221 elegibles (73 en español, 75 en portugués). 1,686 registros conservan la evaluación de la v2; los 605 nuevos (158 de Scopus y SciELO, 429 de OpenAlex, 18 con resumen rescatado de OpenAlex) se evaluaron con `prompts/v3_cribado_rsi.md`. 45.5 % no pasa el gate; 15.0 % es sustantivo.
 - **Instrumento:** Rúbrica de Sustantividad Interseccional (RSI) — gate + 6 criterios graduados + factor de integración. Fundamentada en Crenshaw, Collins, Hancock, McCall, Bowleg.
 - **Scoring vigente:** v1 con `gpt-4.1` vía Batch API de OpenAI (`prompts/bowleg_eval_v3.md` + `reasoning_v3.md`); v2 con Claude (claude-opus-5-5) en sesiones de Claude Code (`prompts/v2_cribado_rsi.md`). **Provisional** — pendiente validación humana con κ de Cohen.
 - **Resultado principal (v2):** 43.8% de los elegibles no pasa el gate (RSI=0); 16% alcanza RSI ≥ 2.5. El eslabón débil es el criterio IV (método no aditivo). En la v1: 57.5% y 25.7%, sobre un corpus sin cribar.
@@ -71,8 +71,11 @@ iortiz1891/interseccionalidad-clima
 - OpenAlex por la API (sin clave): las cadenas v3 traducidas a filtros `title_and_abstract.search` con términos unidos por `|` (`data/v3_query_openalex.json`); 8 consultas, 470 trabajos únicos. Tras exclusiones y deduplicación contra Scopus y SciELO quedan 429 nuevos (107 tesis, 45 capítulos), con paper_id 1844–2272.
 - Los 429 se evaluaron en 11 lotes de 40 con subagentes de Claude Code (`prompts/v3_cribado_rsi.md`); salidas versionadas en `work/v3_salidas/oa_lote_*.jsonl`. Mucho ruido de búsqueda (OpenAlex lematiza *intersectional* → *intersection*): 124 elegibles.
 - Resultado: 1,212 elegibles; 45.3 % no pasa el gate y 15.0 % es sustantivo (sin OpenAlex: 44.3 % y 15.6 %). Los nuevos de OpenAlex pasan menos el gate (46 % frente a 56 % de los evaluados en la v2).
-- Tópicos recalculados sobre los 1,212 con un modelo de embeddings multilingüe (19 tópicos; con el modelo solo en inglés, ES/PT se agrupaban por idioma). La muestra de validación se sorteó de nuevo sobre el corpus completo (clave de guardado `revisa_v3oa_validacion`).
-- Redalyc: verificado en el navegador, no aporta registros nuevos (`docs/cadenas_busqueda.md` §8.4, `data/v3_redalyc_meta.json`).
+- Tópicos recalculados con un modelo de embeddings multilingüe (19 tópicos; con el modelo solo en inglés, ES/PT se agrupaban por idioma). La muestra de validación se sorteó de nuevo sobre el corpus completo (clave de guardado `revisa_v3oa_validacion`).
+- Redalyc: verificado en el navegador, no aporta registros nuevos (`docs/cadenas_busqueda.md` §8.5, `data/v3_redalyc_meta.json`).
+- Resúmenes rescatados: 60 registros llegaban sin resumen de su fuente (46 de Scopus: notas, editoriales, capítulos). `pipeline/v3/00c_resumenes_openalex.py` busca su DOI en OpenAlex; `01_ingesta.py` acepta el resumen si tiene ≥20 palabras además del título, si el DOI no lo comparte otro registro y si no es la descripción del libro. Se rescataron 18 (paper_id 2273–2290, columna `resumen_fuente = openalex_doi`), evaluados en `work/v3_salidas/rs_lote_01.jsonl`: 9 elegibles, 3 pasan el gate. Con ellos: 2,291 a cribado, 1,221 elegibles, 45.5 % sin gate. Tópicos recalculados otra vez (nn=5, mcs=12: 19 tópicos, 28.6 % outliers) y reetiquetados; la mayoría coincide con los anteriores, aparecen discapacidad, salud sexual y reproductiva y salud mental.
+- Repaso del dashboard v3: las cifras por idioma (05, 06, 07 fig05, 08 figF, 12) usan la columna normalizada `idioma` (antes el campo crudo de Scopus dejaba fuera el portugués). Inglés 1,073 (15.9 % sustantivo, 55.3 % gate), portugués 75 (9.3 %, 53.3 %), español 73 (6.8 %, 45.2 %). El país de afiliación ahora lee también los códigos ISO de OpenAlex («…, BR»): Brasil pasa de 21 a 62 trabajos. Tablas, fig04 y fig06 en español (etiquetas manuales de tópico y nombres de país); se quitaron textos que decían que el idioma no podía evaluarse o que Redalyc estaba pendiente.
+- Casos dudosos del lote rescatado: 2283 (gate límite, regla 3.3), 2273, 2282 y 2289 (el resumen es el primer párrafo o la descripción del libro; con texto completo podrían pasar el gate), 2277 («intersectional effects» ambiguo), 2276 (I=1 quizá generoso).
 
 ### 2026-11-24 — rama `feat/v3-busqueda-revisada` (sobre `fix/redondeo-rsi-y-textos`)
 
@@ -146,7 +149,7 @@ Las dos columnas no se comparan directamente: cambian el corpus, el modelo y las
 
 ### Media prioridad
 
-6. **Expansión multi-base** — OpenAlex (ES/PT) y SciELO ya están en la v3; Redalyc se verificó y no aporta registros nuevos (`docs/cadenas_busqueda.md` §8.4). Faltan: toolkit fetcher para PubMed, CrossRef, DOAJ + bases manuales (WoS, Latindex, Redalyc, Dialnet, CLACSO, LILACS). Script base: `Daniel_databases_project/agents/scripts/14_scopus_fetcher.py` (solo Scopus API, extender).
+6. **Expansión multi-base** — OpenAlex (ES/PT) y SciELO ya están en la v3; Redalyc se verificó y no aporta registros nuevos (`docs/cadenas_busqueda.md` §8.5). Faltan: toolkit fetcher para PubMed, CrossRef, DOAJ + bases manuales (WoS, Latindex, Redalyc, Dialnet, CLACSO, LILACS). Script base: `Daniel_databases_project/agents/scripts/14_scopus_fetcher.py` (solo Scopus API, extender).
 7. **Documentar el drift local↔repo** — decidir si fusionar `agents/scripts/` histórico al repo o archivarlo.
 
 ### Baja prioridad

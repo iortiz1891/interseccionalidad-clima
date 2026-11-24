@@ -145,13 +145,12 @@ def figE(df):
 
 # ── F · Violín de RSI por idioma ──
 def figF(df):
-    lang_col = 'Language of Original Document'
     groups, labels = [], []
-    for lang in ['English', 'Spanish']:
-        sub = df[df[lang_col] == lang]['bowleg_total'].dropna()
+    for cod, nombre in [('en', 'Inglés'), ('es', 'Español'), ('pt', 'Portugués')]:
+        sub = df[df['idioma'] == cod]['bowleg_total'].dropna()      # idioma normalizado
         if len(sub) >= 10:
-            groups.append(sub.values); labels.append(f'{lang}\n(n={len(sub)})')
-    fig, ax = plt.subplots(figsize=(8, 5.5))
+            groups.append(sub.values); labels.append(f'{nombre}\n(n={len(sub)})')
+    fig, ax = plt.subplots(figsize=(9, 5.5))
     parts = ax.violinplot(groups, showmeans=True, showextrema=True)
     for pc in parts['bodies']:
         pc.set_facecolor('#64b5f6'); pc.set_alpha(0.6)

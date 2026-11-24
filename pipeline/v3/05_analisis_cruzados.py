@@ -21,6 +21,26 @@ from collections import Counter
 DATA = Path("data")
 
 
+# Nombres en español para tablas y figuras (los que no estén aquí se muestran en inglés)
+PAISES_ES = {
+    'United States': 'Estados Unidos', 'United Kingdom': 'Reino Unido', 'Australia': 'Australia',
+    'Canada': 'Canadá', 'India': 'India', 'Germany': 'Alemania', 'South Africa': 'Sudáfrica',
+    'Sweden': 'Suecia', 'Spain': 'España', 'Netherlands': 'Países Bajos', 'Italy': 'Italia',
+    'Kenya': 'Kenia', 'Norway': 'Noruega', 'Austria': 'Austria', 'Bangladesh': 'Bangladés',
+    'Brazil': 'Brasil', 'Switzerland': 'Suiza', 'Indonesia': 'Indonesia', 'Ghana': 'Ghana',
+    'New Zealand': 'Nueva Zelanda', 'Portugal': 'Portugal', 'Nigeria': 'Nigeria', 'Denmark': 'Dinamarca',
+    'Finland': 'Finlandia', 'Ireland': 'Irlanda', 'Nepal': 'Nepal', 'Japan': 'Japón',
+    'Zimbabwe': 'Zimbabue', 'Belgium': 'Bélgica', 'Mexico': 'México', 'Chile': 'Chile',
+    'Turkey': 'Turquía', 'France': 'Francia', 'Thailand': 'Tailandia', 'Viet Nam': 'Vietnam',
+    'China': 'China', 'Colombia': 'Colombia', 'Ethiopia': 'Etiopía', 'Uganda': 'Uganda',
+    'Malaysia': 'Malasia', 'Pakistan': 'Pakistán', 'Philippines': 'Filipinas', 'Tanzania': 'Tanzania',
+    'Czech Republic': 'Chequia', 'Peru': 'Perú', 'Singapore': 'Singapur', 'Senegal': 'Senegal',
+    'Puerto Rico': 'Puerto Rico', 'South Korea': 'Corea del Sur', 'Argentina': 'Argentina',
+    'Ecuador': 'Ecuador', 'Costa Rica': 'Costa Rica', 'Cuba': 'Cuba', 'Uruguay': 'Uruguay',
+    'Jamaica': 'Jamaica', 'Bahamas': 'Bahamas', 'Trinidad and Tobago': 'Trinidad y Tobago',
+}
+
+
 def main():
     scored = pd.read_csv(DATA / 'v3_corpus_scored.csv')
     topics = pd.read_csv(DATA / 'v3_bertopic_assignments.csv')
@@ -64,12 +84,16 @@ def main():
     # Cruce 2: Idioma × Bowleg
     # ─────────────────────────────────
     print("\n=== Idioma × Bowleg ===")
-    by_lang = merged.groupby(merged['Language of Original Document'].fillna('Unknown')).agg(
+    # Idioma normalizado de la ingesta (en/es/pt), no el campo crudo de cada base, que mezcla
+    # valores como «English; Spanish».
+    idioma = merged['idioma'].map({'en': 'Inglés', 'es': 'Español', 'pt': 'Portugués'}).fillna('Otro').rename('idioma')
+    by_lang = merged.groupby(idioma).agg(
         n=('Title', 'count'),
         bowleg_mean=('bowleg_total', 'mean'),
         n_substantive=('bowleg_total', lambda s: (s >= 2.5).sum()),
         n_parcial=('bowleg_total', lambda s: ((s >= 1.5) & (s < 2.5)).sum()),
         n_nominal=('bowleg_total', lambda s: (s < 1.5).sum()),
+        pct_gate=('bowleg_total', lambda s: round(100 * (s > 0).mean(), 1)),
     ).round(2)
     by_lang['pct_substantive'] = (100 * by_lang['n_substantive'] / by_lang['n']).round(1)
     by_lang = by_lang.sort_values('n', ascending=False)
@@ -94,6 +118,15 @@ def main():
     # Cruce 4: País × Bowleg (parseando affiliations)
     # ─────────────────────────────────
     print("\n=== País × Bowleg (top 15) ===")
+    # OpenAlex escribe el país de la afiliación como código ISO de dos letras («…, BR»);
+    # Scopus, con su nombre en inglés. Se unifican al nombre en inglés.
+    ISO2 = {'BR': 'Brazil', 'AR': 'Argentina', 'ES': 'Spain', 'MX': 'Mexico', 'CL': 'Chile',
+            'EC': 'Ecuador', 'US': 'United States', 'FR': 'France', 'UG': 'Uganda', 'CO': 'Colombia',
+            'CU': 'Cuba', 'BS': 'Bahamas', 'JM': 'Jamaica', 'TT': 'Trinidad and Tobago', 'SE': 'Sweden',
+            'PT': 'Portugal', 'PE': 'Peru', 'UY': 'Uruguay', 'VE': 'Venezuela', 'BO': 'Bolivia',
+            'PY': 'Paraguay', 'CR': 'Costa Rica', 'GT': 'Guatemala', 'GB': 'United Kingdom',
+            'DE': 'Germany', 'CA': 'Canada', 'IT': 'Italy', 'NL': 'Netherlands', 'AO': 'Angola',
+            'MZ': 'Mozambique'}
     paper_countries = []
     for idx, row in merged.iterrows():
         aff_str = row.get('Affiliations', '') or ''
@@ -102,7 +135,7 @@ def main():
         for aff in aff_str.split(';'):
             parts = [p.strip() for p in aff.split(',') if p.strip()]
             if parts:
-                last = parts[-1]
+                last = ISO2.get(parts[-1], parts[-1])
                 if 3 <= len(last) <= 50:
                     countries.add(last)
         for c in countries:
@@ -120,6 +153,7 @@ def main():
     ).round(2)
     by_country['pct_substantive'] = (100 * by_country['n_substantive'] / by_country['n']).round(1)
     by_country = by_country.sort_values('n', ascending=False)
+    by_country.insert(0, 'pais', [PAISES_ES.get(c, c) for c in by_country.index])
     by_country.to_csv(DATA / 'v3_country_x_bowleg.csv')
     print(by_country.head(15).to_string())
 

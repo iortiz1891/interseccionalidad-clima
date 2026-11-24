@@ -26,6 +26,14 @@ Pasos:
      Scopus y SciELO): mismas reglas de exclusión, deduplicación entre sí y contra lo anterior,
      y paper_id a partir del último de Scopus + SciELO. Ninguno reutiliza la evaluación de la
      v2; se evaluaron en lotes propios (work/v3_salidas/oa_lote_*.jsonl).
+  7. Rescata el resumen de los registros que su fuente trae sin resumen, buscándolo por DOI en
+     OpenAlex (data/v3_resumenes_openalex.json, de pipeline/v3/00c_resumenes_openalex.py). Se
+     acepta solo si (a) tiene ≥100 caracteres y ≥20 palabras sin contar el título, (b) el DOI no
+     lo comparte otro registro (los capítulos con el DOI del libro reciben la descripción del
+     libro) y (c) en un capítulo no empieza con «This book / Este libro / Este livro». Los
+     rescatados pasan las mismas exclusiones por tipo y la misma deduplicación, reciben paper_id
+     después del último de OpenAlex y se evalúan en un lote propio (work/v3_salidas/rs_lote_*.jsonl).
+     La columna resumen_fuente vale «openalex_doi» en ellos.
 """
 from __future__ import annotations
 import importlib.util
@@ -130,9 +138,13 @@ def leer_scielo() -> pd.DataFrame:
     return df.sort_values('Document Type', key=lambda s: s.eq('Preprint')).reset_index(drop=True)
 
 
-def excluir(df: pd.DataFrame) -> tuple[pd.DataFrame, int, int]:
+def sin_resumen(df: pd.DataFrame) -> pd.Series:
     abs_txt = df['Abstract'].fillna('').astype(str).str.strip()
-    sin_abs = (abs_txt.str.len() < 100) | abs_txt.str.contains(r'^\[No abstract available\]', regex=True)
+    return (abs_txt.str.len() < 100) | abs_txt.str.contains(r'^\[No abstract available\]', regex=True)
+
+
+def excluir(df: pd.DataFrame) -> tuple[pd.DataFrame, int, int]:
+    sin_abs = sin_resumen(df)
     tipo = df['Document Type'].str.lower().isin(EXCLUDED_TYPES) & ~sin_abs
     return df[~(sin_abs | tipo)].copy(), int(sin_abs.sum()), int(tipo.sum())
 
@@ -204,8 +216,7 @@ def agregar_openalex(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
     """Agrega a df (Scopus + SciELO, ya con paper_id) los registros nuevos de OpenAlex."""
     oa = leer_openalex()
     n_oa = len(oa)
-    abs_txt = oa['Abstract'].fillna('').astype(str).str.strip()
-    sin_abs = abs_txt.str.len() < 100
+    sin_abs = sin_resumen(oa)
     tipo = oa['Document Type'].str.lower().isin(TIPOS_EXCLUIDOS_OA) & ~sin_abs
     oa = claves(oa[~(sin_abs | tipo)].copy())
     n0 = len(oa)
@@ -236,6 +247,71 @@ def agregar_openalex(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
     meta = {'n': n_oa, 'sin_abstract': int(sin_abs.sum()), 'tipo': int(tipo.sum()), 'dup': dup_oa,
             'ya_en_scopus_scielo': int(en_prev.sum()), 'nuevos': len(nuevos)}
     return pd.concat([df, nuevos], ignore_index=True), meta
+
+
+RE_LIBRO = re.compile(r'^\s*(this book|este libro|este livro)\b', re.I)
+
+
+def _palabras_sin_titulo(resumen: str, titulo: str) -> int:
+    r, t = norm_title(resumen), norm_title(titulo)
+    if t and t in r:
+        r = r.replace(t, ' ', 1)
+    return len(r.split())
+
+
+def rescatar_resumenes(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
+    """Agrega los registros sin resumen en su fuente cuyo resumen se encuentra en OpenAlex por DOI."""
+    p = DATA / 'v3_resumenes_openalex.json'
+    if not p.exists():
+        print('[6] Sin data/v3_resumenes_openalex.json: no se rescatan resúmenes')
+        return df, {}
+    res = json.loads(p.read_text())['resultados']
+    cand = []
+    for nombre, lector, tipos in [('scopus', leer_scopus, EXCLUDED_TYPES), ('scielo', leer_scielo, EXCLUDED_TYPES),
+                                  ('openalex', leer_openalex, TIPOS_EXCLUIDOS_OA)]:
+        x = claves(lector())
+        x = x[sin_resumen(x) & ~x['Document Type'].str.lower().isin(tipos)].copy()
+        cand.append(x)
+    cand = pd.concat(cand, ignore_index=True)
+    n_cand = len(cand)
+    # (b) DOI compartido: por otro candidato o por un registro que ya está en el corpus.
+    todos_doi = pd.concat([cand['_doi'], df['_doi']])
+    compartido = cand['_doi'].map(todos_doi.value_counts()).fillna(0).gt(1) & \
+        ~cand.duplicated('_key', keep=False)          # el mismo trabajo en dos fuentes no cuenta
+    con_doi = cand['_doi'].str.startswith('10.')
+    txt = cand['_doi'].map(lambda d: res.get(d, {}).get('resumen', '')).fillna('')
+    largo_ok = txt.str.strip().str.len().ge(100) & \
+        pd.Series([_palabras_sin_titulo(r, t) >= 20 for r, t in zip(txt, cand['Title'])], index=cand.index)
+    libro = cand['Document Type'].str.lower().eq('book chapter') & txt.str.match(RE_LIBRO)
+    ok = con_doi & largo_ok & ~compartido & ~libro
+    resc = cand[ok].copy()
+    resc['Abstract'] = txt[ok]
+    resc = dedup(resc)
+    ya = (resc['_doi'].isin(set(df['_doi'])) & resc['_doi'].str.startswith('10.')) | resc['_key'].isin(set(df['_key']))
+    resc = resc[~ya].copy()
+    meta = {'sin_resumen_en_su_fuente': n_cand, 'con_doi': int(con_doi.sum()),
+            'con_resumen_en_openalex': int((con_doi & txt.str.len().gt(0)).sum()),
+            'descartados_corto_o_solo_titulo': int((con_doi & txt.str.len().gt(0) & ~largo_ok).sum()),
+            'descartados_doi_compartido': int((con_doi & largo_ok & compartido).sum()),
+            'descartados_descripcion_del_libro': int((con_doi & largo_ok & ~compartido & libro).sum()),
+            'ya_en_corpus_o_duplicados': int(ok.sum()) - len(resc),
+            'rescatados': len(resc), 'por_fuente': resc['_source'].value_counts().to_dict(),
+            'tipo': resc['Document Type'].value_counts().to_dict()}
+    print(f"[6] Resúmenes rescatados por DOI en OpenAlex: {len(resc)} de {n_cand} sin resumen "
+          f"(por fuente: {meta['por_fuente']})")
+    resc['nivel_ancla'] = resc.apply(nivel_ancla, axis=1)
+    lang = resc['Language of Original Document'].fillna('').astype(str)
+    resc['idioma'] = ['es' if 'Spanish' in l else 'pt' if 'Portuguese' in l else
+                      'en' if 'English' in l else 'otro' for l in lang]
+    resc['v2_paper_id'] = pd.Series(pd.NA, index=resc.index, dtype='Int64')
+    resc['sim_resumen_v2'] = float('nan')
+    resc['reutiliza_v2'] = False
+    resc['resumen_fuente'] = 'openalex_doi'
+    resc['_ord'] = pd.to_numeric(resc['Year'], errors='coerce')
+    resc = resc.sort_values(['_ord', 'Title'], ascending=[False, True]).reset_index(drop=True)
+    inicio = int(df['paper_id'].max()) + 1
+    resc.insert(0, 'paper_id', range(inicio, inicio + len(resc)))
+    return pd.concat([df, resc], ignore_index=True), meta
 
 
 def main():
@@ -282,9 +358,13 @@ def main():
     df = df.sort_values(['_ord', 'Title'], ascending=[False, True]).reset_index(drop=True)
     df.insert(0, 'paper_id', range(len(df)))
     df, oa = agregar_openalex(df)
+    df, rescate = rescatar_resumenes(df)
+    if 'resumen_fuente' not in df:
+        df['resumen_fuente'] = ''
+    df['resumen_fuente'] = df['resumen_fuente'].fillna('')
     out_cols = (['paper_id'] + PIPELINE_COLS + EXTRA_COLS
                 + ['nivel_ancla', 'idioma', '_source', '_doi', '_scielo_id', 'v2_paper_id',
-                   'sim_resumen_v2', 'reutiliza_v2', 'OpenAlex ID'])
+                   'sim_resumen_v2', 'reutiliza_v2', 'OpenAlex ID', 'resumen_fuente'])
     df[out_cols].to_csv(DATA / 'v3_corpus_consolidated.csv', index=False)
 
     meta = {
@@ -303,7 +383,9 @@ def main():
         'reutilizan_evaluacion_v2': int(df['reutiliza_v2'].sum()),
         'evaluados_en_v3': int((~df['reutiliza_v2']).sum()),
         'openalex_nuevos': oa['nuevos'],
-        'tipo_openalex_nuevos': df.loc[df['_source'] == 'openalex', 'Document Type'].value_counts().to_dict(),
+        'tipo_openalex_nuevos': df.loc[(df['_source'] == 'openalex') & df['resumen_fuente'].eq(''),
+                                       'Document Type'].value_counts().to_dict(),
+        'rescate_resumen': rescate,
     }
     (DATA / 'v3_prisma_meta.json').write_text(json.dumps(meta, indent=2, ensure_ascii=False))
     print(f"\n[OK] data/v3_corpus_consolidated.csv ({len(df)}) + data/v3_prisma_meta.json")

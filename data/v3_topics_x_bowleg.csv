@@ -1,21 +1,21 @@
 topic_id_clean,n_papers,bowleg_mean,bowleg_median,n_substantive,n_nominal,pct_substantive,pct_nominal,topic_name
--1,239,1.301255230125523,1.5,50,110,20.9,46.0,-1_climate_change_climate change_gender
-0,151,0.9933774834437086,1.0,18,89,11.9,58.9,0_disaster_disasters_risk_vulnerability
-1,109,0.9403669724770642,0.5,14,66,12.8,60.6,1_gender_climate_women_change
-2,97,0.8092783505154639,0.0,9,63,9.3,64.9,2_climate_health_global_climática
-3,96,1.5364583333333333,1.5,29,35,30.2,36.5,3_gender_farmers_climate_women
-4,77,0.5974025974025974,0.0,4,56,5.2,72.7,4_climate_change_environmental_climate change
-5,73,0.9657534246575342,0.0,7,40,9.6,54.8,5_youth_young_climate_activism
-6,70,0.9214285714285714,0.0,7,41,10.0,58.6,6_heat_urban_climate_cities
-7,59,0.6186440677966102,0.0,3,41,5.1,69.5,7_justice_climate justice_climate_intersectionality
-8,50,1.3,1.5,11,23,22.0,46.0,8_women_mujeres_gender_género
-9,43,0.5697674418604651,0.0,4,34,9.3,79.1,9_migration_adaptación_movilidad_humana
-10,30,1.45,2.0,8,12,26.7,40.0,10_desastres_puerto_disaster_social
-11,21,1.4285714285714286,1.5,3,7,14.3,33.3,11_climate_gbv_climate change_change
-12,19,1.7105263157894737,1.5,6,5,31.6,26.3,12_bangladesh_adaptation_coastal_social
-13,15,1.2,1.0,3,9,20.0,60.0,13_gender_climate_change_climate change
-14,14,0.5714285714285714,0.0,0,11,0.0,78.6,14_energy_transition_energy transition_transitions
-15,13,1.5769230769230769,2.0,1,3,7.7,23.1,15_resilience_livelihood resilience_livelihood_household
-16,13,0.9230769230769231,0.0,3,8,23.1,61.5,16_adaptation_change_climate change_climate
-17,12,1.25,1.5,1,5,8.3,41.7,17_migration_gender_climate_women
-18,11,1.1363636363636365,1.5,1,5,9.1,45.5,18_resilience_green_peace_climate
+-1,349,1.1375358166189111,1.0,64,186,18.3,53.3,-1_climate_change_climate change_gender
+0,99,1.0555555555555556,1.0,11,56,11.1,56.6,0_disaster_vulnerability_risk_disasters
+1,90,0.8611111111111112,0.0,9,57,10.0,63.3,1_climática_climate_global_ambiental
+2,72,0.8611111111111112,0.0,8,45,11.1,62.5,2_gender_climate_feminist_change
+3,69,1.0217391304347827,0.0,7,36,10.1,52.2,3_youth_young_climate_activism
+4,67,0.6567164179104478,0.0,8,49,11.9,73.1,4_adaptation_adaptación_migration_climate
+5,65,0.9307692307692308,0.0,6,38,9.2,58.5,5_heat_urban_climate_cities
+6,65,1.5538461538461539,1.5,19,23,29.2,35.4,6_farmers_gender_climate_women
+7,62,0.6290322580645161,0.0,3,43,4.8,69.4,7_justice_climate_climate justice_intersectionality
+8,51,1.303921568627451,1.5,11,23,21.6,45.1,8_women_mujeres_gender_género
+9,50,0.95,0.75,4,27,8.0,54.0,9_climate_environmental_anthropocene_change
+10,28,1.4464285714285714,2.0,7,11,25.0,39.3,10_desastres_disaster_puerto_social
+11,25,1.12,1.0,4,13,16.0,52.0,11_disability_disabilities_climate_people
+12,23,1.326086956521739,1.0,6,13,26.1,56.5,12_gender_adaptation_change_climate change
+13,22,1.4772727272727273,1.5,3,6,13.6,27.3,13_climate_climate change_change_gbv
+14,21,1.0,1.0,3,12,14.3,57.1,14_health_reproductive_climate_climate change
+15,21,1.6904761904761905,1.5,7,6,33.3,28.6,15_bangladesh_adaptation_coastal_women
+16,15,0.4666666666666667,0.0,2,12,13.3,80.0,16_mental_mental health_health_climate change
+17,14,0.5714285714285714,0.0,0,11,0.0,78.6,17_energy_transition_energy transition_transitions
+18,13,1.5769230769230769,2.0,1,3,7.7,23.1,18_resilience_livelihood resilience_livelihood_household

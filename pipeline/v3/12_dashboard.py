@@ -23,8 +23,20 @@ def img_b64(path: Path) -> str:
     return "data:image/png;base64," + base64.b64encode(path.read_bytes()).decode()
 
 
-def df_to_html_table(df: pd.DataFrame, max_rows: int = 20) -> str:
+def df_to_html_table(df: pd.DataFrame, max_rows: int = 20, cols: dict | None = None) -> str:
+    """Tabla HTML; `cols` = {columna: encabezado en español} elige y renombra columnas."""
+    if cols:
+        df = df[list(cols)].rename(columns=cols)
     return df.head(max_rows).to_html(index=False, classes='data-table', float_format='%.2f', border=0)
+
+
+COLS_TOPICO = {'topic_id_clean': '#', 'tópico': 'Tópico', 'n_papers': 'n',
+               'bowleg_mean': 'RSI medio', 'pct_substantive': '% sustantivo'}
+COLS_IDIOMA = {'idioma': 'Idioma', 'n': 'n', 'bowleg_mean': 'RSI medio', 'pct_gate': '% pasa el gate',
+               'n_substantive': 'Sustantivos (≥ 2.5)', 'n_parcial': 'Parciales (1.5–2.0)',
+               'n_nominal': 'Nominales o mención (≤ 1.0)', 'pct_substantive': '% sustantivo'}
+COLS_PAIS = {'pais': 'País', 'n': 'n', 'bowleg_mean': 'RSI medio', 'n_substantive': 'Sustantivos (≥ 2.5)',
+             'pct_substantive': '% sustantivo'}
 
 
 CAT_LABELS = {
@@ -104,7 +116,7 @@ def main():
                 return (f"<span style='display:inline-block;height:9px;width:{max(pct*0.5,0):.0f}px;"
                         f"background:{c};vertical-align:middle;border-radius:2px;'></span>")
             lang_cell = (f"{bar(t['es_pct'],'#d32f2f')}{bar(t['en_pct'],'#9e9e9e')}{bar(t['pt_pct'],'#1976d2')}"
-                         f"<span style='font-size:10px;color:#888;margin-left:5px'>ES {t['es_pct']:.0f}·EN {t['en_pct']:.0f}</span>")
+                         f"<span style='font-size:10px;color:#888;margin-left:5px'>ES {t['es_pct']:.0f}·PT {t['pt_pct']:.0f}·EN {t['en_pct']:.0f}</span>")
             tesis_cell = (f"<b style='color:#9c27b0'>{t['n_tesis']}</b>" if t['n_tesis'] > 0
                           else "<span style='color:#ccc'>0</span>")
             rows.append(
@@ -163,7 +175,7 @@ def main():
       con un uso más nominal del marco.</li>
     <li><b>Idioma.</b> Aun sumando SciELO y OpenAlex en español y portugués, la literatura elegible sigue siendo
       sobre todo en inglés ({int((scored['idioma'] == 'es').sum())} en español y {int((scored['idioma'] == 'pt').sum())} en portugués). Los trabajos iberoamericanos ya tienen presencia
-      en el mapa, pero una comparación por tradición lingüística todavía pide fuentes regionales (Redalyc, LILACS, La Referencia).</li>
+      en el mapa, pero una comparación por tradición lingüística todavía pide fuentes regionales (LILACS, La Referencia); Redalyc ya se verificó y no aporta registros nuevos.</li>
     <li><b>El nicho de la tesis no existe como cluster.</b> Los {stats.get('daniel_subcorpus', {}).get('relevant_ge2_axes', 0)} papers del sub-corpus de Daniel ({meta.get('n_tesis_total', 0)} con tópico asignado)
       (México × ciclones × interseccionalidad costera) se <b>dispersan en {n_disp} tópicos</b>
       —sobre todo {tesis_txt}—: el campo no tiene un vecindario propio para ese cruce. Esa fragmentación
@@ -192,7 +204,7 @@ def main():
         for _, r in sub.iterrows():
             try: yr = str(int(float(r.get('Year'))))
             except Exception: yr = '—'
-            lang = str(r.get('Language of Original Document','') or '')[:2].upper()
+            lang = str(r.get('idioma') or '').upper() or '—'
             rows.append(
                 f"<tr><td>{badge(float(r.get('bowleg_total',0)))}</td>"
                 f"<td style='font-size:12.5px'>{str(r.get('Title',''))[:130]}</td>"
@@ -218,6 +230,9 @@ def main():
     prompt_v3 = _load_prompt('prompts/v3_cribado_rsi.md')
 
     # Top 20 tópicos sustantivos
+    _labels = {t['topic_id']: t['label'] for t in topic_stats.get('topics', [])}
+    topics_bw['tópico'] = [_labels.get(int(t), str(n).split('_', 1)[-1])
+                           for t, n in zip(topics_bw['topic_id_clean'], topics_bw['topic_name'])]
     topics_substantive = topics_bw[topics_bw['topic_id_clean'] >= 0].nlargest(15, 'pct_substantive')
     topics_artifact = topics_bw[(topics_bw['topic_id_clean'] >= 0)].nsmallest(10, 'bowleg_mean')
 
@@ -237,14 +252,13 @@ def main():
         pct_metodo_gate, n_gate = 0, 0
     # Topics
     _t = topics_bw[topics_bw['topic_id_clean'] >= 0]
-    _tname = lambda r: ' / '.join(str(r).split('_')[1:3])
-    top3 = [_tname(r) for r in _t.nlargest(3, 'pct_substantive')['topic_name']]
-    art3 = [_tname(r) for r in _t.nsmallest(3, 'bowleg_mean')['topic_name']]
+    _t = _t[_t['n_papers'] >= 15]
+    top3 = list(_t.nlargest(3, 'pct_substantive')['tópico'])
+    art3 = list(_t.nsmallest(3, 'bowleg_mean')['tópico'])
     # Idioma
     lang_col = lang_bw.columns[0]
     lr = {str(r[lang_col]): r for _, r in lang_bw.iterrows()}
-    en_p = next((r['pct_substantive'] for k, r in lr.items() if 'English' in k or k == 'En'), None)
-    es_p = next((r['pct_substantive'] for k, r in lr.items() if 'Spanish' in k or k == 'Es'), None)
+    en_p, es_p, pt_p = (lr[k]['pct_substantive'] if k in lr else None for k in ('Inglés', 'Español', 'Portugués'))
     # Países
     cb = country_bw[country_bw['n'] >= 15].sort_values('pct_substantive', ascending=False)
     pais_top = cb.head(1).iloc[0] if len(cb) else None
@@ -298,10 +312,10 @@ def main():
         f"nominal del marco en el campo.")
 
     ins_topics = insight("Lectura del dato",
-        f"La sustantividad <b>no se distribuye de forma homogénea entre temas</b>. Concentra en tópicos "
-        f"anclados en eventos y poblaciones concretas (p. ej. {', '.join(top3[:3])}), donde el contexto "
-        f"situado y las identidades entrelazadas emergen naturalmente. En cambio, tópicos como "
-        f"{', '.join(art3[:3])} presentan la menor sustantividad: tratan la desigualdad de forma más genérica "
+        f"La sustantividad <b>no se distribuye de forma homogénea entre temas</b>. Se concentra en tópicos "
+        f"anclados en poblaciones y territorios concretos (p. ej. {', '.join(top3[:3])}), donde el contexto "
+        f"situado y las identidades entrelazadas emergen naturalmente. En cambio, "
+        f"{', '.join(art3[:3])} tienen la menor RSI media (tópicos de al menos 15 trabajos): tratan la desigualdad de forma más genérica "
         f"(el cribado de la v3 ya retiró los falsos positivos de la búsqueda). La interseccionalidad sustantiva "
         f"parece requerir un <b>anclaje empírico situado</b>.")
 
@@ -315,10 +329,14 @@ def main():
     ins_lang = insight("Lectura del dato",
         f"En la v3 hay <b>{n_es}</b> trabajos elegibles en español y <b>{n_pt}</b> en portugués, frente a {n_en:,} "
         f"en inglés. OpenAlex aportó {n_oa_es} en español y {n_oa_pt} en portugués que no estaban en Scopus ni en SciELO "
-        f"(muchos son tesis y capítulos de libro). La comparación por idioma <b>sigue siendo exploratoria</b>: "
-        f"OpenAlex asigna el idioma por el título y su cobertura de repositorios iberoamericanos es parcial.")
+        f"(muchos son tesis y capítulos de libro). La aplicación sustantiva es más frecuente en inglés "
+        f"(<b>{en_p:.0f}%</b>) que en portugués ({pt_p:.0f}%) y en español ({es_p:.0f}%), y el español también "
+        f"pasa menos el gate ({lr['Español']['pct_gate']:.0f}% frente a {lr['Inglés']['pct_gate']:.0f}% en inglés). "
+        f"La comparación <b>sigue siendo exploratoria</b>: hay pocos trabajos en español y portugués, muchos son tesis y "
+        f"capítulos (con resúmenes de otro formato), OpenAlex asigna el idioma por el título y su cobertura de "
+        f"repositorios iberoamericanos es parcial.")
 
-    _pais_txt = (f"<b>{pais_top['country']}</b> ({pais_top['pct_substantive']:.0f}% sustantivo) "
+    _pais_txt = (f"<b>{pais_top['pais']}</b> ({pais_top['pct_substantive']:.0f}% sustantivo, n={int(pais_top['n'])}) "
                  if pais_top is not None else "")
     ins_anatomia = insight("Lectura del dato",
         f"El hallazgo más relevante está en el panel derecho (solo papers que pasan el gate): el <b>Criterio IV — método "
@@ -591,7 +609,7 @@ def main():
 
   <p style="font-size:13px;color:#555;"><strong>Independencia teórica:</strong> la RSI evalúa la <em>operacionalización del concepto</em>, no la fidelidad a una autoría o región. Un paper puede puntuar alto con vocabulario diverso ("colonialidad de género", "compounded vulnerability"…) sin citar a ninguna autora canónica.</p>
 
-  <p style="font-size:13px;color:#999;margin-bottom:0;">Fundamentación completa con referencias: <a href="../../docs/rubrica_RSI_fundamentacion.md">rubrica_RSI_fundamentacion.md</a>. Limitaciones reconocidas: validación humana pendiente · confiabilidad inter-modelo sensible al modelo · scoring basado en abstract · suma aditiva (v3 incorporará praxis e integración).</p>
+  <p style="font-size:13px;color:#999;margin-bottom:0;">Fundamentación completa con referencias: <a href="../../docs/rubrica_RSI_fundamentacion.md">rubrica_RSI_fundamentacion.md</a>. Limitaciones reconocidas: validación humana pendiente · confiabilidad inter-modelo sensible al modelo · scoring basado en abstract · los seis criterios pesan lo mismo (el total es su suma, escalada por el factor de integración).</p>
 </div>
 
 <h2 id="teoria">0b · Genealogía teórica de la interseccionalidad</h2>
@@ -695,6 +713,11 @@ def main():
   {rdmeta['con_ambos_bloques_en_titulo_resumen_o_palabras_clave']} ya estaban por las otras fuentes: <b>no aporta registros nuevos</b>
   (<code>data/v3_redalyc_meta.json</code>).</li>
 </ul>
+<p><b>Resúmenes rescatados.</b> {pmeta['rescate_resumen']['sin_resumen_en_su_fuente']} registros llegan sin resumen de su fuente (sobre todo notas, editoriales y
+capítulos de libro de Scopus). Para los que tienen DOI se buscó el resumen en OpenAlex, en cualquier idioma, y se aceptó solo si tiene al menos
+20 palabras además del título, si el DOI no lo comparte otro registro (los capítulos con el DOI del libro reciben la descripción del libro) y si,
+en un capítulo, no describe el libro entero. Así se rescataron <b>{pmeta['rescate_resumen']['rescatados']}</b>, que se evaluaron con el mismo prompt;
+los demás quedan excluidos por falta de resumen (<code>data/v3_resumenes_openalex.json</code>).</p>
 <p>Como en la v2, la selección no se delega solo al scoring: un <b>cribado de elegibilidad</b> separa antes lo que no es del tema (§2).</p>
 
 <details><summary>Cadena de Scopus</summary>
@@ -751,12 +774,12 @@ multilingüe (<code>paraphrase-multilingual-MiniLM-L12-v2</code>): con el modelo
 portugués formaban un bloque aparte por idioma y no por tema. Por eso los tópicos de la v3 no se comparan uno a uno con los de la v2.</p>
 <img src="{figs['fig04']}" alt="Topics × Bowleg">
 
-<h3>Top 15 tópicos con mayor % sustantividad</h3>
-{df_to_html_table(topics_substantive[['topic_id_clean','topic_name','n_papers','bowleg_mean','pct_substantive']], 15)}
+<h3>Los 15 tópicos con mayor % de trabajos sustantivos</h3>
+{df_to_html_table(topics_substantive, 15, COLS_TOPICO)}
 
 <details>
 <summary>Tópicos con menor sustantividad media</summary>
-{df_to_html_table(topics_artifact[['topic_id_clean','topic_name','n_papers','bowleg_mean','pct_substantive']], 10)}
+{df_to_html_table(topics_artifact, 10, COLS_TOPICO)}
 <p style="font-size: 12px; color: #888;">En la v3, el cribado ya excluyó los falsos positivos de la búsqueda: estos tópicos reúnen trabajos pertinentes con un uso más nominal del marco.</p>
 </details>
 {ins_topics}
@@ -817,15 +840,16 @@ portugués formaban un bloque aparte por idioma y no por tema. Por eso los tópi
   <img src="{figs['fig05']}" alt="RSI por idioma">
   <img src="{figs['figF']}" alt="Violín RSI por idioma">
 </div>
-{df_to_html_table(lang_bw, 6)}
+{df_to_html_table(lang_bw, 6, COLS_IDIOMA)}
 {ins_lang}
 
 <h2 id="paises">7 · Geografía del rigor</h2>
+<p style="font-size:13px;color:#555;">País de afiliación de los autores, según Scopus y OpenAlex (SciELO no trae afiliaciones). Un trabajo cuenta una vez por cada país de sus autores.</p>
 <img src="{figs['fig06']}" alt="Country × Bowleg">
 
 <details>
-<summary>Tabla completa por país (top 25)</summary>
-{df_to_html_table(country_bw, 25)}
+<summary>Tabla por país (25 países con más trabajos)</summary>
+{df_to_html_table(country_bw, 25, COLS_PAIS)}
 </details>
 {ins_paises}
 
@@ -885,7 +909,7 @@ portugués formaban un bloque aparte por idioma y no por tema. Por eso los tópi
 
   <p><b>Cuando se aplica, se teoriza más de lo que se opera.</b> El perfil por criterio (§3b) precisa <em>dónde</em> falla la aplicación. Entre los trabajos que pasan el criterio de entrada, el poder estructural llega al {c_II}% y el contexto situado al {c_III}%, pero el <b>método no aditivo (criterio IV) se queda en {pct_metodo_gate}%</b>. La interseccionalidad se invoca como marco interpretativo, pero rara vez se traduce en decisiones de diseño —muestreo, codificación, modelos con interacciones—. Es el eslabón débil del campo.</p>
 
-  <p><b>El rigor es de nicho, no del campo.</b> El análisis temático (§5) y el mapa (§5b) muestran que la sustantividad no se reparte de forma homogénea: se concentra en comunidades de investigación ancladas en contextos concretos ({top_topicos_txt}). El paso del tiempo (§8) no modifica sustancialmente este patrón, y el idioma (§6) no puede evaluarse con Scopus porque casi no hay literatura elegible en español. La aplicación rigurosa parece depender de tradiciones disciplinares específicas más que de una maduración general del campo.</p>
+  <p><b>El rigor es de nicho, no del campo.</b> El análisis temático (§5) y el mapa (§5b) muestran que la sustantividad no se reparte de forma homogénea: se concentra en comunidades de investigación ancladas en contextos concretos ({top_topicos_txt}). El paso del tiempo (§8) no modifica sustancialmente este patrón, y el idioma (§6) tampoco lo explica: los trabajos en español y portugués, ya incluidos en la v3, alcanzan aplicación sustantiva con menor frecuencia que los escritos en inglés. La aplicación rigurosa parece depender de tradiciones disciplinares específicas más que de una maduración general del campo.</p>
 
   <p><b>Implicaciones.</b> (1) <em>Para el campo:</em> el reto no es adoptar más la interseccionalidad —ya está ampliamente adoptada— sino operacionalizarla metodológicamente. (2) <em>Para la práctica de investigación:</em> citar a Crenshaw o Collins no basta; la sustantividad exige traducir el marco en diseño empírico. (3) <em>Para esta tesis:</em> en el corpus v3 {tesis_cruce_txt} (§11), pero los trabajos que combinan sus ejes temáticos están entre los más sustantivos del corpus. Hay, por tanto, un <b>vacío temático con un piso metodológico sólido</b>: un espacio donde la tesis puede contribuir sin partir de cero.</p>
 
@@ -912,7 +936,7 @@ portugués formaban un bloque aparte por idioma y no por tema. Por eso los tópi
 </table>
 <p style="font-size: 12px;">
 Total identificado: {sum(pmeta['identificados'].values()):,} ·
-Filtro abstract ≥100 chars: −{sum(v['sin_abstract'] for v in pmeta['excluidos_regla'].values())} ·
+Filtro abstract ≥100 chars: −{sum(v['sin_abstract'] for v in pmeta['excluidos_regla'].values()) - pmeta['rescate_resumen']['rescatados']} ({sum(v['sin_abstract'] for v in pmeta['excluidos_regla'].values())} sin resumen en su fuente; {pmeta['rescate_resumen']['rescatados']} se rescataron con el resumen que OpenAlex tiene para su DOI) ·
 Erratas, conference reviews y otros tipos: −{pmeta['excluidos_regla']['scopus']['erratum_o_conference_review'] + pmeta['excluidos_regla']['scielo']['tipo'] + pmeta['excluidos_regla']['openalex']['tipo']} ·
 Dedup DOI + título: −{sum(pmeta['duplicados'].values())} ·
 Cribado de elegibilidad: −{pmeta['cribado']['excluidos']} ·

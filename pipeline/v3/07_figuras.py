@@ -68,7 +68,9 @@ def fig01_prisma():
     box(3.6, 12.3, 2.8, 1.2, f"SciELO\nn={idn['scielo']:,}", color='#e8f5e9')
     box(6.7, 12.3, 2.8, 1.2, f"OpenAlex (API, ES/PT)\nn={idn['openalex']:,}", color='#e8f5e9')
     arrow(1.9, 14.0, 1.9, 13.5); arrow(5, 14.0, 5, 13.5); arrow(8.1, 14.0, 8.1, 13.5)
-    box(3, 10.8, 4, 1, f"Filtro abstract ≥100 chars\n−{sc['sin_abstract'] + se['sin_abstract'] + so['sin_abstract']} sin abstract usable",
+    n_sin = sc['sin_abstract'] + se['sin_abstract'] + so['sin_abstract']
+    n_resc = meta.get('rescate_resumen', {}).get('rescatados', 0)
+    box(2.4, 10.8, 5.2, 1, f"Filtro abstract ≥100 chars −{n_sin - n_resc}\n{n_sin} sin abstract en su fuente · {n_resc} rescatados por DOI en OpenAlex",
         color='#fff9c4')
     arrow(1.9, 12.3, 4.0, 11.8); arrow(5, 12.3, 5, 11.8); arrow(8.1, 12.3, 6.0, 11.8)
     box(2.6, 9.3, 4.8, 1, f"Erratas, conference reviews y otros tipos\n−{sc['erratum_o_conference_review'] + se['tipo'] + so['tipo']}",
@@ -174,8 +176,10 @@ def fig04_topics_x_bowleg():
     # Filtrar outliers y top 25 tópicos por tamaño
     tb = tb[tb['topic_id_clean'] >= 0].copy()
     tb = tb.head(25)
-    # Etiqueta corta
-    tb['short_label'] = tb['topic_name'].fillna('').str.split('_').str[1:4].str.join('/').str[:35]
+    # Etiqueta: la manual en español (data/v3_topic_labels_manual.json vía 04b → v3_topic_ai_labels.json)
+    _lab = json.loads((DATA / 'v3_topic_ai_labels.json').read_text())
+    tb['short_label'] = [(_lab.get(str(int(t)), {}).get('label') or n.split('_', 1)[-1])
+                         for t, n in zip(tb['topic_id_clean'], tb['topic_name'].fillna(''))]
     tb = tb.sort_values('pct_substantive', ascending=True)
 
     fig, ax = plt.subplots(figsize=(12, 10))
@@ -186,11 +190,10 @@ def fig04_topics_x_bowleg():
     ax.set_yticklabels([f"T{int(t['topic_id_clean'])}: {t['short_label']} (n={int(t['n_papers'])})"
                          for _, t in tb.iterrows()], fontsize=8)
     ax.set_xlabel('% papers con interseccionalidad sustantiva (RSI ≥ 2.5)')
-    ax.set_title('Topics × sustantividad interseccional (top 25 tópicos del corpus v3)')
-    ax.axvline(50, color='gray', linestyle='--', alpha=0.5)
+    ax.set_title('Tópicos × sustantividad interseccional (corpus v3)')
     for i, v in enumerate(tb['pct_substantive']):
         ax.text(v + 1, i, f'{v:.0f}%', va='center', fontsize=7)
-    ax.set_xlim(0, 100)
+    ax.set_xlim(0, max(40, tb['pct_substantive'].max() + 8))
     ax.grid(axis='x', alpha=0.3)
     fig.text(0.5, 0.01, PROVISIONAL_NOTE, ha='center', fontsize=8,
               style='italic', color='gray')
@@ -206,9 +209,8 @@ def fig04_topics_x_bowleg():
 def fig05_lang_x_bowleg():
     lb = pd.read_csv(DATA / 'v3_lang_x_bowleg.csv')
     lb.rename(columns={lb.columns[0]: 'lang'}, inplace=True)
-    lb = lb[lb['n'] >= 30].copy()
-    # Renombrar Unknown
-    lb['lang_display'] = lb['lang'].replace({'Unknown':'Sin etiqueta (OpenAlex EN)'})
+    lb = lb[lb['n'] >= 10].copy()
+    lb['lang_display'] = lb['lang']
 
     fig, axes = plt.subplots(1, 2, figsize=(13, 5))
     # Panel 1: % sustantivo
@@ -216,18 +218,19 @@ def fig05_lang_x_bowleg():
     colors = plt.cm.viridis(np.linspace(0.2, 0.8, len(lb)))
     ax.bar(range(len(lb)), lb['pct_substantive'], color=colors)
     ax.set_xticks(range(len(lb)))
-    ax.set_xticklabels(lb['lang_display'], rotation=20, ha='right')
+    ax.set_xticklabels(lb['lang_display'])
     ax.set_ylabel('% sustantivo (RSI ≥ 2.5)')
     ax.set_title('Sustantividad por idioma del documento')
     for i, (v, n) in enumerate(zip(lb['pct_substantive'], lb['n'])):
-        ax.text(i, v + 1, f'{v:.0f}%\n(n={int(n)})', ha='center', fontsize=8)
+        ax.text(i, v + 0.4, f'{v:.0f}%\n(n={int(n)})', ha='center', fontsize=8)
+    ax.set_ylim(0, lb['pct_substantive'].max() * 1.25)
     ax.grid(axis='y', alpha=0.3)
 
     # Panel 2: bowleg medio
     ax = axes[1]
     ax.bar(range(len(lb)), lb['bowleg_mean'], color=colors)
     ax.set_xticks(range(len(lb)))
-    ax.set_xticklabels(lb['lang_display'], rotation=20, ha='right')
+    ax.set_xticklabels(lb['lang_display'])
     ax.set_ylabel('RSI media')
     ax.set_title('RSI promedio por idioma')
     ax.axhline(2.5, color='red', linestyle='--', alpha=0.5, label='umbral sustantivo')
@@ -236,7 +239,7 @@ def fig05_lang_x_bowleg():
     ax.legend()
     ax.grid(axis='y', alpha=0.3)
 
-    fig.suptitle('Asimetría EN/ES/PT en sustantividad interseccional', fontsize=12, fontweight='bold')
+    fig.suptitle('Sustantividad interseccional por idioma (inglés, español y portugués)', fontsize=12, fontweight='bold')
     fig.text(0.5, 0.01, PROVISIONAL_NOTE, ha='center', fontsize=8,
               style='italic', color='gray')
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
@@ -255,10 +258,9 @@ def fig06_country_x_bowleg():
     colors = plt.cm.RdYlGn(cb['pct_substantive']/100)
     ax.barh(range(len(cb)), cb['pct_substantive'], color=colors, edgecolor='black', linewidth=0.5)
     ax.set_yticks(range(len(cb)))
-    ax.set_yticklabels([f"{c['country']} (n={int(c['n'])})" for _, c in cb.iterrows()])
+    ax.set_yticklabels([f"{c['pais']} (n={int(c['n'])})" for _, c in cb.iterrows()])
     ax.set_xlabel('% sustantivo (RSI ≥ 2.5)')
-    ax.set_title('Sustantividad por país (top 15 por volumen de papers)')
-    ax.axvline(50, color='gray', linestyle='--', alpha=0.5)
+    ax.set_title('Sustantividad por país de afiliación (15 países con más trabajos)')
     for i, v in enumerate(cb['pct_substantive']):
         ax.text(v + 1, i, f'{v:.0f}%', va='center', fontsize=8)
     ax.grid(axis='x', alpha=0.3)
