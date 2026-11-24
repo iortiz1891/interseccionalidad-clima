@@ -11,6 +11,7 @@
 - **Qué es:** revisión sistemática que mide, con una rúbrica (RSI) aplicada por LLM, en qué medida la investigación sobre cambio climático **aplica** interseccionalidad vs. solo la **menciona**.
 - **Corpus v1:** 971 registros Scopus (752 EN + 219 ES, mayo 2026) consolidados por Daniel, **sin cribado de elegibilidad**.
 - **Corpus v2:** 1,696 registros de la cadena bilingüe (30-09-2026); el cribado deja 1,016 elegibles. Solo 12 registros en español.
+- **Corpus v3:** cadenas trilingües en Scopus (API) y SciELO (24-11-2026): 1,844 registros a cribado, 1,088 elegibles (17 en español, 7 en portugués). 1,686 registros conservan la evaluación de la v2; los 158 nuevos se evaluaron con `prompts/v3_cribado_rsi.md`.
 - **Instrumento:** Rúbrica de Sustantividad Interseccional (RSI) — gate + 6 criterios graduados + factor de integración. Fundamentada en Crenshaw, Collins, Hancock, McCall, Bowleg.
 - **Scoring vigente:** v1 con `gpt-4.1` vía Batch API de OpenAI (`prompts/bowleg_eval_v3.md` + `reasoning_v3.md`); v2 con Claude (claude-opus-5-5) en sesiones de Claude Code (`prompts/v2_cribado_rsi.md`). **Provisional** — pendiente validación humana con κ de Cohen.
 - **Resultado principal (v2):** 43.8% de los elegibles no pasa el gate (RSI=0); 16% alcanza RSI ≥ 2.5. El eslabón débil es el criterio IV (método no aditivo). En la v1: 57.5% y 25.7%, sobre un corpus sin cribar.
@@ -63,6 +64,13 @@ iortiz1891/interseccionalidad-clima
 ---
 
 ## 3. Historial de sesiones
+
+### 2026-11-24 — rama `feat/v3-busqueda-revisada` (sobre `fix/redondeo-rsi-y-textos`)
+
+- Nueva pestaña **v3** con las cadenas revisadas (Scopus + SciELO, EN/ES/PT). Pipeline en `pipeline/v3/` (00 → 13), datos `data/v3_*`, figuras `assets/v3_*`, sitio `site/v3/`; las pestañas de v1 y v2 enlazan a la v3.
+- Scopus por la API (`00_scopus_api.py`): la cadena se parte en grupos del bloque climático porque no cabe en una petición; 1,882 registros únicos. SciELO: export RIS (34).
+- Se reutiliza el cribado y la RSI de la v2 cuando el registro y su resumen coinciden (1,686). Los 158 nuevos se evaluaron en 4 lotes de 40 con subagentes de Claude Code; las salidas quedan versionadas en `work/v3_salidas/`.
+- Resultado: 1,088 elegibles; 44.3 % no pasa el gate y 15.6 % es sustantivo (v2: 43.8 % y 16.0 %). 15 tópicos BERTopic con etiquetas manuales (`data/v3_topic_labels_manual.json`).
 
 ### 2026-11-24 — rama `fix/redondeo-rsi-y-textos`
 
@@ -123,6 +131,8 @@ Las dos columnas no se comparan directamente: cambian el corpus, el modelo y las
 4. **Reproducibilidad de la v2** — versionar las salidas crudas de `work/v2_salidas` y `work/v2_reevaluacion`, o rehacer el scoring con un script por API. Revisar también que la reevaluación del gate (regla 3 corregida) solo se aplicó a los 421 que no pasaban; la regla nueva también añade restricciones que podrían afectar a los que sí pasaban.
 5. *(Nota histórica: una versión anterior de este archivo hablaba de GPT-4o-mini con κ = 0.038 frente a Sonnet; el scoring vigente de la v1 es gpt-4.1.)*
 
+6. **Revisar casos dudosos de los lotes nuevos de la v3** — los evaluadores marcaron gates límite (v3 paper_id 143, 237, 278, 385, 412, 803, 1103, 1397) y climas incidentales (18, 123, 1611, 1697, 1805). El registro 295 tiene una inconsistencia en el resumen (cita el EACOP, un oleoducto de África oriental, en un caso del Delta del Níger): conviene verificarlo.
+
 ### Media prioridad
 
 6. **Expansión multi-base** — toolkit fetcher para OpenAlex, SciELO, PubMed, CrossRef, DOAJ + bases manuales (WoS, Latindex, Redalyc, Dialnet, CLACSO, LILACS). Script base: `Daniel_databases_project/agents/scripts/14_scopus_fetcher.py` (solo Scopus API, extender).
@@ -132,6 +142,7 @@ Las dos columnas no se comparan directamente: cambian el corpus, el modelo y las
 
 8. Convertir `Daniel_databases_project/` en un clon git del repo (actualmente no lo es).
 9. Automatizar la regeneración del dashboard cuando cambian los datos (hoy requiere correr `12_dashboard.py` localmente a mano).
+10. El mapa incrustado en los dashboards v2 y v3 deja en la consola un `deck.gl: assertion failed` al cargar (el mapa se dibuja igual; `mapa.html` por separado no lo da).
 
 ---
 

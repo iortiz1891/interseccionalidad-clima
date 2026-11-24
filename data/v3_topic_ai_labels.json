@@ -1,0 +1,167 @@
+{
+  "0": {
+    "label": "Desastres y riesgo: género, discapacidad y preparación",
+    "n_papers": 116,
+    "top_words": [
+      "disaster",
+      "disasters",
+      "risk",
+      "social",
+      "disaster risk"
+    ]
+  },
+  "1": {
+    "label": "Adaptación agraria, pequeños productores y género",
+    "n_papers": 96,
+    "top_words": [
+      "adaptation",
+      "farmers",
+      "gender",
+      "climate",
+      "change"
+    ]
+  },
+  "2": {
+    "label": "Juventudes, educación y activismo climático",
+    "n_papers": 93,
+    "top_words": [
+      "youth",
+      "climate",
+      "young",
+      "activism",
+      "justice"
+    ]
+  },
+  "3": {
+    "label": "Justicia climática, derecho y litigio",
+    "n_papers": 83,
+    "top_words": [
+      "climate",
+      "justice",
+      "climate justice",
+      "change",
+      "climate change"
+    ]
+  },
+  "4": {
+    "label": "Teoría feminista y política climática de género",
+    "n_papers": 69,
+    "top_words": [
+      "gender",
+      "climate",
+      "feminist",
+      "change",
+      "climate change"
+    ]
+  },
+  "5": {
+    "label": "India y Asia del Sur: género, casta y agua",
+    "n_papers": 52,
+    "top_words": [
+      "india",
+      "climate",
+      "gender",
+      "change",
+      "climate change"
+    ]
+  },
+  "6": {
+    "label": "Salud, salud mental y experiencia cotidiana del clima",
+    "n_papers": 44,
+    "top_words": [
+      "health",
+      "climate",
+      "change",
+      "climate change",
+      "mental"
+    ]
+  },
+  "7": {
+    "label": "Ciudades: planificación urbana y equidad climática",
+    "n_papers": 36,
+    "top_words": [
+      "urban",
+      "cities",
+      "climate",
+      "planning",
+      "justice"
+    ]
+  },
+  "8": {
+    "label": "Bangladesh: mujeres, adaptación y movilidad",
+    "n_papers": 26,
+    "top_words": [
+      "bangladesh",
+      "women",
+      "adaptation",
+      "climate",
+      "coastal"
+    ]
+  },
+  "9": {
+    "label": "Calor extremo y salud",
+    "n_papers": 24,
+    "top_words": [
+      "heat",
+      "health",
+      "heatrelated",
+      "extreme heat",
+      "exposure"
+    ]
+  },
+  "10": {
+    "label": "Discapacidad y justicia climática",
+    "n_papers": 23,
+    "top_words": [
+      "disability",
+      "disabilities",
+      "climate",
+      "persons",
+      "change"
+    ]
+  },
+  "11": {
+    "label": "Narrativas, ficción y crisis climática",
+    "n_papers": 23,
+    "top_words": [
+      "climate",
+      "crisis",
+      "contemporary",
+      "fiction",
+      "hope"
+    ]
+  },
+  "12": {
+    "label": "Transiciones energéticas justas",
+    "n_papers": 19,
+    "top_words": [
+      "energy",
+      "transition",
+      "transitions",
+      "energy systems",
+      "just"
+    ]
+  },
+  "13": {
+    "label": "Migración, reubicación y (in)movilidad climática",
+    "n_papers": 18,
+    "top_words": [
+      "migration",
+      "mobility",
+      "climate",
+      "relocation",
+      "immobility"
+    ]
+  },
+  "14": {
+    "label": "Pueblos y mujeres indígenas: saberes y descolonización",
+    "n_papers": 18,
+    "top_words": [
+      "indigenous",
+      "climate",
+      "change",
+      "climate change",
+      "indigenous peoples"
+    ]
+  }
+}

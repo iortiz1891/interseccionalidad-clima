@@ -447,6 +447,7 @@ def main():
 <nav class="version-tabs" aria-label="Versión del corpus">
   <a href="index.html" class="active">v1 · corpus original<span>{n_tot} trabajos · mayo 2026</span></a>
   <a href="v2/index.html">v2 · búsqueda ampliada<span>septiembre 2026</span></a>
+  <a href="v3/index.html">v3 · Scopus + SciELO<span>noviembre 2026</span></a>
 </nav>
 
 <div class="topbar">

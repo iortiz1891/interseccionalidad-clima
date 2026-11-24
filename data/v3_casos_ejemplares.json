@@ -1,0 +1,122 @@
+[
+  {
+    "titulo": "Decolonizing meanings climate crisis and land-based adaptions: From Indigenous women's perspectives in Western Canada",
+    "year": "2024",
+    "categoria": "Sustantiva fuerte",
+    "rsi_total": 4.0,
+    "gate": true,
+    "scores": {
+      "I": 1.0,
+      "II": 1.0,
+      "III": 1.0,
+      "IV": 1.0,
+      "V": 1.0,
+      "VI": 1.0
+    },
+    "evidencias": {
+      "I": "Trata a las mujeres indígenas como posición específica con saberes propios y examina intersecciones de género e indigeneidad.",
+      "II": "Examina críticamente legados coloniales que moldean políticas ambientales y marginan voces indígenas, desde un enfoque feminista decolonial.",
+      "III": "Tierras tradicionales de Canadá occidental; legados coloniales y estrategias culturalmente situadas.",
+      "IV": "Investigación participativa feminista decolonial centrada intencionalmente en mujeres indígenas.",
+      "V": "Aboga por centrar el conocimiento de mujeres indígenas en las políticas y por una adaptación más equitativa.",
+      "VI": "Documenta cómo las mujeres indígenas conceptualizan la crisis y responden con saberes y prácticas basadas en la tierra."
+    },
+    "gate_evidence": "Mujeres indígenas de Canadá occidental; declara aportar a 'the intersections between gender, Indigeneity, and environmental justice'."
+  },
+  {
+    "titulo": "Racialized Aging in the Context of Climate Extremes: Post-Flood Healthy Aging and Recovery Among Older Adults in Quilombola Communities of Southern Brazil",
+    "year": "2026",
+    "categoria": "Sustantiva fuerte",
+    "rsi_total": 4.0,
+    "gate": true,
+    "scores": {
+      "I": 1.0,
+      "II": 1.0,
+      "III": 1.0,
+      "IV": 1.0,
+      "V": 1.0,
+      "VI": 1.0
+    },
+    "evidencias": {
+      "I": "Analiza cómo racialización y vejez se co-construyen en trayectorias desiguales de envejecimiento saludable tras el desastre.",
+      "II": "Racismo ambiental, exclusión territorial racializada y fallas de gobernanza: la inundación como riesgo socialmente producido.",
+      "III": "Historia de invasiones y no legalización de territorios quilombolas; inundaciones de 2024 en el sur de Brasil.",
+      "IV": "Trabajo de campo cualitativo centrado en mayores quilombolas: testimonios domésticos, observación comunitaria y evaluación de respuestas gubernamentales.",
+      "V": "Propone gobernanza ambiental centrada en la equidad, enfoques de derechos y reducción del riesgo inclusiva.",
+      "VI": "Documenta resiliencia basada en saberes tradicionales, redes de solidaridad y agencia colectiva; mayores como actores clave."
+    },
+    "gate_evidence": "Articula raza y edad en el envejecimiento racializado de personas mayores quilombolas afectadas por las inundaciones de 2024."
+  },
+  {
+    "titulo": "Climate-resilient aquatic food systems require transformative change to address gender and intersectional inequalities",
+    "year": "2024",
+    "categoria": "Parcial",
+    "rsi_total": 2.0,
+    "gate": true,
+    "scores": {
+      "I": 1.0,
+      "II": 0.5,
+      "III": 0.5,
+      "IV": 0.5,
+      "V": 1.0,
+      "VI": 0.5
+    },
+    "evidencias": {
+      "I": "Concluye que identidades que se intersecan desfavorecen especialmente a mujeres jóvenes de grupos étnicos minoritarios.",
+      "II": "Habla de desigualdades multidimensionales y de cambio transformador, sin teorizar estructuras de poder ni sus mecanismos.",
+      "III": "Datos de acuicultores de Bangladesh (2018-2019) y revisión global; contexto poco desarrollado.",
+      "IV": "Revisión de alcance y datos de mujeres y hombres acuicultores; no se describe análisis interaccional.",
+      "V": "Destaca intervenciones transformadoras y sensibles al género para la igualdad social y de género.",
+      "VI": "Menciona el empoderamiento de las mujeres, pero las presenta principalmente como desfavorecidas ante los choques climáticos."
+    },
+    "gate_evidence": "Nombra género, clase, edad, indigeneidad, etnicidad, casta y religión, y halla desventajas en 'young women from minority ethnic groups'."
+  },
+  {
+    "titulo": "A Machine Learning Framework for Assessing Systemic Societal Vulnerability to Coastal Flooding",
+    "year": "2026",
+    "categoria": "Mención sin aplicación",
+    "rsi_total": 0.0,
+    "gate": false,
+    "scores": {
+      "I": 0.0,
+      "II": 0.0,
+      "III": 0.0,
+      "IV": 0.0,
+      "V": 0.0,
+      "VI": 0.0
+    },
+    "evidencias": {
+      "I": "No aplica: gate no superado.",
+      "II": "No aplica: gate no superado.",
+      "III": "No aplica: gate no superado.",
+      "IV": "No aplica: gate no superado.",
+      "V": "No aplica: gate no superado.",
+      "VI": "No aplica: gate no superado."
+    },
+    "gate_evidence": "Llama interseccional a la vulnerabilidad sistémica que combina educación, ingreso e infraestructura; no articula entre sí ejes de diferenciación social como género o etnia."
+  },
+  {
+    "titulo": "A hot agenda? Climate change and international student mobility: a scoping review of the literature",
+    "year": "2026",
+    "categoria": "Mención sin aplicación",
+    "rsi_total": 0.0,
+    "gate": false,
+    "scores": {
+      "I": 0.0,
+      "II": 0.0,
+      "III": 0.0,
+      "IV": 0.0,
+      "V": 0.0,
+      "VI": 0.0
+    },
+    "evidencias": {
+      "I": "No aplica: no supera el gate.",
+      "II": "No aplica: no supera el gate.",
+      "III": "No aplica: no supera el gate.",
+      "IV": "No aplica: no supera el gate.",
+      "V": "No aplica: no supera el gate.",
+      "VI": "No aplica: no supera el gate."
+    },
+    "gate_evidence": "El análisis interseccional se propone solo como agenda futura de investigación; la revisión no relaciona ejes concretos entre sí."
+  }
+]

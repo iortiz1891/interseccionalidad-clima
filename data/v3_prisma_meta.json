@@ -1,0 +1,71 @@
+{
+  "identificados": {
+    "scopus": 1882,
+    "scielo": 34
+  },
+  "excluidos_regla": {
+    "scopus": {
+      "sin_abstract": 46,
+      "erratum_o_conference_review": 8
+    },
+    "scielo": {
+      "sin_abstract": 1,
+      "tipo": 0
+    }
+  },
+  "duplicados": {
+    "dentro_scopus": 5,
+    "dentro_scielo": 5,
+    "scielo_ya_en_scopus": 7
+  },
+  "a_cribado": 1844,
+  "fuente": {
+    "scopus": 1816,
+    "scielo": 21,
+    "scopus+scielo": 7
+  },
+  "nivel_ancla": {
+    "A_nucleo": 1516,
+    "A_ampliada": 302,
+    "B_afin": 17,
+    "solo_index_keywords": 9
+  },
+  "idioma": {
+    "en": 1802,
+    "es": 28,
+    "pt": 14
+  },
+  "enlazados_v2": 1695,
+  "reutilizan_evaluacion_v2": 1686,
+  "evaluados_en_v3": 158,
+  "cribado": {
+    "excluidos": 756,
+    "retractados": 1,
+    "solo_no_interseccional": 183,
+    "solo_no_climatico": 457,
+    "ambos": 115,
+    "elegibles": 1088,
+    "elegibles_por_origen": {
+      "v2": 1010,
+      "v3": 78
+    }
+  },
+  "rsi": {
+    "gate_pass": 606,
+    "categorias_n": {
+      "mencion_sin_aplicacion": 482,
+      "parcial": 339,
+      "sustantivo": 109,
+      "nominal_debil": 97,
+      "sustantivo_fuerte": 61
+    },
+    "categorias_pct": {
+      "mencion_sin_aplicacion": 44.3,
+      "parcial": 31.2,
+      "sustantivo": 10.0,
+      "nominal_debil": 8.9,
+      "sustantivo_fuerte": 5.6
+    },
+    "modelo": "claude-opus-5-5 (Claude Code) · prompts/v2_cribado_rsi.md (reutilizados de la v2) + prompts/v3_cribado_rsi.md (nuevos)"
+  }
+}

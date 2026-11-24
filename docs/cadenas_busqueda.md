@@ -348,7 +348,7 @@ El export (CSV con información de citación, bibliográfica, abstract y keyword
 
 ---
 
-## 4. Expansión multi-base (pendiente)
+## 4. Expansión multi-base (pendiente; SciELO se ejecutó en la v3, §7)
 
 Las mismas cadenas potenciadas se pueden portar a otras bases con ajustes de sintaxis. Ver `project_revisa_pending.md` para el toolkit fetcher previsto.
 
@@ -373,6 +373,37 @@ Cada corrida se registra en `data/search_log.csv`:
 - N de resultados brutos
 - Ruta del archivo exportado
 - Notas (excepciones, timeouts, límites de export)
+
+---
+
+## 7. v3 ejecutada (24 de noviembre de 2026) — Scopus + SciELO
+
+Cadenas revisadas: trilingües (inglés, español y portugués), con un bloque interseccional que agrega vocabulario en portugués (*intersecionalidade, consubstancialidade, marcadores sociais da diferença*…) y un bloque climático más amplio (desastres, migración y movilidad, transición, salud y calor, términos en portugués). Están tal como se ejecutaron en `data/v3_query_scopus.txt` y `data/v3_query_scielo.txt`. A la cadena de Scopus se le agregó un paréntesis que faltaba para cerrar el primer `TITLE-ABS-KEY`.
+
+### 7.1 Scopus (API)
+
+`pipeline/v3/00_scopus_api.py` corre la cadena en la Scopus Search API, vista COMPLETE (trae resumen y palabras clave):
+
+- La API no acepta `LIMIT-TO`: los idiomas se piden con `AND LANGUAGE(english|spanish|portuguese)`, una consulta por idioma, para saber en qué idioma indexa Scopus cada registro.
+- La cadena codificada pasa de 9 KB y la API responde 413. Por eso el bloque climático se parte en grupos de términos unidos por OR, con consultas de hasta ~3,400 caracteres codificados: `bloque_interseccional AND TITLE-ABS-KEY(grupo_i) AND PUBYEAR > 1988 AND LANGUAGE(x)`. La unión de los grupos equivale a la cadena original. Si la API rechaza un grupo por largo (413, o 400 «Request header is too large»), ese grupo se parte en dos. La descarga terminó con 22 grupos.
+- Resultado: **1,882 registros únicos** (1,865 en inglés, 21 en español, 9 en portugués); 46 sin resumen. Dos corridas dieron los mismos 1,882 EID. Metadatos en `data/v3_search_meta.json`.
+
+### 7.2 SciELO
+
+La cadena se corrió en search.scielo.org y se exportó en RIS (todas las referencias): **34 registros**, que quedan en `data/v3_scielo_export.json`. Cuando un registro trae resúmenes en varios idiomas, se conserva el que tiene más palabras funcionales en inglés.
+
+### 7.3 Ingesta (`pipeline/v3/01_ingesta.py`)
+
+| Paso | Scopus | SciELO |
+|---|---|---|
+| Identificados | 1,882 | 34 |
+| Sin resumen (<100 caracteres) | −46 | −1 |
+| Erratum / Conference review | −8 | 0 |
+| Duplicados dentro de la fuente | −5 | −5 |
+| Ya en Scopus | — | −7 |
+| **A cribado** | **1,823** | **21** |
+
+Total a cribado: **1,844**. De ellos, 1,695 están en la v2 (por EID, DOI o título) y 1,686 tienen el mismo resumen (similitud ≥ 0.98 sin la línea de copyright): conservan la evaluación de la v2. Los 158 restantes se evaluaron con `prompts/v3_cribado_rsi.md`. El cribado deja **1,088 elegibles** (1,010 con evaluación de la v2, 78 nuevos).
 
 ---
 
