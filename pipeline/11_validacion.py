@@ -13,6 +13,7 @@ Outputs:
 """
 from __future__ import annotations
 import json
+import sys
 import math
 import pandas as pd
 from pathlib import Path
@@ -69,17 +70,25 @@ def main():
     dup = [c for c in cols if c != 'paper_id' and c in f.columns]
     f = f.drop(columns=dup).merge(res[cols], on='paper_id', how='left')
 
-    print("[2] Muestra estratificada por categoría")
-    parts = []
-    for cat in CAT_ORDER:
-        sub = f[f['categoria_bowleg'] == cat]
-        n = min(N_PER_CAT, len(sub))
-        if n > 0:
-            parts.append(sub.sample(n=n, random_state=SEED))
-    sample = pd.concat(parts)
-    # mezclar para que las categorías queden intercaladas (mismo seed → reproducible)
-    sample = sample.sample(frac=1.0, random_state=SEED).reset_index(drop=True)
-    print(f"    muestra: {len(sample)} papers ({N_PER_CAT}/categoría, seed={SEED})")
+    previa = DATA / 'v1_validation_sample.json'
+    if previa.exists() and '--remuestrear' not in sys.argv:
+        # Se conserva la muestra ya sorteada (mismos trabajos y orden): si cambian los
+        # puntajes, solo se actualizan las respuestas del LLM y no se pierden los códigos.
+        ids = [int(it['paper_id']) for it in json.loads(previa.read_text())['items']]
+        sample = f.set_index('paper_id').loc[ids].reset_index()
+        print(f"[2] Muestra conservada de {previa} ({len(sample)} papers; --remuestrear para sortear otra)")
+    else:
+        print("[2] Muestra estratificada por categoría")
+        parts = []
+        for cat in CAT_ORDER:
+            sub = f[f['categoria_bowleg'] == cat]
+            n = min(N_PER_CAT, len(sub))
+            if n > 0:
+                parts.append(sub.sample(n=n, random_state=SEED))
+        sample = pd.concat(parts)
+        # mezclar para que las categorías queden intercaladas (mismo seed → reproducible)
+        sample = sample.sample(frac=1.0, random_state=SEED).reset_index(drop=True)
+        print(f"    muestra: {len(sample)} papers ({N_PER_CAT}/categoría, seed={SEED})")
 
     def lang(x):
         x = _s(x).lower()
@@ -263,7 +272,8 @@ function humanTotal(c) {
   if (crits.some(x => x === undefined || x === null)) return null;
   const sum = crits.reduce((a,b)=>a+b, 0);
   const integ = (c.integracion == null) ? 0 : c.integracion;
-  return Math.round(((sum/6*4)*(0.5+0.5*integ))*2)/2;
+  // = pipeline/02_scoring_rsi.py::compute_total (empates hacia arriba; mínimo 0.5 si pasa el gate)
+  return Math.max(Math.floor(((sum/6*4)*(0.5+0.5*integ))*2 + 0.5 + 1e-9)/2, 0.5);
 }
 function categoria(v) {
   if (v == null) return null;

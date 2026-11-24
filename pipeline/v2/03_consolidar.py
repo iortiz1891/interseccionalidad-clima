@@ -30,14 +30,7 @@ _spec = importlib.util.spec_from_file_location('scoring_v1', 'pipeline/02_scorin
 _scoring = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_scoring)
 compute_total = _scoring.compute_total
-
-
-def categoria(total: float) -> str:
-    if total >= 3.5: return 'sustantivo_fuerte'
-    if total >= 2.5: return 'sustantivo'
-    if total >= 1.5: return 'parcial'
-    if total > 0:    return 'nominal_debil'
-    return 'mencion_sin_aplicacion'
+categoria = _scoring.categoria
 
 
 def main():

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-31_rsi_v3_batch.py — Scoring RSI v3 vía OpenAI Batch API (gpt-4.1).
+02_scoring_rsi.py — Scoring RSI v3 vía OpenAI Batch API (gpt-4.1).
 
 Rúbrica v3: GATE + 6 criterios (I-VI) + integración. El total se computa aquí
 (no el LLM) y se normaliza a 0-4 para mantener compatibilidad con el pipeline:
@@ -10,18 +10,27 @@ Rúbrica v3: GATE + 6 criterios (I-VI) + integración. El total se computa aquí
     core = sum(rsi_I..rsi_VI)              # 0-6
     norm = core / 6 * 4                    # 0-4
     factor = 0.5 + 0.5*integracion         # 0.5 / 0.75 / 1.0
-    total = round(norm * factor * 2) / 2   # a múltiplos de 0.5
+    total = floor(norm * factor * 2 + 0.5) / 2   # a múltiplos de 0.5, empates hacia arriba
+    total = max(total, 0.5)                # pasar el gate nunca deja el total en 0
+
+Hasta noviembre de 2026 el total usaba round() de Python, que redondea los empates
+al número par (0.5 → 0, 2.5 → 2, pero 1.5 → 2). Eso bajaba de categoría a parte de
+los trabajos de forma arbitraria. pipeline/recalcular_totales.py recalcula los
+totales guardados con esta fórmula, sin volver a llamar al modelo.
 
 Output: v1_bowleg_results.csv con columnas compatibles (bowleg_I..IV, bowleg_total,
 confidence, *_evidence) + columnas nuevas (rsi_V, rsi_VI, gate_pass, integracion).
 
+La clave se lee de la variable de entorno OPENAI_API_KEY o, si no existe, de
+~/.config/openai_creds (línea OPENAI_API_KEY=...).
+
 Uso:
-    python3 31_rsi_v3_batch.py full   --model gpt-4.1
-    python3 31_rsi_v3_batch.py submit --model gpt-4.1
-    python3 31_rsi_v3_batch.py fetch  <batch_id>
+    python3 pipeline/02_scoring_rsi.py full   --model gpt-4.1
+    python3 pipeline/02_scoring_rsi.py submit --model gpt-4.1
+    python3 pipeline/02_scoring_rsi.py fetch  <batch_id>
 """
 from __future__ import annotations
-import argparse, json, os, sys, time
+import argparse, json, math, os, sys, time
 from pathlib import Path
 import pandas as pd
 import requests
@@ -32,11 +41,15 @@ PROMPT = Path("prompts/bowleg_eval_v3.md")
 
 
 def load_key():
+    k = os.environ.get("OPENAI_API_KEY", "").strip()
+    if k:
+        return k
     p = Path.home() / ".config" / "openai_creds"
-    for line in p.read_text().splitlines():
-        if line.startswith("OPENAI_API_KEY="):
-            return line.split("=", 1)[1].strip()
-    sys.exit("[FATAL] OPENAI_API_KEY")
+    if p.exists():
+        for line in p.read_text().splitlines():
+            if line.startswith("OPENAI_API_KEY="):
+                return line.split("=", 1)[1].strip()
+    sys.exit("[FATAL] Falta OPENAI_API_KEY (variable de entorno o ~/.config/openai_creds)")
 
 
 def H(k): return {"Authorization": f"Bearer {k}"}
@@ -47,7 +60,7 @@ def system_prompt():
     if t.startswith("---"):
         parts = t.split("---", 2)
         if len(parts) >= 3: t = parts[2].strip()
-    return t + "\n\nRecordá: SOLO JSON, sin texto adicional."
+    return t + "\n\nRecuerda: SOLO JSON, sin texto adicional."
 
 
 def _safe(v, n=None):
@@ -127,8 +140,15 @@ def download(ofid, k, dest):
     r.raise_for_status(); dest.write_bytes(r.content)
 
 
+def _es_verdadero(v) -> bool:
+    """gate_pass puede venir como bool (JSON del modelo) o como texto (CSV)."""
+    if isinstance(v, str):
+        return v.strip().lower() in ('true', '1', '1.0')
+    return bool(v) if v is not None and not (isinstance(v, float) and math.isnan(v)) else False
+
+
 def compute_total(d: dict) -> float:
-    if not d.get('gate_pass', False):
+    if not _es_verdadero(d.get('gate_pass', False)):
         return 0.0
     crits = [d.get(f'rsi_{c}', 0) or 0 for c in ['I','II','III','IV','V','VI']]
     try:
@@ -140,7 +160,18 @@ def compute_total(d: dict) -> float:
     try: integ = float(integ)
     except Exception: integ = 0.0
     factor = 0.5 + 0.5 * integ
-    return round(norm * factor * 2) / 2
+    # Empates hacia arriba (no round() de Python, que los manda al par). El 1e-9 protege
+    # contra el error de punto flotante en los empates exactos (x.5).
+    total = math.floor(norm * factor * 2 + 0.5 + 1e-9) / 2
+    return max(total, 0.5)
+
+
+def categoria(total: float) -> str:
+    if total >= 3.5: return 'sustantivo_fuerte'
+    if total >= 2.5: return 'sustantivo'
+    if total >= 1.5: return 'parcial'
+    if total > 0:    return 'nominal_debil'
+    return 'mencion_sin_aplicacion'
 
 
 def parse(raw: Path) -> pd.DataFrame:
@@ -189,7 +220,7 @@ def main():
     k = load_key()
     jsonl = DATA / 'v1_rsi_v3_input.jsonl'
     raw = DATA / 'v1_rsi_v3_raw.jsonl'
-    out = DATA / 'v1_bowleg_results.csv'   # sobrescribe el de v2 (mismo schema base)
+    out = DATA / 'v1_bowleg_results.csv'   # sobrescribe la corrida anterior
 
     if args.action == 'submit':
         build_jsonl(jsonl, args.model, args.limit)
