@@ -15,4 +15,4 @@ sentence-transformers>=2.2
 datamapplot>=0.6
 
 # Scoring con LLM vía OpenAI Batch API (solo para reproducción completa)
-openai>=1.30
+requests>=2.28

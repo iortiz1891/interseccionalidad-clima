@@ -348,7 +348,7 @@ El export (CSV con información de citación, bibliográfica, abstract y keyword
 
 ---
 
-## 4. Expansión multi-base (pendiente)
+## 4. Expansión multi-base (pendiente; SciELO y OpenAlex se ejecutaron en la v3, §7 y §8)
 
 Las mismas cadenas potenciadas se pueden portar a otras bases con ajustes de sintaxis. Ver `project_revisa_pending.md` para el toolkit fetcher previsto.
 
@@ -373,6 +373,92 @@ Cada corrida se registra en `data/search_log.csv`:
 - N de resultados brutos
 - Ruta del archivo exportado
 - Notas (excepciones, timeouts, límites de export)
+
+---
+
+## 7. v3 ejecutada (24 de noviembre de 2026) — Scopus + SciELO (+ OpenAlex, §8)
+
+Cadenas revisadas: trilingües (inglés, español y portugués), con un bloque interseccional que agrega vocabulario en portugués (*intersecionalidade, consubstancialidade, marcadores sociais da diferença*…) y un bloque climático más amplio (desastres, migración y movilidad, transición, salud y calor, términos en portugués). Están tal como se ejecutaron en `data/v3_query_scopus.txt` y `data/v3_query_scielo.txt`. A la cadena de Scopus se le agregó un paréntesis que faltaba para cerrar el primer `TITLE-ABS-KEY`.
+
+### 7.1 Scopus (API)
+
+`pipeline/v3/00_scopus_api.py` corre la cadena en la Scopus Search API, vista COMPLETE (trae resumen y palabras clave):
+
+- La API no acepta `LIMIT-TO`: los idiomas se piden con `AND LANGUAGE(english|spanish|portuguese)`, una consulta por idioma, para saber en qué idioma indexa Scopus cada registro.
+- La cadena codificada pasa de 9 KB y la API responde 413. Por eso el bloque climático se parte en grupos de términos unidos por OR, con consultas de hasta ~3,400 caracteres codificados: `bloque_interseccional AND TITLE-ABS-KEY(grupo_i) AND PUBYEAR > 1988 AND LANGUAGE(x)`. La unión de los grupos equivale a la cadena original. Si la API rechaza un grupo por largo (413, o 400 «Request header is too large»), ese grupo se parte en dos. La descarga terminó con 22 grupos.
+- Resultado: **1,882 registros únicos** (1,865 en inglés, 21 en español, 9 en portugués); 46 sin resumen. Dos corridas dieron los mismos 1,882 EID. Metadatos en `data/v3_search_meta.json`.
+
+### 7.2 SciELO
+
+La cadena se corrió en search.scielo.org y se exportó en RIS (todas las referencias): **34 registros**, que quedan en `data/v3_scielo_export.json`. Cuando un registro trae resúmenes en varios idiomas, se conserva el que tiene más palabras funcionales en inglés.
+
+### 7.3 Ingesta (`pipeline/v3/01_ingesta.py`)
+
+| Paso | Scopus | SciELO |
+|---|---|---|
+| Identificados | 1,882 | 34 |
+| Sin resumen (<100 caracteres) | −46 | −1 |
+| Erratum / Conference review | −8 | 0 |
+| Duplicados dentro de la fuente | −5 | −5 |
+| Ya en Scopus | — | −7 |
+| **A cribado** | **1,823** | **21** |
+
+Total a cribado: **1,844**. De ellos, 1,695 están en la v2 (por EID, DOI o título) y 1,686 tienen el mismo resumen (similitud ≥ 0.98 sin la línea de copyright): conservan la evaluación de la v2. Los 158 restantes se evaluaron con `prompts/v3_cribado_rsi.md`. Sin OpenAlex, el cribado deja **1,088 elegibles** (1,010 con evaluación de la v2, 78 nuevos); con OpenAlex (§8), 1,212.
+
+---
+
+## 8. v3: OpenAlex en español y portugués (24 de noviembre de 2026)
+
+Después de Scopus y SciELO (§7), la v3 suma los trabajos en **español y portugués** que OpenAlex recupera con las mismas cadenas. El objetivo es cubrir literatura iberoamericana que no indexan Scopus ni SciELO (tesis, capítulos de libro, revistas regionales).
+
+### 8.1 Consulta (`data/v3_query_openalex.json`)
+
+OpenAlex no tiene el lenguaje de consulta de Scopus, así que las cadenas v3 se tradujeron a sus filtros:
+
+```
+filter=title_and_abstract.search:<términos interseccionales separados por |>,
+       title_and_abstract.search:<términos climáticos separados por |>,
+       language:es|pt,publication_year:>1988
+```
+
+- Cada bloque es un filtro de `title_and_abstract.search` con valores separados por `|` (OR); los filtros se unen con comas (AND). No se usa `AND`/`OR` en el texto porque OpenAlex limita las búsquedas con más de 5 operadores booleanos.
+- **Sin comodines ni proximidad.** Los términos con `*` se escriben con sus variantes en español y portugués (*interseccional, interseccionales, intersecional, intersecionais…*); las expresiones con `W/n` se omiten (las formas *interseccional\** las cubren casi siempre). Quedan 57 términos interseccionales y 177 climáticos.
+- **Lematización en inglés.** OpenAlex lematiza: *intersectional* también recupera *intersection*. Eso trae ruido (cruces de calles, intersección de capas en SIG, «la intersección entre dos temas») que el cribado retira.
+- **Idioma por el título.** OpenAlex asigna el idioma del trabajo según el título; hay registros en español o portugués con resumen en inglés, y algunos en inglés marcados como español o portugués.
+- Solo español y portugués: lo que OpenAlex tiene en inglés ya lo cubre Scopus, con su búsqueda más fina.
+
+### 8.2 Descarga (`pipeline/v3/00b_openalex.py`)
+
+Los bloques se parten en grupos (hasta 30 términos interseccionales × 45 climáticos) y se corren todas las combinaciones: **8 consultas**, 776 resultados con repetidos, **470 trabajos únicos** (272 en portugués, 198 en español), unidos por ID de OpenAlex. El resumen se reconstruye a partir del índice invertido de OpenAlex. Sin clave de API cabe en el presupuesto diario gratuito; la paginación es simple (`page=`), porque el cursor exige clave. Metadatos en `data/v3_openalex_meta.json`.
+
+Tipos de documento: 242 artículos, 107 tesis, 53 capítulos de libro, 20 libros, 14 ponencias, 14 editoriales, 8 informes y otros.
+
+### 8.3 Ingesta (`pipeline/v3/01_ingesta.py`, después de Scopus y SciELO)
+
+| Paso | OpenAlex |
+|---|---|
+| Identificados | 470 |
+| Sin resumen (<100 caracteres) | −13 |
+| Tipos que no son trabajos (paratext, dataset, book review) | −3 |
+| Duplicados dentro de OpenAlex | −1 |
+| Ya en Scopus o SciELO (por DOI o título + año + primer autor) | −24 |
+| **Nuevos a cribado** | **429** (251 en portugués, 178 en español) |
+
+Los 1,844 registros de Scopus y SciELO conservan su paper_id (0–1843) y su evaluación; los 24 que OpenAlex también encontró quedan marcados en `_source` (`…+openalex`). Los 429 nuevos reciben paper_id 1844–2272. Total a cribado: **2,273**. Los 429 nuevos se evaluaron con el mismo prompt (`prompts/v3_cribado_rsi.md`), en lotes propios (`work/v3_salidas/oa_lote_*.jsonl`). El cribado deja **1,212 elegibles** (1,088 de Scopus y SciELO y 124 solo de OpenAlex: 56 en español y 68 en portugués). La mayoría de los nuevos que se excluyen son ruido de la lematización (*intersection* en sentido vial, cartográfico o de cruce de temas) o trabajos interseccionales sin objeto climático.
+
+### 8.4 Verificación con Redalyc (sin registros nuevos)
+
+Redalyc no tiene una API pública de búsqueda ni exportación de resultados, y su buscador busca en el **texto completo**. Se corrió la cadena de SciELO (sin `subject:` ni filtro de idioma) en el buscador de redalyc.org, partiendo el bloque climático en tres grupos porque la cadena completa no carga, y se recorrieron todas las páginas de resultados en el navegador (`data/v3_redalyc_meta.json`):
+
+| Paso | n |
+|---|---:|
+| Resultados (651 + 112 + 678) | 1,441 |
+| Artículos únicos | 1,262 |
+| Con un término interseccional en título, resumen o palabras clave | 99 |
+| Con ambos bloques en título, resumen o palabras clave (equivalente a `TITLE-ABS-KEY`) | 7 |
+| **Nuevos frente a la v3** | **0** |
+
+Los 7 ya estaban en la v3 (por Scopus, SciELO u OpenAlex). Casi todo lo demás menciona los términos solo en el cuerpo del texto o en las referencias. Para esta pregunta, Redalyc no amplía el corpus: su contenido pertinente ya entra por las otras tres fuentes.
 
 ---
 

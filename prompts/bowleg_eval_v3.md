@@ -2,6 +2,11 @@
 name: rsi-eval-v3
 description: Rúbrica de Sustantividad Interseccional v3 — GATE + 6 criterios + integración + few-shot.
 model: gpt-4.1
+errata: >-
+  2026-11: el ejemplo B decía «parcial (total ~1.5–2)», pero con sus puntajes
+  (Σ criterios = 2, integración = 0.5) la fórmula del pipeline da 1.0, que es
+  nominal/débil. Las corridas de la v1 (gpt-4.1) y de la v2 (Claude) se hicieron
+  con el rótulo anterior. Este bloque no se envía al modelo.
 ---
 
 # Rúbrica de Sustantividad Interseccional (RSI) — v3
@@ -67,7 +72,7 @@ Esto importa porque la interseccionalidad ES la integración: un paper con los 6
 Abstract: "Usamos un enfoque interseccional para revisar la literatura bibliométrica sobre energía y clima…" pero el resto solo cuenta papers por año/país.
 → gate_pass=false. No articula ejes de diferenciación relacionados. Total 0.
 
-**Ejemplo B — parcial (total ~1.5–2):**
+**Ejemplo B — nominal/débil (total 1.0):**
 Abstract: estudio cuantitativo que mide vulnerabilidad climática por género Y por nivel socioeconómico, en regresiones separadas, en un país; concluye que ambos importan.
 → gate_pass=true; I=0.5 (ejes aditivos), II=0.5, III=0.5, IV=0 (sin interacciones), V=0.5, VI=0, integración=0.5.
 

@@ -28,5 +28,8 @@ data/*_input.jsonl
 .DS_Store
 Thumbs.db
 
-# Trabajo intermedio de la v2 (lotes de cribado/RSI)
-work/
+# Trabajo intermedio (lotes de cribado/RSI, respuestas crudas de la API).
+# Las salidas de cribado/RSI de la v3 sí se versionan.
+work/*
+!work/v3_salidas/
+!work/v3_salidas/*.jsonl

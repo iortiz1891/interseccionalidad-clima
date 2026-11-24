@@ -48,17 +48,17 @@
     "gate_evidence": "El abstract analiza cómo género, casta y etnicidad se relacionan en la participación de mujeres en programas de adaptación climática."
   },
   {
-    "titulo": "Gender, place, and agricultural extension: a mixed-methods approach to understand farmer needs in Liberia",
-    "year": "2021",
+    "titulo": "Migration and conflict in a global warming era: A political understanding of climate change",
+    "year": "2020",
     "categoria": "Parcial",
     "rsi_total": 2.0,
     "gate": true,
     "scores": {
       "I": 0.5,
-      "II": 0.5,
+      "II": 1.0,
       "III": 1.0,
-      "IV": 0.5,
-      "V": 0.5,
+      "IV": 0.0,
+      "V": 1.0,
       "VI": 0.5
     },
     "evidencias": {
@@ -66,10 +66,10 @@
       "II": "",
       "III": "",
       "IV": "",
-      "V": "Se orienta a mejorar la equidad en servicios y resiliencia, pero la dimensión de justicia se menciona más en implicaciones prácticas que como marco crítico.",
-      "VI": "Se menciona agencia (deseo de más extensionistas mujeres, estrategias de adaptación), pero la agencia no es central en el análisis."
+      "V": "Orientación explícita a la justicia ambiental y crítica de discursos anti-migración; busca transformar perspectivas y políticas.",
+      "VI": "Se menciona 'dar voz' a perspectivas alternativas, lo que sugiere agencia, pero no se documenta en detalle."
     },
-    "gate_evidence": "El paper analiza cómo género y lugar/ruralidad se intersectan para afectar el acceso a servicios de extensión agrícola y resiliencia en Liberia."
+    "gate_evidence": "El abstract menciona enfoques interseccionales y post/decoloniales para analizar migración y conflicto climático, articulando múltiples ejes (e.g., Norte-Sur, raza, género, clase) como relacionados."
   },
   {
     "titulo": "Sustainability governance for agrarian transformation under climate change",

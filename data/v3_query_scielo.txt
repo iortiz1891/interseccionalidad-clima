@@ -1,0 +1,100 @@
+subject:(
+  intersectional*
+  OR interseccional*
+  OR "intersecting inequalities"
+  OR "intersecting identities"
+  OR "matrix of domination"
+  OR "multiple jeopardy"
+  OR kyriarch*
+  OR "coloniality of gender"
+  OR "matriz de dominación"
+  OR "colonialidad de género"
+  OR consustancialidad
+  OR "desigualdades entrelazadas"
+  OR "mutually constitutive"
+  OR "interlocking oppression"
+  OR "overlapping oppression"
+  OR "consubstancialidade"
+  OR "intersecionalidade"
+  OR "consubstantiality"
+  OR "coextensividade"
+  OR "imbricação das relações sociais"
+  OR "marcadores sociais da diferença"
+  OR "matriz de dominação"
+  OR "colonialidade de gênero"
+  OR "opressões entrecruzadas"
+  OR "desigualdades entrelaçadas"
+  OR "desigualdades interseccionais"
+  OR "interseção de opressões"
+  OR "intersecção de opressões"
+  OR "sistemas de opressão entrelaçados"
+  OR "opresiones entrecruzadas"
+  OR "desigualdades imbricadas"
+)
+AND subject:(
+  "climate change"
+  OR "global warming"
+  OR "climate crisis"
+  OR "climate justice"
+  OR "climate adaptation"
+  OR "climate vulnerability"
+  OR "climate risk"
+  OR "extreme weather"
+  OR "extreme events"
+  OR hurricane*
+  OR cyclone*
+  OR typhoon*
+  OR flood*
+  OR drought*
+  OR wildfire*
+  OR "sea level rise"
+  OR "cambio climático"
+  OR "crisis climática"
+  OR "justicia climática"
+  OR "adaptación climática"
+  OR "vulnerabilidad climática"
+  OR huracán*
+  OR ciclón*
+  OR inundaci*
+  OR sequía*
+  OR "eventos climáticos extremos"
+  OR "mudanças climáticas"
+  OR "mudança climática"
+  OR "mudança do clima"
+  OR "alterações climáticas"
+  OR "aquecimento global"
+  OR "crise climática"
+  OR "emergência climática"
+  OR "variabilidade climática"
+  OR "justiça climática"
+  OR "adaptação climática"
+  OR "vulnerabilidade climática"
+  OR "resiliência climática"
+  OR "riscos climáticos"
+  OR "governança climática"
+  OR "mitigação climática"
+  OR "políticas climáticas"
+  OR "migração climática"
+  OR "eventos climáticos extremos"
+  OR "eventos meteorológicos extremos"
+  OR "ondas de calor"
+  OR furac*
+  OR "ciclones tropicais"
+  OR tufão*
+  OR enchente*
+  OR inundaç*
+  OR estiagem*
+  OR "incêndios florestais"
+  OR "elevação do nível do mar"
+  OR "erosão costeira"
+  OR "desastres climáticos"
+  OR "racismo ambiental"
+  OR "perdas e danos"
+  OR "redução do risco de desastres"
+  OR "loss and damage"
+  OR "just transition"
+  OR "energy transition"
+  OR "pérdidas y daños"
+  OR "transición justa"
+)
+AND (la:en OR la:es OR la:pt)

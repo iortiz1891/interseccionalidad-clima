@@ -1,0 +1,48 @@
+{
+  "fecha": "2026-11-24",
+  "fuente": "Scopus Search API (vista COMPLETE)",
+  "cadena_web": "data/v3_query_scopus.txt",
+  "cadena_api": "TITLE-ABS-KEY ( intersectional* OR interseccional* OR \"intersecting inequalit*\" OR \"intersecting identit*\" OR \"intersecting oppression*\" OR ( intersection* W/4 ( gender OR race OR racial OR racism OR sex OR sexism OR sexuality OR class OR ethnic* OR identit* OR oppression* OR disabilit* OR indigen* OR caste ) ) OR ( intersecci* W/4 ( género OR genero OR raza OR racismo OR sexo OR sexualidad* OR clase OR étnic* OR etnic* OR identidad* OR opresi* OR discapacidad* OR indígena* OR indigena* ) ) OR \"matrix of domination\" OR \"multiple jeopardy\" OR kyriarch* OR \"coloniality of gender\" OR \"simultaneity of oppression*\" OR \"entangled inequalit*\" OR \"multiple marginali*\" OR ( interlocking W/3 ( oppression* OR inequalit* OR domination ) ) OR \"matriz de dominación\" OR \"matriz de opresión\" OR \"colonialidad del género\" OR \"colonialidad de género\" OR \"entronque patriarcal\" OR consustancialidad OR \"desigualdades entrelazadas\" OR ( imbricaci* W/3 ( opresi* OR dominaci* OR género OR raza OR clase ) ) OR ( entrelazad* W/3 ( opresi* OR dominaci* ) ) OR \"interlocking systems of power\" OR \"intersecting systems of power\" OR \"overlapping oppression*\" OR \"opresiones entrecruzadas\" OR \"opresiones imbricadas\" OR \"desigualdades imbricadas\" OR \"relaciones de poder entrelazadas\" OR \"intersecionalidade\" OR \"interseção de opressões\" OR \"intersecção de opressões\" OR \"consubstancialidade\" OR \"consubstancialidades\" OR \"consubstantiality\" OR \"coextensividade\" OR \"imbricação das relações sociais\" OR \"matriz de dominação\" OR \"matriz de opressão\" OR \"desigualdades interseccionais\" OR \"opressões entrecruzadas\" OR \"opressões entrelaçadas\" OR \"desigualdades entrelaçadas\" OR \"colonialidade de gênero\" OR \"colonialidade do gênero\" OR \"sistemas de opressão entrelaçados\" OR \"sistemas de dominação entrelaçados\" OR \"marcadores sociais da diferença\" OR ( interseç* W/4 ( gênero OR genero OR raça OR raca OR racismo OR sexo OR sexualidade OR classe OR etnia OR identidade OR opressão OR opressao OR desigualdade OR deficiência OR deficiencia OR indígena OR indigena ) ) OR ( intersecç* W/4 ( gênero OR genero OR raça OR raca OR racismo OR sexo OR sexualidade OR classe OR etnia OR identidade OR opressão OR opressao OR desigualdade OR deficiência OR deficiencia OR indígena OR indigena ) ) OR ( imbrica* W/3 ( opressão OR opressoes OR opressões OR dominação OR dominacao OR desigualdades OR gênero OR genero OR raça OR raca OR classe ) ) ) AND TITLE-ABS-KEY ( \"climate change*\" OR \"changing climate*\" OR \"global warming\" OR \"global environmental change\" OR \"climate crisis\" OR \"climate emergenc*\" OR \"climate variab*\" OR \"climate justice\" OR \"climate adapt*\" OR \"climate vulnerab*\" OR \"climate risk*\" OR \"climate resilien*\" OR \"climate polic*\" OR \"climate action\" OR \"climate governance\" OR \"climate mitigation\" OR \"climate finance\" OR \"climate migra*\" OR \"climate mobilit*\" OR \"climate displace*\" OR \"climate impact*\" OR \"climate hazard*\" OR \"climate extreme*\" OR \"climate shock*\" OR \"climate-induced\" OR \"climate-related\" OR \"climate security\" OR \"climate politic*\" OR \"climate activis*\" OR \"climate anxiety\" OR \"extreme weather\" OR \"extreme event*\" OR \"extreme heat\" OR \"heat stress\" OR heatwave* OR \"heat wave*\" OR \"heat-related\" OR \"urban heat\" OR hurricane* OR cyclone* OR typhoon* OR storm* OR flood* OR drought* OR wildfire* OR bushfire* OR \"forest fire*\" OR \"sea level*\" OR \"sea-level*\" OR \"coastal erosion\" OR monsoon* OR \"el niño\" OR \"el nino\" OR desertification OR glacier* OR permafrost OR landslide* OR \"cold wave*\" OR hydrometeorolog* OR disaster* OR \"natural hazard*\" OR \"cambio* clim*\" OR \"crisis clim*\" OR \"emergencia clim*\" OR \"variabilidad clim*\" OR \"calentamiento global\" OR \"justicia clim*\" OR \"adaptación clim*\" OR \"vulnerabilidad clim*\" OR \"riesgo* clim*\" OR \"política* clim*\" OR \"acción clim*\" OR \"gobernanza clim*\" OR \"migraci* clim*\" OR \"desplaza* clim*\" OR \"movilidad clim*\" OR \"evento* clim*\" OR \"evento* extremo*\" OR \"fenómeno* extremo*\" OR hidrometeorol* OR hurac* OR ciclón* OR ciclon* OR tifón* OR tifon* OR tormenta* OR marejada* OR inundaci* OR sequía* OR sequia* OR \"ola* de calor\" OR \"estrés térmico\" OR \"incendio* forestal*\" OR \"nivel del mar\" OR \"erosión costera\" OR desertificaci* OR glaciar* OR \"deslizamiento* de tierra*\" OR desastre* OR \"amenaza* natural*\" OR \"disaster risk reduction\" OR maladaptation OR \"compound climate risk*\" OR \"mudança* climática*\" OR \"mudança* do clima\" OR \"alterações climáticas\" OR \"alteração climática\" OR \"aquecimento global\" OR \"crise climática\" OR \"emergência climática\" OR \"variabilidade climática\" OR \"justiça climática\" OR \"adaptação climática\" OR \"vulnerabilidade climática\" OR \"risco* climático*\" OR \"resiliência climática\" OR \"política* climática*\" OR \"ação climática\" OR \"governança climática\" OR \"mitigação climática\" OR \"financiamento climático\" OR \"finanças climáticas\" OR \"migração climática\" OR \"mobilidade climática\" OR \"deslocamento* climático*\" OR \"impacto* climático*\" OR \"ameaça* climática*\" OR \"extremo* climático*\" OR \"choque* climático*\" OR \"segurança climática\" OR \"política do clima\" OR \"ativismo climático\" OR \"ansiedade climática\" OR \"eventos climáticos extremos\" OR \"eventos meteorológicos extremos\" OR \"ondas de calor\" OR \"onda de calor\" OR \"estresse térmico\" OR \"calor urbano\" OR furac* OR \"ciclone* tropical*\" OR tufão* OR tufões OR tempestade* OR \"tempestade* tropical*\" OR \"ressaca do mar\" OR enchente* OR inundaç* OR estiagem* OR seca* OR queimada* OR \"incêndio* florestai*\" OR \"elevação do nível do mar\" OR \"subida do nível do mar\" OR \"erosão costeira\" OR monção* OR \"desertificação\" OR geleira* OR \"deslizamento* de terra\" OR \"desastre* socioambientai*\" OR \"desastre* climático*\" OR \"ameaça* natural*\" OR \"risco de desastres\" OR \"perdas e danos\" OR \"adaptação transformadora\" OR \"pérdidas y daños\" OR \"racismo ambiental\" OR \"racismo medioambiental\" ) AND PUBYEAR > 1988",
+  "idioma_por_consulta": "AND LANGUAGE(english|spanish|portuguese), una consulta por idioma",
+  "particion": {
+    "limite_caracteres": 3400,
+    "grupos_conteo": 15,
+    "grupos_descarga": 22,
+    "terminos_por_grupo_descarga": [
+      5,
+      6,
+      6,
+      6,
+      6,
+      7,
+      9,
+      9,
+      6,
+      7,
+      5,
+      6,
+      16,
+      5,
+      6,
+      8,
+      8,
+      8,
+      10,
+      14,
+      10,
+      5
+    ]
+  },
+  "suma_por_idioma_con_repetidos": {
+    "English": 2895,
+    "Spanish": 40,
+    "Portuguese": 16
+  },
+  "unicos_por_idioma": {
+    "English": 1865,
+    "Spanish": 21,
+    "Portuguese": 9
+  },
+  "registros_unicos": 1882,
+  "sin_resumen": 46
+}

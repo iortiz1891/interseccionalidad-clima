@@ -18,6 +18,10 @@ RSI, en orden aleatorio dentro del bloque. Cualquier número de bloques completo
 muestra balanceada, y la posición no delata el estrato. Quedan fuera del marco muestral
 los casos ejemplares que el dashboard muestra con su puntaje y el trabajo retractado.
 
+Si data/v2_validation_sample.json ya existe, se conserva la muestra (mismos trabajos,
+bloques, orden y estratos del sorteo) y solo se actualizan las respuestas del LLM.
+Con --remuestrear se sortea una muestra nueva.
+
 Las respuestas del LLM no van en la página de codificación: van en
 site/v2/validacion_llm.js, que la página carga solo al pedir la concordancia.
 
@@ -30,6 +34,7 @@ from __future__ import annotations
 import hashlib
 import json
 import random
+import sys
 import pandas as pd
 from pathlib import Path
 
@@ -129,7 +134,7 @@ REGLAS = [
 
 EJEMPLOS = [
     "<b>A · gate = No (mención sin aplicación).</b> «Usamos un enfoque interseccional para revisar la literatura bibliométrica sobre energía y clima…», pero el resto solo cuenta trabajos por año y país. No articula ejes relacionados → RSI 0.",
-    "<b>B · parcial (RSI ≈ 1.5–2).</b> Estudio cuantitativo que mide vulnerabilidad climática por género y por nivel socioeconómico en regresiones separadas, en un país. Gate = Sí; I = 0.5 (ejes aditivos), II = 0.5, III = 0.5, IV = 0 (sin interacciones), V = 0.5, VI = 0, integración = 0.5.",
+    "<b>B · nominal (RSI = 1.0).</b> Estudio cuantitativo que mide vulnerabilidad climática por género y por nivel socioeconómico en regresiones separadas, en un país. Gate = Sí; I = 0.5 (ejes aditivos), II = 0.5, III = 0.5, IV = 0 (sin interacciones), V = 0.5, VI = 0, integración = 0.5. (El prompt que siguió el LLM rotulaba este ejemplo como «parcial, ≈ 1.5–2»; con la fórmula da 1.0.)",
     "<b>C · sustantiva fuerte (RSI ≈ 3.5–4).</b> Etnografía de mujeres indígenas en una costa específica; analiza cómo colonialidad, género y clase se co-constituyen en la exposición a ciclones; muestreo intencional; documenta estrategias de resistencia comunitaria; orientada a la justicia climática. Todo = 1.",
 ]
 
@@ -194,19 +199,30 @@ def main():
     poblacion['estrato'] = poblacion.apply(estrato, axis=1)
     n_pob = poblacion['estrato'].value_counts().to_dict()
 
-    print(f"[2] Muestra: {N_BLOQUES} bloques × {len(ESTRATOS)} estratos (seed={SEED})")
-    por_estrato = {}
-    for key, _ in ESTRATOS:
-        sub = marco[marco['estrato'] == key]
-        if len(sub) < N_BLOQUES:
-            raise SystemExit(f'El estrato {key} tiene {len(sub)} registros (< {N_BLOQUES})')
-        por_estrato[key] = list(sub.sample(n=N_BLOQUES, random_state=SEED)['paper_id'])
-    rng = random.Random(SEED)
-    orden = []                          # (bloque, paper_id, estrato)
-    for b in range(N_BLOQUES):
-        bloque = [(por_estrato[k][b], k) for k, _ in ESTRATOS]
-        rng.shuffle(bloque)
-        orden += [(b + 1, pid, k) for pid, k in bloque]
+    previa = DATA / 'v2_validation_sample.json'
+    if previa.exists() and '--remuestrear' not in sys.argv:
+        # La muestra ya sorteada se conserva: si cambian los puntajes (p. ej., al corregir el
+        # redondeo), cambian las respuestas del LLM, no los trabajos ni su orden. Así no se
+        # pierden los códigos que ya estén guardados. Los estratos son los del sorteo y su
+        # tamaño N es el de entonces: es lo que pide el acuerdo ponderado por estrato.
+        prev = json.loads(previa.read_text())
+        orden = [(it['bloque'], int(it['paper_id']), it['llm']['estrato']) for it in prev['items']]
+        n_pob = {e['key']: e['N'] for e in prev['meta']['estratos']}
+        print(f"[2] Muestra conservada de {previa} ({len(orden)} trabajos; --remuestrear para sortear otra)")
+    else:
+        print(f"[2] Muestra: {N_BLOQUES} bloques × {len(ESTRATOS)} estratos (seed={SEED})")
+        por_estrato = {}
+        for key, _ in ESTRATOS:
+            sub = marco[marco['estrato'] == key]
+            if len(sub) < N_BLOQUES:
+                raise SystemExit(f'El estrato {key} tiene {len(sub)} registros (< {N_BLOQUES})')
+            por_estrato[key] = list(sub.sample(n=N_BLOQUES, random_state=SEED)['paper_id'])
+        rng = random.Random(SEED)
+        orden = []                          # (bloque, paper_id, estrato)
+        for b in range(N_BLOQUES):
+            bloque = [(por_estrato[k][b], k) for k, _ in ESTRATOS]
+            rng.shuffle(bloque)
+            orden += [(b + 1, pid, k) for pid, k in bloque]
 
     cons_i = cons.set_index('paper_id')
     cr_i = cr.set_index('paper_id')
@@ -404,7 +420,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
     <summary>¿Cómo funciona? (leer una vez)</summary>
     <ul>
       <li>Repites, sobre una muestra, <b>los mismos pasos que siguió el LLM</b> con cada registro: <b>Paso 0</b> inclusión (¿pertenece al corpus?), <b>Paso 1</b> gate, <b>Paso 2</b> criterios I–VI y <b>Paso 3</b> integración. Las definiciones, reglas y ejemplos son los del prompt (<code>prompts/v2_cribado_rsi.md</code>).</li>
-      <li>Cada criterio vale <b>0, 0.5 o 1</b>. La página calcula tu <b>puntaje RSI</b> con la misma fórmula del pipeline: <b>(Σ criterios / 6 × 4) × (0.5 + 0.5 × integración)</b>, redondeado a 0.5. Gate = No → 0.</li>
+      <li>Cada criterio vale <b>0, 0.5 o 1</b>. La página calcula tu <b>puntaje RSI</b> con la misma fórmula del pipeline: <b>(Σ criterios / 6 × 4) × (0.5 + 0.5 × integración)</b>, redondeado a 0.5 (empates hacia arriba; mínimo 0.5 si pasa el gate). Gate = No → 0.</li>
       <li><b>A ciegas:</b> esta página no contiene las respuestas del LLM. Se cargan solo cuando pides la concordancia. No revises la <a href="corpus.html">lista completa del corpus</a> antes de codificar: ahí sí se ven.</li>
       <li><b>Muestra:</b> __N__ trabajos en __BLOQUES__ bloques de __POR_BLOQUE__. Cada bloque trae registros que el LLM incluyó y excluyó, de todos los niveles de la RSI, en orden aleatorio. Si te detienes al final de un bloque, la muestra sigue balanceada. Recomendado: al menos 10 bloques.</li>
       <li>Tu avance se guarda en este navegador. Descarga un <b>respaldo</b> para continuar en otro equipo (botón «Importar respaldo»).</li>
@@ -505,20 +521,15 @@ function faltan(c) {
   if (!has(c.integracion)) out.push('integración');
   return out;
 }
-// round() de Python redondea los empates al par (0.5 → 0; 2.5 → 2): se replica para que
-// el total humano y el del LLM salgan de exactamente la misma fórmula.
-function roundHalfEven(x) {
-  const f = Math.floor(x), d = x - f;
-  if (d > 0.5) return f + 1;
-  if (d < 0.5) return f;
-  return (f % 2 === 0) ? f : f + 1;
-}
+// Misma fórmula que pipeline/02_scoring_rsi.py::compute_total: empates hacia arriba
+// (0.5 → 1, 2.5 → 3) y mínimo 0.5 si pasa el gate.
+function roundHalfUp(x) { return Math.floor(x + 0.5 + 1e-9); }
 function rsiTotal(c) {            // = pipeline/02_scoring_rsi.py::compute_total
   if (c.gate !== 1) return 0;
   let core = 0; for (const k of K6) core += c[k];
   const norm = core / 6.0 * 4.0;
   const factor = 0.5 + 0.5 * c.integracion;
-  return roundHalfEven(norm * factor * 2) / 2;
+  return Math.max(roundHalfUp(norm * factor * 2) / 2, 0.5);
 }
 function categoria(t) {
   if (t >= 3.5) return 'sustantivo_fuerte';
@@ -592,7 +603,7 @@ function render() {
   else if (isComplete(c)) {
     const core = K6.reduce((a, k) => a + c[k], 0), norm = core / 6 * 4, fac = 0.5 + 0.5 * c.integracion, t = rsiTotal(c);
     score = `<div class="big">RSI = ${fmt(t)} ${catPill(categoria(t))}</div>
-      <div class="formula">Σ criterios = ${fmt(core)} → ${fmt(core)} / 6 × 4 = ${fmt(norm, 2)} · × (0.5 + 0.5 × ${fmt(c.integracion)}) = ${fmt(norm * fac, 2)} → redondeado a 0.5: <b style="color:#fff">${fmt(t)}</b></div>`;
+      <div class="formula">Σ criterios = ${fmt(core)} → ${fmt(core)} / 6 × 4 = ${fmt(norm, 2)} · × (0.5 + 0.5 × ${fmt(c.integracion)}) = ${fmt(norm * fac, 2)} → redondeado a 0.5 (mín. 0.5): <b style="color:#fff">${fmt(t)}</b></div>`;
   } else score = `<div class="big" style="font-size:15px">Tu puntaje aparecerá al completar los pasos</div><div class="formula">Falta: ${falt.join(', ')}</div>`;
 
   const lang = it.lang ? `<span class="pill ${it.lang}">${it.lang}</span>` : '';

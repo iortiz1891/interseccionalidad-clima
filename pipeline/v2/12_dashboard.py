@@ -132,10 +132,9 @@ def main():
         ts = topic_stats.get('topics', [])
         meta = topic_stats.get('meta', {})
         if not ts: return ""
-        sust = [t for t in ts if t['rsi_mean'] >= 2.5]
-        ceros = [t for t in ts if t['rsi_mean'] == 0 and t['n'] >= 10]
-        top_names = ", ".join(f"<i>{t['label']}</i> ({t['rsi_mean']:.2f})" for t in sust[:4])
-        cero_names = ", ".join(f"<i>{t['label']}</i>" for t in ceros[:4])
+        _ord = sorted([t for t in ts if t['n'] >= 10], key=lambda t: -t['rsi_mean'])
+        top_names = ", ".join(f"<i>{t['label']}</i> ({t['rsi_mean']:.2f})" for t in _ord[:3])
+        cero_names = ", ".join(f"<i>{t['label']}</i> ({t['rsi_mean']:.2f})" for t in _ord[-3:][::-1])
         # idioma: tópicos sustantivos anglófonos vs grandes hispanos nominales
         es_grandes = sorted([t for t in ts if t['n'] >= 20], key=lambda x: -x['es_pct'])[:2]
         es_txt = ", ".join(f"<i>{t['label']}</i> ({t['es_pct']:.0f}% ES, RSI {t['rsi_mean']:.2f})" for t in es_grandes)
@@ -156,8 +155,8 @@ def main():
   <ol style="font-size:13.5px;line-height:1.6;padding-left:20px">
     <li><b>La sustantividad se concentra topográficamente.</b> El RSI medio por tópico va de
       <b>{meta.get('rsi_min',0):.2f}</b> a <b>{meta.get('rsi_max',0):.2f}</b>: no se reparte al azar.
-      Los vecindarios sustantivos son {top_names}. En cambio, tópicos como {cero_names} tienen RSI
-      cercano a cero.</li>
+      Los vecindarios con mayor RSI medio son {top_names}. En el otro extremo están {cero_names}
+      (tópicos de al menos 10 trabajos).</li>
     <li><b>Sin «trampas léxicas».</b> En la v2, el cribado ya retiró los registros donde «intersection»
       coincidía por otra razón (vialidad, cruce de temas): los tópicos de RSI baja reúnen trabajos pertinentes
       con un uso más nominal del marco.</li>
@@ -472,6 +471,7 @@ def main():
 <nav class="version-tabs" aria-label="Versión del corpus">
   <a href="../index.html">v1 · corpus original<span>mayo 2026</span></a>
   <a href="index.html" class="active">v2 · búsqueda ampliada<span>{n_tot:,} trabajos · septiembre 2026</span></a>
+  <a href="../v3/index.html">v3 · Scopus + SciELO + OpenAlex<span>noviembre 2026</span></a>
 </nav>
 
 <div class="topbar">
@@ -482,7 +482,9 @@ def main():
 <div class="caveat">
   <strong>⚠ Nota:</strong> los puntajes RSI fueron generados con un modelo de lenguaje (<strong>Claude · claude-opus-5-5</strong>), después de un cribado de elegibilidad.
   Son <strong>provisionales</strong> hasta completar la validación humana sobre una submuestra (ver §10).
-  El procedimiento es transparente y reproducible: prompt versionado y evidencia textual por criterio.
+  El procedimiento es transparente y auditable: prompt versionado y evidencia textual por criterio.<br>
+  <strong>Comparación con la v1:</strong> entre las dos pestañas cambian el corpus, el modelo (gpt-4.1 → Claude)
+  y las reglas del gate y de los criterios I y IV, así que las diferencias de cifras no se deben solo a la búsqueda.
 </div>
 
 <div style="background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;border-radius:12px;padding:22px 26px;margin:20px 0;">
@@ -783,7 +785,7 @@ def main():
 
 <h2 id="valid">10 · Notas de validación</h2>
 <div class="theory-block">
-  <p style="margin-top:0;">El cribado y el scoring RSI v3 de la v2 los aplicó <strong>Claude (claude-opus-5-5)</strong>, con un prompt versionado que aplica la rúbrica v3 al pie de la letra. La regla del gate se corrigió durante la aplicación y los registros afectados se reevaluaron (<code>data/v2_reevaluacion_gate.csv</code>). El procedimiento es transparente y reproducible: el prompt está versionado y cada puntaje incluye evidencia textual por criterio.</p>
+  <p style="margin-top:0;">El cribado y el scoring RSI v3 de la v2 los aplicó <strong>Claude (claude-opus-5-5)</strong>, con un prompt versionado que aplica la rúbrica v3 al pie de la letra. La regla del gate se corrigió durante la aplicación y los registros afectados se reevaluaron (<code>data/v2_reevaluacion_gate.csv</code>). El procedimiento es transparente y auditable: el prompt está versionado y cada puntaje incluye evidencia textual por criterio. No es reproducible al pie de la letra: el modelo se aplicó en sesiones de Claude Code, por lotes de 70 registros, y las reglas comunes se fijaron después del lote piloto y se aplicaron también a los registros ya escritos.</p>
   <p><strong>Validación pendiente.</strong> Para consolidar la rúbrica como instrumento, resta una <strong>validación humana</strong>. Un evaluador experto repite a ciegas, sobre una muestra, los mismos pasos que siguió el modelo, con las mismas definiciones y reglas: <b>inclusión</b> (¿invoca la interseccionalidad en sentido social? ¿el objeto es climático?), <b>gate</b>, <b>criterios I–VI</b> e <b>integración</b>. La muestra tiene {vmeta["n"]} trabajos en {vmeta["bloques"]} bloques de {vmeta["por_bloque"]}: cada bloque trae 2 registros que el modelo excluyó y 1 de cada categoría RSI. La herramienta calcula la concordancia del cribado, del gate, de cada criterio y de la categoría RSI (κ de Cohen, κ ponderado e IC bootstrap), y estima el acuerdo para el corpus completo. Hasta entonces, los puntajes deben interpretarse como provisionales.</p>
   <p style="margin-bottom:0;"><a href="validacion.html"><b>✓ Abrir la herramienta de validación</b></a> · <a href="corpus.html"><b>☰ Ver la lista completa del corpus</b></a> ({pmeta["a_cribado"]:,} registros cribados, con las respuestas del modelo; conviene revisarla después de codificar la muestra).</p>
 </div>
