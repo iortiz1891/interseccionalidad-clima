@@ -47,19 +47,19 @@ La rúbrica se aplica a escala de corpus con un modelo de lenguaje (GPT-4.1 en l
 
 ## El dashboard
 
-El dashboard tiene tres pestañas:
+El dashboard tiene tres pestañas; la dirección principal del sitio abre la v3:
 
 - **v1 · corpus original** (mayo 2026): las 971 publicaciones de las cadenas de búsqueda originales.
 - **v2 · búsqueda ampliada** (septiembre 2026, [site/v2/](site/v2/index.html)): una cadena bilingüe nueva en Scopus ([docs/cadenas_busqueda.md §3](docs/cadenas_busqueda.md)). Agrega un cribado de elegibilidad antes de la RSI y se construye solo con esos datos, sin reutilizar registros ni puntajes de la v1.
 - **v3 · Scopus + SciELO + OpenAlex** (noviembre 2026, [site/v3/](site/v3/index.html)): cadenas trilingües en Scopus (por la API) y SciELO ([docs/cadenas_busqueda.md §7](docs/cadenas_busqueda.md)), más los trabajos en español y portugués que OpenAlex recupera con las mismas cadenas (§8). Misma rúbrica, mismo modelo y mismas reglas que la v2; tiene su propia herramienta de validación y su lista del corpus.
 
 
-Una sola página que recorre el marco, el corpus, los hallazgos y el método. Incluye:
+Cada versión es una sola página que recorre el marco, el corpus, los hallazgos y el método. La v3 incluye:
 
-- **Mapa temático interactivo** (33 tópicos): se puede colorear por tópico, por nivel RSI del trabajo o por RSI medio del vecindario; resaltar el sub-corpus de la tesis; y, al hacer clic en un punto, ver la **justificación del modelo por cada criterio**.
+- **Mapa temático interactivo** (13 tópicos en la v3, con etiquetas manuales): se puede colorear por tópico, por nivel RSI del trabajo o por RSI medio del vecindario; resaltar el sub-corpus de la tesis; y, al hacer clic en un punto, ver la **justificación del modelo por cada criterio**.
 - **Figuras explicativas** (perfil por criterio, embudo del gate, ranking de tópicos, asimetría por idioma…).
-- **Herramienta de validación**, en la pestaña v2 ([site/v2/validacion.html](site/v2/validacion.html)): un evaluador repite a ciegas los pasos del LLM sobre una muestra de 140 trabajos (20 bloques de 7, con registros incluidos y excluidos de todos los niveles). Los pasos son inclusión, gate, criterios I–VI e integración, con las mismas definiciones y reglas del prompt. La página calcula el puntaje RSI con la fórmula del pipeline y la concordancia del cribado, el gate, cada criterio y la categoría RSI (κ de Cohen, κ ponderado, IC bootstrap). Las respuestas del LLM no están en la página: se cargan solo al pedir la concordancia.
-- **Lista completa del corpus**, en la pestaña v2 ([site/v2/corpus.html](site/v2/corpus.html)): los 1,696 registros cribados con la decisión del LLM, el puntaje RSI, los criterios, la evidencia y el tópico. Tiene búsqueda, filtros compartibles por URL y descarga en CSV.
+- **Herramienta de validación** ([site/v3/validacion.html](site/v3/validacion.html); la v2 tiene la suya en [site/v2/validacion.html](site/v2/validacion.html)): un evaluador repite a ciegas los pasos del LLM sobre una muestra de 140 trabajos (20 bloques de 7, con registros incluidos y excluidos de todos los niveles). Los pasos son inclusión, gate, criterios I–VI e integración, con las mismas definiciones y reglas del prompt. La página calcula el puntaje RSI con la fórmula del pipeline y la concordancia del cribado, el gate, cada criterio y la categoría RSI (κ de Cohen, κ ponderado, IC bootstrap). Las respuestas del LLM no están en la página: se cargan solo al pedir la concordancia.
+- **Lista completa del corpus** ([site/v3/corpus.html](site/v3/corpus.html); la de la v2, con 1,696 registros, en [site/v2/corpus.html](site/v2/corpus.html)): los 2,295 registros cribados de la v3 con la decisión del LLM, el puntaje RSI, los criterios, la evidencia y el tópico. Tiene búsqueda, filtros compartibles por URL y descarga en CSV.
 
 ## Arquitectura del repositorio
 
