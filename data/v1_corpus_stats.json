@@ -67,10 +67,10 @@
   },
   "bowleg_distribution": {
     "0.0": 558,
-    "1.0": 64,
-    "1.5": 30,
-    "2.0": 90,
-    "2.5": 22,
+    "1.0": 40,
+    "1.5": 54,
+    "2.0": 70,
+    "2.5": 42,
     "3.0": 22,
     "3.5": 81,
     "4.0": 104
@@ -78,16 +78,16 @@
   "category_distribution": {
     "mencion_sin_aplicacion": 558,
     "sustantivo_fuerte": 185,
-    "parcial": 120,
-    "nominal_debil": 64,
-    "sustantivo": 44
+    "parcial": 124,
+    "sustantivo": 64,
+    "nominal_debil": 40
   },
   "category_percentages": {
     "mencion_sin_aplicacion": 57.47,
     "sustantivo_fuerte": 19.05,
-    "parcial": 12.36,
-    "nominal_debil": 6.59,
-    "sustantivo": 4.53
+    "parcial": 12.77,
+    "sustantivo": 6.59,
+    "nominal_debil": 4.12
   },
   "confidence_distribution": {
     "high": 895,
@@ -103,7 +103,7 @@
     "mexico_cyclonic_gender_or_indigenous": 0,
     "coastal_AND_cyclonic": 16,
     "relevant_ge2_axes": 97,
-    "relevant_bowleg_mean": 2.2938144329896906,
-    "relevant_substantive": 53
+    "relevant_bowleg_mean": 2.329896907216495,
+    "relevant_substantive": 55
   }
 }

@@ -62,29 +62,29 @@
     "Viet Nam": 17
   },
   "bowleg_distribution": {
-    "0.0": 446,
-    "0.5": 24,
-    "1.0": 133,
-    "1.5": 88,
-    "2.0": 207,
-    "2.5": 35,
+    "0.0": 445,
+    "0.5": 25,
+    "1.0": 65,
+    "1.5": 156,
+    "2.0": 162,
+    "2.5": 80,
     "3.0": 23,
     "3.5": 42,
     "4.0": 18
   },
   "category_distribution": {
-    "mencion_sin_aplicacion": 446,
-    "parcial": 295,
-    "nominal_debil": 157,
-    "sustantivo_fuerte": 60,
-    "sustantivo": 58
+    "mencion_sin_aplicacion": 445,
+    "parcial": 318,
+    "sustantivo": 103,
+    "nominal_debil": 90,
+    "sustantivo_fuerte": 60
   },
   "category_percentages": {
-    "mencion_sin_aplicacion": 43.9,
-    "parcial": 29.04,
-    "nominal_debil": 15.45,
-    "sustantivo_fuerte": 5.91,
-    "sustantivo": 5.71
+    "mencion_sin_aplicacion": 43.8,
+    "parcial": 31.3,
+    "sustantivo": 10.14,
+    "nominal_debil": 8.86,
+    "sustantivo_fuerte": 5.91
   },
   "confidence_distribution": {
     "medium": 573,
@@ -101,7 +101,7 @@
     "mexico_cyclonic_gender_or_indigenous": 0,
     "coastal_AND_cyclonic": 18,
     "relevant_ge2_axes": 121,
-    "relevant_bowleg_mean": 1.6735537190082646,
-    "relevant_substantive": 27
+    "relevant_bowleg_mean": 1.7603305785123966,
+    "relevant_substantive": 38
   }
 }

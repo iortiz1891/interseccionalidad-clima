@@ -6,11 +6,11 @@
 
 | Categoría | n | % |
 |---|---|---|
-| mencion_sin_aplicacion | 446 | 43.9% |
-| parcial | 295 | 29.0% |
-| nominal_debil | 157 | 15.5% |
+| mencion_sin_aplicacion | 445 | 43.8% |
+| parcial | 318 | 31.3% |
+| sustantivo | 103 | 10.1% |
+| nominal_debil | 90 | 8.9% |
 | sustantivo_fuerte | 60 | 5.9% |
-| sustantivo | 58 | 5.7% |
 
 **Nota:** los puntajes RSI son provisionales hasta completar la validación humana sobre una submuestra (κ de Cohen humano–modelo).
 
@@ -38,4 +38,4 @@
 - Ciclones/huracanes: 51
 - México + ciclones: 0
 - Papers con ≥2 ejes (mexico/ciclones/costero/indígena/género): 121
-- De esos, bowleg ≥ 2.5: 27
+- De esos, bowleg ≥ 2.5: 38

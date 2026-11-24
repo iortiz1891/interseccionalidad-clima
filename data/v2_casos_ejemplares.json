@@ -48,28 +48,28 @@
     "gate_evidence": "Identifica cómo impactos y pérdidas difieren 'across intersections of location, race, ethnicity, gender and age'."
   },
   {
-    "titulo": "Female Leadership and Everyday Hazards: Care Practices and Solidarity Networks in Campamento Dignidad",
-    "year": "2024",
+    "titulo": "The intersection of gender and social class in disaster: balancing resilience and vulnerability.",
+    "year": "1999",
     "categoria": "Parcial",
     "rsi_total": 2.0,
     "gate": true,
     "scores": {
-      "I": 0.5,
+      "I": 1.0,
       "II": 0.5,
       "III": 0.5,
       "IV": 0.5,
       "V": 0.5,
-      "VI": 1.0
+      "VI": 0.5
     },
     "evidencias": {
-      "I": "Mujeres de un asentamiento informal como posición situada, pero el abstract no analiza cómo se co-construyen género y marginación.",
-      "II": "Nombra el abandono estatal y la exclusión de la gobernanza urbana y del riesgo, sin teorizar mecanismos.",
-      "III": "Campamento Dignidad, Santiago de Chile, durante la COVID-19; contexto histórico-político apenas esbozado.",
-      "IV": "Estudio de caso centrado en lideresas del asentamiento; el abstract no describe análisis interaccional.",
-      "V": "Problematiza las categorías de género en la gobernanza del riesgo y reclama participación comunitaria, sin desarrollar propuestas.",
-      "VI": "Documenta autogestión, liderazgo femenino, prácticas de cuidado y redes de solidaridad impulsadas por mujeres."
+      "I": "La intersección género-clase es el objeto central y muestra variaciones complejas 'within and between social groups'.",
+      "II": "Rechaza que los desastres igualen y señala desigualdades de clase y género, sin teorizar mecanismos estructurales.",
+      "III": "Inundaciones de Perth (1993) y Strathclyde (1994) en Escocia, sin desarrollo histórico o político del contexto.",
+      "IV": "Compara grupos de clase media y obrera por género, pero el abstract no describe método ni análisis interaccional.",
+      "V": "Pide una mejor apreciación de género y clase en la gestión de desastres, sin desarrollar orientación a la justicia.",
+      "VI": "Equilibra resiliencia y vulnerabilidad y cuestiona la imagen de víctimas indiferenciadas, sin documentar estrategias concretas."
     },
-    "gate_evidence": "Relaciona género y marginación socioespacial: liderazgo femenino y cuidados en un asentamiento informal de Santiago bajo abandono estatal."
+    "gate_evidence": "Explora la intersección de género y clase social en dos inundaciones escocesas, con variaciones dentro y entre clases media y obrera."
   },
   {
     "titulo": "A Machine Learning Framework for Assessing Systemic Societal Vulnerability to Coastal Flooding",

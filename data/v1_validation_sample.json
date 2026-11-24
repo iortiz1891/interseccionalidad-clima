@@ -212,7 +212,7 @@
         "V": 1.0,
         "VI": 0.0,
         "integracion": 0.5,
-        "total": 1.0
+        "total": 1.5
       }
     },
     {
@@ -464,7 +464,7 @@
         "V": 0.5,
         "VI": 0.0,
         "integracion": 0.5,
-        "total": 1.0
+        "total": 1.5
       }
     },
     {
@@ -737,7 +737,7 @@
         "V": 1.0,
         "VI": 1.0,
         "integracion": 0.5,
-        "total": 2.0
+        "total": 2.5
       }
     },
     {
@@ -821,7 +821,7 @@
         "V": 1.0,
         "VI": 1.0,
         "integracion": 0.5,
-        "total": 2.0
+        "total": 2.5
       }
     },
     {
@@ -884,7 +884,7 @@
         "V": 1.0,
         "VI": 1.0,
         "integracion": 0.5,
-        "total": 2.0
+        "total": 2.5
       }
     },
     {
@@ -1010,7 +1010,7 @@
         "V": 0.5,
         "VI": 0.0,
         "integracion": 0.5,
-        "total": 1.0
+        "total": 1.5
       }
     },
     {

@@ -27,18 +27,18 @@
   "rsi": {
     "gate_pass": 571,
     "categorias_n": {
-      "mencion_sin_aplicacion": 446,
-      "parcial": 295,
-      "nominal_debil": 157,
-      "sustantivo_fuerte": 60,
-      "sustantivo": 58
+      "mencion_sin_aplicacion": 445,
+      "parcial": 318,
+      "sustantivo": 103,
+      "nominal_debil": 90,
+      "sustantivo_fuerte": 60
     },
     "categorias_pct": {
-      "mencion_sin_aplicacion": 43.9,
-      "parcial": 29.0,
-      "nominal_debil": 15.5,
-      "sustantivo_fuerte": 5.9,
-      "sustantivo": 5.7
+      "mencion_sin_aplicacion": 43.8,
+      "parcial": 31.3,
+      "sustantivo": 10.1,
+      "nominal_debil": 8.9,
+      "sustantivo_fuerte": 5.9
     },
     "modelo": "claude-opus-5-5 (Claude Code) · prompts/v2_cribado_rsi.md"
   }
