@@ -5,7 +5,7 @@
     "por_bloque": 7,
     "seed": 42,
     "version": "cdc63ba905",
-    "corpus_cribado": 2291,
+    "corpus_cribado": 2295,
     "fuente": "Scopus + SciELO + OpenAlex ES/PT (cadenas v3) · 24-11-2026",
     "estratos": [
       {

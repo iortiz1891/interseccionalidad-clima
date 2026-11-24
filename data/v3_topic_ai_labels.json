@@ -1,84 +1,73 @@
 {
   "0": {
-    "label": "Riesgo de desastres, vulnerabilidad y resiliencia",
-    "n_papers": 99,
+    "label": "Riesgo de desastres, vulnerabilidad y discapacidad",
+    "n_papers": 105,
     "top_words": [
       "disaster",
       "vulnerability",
-      "risk",
       "disasters",
-      "social"
+      "risk",
+      "disability"
     ]
   },
   "1": {
-    "label": "Justicia climática, derechos y racismo ambiental (EN/ES/PT)",
-    "n_papers": 90,
-    "top_words": [
-      "climática",
-      "climate",
-      "global",
-      "ambiental",
-      "justiça"
-    ]
-  },
-  "2": {
-    "label": "Género, feminismos y cambio climático",
-    "n_papers": 72,
+    "label": "Género, feminismos y salud ante el cambio climático",
+    "n_papers": 97,
     "top_words": [
       "gender",
       "climate",
-      "feminist",
+      "women",
       "change",
       "climate change"
     ]
   },
-  "3": {
-    "label": "Juventudes y activismo climático",
-    "n_papers": 69,
+  "2": {
+    "label": "Género y adaptación agrícola (África y Asia)",
+    "n_papers": 96,
     "top_words": [
-      "youth",
-      "young",
+      "gender",
       "climate",
-      "activism",
-      "activists"
+      "women",
+      "farmers",
+      "adaptation"
+    ]
+  },
+  "3": {
+    "label": "Justicia climática, derechos y racismo ambiental (EN/ES/PT)",
+    "n_papers": 85,
+    "top_words": [
+      "climate",
+      "global",
+      "climática",
+      "social",
+      "ambiental"
     ]
   },
   "4": {
-    "label": "Movilidad humana y adaptación climática",
-    "n_papers": 67,
-    "top_words": [
-      "adaptation",
-      "adaptación",
-      "migration",
-      "climate",
-      "climate change"
-    ]
-  },
-  "5": {
     "label": "Calor urbano, salud y justicia térmica",
-    "n_papers": 65,
+    "n_papers": 81,
     "top_words": [
       "heat",
       "urban",
       "climate",
-      "cities",
-      "adaptation"
+      "adaptation",
+      "cities"
+    ]
+  },
+  "5": {
+    "label": "Juventudes y activismo climático",
+    "n_papers": 70,
+    "top_words": [
+      "youth",
+      "climate",
+      "young",
+      "activism",
+      "justice"
     ]
   },
   "6": {
-    "label": "Género y adaptación agrícola en África",
-    "n_papers": 65,
-    "top_words": [
-      "farmers",
-      "gender",
-      "climate",
-      "women",
-      "change"
-    ]
-  },
-  "7": {
-    "label": "Justicia climática e interseccionalidad (marcos)",
-    "n_papers": 62,
+    "label": "Justicia climática e interseccionalidad (marcos y litigio)",
+    "n_papers": 69,
     "top_words": [
       "justice",
       "climate",
@@ -87,125 +76,70 @@
       "change"
     ]
   },
+  "7": {
+    "label": "Crisis climática, educación y narrativas",
+    "n_papers": 52,
+    "top_words": [
+      "climate",
+      "environmental",
+      "change",
+      "justice",
+      "climate change"
+    ]
+  },
   "8": {
-    "label": "Mujeres, migración y transición justa en América Latina",
-    "n_papers": 51,
+    "label": "Mujeres, territorio y transición justa en América Latina",
+    "n_papers": 52,
     "top_words": [
       "women",
-      "mujeres",
       "gender",
+      "mujeres",
       "género",
       "climate"
     ]
   },
   "9": {
-    "label": "Crisis climática, educación y narrativas",
-    "n_papers": 50,
+    "label": "Género y adaptación en Bangladesh, India y el Himalaya",
+    "n_papers": 47,
     "top_words": [
+      "bangladesh",
+      "gender",
       "climate",
-      "environmental",
-      "anthropocene",
       "change",
-      "human"
+      "women"
     ]
   },
   "10": {
-    "label": "Desastres, racismo ambiental y liderazgos comunitarios",
-    "n_papers": 28,
+    "label": "Movilidad humana y adaptación climática",
+    "n_papers": 41,
     "top_words": [
-      "desastres",
-      "disaster",
-      "puerto",
-      "social",
-      "community"
+      "migration",
+      "adaptación",
+      "movilidad",
+      "movilidad humana",
+      "humana"
     ]
   },
   "11": {
-    "label": "Discapacidad y cambio climático",
-    "n_papers": 25,
+    "label": "Desastres, racismo ambiental y liderazgos comunitarios",
+    "n_papers": 23,
     "top_words": [
-      "disability",
-      "disabilities",
-      "climate",
-      "people",
-      "persons"
+      "desastres",
+      "social",
+      "disaster",
+      "community",
+      "ambiental"
     ]
   },
   "12": {
-    "label": "Género y adaptación en India y el Himalaya",
-    "n_papers": 23,
+    "label": "Violencia de género, salud y juventudes en África",
+    "n_papers": 20,
     "top_words": [
+      "climate",
+      "change",
+      "climate change",
       "gender",
-      "adaptation",
-      "change",
-      "climate change",
-      "women"
-    ]
-  },
-  "13": {
-    "label": "Violencia de género y salud sexual en África",
-    "n_papers": 22,
-    "top_words": [
-      "climate",
-      "climate change",
-      "change",
-      "gbv",
-      "gender"
-    ]
-  },
-  "14": {
-    "label": "Salud sexual, reproductiva y materna",
-    "n_papers": 21,
-    "top_words": [
-      "health",
-      "reproductive",
-      "climate",
-      "climate change",
-      "women"
-    ]
-  },
-  "15": {
-    "label": "Adaptación costera en Bangladesh",
-    "n_papers": 21,
-    "top_words": [
-      "bangladesh",
-      "adaptation",
-      "coastal",
-      "women",
-      "climate"
-    ]
-  },
-  "16": {
-    "label": "Salud mental y cambio climático",
-    "n_papers": 15,
-    "top_words": [
-      "mental",
-      "mental health",
-      "health",
-      "climate change",
-      "change"
-    ]
-  },
-  "17": {
-    "label": "Transición energética justa",
-    "n_papers": 14,
-    "top_words": [
-      "energy",
-      "transition",
-      "energy transition",
-      "transitions",
-      "just"
-    ]
-  },
-  "18": {
-    "label": "Resiliencia de medios de vida, etnia y género (Sudeste asiático)",
-    "n_papers": 13,
-    "top_words": [
-      "resilience",
-      "livelihood resilience",
-      "livelihood",
-      "household",
-      "ethnic"
+      "girls"
     ]
   }
 }

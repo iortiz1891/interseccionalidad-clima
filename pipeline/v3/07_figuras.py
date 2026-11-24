@@ -63,22 +63,26 @@ def fig01_prisma():
 
     idn, dup = meta['identificados'], meta['duplicados']
     sc, se, so = ex['scopus'], ex['scielo'], ex['openalex']
+    oi = ex.get('openalex_otra_etiqueta', {'sin_abstract': 0, 'tipo': 0})
+    n_oi = idn.get('openalex_otra_etiqueta', 0)
     box(0.5, 14.0, 9, 1, "IDENTIFICACIÓN — cadenas v3 en Scopus, SciELO y OpenAlex (ES/PT) · 24-11-2026 · EN / ES / PT", color='#fff3e0')
     box(0.5, 12.3, 2.8, 1.2, f"Scopus (API)\nn={idn['scopus']:,}", color='#e8f5e9')
     box(3.6, 12.3, 2.8, 1.2, f"SciELO\nn={idn['scielo']:,}", color='#e8f5e9')
-    box(6.7, 12.3, 2.8, 1.2, f"OpenAlex (API, ES/PT)\nn={idn['openalex']:,}", color='#e8f5e9')
+    box(6.7, 12.3, 2.8, 1.2, f"OpenAlex (API, ES/PT)\nn={idn['openalex']:,}"
+        + (f" + {n_oi}\n(ES/PT con otra etiqueta)" if n_oi else ''), color='#e8f5e9', fontsize=8.5 if n_oi else 9)
     arrow(1.9, 14.0, 1.9, 13.5); arrow(5, 14.0, 5, 13.5); arrow(8.1, 14.0, 8.1, 13.5)
-    n_sin = sc['sin_abstract'] + se['sin_abstract'] + so['sin_abstract']
+    n_sin = sc['sin_abstract'] + se['sin_abstract'] + so['sin_abstract'] + oi['sin_abstract']
     n_resc = meta.get('rescate_resumen', {}).get('rescatados', 0)
     box(2.4, 10.8, 5.2, 1, f"Filtro abstract ≥100 chars −{n_sin - n_resc}\n{n_sin} sin abstract en su fuente · {n_resc} rescatados por DOI en OpenAlex",
         color='#fff9c4')
     arrow(1.9, 12.3, 4.0, 11.8); arrow(5, 12.3, 5, 11.8); arrow(8.1, 12.3, 6.0, 11.8)
-    box(2.6, 9.3, 4.8, 1, f"Erratas, conference reviews y otros tipos\n−{sc['erratum_o_conference_review'] + se['tipo'] + so['tipo']}",
+    box(2.6, 9.3, 4.8, 1, f"Erratas, conference reviews y otros tipos\n−{sc['erratum_o_conference_review'] + se['tipo'] + so['tipo'] + oi['tipo']}",
         color='#fff9c4')
     arrow(5, 10.8, 5, 10.3)
     box(1.6, 7.8, 6.8, 1, f"Dedup DOI + título −{sum(dup.values())}\n"
         f"{dup['dentro_scopus']} en Scopus · {dup['dentro_scielo']} en SciELO · {dup['dentro_openalex']} en OpenAlex · "
-        f"{dup['scielo_ya_en_scopus']} SciELO ya en Scopus · {dup['openalex_ya_en_scopus_scielo']} OpenAlex ya en Scopus/SciELO",
+        f"{dup['scielo_ya_en_scopus']} SciELO ya en Scopus · "
+        f"{dup['openalex_ya_en_scopus_scielo'] + dup.get('openalex_otra_etiqueta_ya_en_corpus', 0)} OpenAlex ya en Scopus/SciELO",
         color='#fff9c4', fontsize=8)
     arrow(5, 9.3, 5, 8.8)
     box(2.2, 5.9, 5.6, 1.5,

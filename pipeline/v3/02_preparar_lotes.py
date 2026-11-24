@@ -5,7 +5,8 @@
 Lee data/v3_corpus_consolidated.csv (solo reutiliza_v2 = False) y escribe, un registro por línea,
 work/v3_lotes/lote_XX.jsonl (Scopus y SciELO), work/v3_lotes/oa_lote_XX.jsonl (OpenAlex, que
 se buscó y evaluó después) y work/v3_lotes/rs_lote_XX.jsonl (registros cuyo resumen se rescató
-por DOI en OpenAlex). Cada registro lleva los mismos campos que la v1 le
+por DOI en OpenAlex) y work/v3_lotes/oi_lote_XX.jsonl (trabajos en español o portugués que OpenAlex
+etiqueta con otro idioma). Cada registro lleva los mismos campos que la v1 le
 pasaba al modelo (título, año, autores, keywords de autor, abstract) más el
 tipo de documento y el idioma, que usa el cribado.
 
@@ -38,8 +39,10 @@ def main():
     for old in OUT.glob('*lote_*.jsonl'):
         old.unlink()
     rs = df['resumen_fuente'].fillna('').eq('openalex_doi')
-    es_oa = df['_source'].eq('openalex') & ~rs
-    for prefijo, sub in [('lote', df[~es_oa & ~rs]), ('oa_lote', df[es_oa]), ('rs_lote', df[rs])]:
+    oi = df['idioma_openalex'].fillna('').ne('')                  # OpenAlex con otra etiqueta de idioma
+    es_oa = df['_source'].eq('openalex') & ~rs & ~oi
+    for prefijo, sub in [('lote', df[~es_oa & ~rs & ~oi]), ('oa_lote', df[es_oa]), ('rs_lote', df[rs]),
+                         ('oi_lote', df[oi])]:
         n = escribir(sub, prefijo, args.tam)
         print(f'[OK] {len(sub)} registros en {n} lotes de ≤{args.tam} → {OUT}/{prefijo}_XX.jsonl')
 

@@ -8,7 +8,8 @@ Para cada registro de data/v3_corpus_consolidated.csv:
     (ya incluyen la reevaluación del gate de la v2).
   · reutiliza_v2 = False → se leen de work/v3_salidas/lote_*.jsonl (Scopus y SciELO) y
     work/v3_salidas/oa_lote_*.jsonl (OpenAlex) y work/v3_salidas/rs_lote_*.jsonl (resumen
-    rescatado por DOI en OpenAlex), evaluados con prompts/v3_cribado_rsi.md y
+    rescatado por DOI en OpenAlex) y work/v3_salidas/oi_lote_*.jsonl (español o portugués con
+    otra etiqueta de idioma en OpenAlex), evaluados con prompts/v3_cribado_rsi.md y
     validados contra el esquema de pipeline/v2/validar_lote.py.
 
 El total de la RSI se recalcula siempre con pipeline/02_scoring_rsi.py::compute_total.
@@ -84,7 +85,7 @@ def registros_v2(corpus: pd.DataFrame) -> list[dict]:
 def registros_v3() -> list[dict]:
     recs, errores = [], []
     for f in (sorted(SALIDAS.glob('lote_*.jsonl')) + sorted(SALIDAS.glob('oa_lote_*.jsonl'))
-              + sorted(SALIDAS.glob('rs_lote_*.jsonl'))):
+              + sorted(SALIDAS.glob('rs_lote_*.jsonl')) + sorted(SALIDAS.glob('oi_lote_*.jsonl'))):
         for n, line in enumerate(f.read_text().splitlines(), 1):
             if not line.strip():
                 continue

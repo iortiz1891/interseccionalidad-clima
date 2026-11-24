@@ -2,7 +2,8 @@
   "identificados": {
     "scopus": 1882,
     "scielo": 34,
-    "openalex": 470
+    "openalex": 470,
+    "openalex_otra_etiqueta": 6
   },
   "excluidos_regla": {
     "scopus": {
@@ -16,6 +17,10 @@
     "openalex": {
       "sin_abstract": 13,
       "tipo": 3
+    },
+    "openalex_otra_etiqueta": {
+      "sin_abstract": 1,
+      "tipo": 0
     }
   },
   "duplicados": {
@@ -23,12 +28,13 @@
     "dentro_scielo": 5,
     "scielo_ya_en_scopus": 7,
     "dentro_openalex": 1,
-    "openalex_ya_en_scopus_scielo": 24
+    "openalex_ya_en_scopus_scielo": 24,
+    "openalex_otra_etiqueta_ya_en_corpus": 1
   },
-  "a_cribado": 2291,
+  "a_cribado": 2295,
   "fuente": {
     "scopus": 1822,
-    "openalex": 429,
+    "openalex": 433,
     "scopus+openalex": 12,
     "scielo": 11,
     "scielo+openalex": 10,
@@ -36,20 +42,20 @@
     "scopus+scielo+openalex": 2
   },
   "nivel_ancla": {
-    "A_nucleo": 1754,
+    "A_nucleo": 1758,
     "A_ampliada": 321,
     "solo_index_keywords": 195,
     "B_afin": 21
   },
   "idioma": {
     "en": 1819,
-    "pt": 266,
-    "es": 206
+    "pt": 269,
+    "es": 207
   },
   "enlazados_v2": 1695,
   "reutilizan_evaluacion_v2": 1686,
-  "evaluados_en_v3": 605,
-  "openalex_nuevos": 429,
+  "evaluados_en_v3": 609,
+  "openalex_nuevos": 433,
   "tipo_openalex_nuevos": {
     "Article": 217,
     "Dissertation": 107,
@@ -82,23 +88,40 @@
       "Review": 1
     }
   },
+  "openalex_otra_etiqueta_idioma": {
+    "identificados": 26,
+    "en_es_o_pt": 6,
+    "sin_abstract": 1,
+    "tipo": 0,
+    "ya_en_corpus": 1,
+    "nuevos": 4,
+    "idioma": {
+      "pt": 3,
+      "es": 1
+    },
+    "tipo_nuevos": {
+      "Dissertation": 2,
+      "Article": 1,
+      "Book": 1
+    }
+  },
   "cribado": {
-    "excluidos": 1070,
+    "excluidos": 1071,
     "retractados": 1,
     "solo_no_interseccional": 306,
-    "solo_no_climatico": 575,
+    "solo_no_climatico": 576,
     "ambos": 188,
-    "elegibles": 1221,
+    "elegibles": 1224,
     "elegibles_por_origen": {
       "v2": 1010,
-      "v3": 211
+      "v3": 214
     }
   },
   "rsi": {
-    "gate_pass": 666,
+    "gate_pass": 667,
     "categorias_n": {
-      "mencion_sin_aplicacion": 555,
-      "parcial": 368,
+      "mencion_sin_aplicacion": 557,
+      "parcial": 369,
       "nominal_debil": 115,
       "sustantivo": 114,
       "sustantivo_fuerte": 69
@@ -108,7 +131,7 @@
       "parcial": 30.1,
       "nominal_debil": 9.4,
       "sustantivo": 9.3,
-      "sustantivo_fuerte": 5.7
+      "sustantivo_fuerte": 5.6
     },
     "modelo": "claude-opus-5-5 (Claude Code) · prompts/v2_cribado_rsi.md (reutilizados de la v2) + prompts/v3_cribado_rsi.md (nuevos de Scopus, SciELO y OpenAlex)"
   }

@@ -1,5 +1,5 @@
 {
-  "n_total": 1221,
+  "n_total": 1224,
   "year_distribution": {
     "1999": 1,
     "2006": 1,
@@ -18,25 +18,25 @@
     "2020": 41,
     "2021": 76,
     "2022": 84,
-    "2023": 128,
-    "2024": 200,
-    "2025": 250,
+    "2023": 129,
+    "2024": 201,
+    "2025": 251,
     "2026": 332,
     "2027": 1
   },
   "language_distribution": {
     "Inglés": 1073,
-    "Portugués": 75,
-    "Español": 73
+    "Portugués": 77,
+    "Español": 74
   },
   "source_distribution": {
     "v3_en": 1073,
-    "v3_pt": 75,
-    "v3_es": 73
+    "v3_pt": 77,
+    "v3_es": 74
   },
   "base_distribution": {
     "scopus": 1075,
-    "openalex": 124,
+    "openalex": 127,
     "scielo": 7,
     "scielo+openalex": 6,
     "scopus+openalex": 5,
@@ -71,10 +71,10 @@
     "Japan": 16
   },
   "bowleg_distribution": {
-    "0.0": 555,
+    "0.0": 557,
     "0.5": 35,
     "1.0": 80,
-    "1.5": 177,
+    "1.5": 178,
     "2.0": 191,
     "2.5": 89,
     "3.0": 25,
@@ -82,35 +82,35 @@
     "4.0": 19
   },
   "category_distribution": {
-    "mencion_sin_aplicacion": 555,
-    "parcial": 368,
+    "mencion_sin_aplicacion": 557,
+    "parcial": 369,
     "nominal_debil": 115,
     "sustantivo": 114,
     "sustantivo_fuerte": 69
   },
   "category_percentages": {
-    "mencion_sin_aplicacion": 45.45,
-    "parcial": 30.14,
-    "nominal_debil": 9.42,
-    "sustantivo": 9.34,
-    "sustantivo_fuerte": 5.65
+    "mencion_sin_aplicacion": 45.51,
+    "parcial": 30.15,
+    "nominal_debil": 9.4,
+    "sustantivo": 9.31,
+    "sustantivo_fuerte": 5.64
   },
   "confidence_distribution": {
-    "medium": 700,
-    "high": 280,
+    "medium": 702,
+    "high": 281,
     "low": 241
   },
   "daniel_subcorpus": {
-    "mexico": 17,
-    "cyclonic_events": 59,
+    "mexico": 18,
+    "cyclonic_events": 61,
     "coastal": 61,
     "indigenous": 161,
-    "gender_women": 656,
-    "mexico_AND_cyclonic": 0,
-    "mexico_cyclonic_gender_or_indigenous": 0,
+    "gender_women": 657,
+    "mexico_AND_cyclonic": 1,
+    "mexico_cyclonic_gender_or_indigenous": 1,
     "coastal_AND_cyclonic": 18,
-    "relevant_ge2_axes": 158,
-    "relevant_bowleg_mean": 1.6360759493670887,
+    "relevant_ge2_axes": 159,
+    "relevant_bowleg_mean": 1.6352201257861636,
     "relevant_substantive": 45
   }
 }

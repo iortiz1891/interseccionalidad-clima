@@ -292,12 +292,16 @@ def main():
     top_topicos_txt = ', '.join(t['label'] for t in sorted(_ts, key=lambda t: -t['rsi_mean'])[:3]) or 'tópicos concretos'
     _mx = ds.get('mexico_AND_cyclonic', 0)
     tesis_cruce_txt = ('no aparece ningún trabajo que cruce México y ciclones' if _mx == 0
+                       else 'solo un trabajo cruza México y ciclones' if _mx == 1
                        else f'solo {_mx} trabajos cruzan México y ciclones')
     query_scopus = _html.escape((DATA / 'v3_query_scopus.txt').read_text().strip())
     query_scielo = _html.escape((DATA / 'v3_query_scielo.txt').read_text().strip())
     smeta = json.loads((DATA / 'v3_search_meta.json').read_text())
     smeta['fecha_busqueda'] = smeta['fecha']
     pmeta = json.loads((DATA / 'v3_prisma_meta.json').read_text())
+    oimeta = pmeta.get('openalex_otra_etiqueta_idioma', {}) or {}          # ES/PT con otra etiqueta en OpenAlex
+    oiraw = json.loads((DATA / 'v3_openalex_idioma_meta.json').read_text()) if (DATA / 'v3_openalex_idioma_meta.json').exists() else {}
+    n_oa_principal = pmeta['openalex_nuevos'] - oimeta.get('nuevos', 0)
     vmeta = json.loads((DATA / 'v3_validation_sample.json').read_text())['meta']
 
     def insight(label, body):
@@ -702,11 +706,16 @@ def main():
   <li><b>SciELO</b> (search.scielo.org), con su propia cadena: {pmeta['identificados']['scielo']} registros; {pmeta['duplicados']['scielo_ya_en_scopus']} ya estaban en Scopus.</li>
   <li><b>OpenAlex</b>, por su API, solo para trabajos que OpenAlex clasifica en <b>español o portugués</b>: {pmeta['identificados']['openalex']} registros
   únicos ({oameta['consultas']} consultas). {pmeta['duplicados']['openalex_ya_en_scopus_scielo']} ya estaban en Scopus o SciELO y
-  {pmeta['openalex_nuevos']} son nuevos ({pmeta['tipo_openalex_nuevos'].get('Dissertation', 0)} tesis, {pmeta['tipo_openalex_nuevos'].get('Book chapter', 0)} capítulos de libro,
+  {n_oa_principal} son nuevos ({pmeta['tipo_openalex_nuevos'].get('Dissertation', 0)} tesis, {pmeta['tipo_openalex_nuevos'].get('Book chapter', 0)} capítulos de libro,
   {pmeta['tipo_openalex_nuevos'].get('Article', 0)} artículos). La consulta traduce las cadenas a los filtros de OpenAlex: cada bloque es una lista de términos
   separados por «|» (OR) que se busca en título y resumen. Tiene tres límites: OpenAlex <b>no acepta comodines ni proximidad</b>
   (las variantes en español y portugués se escriben completas y las expresiones con <code>W/n</code> se omiten), <b>lematiza en inglés</b>
-  (por eso trae ruido como «intersection», que el cribado retira) y asigna el <b>idioma por el título</b>.</li>
+  (por eso trae ruido como «intersection», que el cribado retira) y asigna el <b>idioma por el título</b>, a veces mal.
+  Por eso la misma consulta se corrió también, solo con los términos interseccionales en español y portugués, sobre los trabajos que
+  OpenAlex <i>no</i> etiqueta como español o portugués: de {oiraw.get('identificados', 0)} resultados, {oimeta.get('en_es_o_pt', 0)} están en español
+  o portugués según el título y el inicio del resumen (casi todos los demás, en catalán) y {oimeta.get('nuevos', 0)} son nuevos; entre ellos, un
+  artículo sobre los huracanes Otis y John en Acapulco desde una perspectiva de género interseccional, etiquetado como inglés
+  (<code>pipeline/v3/00d_openalex_idioma.py</code>).</li>
   <li><b>Redalyc</b>, como verificación de cobertura: no tiene API ni exportación y su buscador busca en el texto completo, así que la cadena de SciELO
   se corrió en redalyc.org y se recorrieron los resultados en el navegador ({rdmeta['registros_unicos']:,} artículos únicos). Solo
   {rdmeta['con_ambos_bloques_en_titulo_resumen_o_palabras_clave']} tienen ambos bloques en el título, el resumen o las palabras clave, y los
@@ -879,7 +888,7 @@ portugués formaban un bloque aparte por idioma y no por tema. Por eso los tópi
 <div class="stat-grid">
   <div class="stat"><div class="stat-num">{stats['daniel_subcorpus']['mexico_AND_cyclonic']}</div><div class="stat-lbl">México + ciclones</div></div>
   <div class="stat"><div class="stat-num">{stats['daniel_subcorpus']['mexico_cyclonic_gender_or_indigenous']}</div><div class="stat-lbl">México + ciclones + género/indígena</div></div>
-  <div class="stat"><div class="stat-num">{stats['daniel_subcorpus']['coastal_AND_cyclonic']}</div><div class="stat-lbl">Costero + ciclones (LatAm)</div></div>
+  <div class="stat"><div class="stat-num">{stats['daniel_subcorpus']['coastal_AND_cyclonic']}</div><div class="stat-lbl">Costero + ciclones</div></div>
   <div class="stat"><div class="stat-num">{stats['daniel_subcorpus']['relevant_ge2_axes']}</div><div class="stat-lbl">Sub-corpus relevante (≥2 ejes)</div></div>
   <div class="stat"><div class="stat-num">{stats['daniel_subcorpus']['relevant_substantive']}</div><div class="stat-lbl">De esos, RSI ≥ 2.5</div></div>
   <div class="stat"><div class="stat-num">{stats['daniel_subcorpus']['relevant_bowleg_mean']:.2f}</div><div class="stat-lbl">RSI media del sub-corpus</div></div>
@@ -893,6 +902,15 @@ portugués formaban un bloque aparte por idioma y no por tema. Por eso los tópi
 <tr><td>Indígena</td><td>{stats['daniel_subcorpus']['indigenous']}</td></tr>
 <tr><td>Mujeres / género</td><td>{stats['daniel_subcorpus']['gender_women']}</td></tr>
 </table>
+<p style="font-size:13px;background:#f8f9fa;padding:10px 14px;border-radius:6px;">
+  <b>Cómo leer el cruce México × ciclones.</b> El corpus reúne solo trabajos que <b>nombran</b> la interseccionalidad (o un marco afín)
+  y tratan el clima; los filtros de esta sección buscan México y ciclones en su título y resumen. En la búsqueda principal (Scopus, SciELO y
+  OpenAlex en español y portugués), antes de cualquier filtro, lo único con México y huracanes eran tres estudios de la novela <i>Temporada de huracanes</i> y uno sobre Katrina en la
+  costa del Golfo de México, todos excluidos en el cribado. La literatura mexicana sobre huracanes, género y pueblos indígenas existe —en una
+  consulta exploratoria en OpenAlex (24-11-2026), unos 250 trabajos cruzan México, huracanes y género, mujeres o indígenas—, pero casi
+  nunca nombra la interseccionalidad: solo 12 de ellos usan ese vocabulario, y de esos solo uno trata ese cruce (Otis y John en Acapulco,
+  que OpenAlex etiquetaba como inglés y se incorporó con la búsqueda de §2b). Que el nicho no use el marco es, en sí, un resultado para la tesis.
+</p>
 {ins_daniel}
 
 <h3>Documentos del sub-corpus (acceso directo)</h3>
@@ -932,12 +950,13 @@ portugués formaban un bloque aparte por idioma y no por tema. Por eso los tópi
 <tr><td>Scopus</td><td>Cadena v3 (data/v3_query_scopus.txt), API de búsqueda, {smeta['fecha_busqueda']}</td><td>{pmeta['identificados']['scopus']:,}</td></tr>
 <tr><td>SciELO</td><td>Cadena v3 (data/v3_query_scielo.txt), export RIS de search.scielo.org, {smeta['fecha_busqueda']}</td><td>{pmeta['identificados']['scielo']:,}</td></tr>
 <tr><td>OpenAlex</td><td>data/v3_query_openalex.json, API de works (español y portugués), {oameta['fecha']}</td><td>{pmeta['identificados']['openalex']:,}</td></tr>
+<tr><td>OpenAlex (otra etiqueta de idioma)</td><td>Misma consulta con los términos en español y portugués, sobre trabajos no etiquetados como ES/PT (data/v3_openalex_idioma_meta.json), {oiraw.get('fecha', '')}; solo los que están en español o portugués</td><td>{pmeta['identificados'].get('openalex_otra_etiqueta', 0):,}</td></tr>
 <tr><td>Redalyc</td><td>Verificación: cadena de SciELO en redalyc.org (data/v3_redalyc_meta.json), {rdmeta['fecha']}; {rdmeta['con_ambos_bloques_en_titulo_resumen_o_palabras_clave']} pertinentes, todos ya incluidos</td><td>0 nuevos</td></tr>
 </table>
 <p style="font-size: 12px;">
 Total identificado: {sum(pmeta['identificados'].values()):,} ·
 Filtro abstract ≥100 chars: −{sum(v['sin_abstract'] for v in pmeta['excluidos_regla'].values()) - pmeta['rescate_resumen']['rescatados']} ({sum(v['sin_abstract'] for v in pmeta['excluidos_regla'].values())} sin resumen en su fuente; {pmeta['rescate_resumen']['rescatados']} se rescataron con el resumen que OpenAlex tiene para su DOI) ·
-Erratas, conference reviews y otros tipos: −{pmeta['excluidos_regla']['scopus']['erratum_o_conference_review'] + pmeta['excluidos_regla']['scielo']['tipo'] + pmeta['excluidos_regla']['openalex']['tipo']} ·
+Erratas, conference reviews y otros tipos: −{sum(v.get('tipo', v.get('erratum_o_conference_review', 0)) for v in pmeta['excluidos_regla'].values())} ·
 Dedup DOI + título: −{sum(pmeta['duplicados'].values())} ·
 Cribado de elegibilidad: −{pmeta['cribado']['excluidos']} ·
 <strong>Corpus v3 elegible: {pmeta['cribado']['elegibles']:,}.</strong>

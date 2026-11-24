@@ -34,6 +34,12 @@ Pasos:
      rescatados pasan las mismas exclusiones por tipo y la misma deduplicación, reciben paper_id
      después del último de OpenAlex y se evalúan en un lote propio (work/v3_salidas/rs_lote_*.jsonl).
      La columna resumen_fuente vale «openalex_doi» en ellos.
+  8. Agrega los trabajos en español o portugués que OpenAlex etiqueta con otro idioma
+     (data/v3_openalex_idioma_raw.csv, de pipeline/v3/00d_openalex_idioma.py): solo los que
+     el idioma detectado en el título y el inicio del resumen da como español o portugués, con
+     las mismas exclusiones y la misma deduplicación que el resto de OpenAlex. Reciben paper_id
+     después de los rescatados, la columna idioma_openalex guarda la etiqueta original y se
+     evalúan en un lote propio (work/v3_salidas/oi_lote_*.jsonl).
 """
 from __future__ import annotations
 import importlib.util
@@ -314,6 +320,45 @@ def rescatar_resumenes(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
     return pd.concat([df, resc], ignore_index=True), meta
 
 
+def agregar_openalex_idioma(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
+    """Agrega los trabajos en español o portugués que OpenAlex etiqueta con otro idioma."""
+    p = DATA / 'v3_openalex_idioma_raw.csv'
+    if not p.exists():
+        print('[7] Sin data/v3_openalex_idioma_raw.csv: no se agregan')
+        return df, {}
+    oi = pd.read_csv(p, dtype={'Year': str})
+    n_id = len(oi)
+    det = oi['idioma_detectado'].fillna('')
+    oi = oi[det.isin(['es', 'pt'])].copy()
+    n_espt = len(oi)
+    oi['Language of Original Document'] = oi['idioma_detectado'].map({'es': 'Spanish', 'pt': 'Portuguese'})
+    oi['Document Type'] = oi['Document Type'].fillna('').map(tipo_doc)
+    oi['_source'], oi['_scielo_id'] = 'openalex', ''
+    sin_abs = sin_resumen(oi)
+    tipo = oi['Document Type'].str.lower().isin(TIPOS_EXCLUIDOS_OA) & ~sin_abs
+    oi = dedup(claves(oi[~(sin_abs | tipo)].copy()))
+    ya = (oi['_doi'].str.startswith('10.') & oi['_doi'].isin(set(df['_doi']))) | oi['_key'].isin(set(df['_key']))
+    nuevos = oi[~ya].copy()
+    meta = {'identificados': n_id, 'en_es_o_pt': n_espt, 'sin_abstract': int(sin_abs.sum()),
+            'tipo': int(tipo.sum()), 'ya_en_corpus': int(ya.sum()), 'nuevos': len(nuevos),
+            'idioma': nuevos['idioma_detectado'].value_counts().to_dict(),
+            'tipo_nuevos': nuevos['Document Type'].value_counts().to_dict()}
+    print(f"[7] OpenAlex con otra etiqueta de idioma: {n_id} identificados · {n_espt} en español o portugués · "
+          f"{meta['sin_abstract']} sin resumen · {meta['tipo']} por tipo · {meta['ya_en_corpus']} ya en el corpus "
+          f"→ {len(nuevos)} nuevos")
+    nuevos['nivel_ancla'] = nuevos.apply(nivel_ancla, axis=1)
+    nuevos['idioma'] = nuevos['idioma_detectado']
+    nuevos['v2_paper_id'] = pd.Series(pd.NA, index=nuevos.index, dtype='Int64')
+    nuevos['sim_resumen_v2'] = float('nan')
+    nuevos['reutiliza_v2'] = False
+    nuevos['resumen_fuente'] = ''
+    nuevos['_ord'] = pd.to_numeric(nuevos['Year'], errors='coerce')
+    nuevos = nuevos.sort_values(['_ord', 'Title'], ascending=[False, True]).reset_index(drop=True)
+    inicio = int(df['paper_id'].max()) + 1
+    nuevos.insert(0, 'paper_id', range(inicio, inicio + len(nuevos)))
+    return pd.concat([df, nuevos], ignore_index=True), meta
+
+
 def main():
     sc, se = leer_scopus(), leer_scielo()
     n_sc, n_se = len(sc), len(se)
@@ -359,22 +404,32 @@ def main():
     df.insert(0, 'paper_id', range(len(df)))
     df, oa = agregar_openalex(df)
     df, rescate = rescatar_resumenes(df)
+    df, oidioma = agregar_openalex_idioma(df)
+    if 'idioma_openalex' not in df:
+        df['idioma_openalex'] = ''
+    df['idioma_openalex'] = df['idioma_openalex'].fillna('')
     if 'resumen_fuente' not in df:
         df['resumen_fuente'] = ''
     df['resumen_fuente'] = df['resumen_fuente'].fillna('')
     out_cols = (['paper_id'] + PIPELINE_COLS + EXTRA_COLS
                 + ['nivel_ancla', 'idioma', '_source', '_doi', '_scielo_id', 'v2_paper_id',
-                   'sim_resumen_v2', 'reutiliza_v2', 'OpenAlex ID', 'resumen_fuente'])
+                   'sim_resumen_v2', 'reutiliza_v2', 'OpenAlex ID', 'resumen_fuente', 'idioma_openalex'])
     df[out_cols].to_csv(DATA / 'v3_corpus_consolidated.csv', index=False)
 
     meta = {
-        'identificados': {'scopus': n_sc, 'scielo': n_se, 'openalex': oa['n']},
+        # Los de OpenAlex con otra etiqueta de idioma cuentan como identificados solo si están en español
+        # o portugués (equivale al filtro de idioma de la consulta principal).
+        'identificados': {'scopus': n_sc, 'scielo': n_se, 'openalex': oa['n'],
+                          'openalex_otra_etiqueta': oidioma.get('en_es_o_pt', 0)},
         'excluidos_regla': {'scopus': {'sin_abstract': sc_abs, 'erratum_o_conference_review': sc_tipo},
                             'scielo': {'sin_abstract': se_abs, 'tipo': se_tipo},
-                            'openalex': {'sin_abstract': oa['sin_abstract'], 'tipo': oa['tipo']}},
+                            'openalex': {'sin_abstract': oa['sin_abstract'], 'tipo': oa['tipo']},
+                            'openalex_otra_etiqueta': {'sin_abstract': oidioma.get('sin_abstract', 0),
+                                                       'tipo': oidioma.get('tipo', 0)}},
         'duplicados': {'dentro_scopus': dup_sc, 'dentro_scielo': dup_se,
                        'scielo_ya_en_scopus': int(en_sc.sum()), 'dentro_openalex': oa['dup'],
-                       'openalex_ya_en_scopus_scielo': oa['ya_en_scopus_scielo']},
+                       'openalex_ya_en_scopus_scielo': oa['ya_en_scopus_scielo'],
+                       'openalex_otra_etiqueta_ya_en_corpus': oidioma.get('ya_en_corpus', 0)},
         'a_cribado': len(df),
         'fuente': df['_source'].value_counts().to_dict(),
         'nivel_ancla': df['nivel_ancla'].value_counts().to_dict(),
@@ -382,10 +437,12 @@ def main():
         'enlazados_v2': int(df['v2_paper_id'].notna().sum()),
         'reutilizan_evaluacion_v2': int(df['reutiliza_v2'].sum()),
         'evaluados_en_v3': int((~df['reutiliza_v2']).sum()),
-        'openalex_nuevos': oa['nuevos'],
-        'tipo_openalex_nuevos': df.loc[(df['_source'] == 'openalex') & df['resumen_fuente'].eq(''),
+        'openalex_nuevos': oa['nuevos'] + oidioma.get('nuevos', 0),
+        'tipo_openalex_nuevos': df.loc[(df['_source'] == 'openalex') & df['resumen_fuente'].eq('')
+                                       & df['idioma_openalex'].eq(''),
                                        'Document Type'].value_counts().to_dict(),
         'rescate_resumen': rescate,
+        'openalex_otra_etiqueta_idioma': oidioma,
     }
     (DATA / 'v3_prisma_meta.json').write_text(json.dumps(meta, indent=2, ensure_ascii=False))
     print(f"\n[OK] data/v3_corpus_consolidated.csv ({len(df)}) + data/v3_prisma_meta.json")
