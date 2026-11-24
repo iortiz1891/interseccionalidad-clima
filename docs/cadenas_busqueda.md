@@ -446,6 +446,20 @@ Tipos de documento: 242 artículos, 107 tesis, 53 capítulos de libro, 20 libros
 
 Los 1,844 registros de la v3 conservan su paper_id y su evaluación; los 24 que OpenAlex también encontró quedan marcados en `_source` (`…+openalex`). Total a cribado: **2,273**. Los 429 nuevos se evaluaron con el mismo prompt de la v3 (`prompts/v3_cribado_rsi.md`). El cribado deja **1,212 elegibles** (1,088 de la v3 y 124 nuevos de OpenAlex: 56 en español y 68 en portugués). La mayoría de los nuevos que se excluyen son ruido de la lematización (*intersection* en sentido vial, cartográfico o de cruce de temas) o trabajos interseccionales sin objeto climático.
 
+### 8.4 Verificación con Redalyc (sin registros nuevos)
+
+Redalyc no tiene una API pública de búsqueda ni exportación de resultados, y su buscador busca en el **texto completo**. Se corrió la cadena de SciELO de la v3 (sin `subject:` ni filtro de idioma) en el buscador de redalyc.org, partiendo el bloque climático en tres grupos porque la cadena completa no carga, y se recorrieron todas las páginas de resultados en el navegador (`data/v4_redalyc_meta.json`):
+
+| Paso | n |
+|---|---:|
+| Resultados (651 + 112 + 678) | 1,441 |
+| Artículos únicos | 1,262 |
+| Con un término interseccional en título, resumen o palabras clave | 99 |
+| Con ambos bloques en título, resumen o palabras clave (equivalente a `TITLE-ABS-KEY`) | 7 |
+| **Nuevos frente a la v4** | **0** |
+
+Los 7 ya estaban en la v4 (por Scopus, SciELO u OpenAlex). Casi todo lo demás menciona los términos solo en el cuerpo del texto o en las referencias. Para esta pregunta, Redalyc no amplía el corpus: su contenido pertinente ya entra por las otras tres fuentes.
+
 ---
 
 ## 6. Referencias sobre construcción de queries

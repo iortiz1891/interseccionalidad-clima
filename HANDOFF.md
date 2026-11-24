@@ -145,7 +145,7 @@ Las dos columnas no se comparan directamente: cambian el corpus, el modelo y las
 
 ### Media prioridad
 
-6. **Expansión multi-base** — OpenAlex (ES/PT) y SciELO ya están en la v4. Faltan: toolkit fetcher para PubMed, CrossRef, DOAJ + bases manuales (WoS, Latindex, Redalyc, Dialnet, CLACSO, LILACS). Script base: `Daniel_databases_project/agents/scripts/14_scopus_fetcher.py` (solo Scopus API, extender).
+6. **Expansión multi-base** — OpenAlex (ES/PT) y SciELO ya están en la v4; Redalyc se verificó y no aporta registros nuevos (`docs/cadenas_busqueda.md` §8.4). Faltan: toolkit fetcher para PubMed, CrossRef, DOAJ + bases manuales (WoS, Latindex, Redalyc, Dialnet, CLACSO, LILACS). Script base: `Daniel_databases_project/agents/scripts/14_scopus_fetcher.py` (solo Scopus API, extender).
 7. **Documentar el drift local↔repo** — decidir si fusionar `agents/scripts/` histórico al repo o archivarlo.
 
 ### Baja prioridad

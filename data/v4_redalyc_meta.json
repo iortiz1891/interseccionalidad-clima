@@ -1,0 +1,23 @@
+{
+  "fecha": "2026-11-24",
+  "fuente": "redalyc.org, buscador de artículos (texto completo), recorrido página por página en el navegador",
+  "consulta": "cadena de SciELO de la v3 (data/v3_query_scielo.txt) sin 'subject:' ni filtro de idioma; el bloque climático se partió en 3 grupos porque la cadena completa no carga",
+  "grupos": {
+    "clima[0:20]": 651,
+    "clima[20:40]": 112,
+    "clima[40:64]": 678
+  },
+  "registros_unicos": 1262,
+  "con_termino_interseccional_en_titulo_resumen_o_palabras_clave": 99,
+  "con_ambos_bloques_en_titulo_resumen_o_palabras_clave": 7,
+  "nuevos_frente_a_v4": 0,
+  "coincidencias_en_v4": [
+    {"paper_id": 1324, "doi": "10.7203/metode.12.20508", "fuente_v4": "scopus", "elegible": true},
+    {"paper_id": 849, "doi": "10.15446/bitacora.v34n2.113253", "fuente_v4": "scopus+openalex", "elegible": true},
+    {"paper_id": 1167, "doi": "10.17533/udea.espo.n66a06", "fuente_v4": "scielo+openalex", "elegible": false},
+    {"paper_id": 1887, "doi": "10.30545/academo.2026.n1.1454", "fuente_v4": "openalex", "elegible": true},
+    {"paper_id": 1397, "doi": "", "fuente_v4": "scielo+openalex", "elegible": true},
+    {"paper_id": 913, "doi": "10.1590/1806-9584-2024v32n192823", "fuente_v4": "scopus+scielo+openalex", "elegible": true},
+    {"paper_id": 1707, "doi": "", "fuente_v4": "scielo", "elegible": false}
+  ]
+}
