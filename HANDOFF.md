@@ -1,6 +1,6 @@
 # HANDOFF — Interseccionalidad y Cambio Climático
 
-**Última actualización:** 2026-10-13
+**Última actualización:** 2026-11-24
 **Repo:** https://github.com/iortiz1891/interseccionalidad-clima
 **Dashboard en vivo:** https://iortiz1891.github.io/interseccionalidad-clima/
 
@@ -9,10 +9,12 @@
 ## 1. Lo esencial en 30 segundos
 
 - **Qué es:** revisión sistemática que mide, con una rúbrica (RSI) aplicada por LLM, en qué medida la investigación sobre cambio climático **aplica** interseccionalidad vs. solo la **menciona**.
-- **Corpus:** 971 papers Scopus (752 EN + 219 ES, mayo 2026) consolidados por Daniel.
+- **Corpus v1:** 971 registros Scopus (752 EN + 219 ES, mayo 2026) consolidados por Daniel, **sin cribado de elegibilidad**.
+- **Corpus v2:** 1,696 registros de la cadena bilingüe (30-09-2026); el cribado deja 1,016 elegibles. Solo 12 registros en español.
 - **Instrumento:** Rúbrica de Sustantividad Interseccional (RSI) — gate + 6 criterios graduados + factor de integración. Fundamentada en Crenshaw, Collins, Hancock, McCall, Bowleg.
-- **Scoring vigente:** `gpt-4.1` vía Batch API de OpenAI, prompts en `prompts/bowleg_eval_v3.md` + `reasoning_v3.md`. **Provisional** — pendiente validación humana con κ de Cohen.
-- **Resultado principal:** 57.5% invoca el marco sin articularlo (RSI=0); 19% sustantiva fuerte. El eslabón débil es el criterio IV (método no aditivo).
+- **Scoring vigente:** v1 con `gpt-4.1` vía Batch API de OpenAI (`prompts/bowleg_eval_v3.md` + `reasoning_v3.md`); v2 con Claude (claude-opus-5-5) en sesiones de Claude Code (`prompts/v2_cribado_rsi.md`). **Provisional** — pendiente validación humana con κ de Cohen.
+- **Resultado principal (v2):** 43.8% de los elegibles no pasa el gate (RSI=0); 16% alcanza RSI ≥ 2.5. El eslabón débil es el criterio IV (método no aditivo). En la v1: 57.5% y 25.7%, sobre un corpus sin cribar.
+- **Fórmula del total (desde 2026-11-24):** empates hacia arriba y mínimo 0.5 si pasa el gate (antes, `round()` de Python mandaba los empates al par). Ver `pipeline/recalcular_totales.py`.
 
 **Dos entregables esperados:**
 1. **Manuscrito Íconos (FLACSO Ecuador)** — sobre el campo general.
@@ -26,21 +28,23 @@
 
 ```
 iortiz1891/interseccionalidad-clima
-├── site/                    ← dashboard autocontenido (publicado por GitHub Pages)
-│   ├── index.html           ·  dashboard principal (~3 MB)
-│   ├── mapa.html            ·  mapa temático interactivo
-│   └── validacion.html      ·  herramienta de validación humana (κ de Cohen)
-├── data/                    ← 21 CSV/JSON con prefijo v1_* + daniel_prisma_meta.json
-├── pipeline/                ← 12 scripts numerados 01→12 (orden lógico)
-├── prompts/                 ← bowleg_eval_v3.md, reasoning_v3.md
+├── site/                    ← dashboard (publicado por GitHub Pages)
+│   ├── index.html           ·  pestaña v1
+│   ├── mapa.html            ·  mapa temático interactivo v1
+│   ├── validacion.html      ·  validación v1 (ya no se enlaza desde el dashboard)
+│   └── v2/                  ·  pestaña v2: index, mapa, validacion (+ validacion_llm.js), corpus
+├── data/                    ← CSV/JSON con prefijo v1_* y v2_*
+├── pipeline/                ← 01→12 de la v1 + recalcular_totales.py
+│   └── v2/                  ·  01→13 de la v2
+├── prompts/                 ← bowleg_eval_v3.md, reasoning_v3.md, v2_cribado_rsi.md
 ├── docs/                    ← rubrica_RSI_fundamentacion.md, cadenas_busqueda.md
-└── assets/                  ← 16 figuras v6_*
+└── assets/                  ← figuras v6_* (v1) y v2_*
 ```
 
 ### 2.2 Working directory local (historia completa, no publicado)
 
 ```
-~/Library/CloudStorage/GoogleDrive-iortiz1891@gmail.com/My Drive/Daniel_LiteratureReview_May2026/
+<Google Drive>/My Drive/Daniel_LiteratureReview_May2026/
 ├── Daniel_databases_project/        ← mirror local con historia completa (NO es git)
 │   ├── agents/scripts/              ·  36 scripts (01-34 + variantes), incluye iteraciones
 │   ├── data/                        ·  mismos v1_* + xlsx crudos de Daniel + logs
@@ -58,7 +62,16 @@ iortiz1891/interseccionalidad-clima
 
 ---
 
-## 3. Lo que se hizo en esta sesión (2026-09-28)
+## 3. Historial de sesiones
+
+### 2026-11-24 — rama `fix/redondeo-rsi-y-textos`
+
+- `compute_total` deja de usar `round()` de Python (empates al par): ahora redondea los empates hacia arriba y da un mínimo de 0.5 a todo trabajo que pasa el gate. Cambian 44 totales de la v1 y 114 de la v2; se recalcularon con `pipeline/recalcular_totales.py` y se regeneró todo (05–12 v1, 05–13 v2).
+- La herramienta de validación (v1 y v2) usa la misma fórmula y **conserva la muestra ya sorteada** (`--remuestrear` para sortear otra).
+- Ejemplo B del prompt: decía «parcial (~1.5–2)» pero la fórmula da 1.0 (nominal); se corrigió el rótulo y se dejó la errata en el frontmatter.
+- Textos: advertencias sobre la v1 sin cribado, la comparabilidad v1/v2 y la reproducibilidad de la v2; versiones fijas de deck.gl y apache-arrow en los mapas.
+
+### 2026-09-28
 
 | # | Commit | Qué cambió |
 |---|---|---|
@@ -80,15 +93,17 @@ Scopus ES (xlsx manual)   219  ─┤→ 971 (filtro abstract ≥100 chars: −1
 Bruto                     987  ─┘
 ```
 
-### Distribución RSI (gpt-4.1, provisional)
+### Distribución RSI (provisional, fórmula corregida el 2026-11-24)
 
-| Categoría | % | n |
+| Categoría | v1 · gpt-4.1 (971, sin cribado) | v2 · Claude (1,016 elegibles) |
 |---|---:|---:|
-| Mención sin aplicación (0) | 57.5% | 558 |
-| Nominal/débil (0.5–1.0) | 6.6% | 64 |
-| Parcial (1.5–2.0) | 12.4% | 120 |
-| Sustantiva (2.5–3.0) | 4.5% | 44 |
-| Sustantiva fuerte (3.5–4.0) | 19.1% | 185 |
+| Mención sin aplicación (0) | 57.5% · 558 | 43.8% · 445 |
+| Nominal/débil (0.5–1.0) | 4.1% · 40 | 8.9% · 90 |
+| Parcial (1.5–2.0) | 12.8% · 124 | 31.3% · 318 |
+| Sustantiva (2.5–3.0) | 6.6% · 64 | 10.1% · 103 |
+| Sustantiva fuerte (3.5–4.0) | 19.1% · 185 | 5.9% · 60 |
+
+Las dos columnas no se comparan directamente: cambian el corpus, el modelo y las reglas del gate.
 
 ### Hallazgos actuales
 
@@ -102,19 +117,21 @@ Bruto                     987  ─┘
 
 ### Alta prioridad
 
-1. **Ejecutar v2a Scopus y comparar hits vs v1** — ver `docs/cadenas_busqueda.md` §2.2. Esperado: amplía peligros climáticos (inundación, sequía, ola de calor) y ejes (discapacidad, LGBT, edad, casta, indigeneidad). Registrar en `data/search_log.csv`.
-2. **Validación humana** — codificar submuestra con la herramienta `site/validacion.html` y calcular κ de Cohen vs scoring del LLM. La submuestra ya está en `data/v1_validation_sample.json`.
-3. **Refinamiento con Sonnet antes de Íconos** — ver [`project_revisa_v1_scoring.md`](memory). Decisión de 2026-05-15 fue usar GPT-4o-mini pese a κ=0.038 vs Sonnet; antes del manuscrito definitivo re-correr con Sonnet o modelo equivalente.
+1. **Validación humana de la v2** — codificar la muestra de `site/v2/validacion.html` (140 trabajos en 20 bloques; al menos 10 bloques) y calcular κ de Cohen frente al LLM.
+2. **Cobertura en español** — la v2 solo tiene 12 registros en español. Ejecutar las cadenas de Web of Science / SciELO (`docs/cadenas_busqueda.md` §3.2) antes del manuscrito Íconos y de la tesis.
+3. **Decidir qué hacer con la v1** — no tuvo cribado: solo ~1/3 menciona *intersectional/interseccional* y la mayoría de los registros en español no trata el clima. Opciones: cribarla con el Paso 0 de `prompts/v2_cribado_rsi.md` o reportar solo la v2.
+4. **Reproducibilidad de la v2** — versionar las salidas crudas de `work/v2_salidas` y `work/v2_reevaluacion`, o rehacer el scoring con un script por API. Revisar también que la reevaluación del gate (regla 3 corregida) solo se aplicó a los 421 que no pasaban; la regla nueva también añade restricciones que podrían afectar a los que sí pasaban.
+5. *(Nota histórica: una versión anterior de este archivo hablaba de GPT-4o-mini con κ = 0.038 frente a Sonnet; el scoring vigente de la v1 es gpt-4.1.)*
 
 ### Media prioridad
 
-4. **Expansión multi-base** — toolkit fetcher para OpenAlex, SciELO, PubMed, CrossRef, DOAJ + bases manuales (WoS, Latindex, Redalyc, Dialnet, CLACSO, LILACS). Script base: `Daniel_databases_project/agents/scripts/14_scopus_fetcher.py` (solo Scopus API, extender).
-5. **Documentar el drift local↔repo** — decidir si fusionar `agents/scripts/` histórico al repo o archivarlo.
+6. **Expansión multi-base** — toolkit fetcher para OpenAlex, SciELO, PubMed, CrossRef, DOAJ + bases manuales (WoS, Latindex, Redalyc, Dialnet, CLACSO, LILACS). Script base: `Daniel_databases_project/agents/scripts/14_scopus_fetcher.py` (solo Scopus API, extender).
+7. **Documentar el drift local↔repo** — decidir si fusionar `agents/scripts/` histórico al repo o archivarlo.
 
 ### Baja prioridad
 
-6. Convertir `Daniel_databases_project/` en un clon git del repo (actualmente no lo es).
-7. Automatizar la regeneración del dashboard cuando cambian los datos (hoy requiere correr `12_dashboard.py` localmente a mano).
+8. Convertir `Daniel_databases_project/` en un clon git del repo (actualmente no lo es).
+9. Automatizar la regeneración del dashboard cuando cambian los datos (hoy requiere correr `12_dashboard.py` localmente a mano).
 
 ---
 
@@ -166,7 +183,7 @@ python3 -m http.server 8001
 | Scoring RSI con GPT-4.1 (Batch API) | `OPENAI_API_KEY` | OpenAI dashboard |
 | Scopus API (expansión opcional) | API key + inst. token | Elsevier/Scopus (institucional) |
 
-Ninguna va al repo. Para una sesión nueva: pedirlas al usuario (Ivan, `iortiz1891@gmail.com`) o leer de su entorno local.
+Ninguna va al repo. Para una sesión nueva: pedirlas al usuario (Ivan Ortiz, `@iortiz1891` en GitHub) o leer de su entorno local.
 
 ---
 
@@ -183,7 +200,7 @@ Ninguna va al repo. Para una sesión nueva: pedirlas al usuario (Ivan, `iortiz18
 
 ## 9. Puntos de contacto
 
-- **Autoría:** curaduría del corpus → Daniel · implementación técnica → Ivan Ortiz (`iortiz1891@gmail.com`).
+- **Autoría:** curaduría del corpus → Daniel · implementación técnica → Ivan Ortiz (`@iortiz1891` en GitHub).
 - **Repositorio:** [iortiz1891/interseccionalidad-clima](https://github.com/iortiz1891/interseccionalidad-clima)
 - **Dashboard:** https://iortiz1891.github.io/interseccionalidad-clima/
 - **Documento canónico de la rúbrica:** [`docs/rubrica_RSI_fundamentacion.md`](docs/rubrica_RSI_fundamentacion.md)
@@ -194,7 +211,7 @@ Ninguna va al repo. Para una sesión nueva: pedirlas al usuario (Ivan, `iortiz18
 ## 10. Para una sesión Claude nueva (misma usuario)
 
 Las memorias persistentes están en:
-`~/.claude/projects/-Users-ivanmini-Library-CloudStorage-GoogleDrive-iortiz1891-gmail-com-My-Drive-Daniel-LiteratureReview-May2026/memory/`
+`~/.claude/projects/<carpeta del proyecto en Google Drive>/memory/`
 
 Archivos clave: `MEMORY.md` (índice), `project_revisa_rama_daniel.md`, `project_revisa_methodology.md`, `project_revisa_pending.md`, `feedback_espanol_mexicano.md`, `feedback_no_direccional.md`.
 

@@ -2,7 +2,10 @@
 
 ### ¿Aplicación sustantiva o invocación nominal?
 
-Una revisión sistemática que mide **en qué medida la investigación sobre cambio climático aplica la interseccionalidad de forma sustantiva, y en qué medida solo la menciona.** El análisis cubre **971 trabajos** indexados en Scopus (inglés y español) que invocan explícitamente la interseccionalidad en torno al clima o a eventos extremos.
+Una revisión sistemática que mide **en qué medida la investigación sobre cambio climático aplica la interseccionalidad de forma sustantiva, y en qué medida solo la menciona.** Tiene dos versiones, ambas sobre Scopus:
+
+- **v1** (mayo 2026): **971 registros** recuperados por las cadenas originales (inglés y español), puntuados sin cribado de elegibilidad.
+- **v2** (septiembre 2026): **1,696 registros** de una cadena bilingüe más estricta; un cribado previo deja **1,016 trabajos elegibles** que invocan la interseccionalidad en sentido social y tienen un objeto climático.
 
 🔗 **Dashboard interactivo:** https://iortiz1891.github.io/interseccionalidad-clima/
 
@@ -22,13 +25,21 @@ La RSI sintetiza la teoría interseccional (Crenshaw, Collins, McCall, Hancock, 
 - **I.** Identidades entrelazadas · **II.** Poder estructural · **III.** Contexto situado · **IV.** Método no aditivo · **V.** Praxis y justicia · **VI.** Agencia y resistencia
 - **Factor de integración:** ¿se analizan los ejes de forma articulada o en secciones separadas?
 
-La rúbrica se aplica a escala de corpus con un modelo de lenguaje de gran escala (GPT-4.1), registrando **evidencia textual por criterio** para hacer auditable cada puntaje. El procedimiento es transparente y versionado; los puntajes son **provisionales** hasta completar la validación humana (incluida como herramienta en el dashboard).
+La rúbrica se aplica a escala de corpus con un modelo de lenguaje (GPT-4.1 en la v1, Claude en la v2), registrando **evidencia textual por criterio** para hacer auditable cada puntaje. El modelo solo asigna los criterios; el total lo calcula el pipeline: `(Σ criterios / 6 × 4) × (0.5 + 0.5 × integración)`, redondeado a múltiplos de 0.5 con los empates hacia arriba y un mínimo de 0.5 si el trabajo pasa el gate. Los puntajes son **provisionales** hasta completar la validación humana (incluida como herramienta en el dashboard).
 
 ## Hallazgos principales
 
-- **Adopción ≠ aplicación.** El 57.5 % del corpus invoca el marco sin articular ejes de diferenciación; solo una minoría alcanza aplicación sustantiva.
-- **El eslabón débil es el método.** Entre los trabajos que sí aplican el marco, el criterio metodológico (IV) es el menos cumplido: el campo *teoriza* la interseccionalidad mejor de lo que la *opera*.
+- **Adopción ≠ aplicación.** En la v2, el 43.8 % de los trabajos elegibles invoca el marco sin articular ejes de diferenciación (no pasa el gate) y solo el 16 % alcanza aplicación sustantiva (RSI ≥ 2.5). En la v1 las cifras son 57.5 % y 25.7 %, pero ese corpus no tuvo cribado (ver *Advertencias*).
+- **El eslabón débil es el método.** Entre los trabajos que pasan el gate, el criterio metodológico (IV) es el menos cumplido (22 % en la v2, 34 % en la v1): el campo *teoriza* la interseccionalidad mejor de lo que la *opera*.
 - **El rigor es de nicho.** La sustantividad no se distribuye al azar: se concentra en vecindarios temáticos concretos (desastres situados, conocimientos indígenas, género y agricultura), visibles en el mapa temático.
+
+## Advertencias metodológicas
+
+- **La v1 no tuvo cribado de elegibilidad.** La cadena en inglés usa `intersection*`, que también recupera frases como «at the intersection of climate and health»; la cadena en español busca en todos los campos (`ALL`), referencias incluidas. Solo cerca de un tercio de los 971 registros menciona *intersectional/interseccional* en el título, el resumen o las palabras clave, y la mayoría de los 219 registros en español no trata el clima. Las proporciones de la v1 incluyen esos registros.
+- **La v1 y la v2 no se comparan directamente.** Entre una y otra cambian el corpus, el modelo (gpt-4.1 vía Batch API → Claude en sesiones de Claude Code) y las reglas del gate y de los criterios I y IV (`prompts/v2_cribado_rsi.md`, reglas 3 y 4).
+- **La v2 no es reproducible al pie de la letra.** El cribado y la RSI se aplicaron por lotes de 70 registros en sesiones de Claude Code; las reglas comunes se fijaron tras el lote piloto y se aplicaron también a los registros ya escritos; las salidas crudas (`work/`) no se versionan.
+- **La v2 casi no tiene trabajos en español.** La cadena bilingüe devolvió 19 registros en español (12 tras la ingesta, 6 elegibles), frente a 219 en la v1. Falta ejecutar las cadenas de Web of Science / SciELO (`docs/cadenas_busqueda.md` §3.2).
+- **Redondeo corregido (noviembre 2026).** Hasta entonces el total usaba `round()` de Python, que manda los empates al número par (2.5 → 2 pero 1.5 → 2) y bajaba de categoría a 44 trabajos de la v1 y 114 de la v2. Los totales se recalcularon con `pipeline/recalcular_totales.py`, sin volver a llamar al modelo; las muestras de validación se conservaron.
 
 ## El dashboard
 
@@ -72,7 +83,8 @@ El **pipeline** está numerado según el flujo real de datos:
 | # | Script | Qué hace |
 |---|--------|----------|
 | 01 | `ingesta_corpus.py` | Consolida las bases Scopus (EN + ES) en el corpus de trabajo |
-| 02 | `scoring_rsi.py` | Aplica la rúbrica RSI con el modelo de lenguaje (Batch API) |
+| 02 | `scoring_rsi.py` | Aplica la rúbrica RSI con el modelo de lenguaje (Batch API) y define la fórmula del total |
+| — | `recalcular_totales.py` | Recalcula totales y categorías (v1 y v2) desde los criterios guardados, sin llamar al modelo |
 | 03 | `modelado_topicos.py` | BERTopic + optimización de hiperparámetros |
 | 04 | `etiquetado_topicos.py` | Etiqueta los tópicos con un modelo de lenguaje |
 | 05 | `analisis_cruzados.py` | Cruces RSI × tópico / idioma / país |
@@ -104,7 +116,9 @@ python3 pipeline/11_validacion.py            # validación → site/validacion.h
 python3 pipeline/12_dashboard.py             # dashboard → site/index.html
 ```
 
-La cadena completa desde las bases Scopus crudas (`01` ingesta → `02` scoring con la API de OpenAI → `03` BERTopic → `04` etiquetado → `05`/`06` análisis) requiere las bases crudas (`.xlsx`), que **no se incluyen** por términos de redistribución, y una clave de API de OpenAI para el scoring.
+Para la v2, cambia `pipeline/` por `pipeline/v2/` y corre `05`, `06`, `07`, `08`, `09`, `09b`, `10`, `11`, `12` y `13`. Si cambia la fórmula del total, corre antes `python3 pipeline/recalcular_totales.py`. Los pasos `11` conservan la muestra de validación ya sorteada (con `--remuestrear` se sortea otra).
+
+La cadena completa desde las bases Scopus crudas (`01` ingesta → `02` scoring con la API de OpenAI → `03` BERTopic → `04` etiquetado → `05`/`06` análisis) requiere las bases crudas (`.xlsx`), que **no se incluyen** por términos de redistribución, y una clave de API de OpenAI (`OPENAI_API_KEY`) para el scoring.
 
 ### Pipeline v2 (búsqueda ampliada)
 

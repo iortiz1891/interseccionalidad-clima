@@ -482,7 +482,9 @@ def main():
 <div class="caveat">
   <strong>⚠ Nota:</strong> los puntajes RSI fueron generados con un modelo de lenguaje (<strong>Claude · claude-opus-5-5</strong>), después de un cribado de elegibilidad.
   Son <strong>provisionales</strong> hasta completar la validación humana sobre una submuestra (ver §10).
-  El procedimiento es transparente y reproducible: prompt versionado y evidencia textual por criterio.
+  El procedimiento es transparente y auditable: prompt versionado y evidencia textual por criterio.<br>
+  <strong>Comparación con la v1:</strong> entre las dos pestañas cambian el corpus, el modelo (gpt-4.1 → Claude)
+  y las reglas del gate y de los criterios I y IV, así que las diferencias de cifras no se deben solo a la búsqueda.
 </div>
 
 <div style="background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;border-radius:12px;padding:22px 26px;margin:20px 0;">
@@ -783,7 +785,7 @@ def main():
 
 <h2 id="valid">10 · Notas de validación</h2>
 <div class="theory-block">
-  <p style="margin-top:0;">El cribado y el scoring RSI v3 de la v2 los aplicó <strong>Claude (claude-opus-5-5)</strong>, con un prompt versionado que aplica la rúbrica v3 al pie de la letra. La regla del gate se corrigió durante la aplicación y los registros afectados se reevaluaron (<code>data/v2_reevaluacion_gate.csv</code>). El procedimiento es transparente y reproducible: el prompt está versionado y cada puntaje incluye evidencia textual por criterio.</p>
+  <p style="margin-top:0;">El cribado y el scoring RSI v3 de la v2 los aplicó <strong>Claude (claude-opus-5-5)</strong>, con un prompt versionado que aplica la rúbrica v3 al pie de la letra. La regla del gate se corrigió durante la aplicación y los registros afectados se reevaluaron (<code>data/v2_reevaluacion_gate.csv</code>). El procedimiento es transparente y auditable: el prompt está versionado y cada puntaje incluye evidencia textual por criterio. No es reproducible al pie de la letra: el modelo se aplicó en sesiones de Claude Code, por lotes de 70 registros, y las reglas comunes se fijaron después del lote piloto y se aplicaron también a los registros ya escritos.</p>
   <p><strong>Validación pendiente.</strong> Para consolidar la rúbrica como instrumento, resta una <strong>validación humana</strong>. Un evaluador experto repite a ciegas, sobre una muestra, los mismos pasos que siguió el modelo, con las mismas definiciones y reglas: <b>inclusión</b> (¿invoca la interseccionalidad en sentido social? ¿el objeto es climático?), <b>gate</b>, <b>criterios I–VI</b> e <b>integración</b>. La muestra tiene {vmeta["n"]} trabajos en {vmeta["bloques"]} bloques de {vmeta["por_bloque"]}: cada bloque trae 2 registros que el modelo excluyó y 1 de cada categoría RSI. La herramienta calcula la concordancia del cribado, del gate, de cada criterio y de la categoría RSI (κ de Cohen, κ ponderado e IC bootstrap), y estima el acuerdo para el corpus completo. Hasta entonces, los puntajes deben interpretarse como provisionales.</p>
   <p style="margin-bottom:0;"><a href="validacion.html"><b>✓ Abrir la herramienta de validación</b></a> · <a href="corpus.html"><b>☰ Ver la lista completa del corpus</b></a> ({pmeta["a_cribado"]:,} registros cribados, con las respuestas del modelo; conviene revisarla después de codificar la muestra).</p>
 </div>

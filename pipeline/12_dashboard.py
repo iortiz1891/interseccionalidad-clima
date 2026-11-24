@@ -145,11 +145,12 @@ def main():
 <div class="theory-block" style="border-left:4px solid #1a73e8">
   <h3 style="margin-top:0">Lo que revela el mapa</h3>
   <p style="font-size:13px;color:#555;margin-top:0">
-    <b>Encuadre.</b> El universo no es «la literatura sobre cambio climático», sino la literatura que
-    <b>invoca explícitamente la interseccionalidad</b> en torno al cambio climático o a eventos extremos
-    (la búsqueda exige el término <code>intersection*</code> junto a clima y a un eje social). Por eso los
-    hallazgos se leen <i>dentro</i> de ese corpus autoseleccionado por mención —lo que vuelve más
-    contundente que aun así la mayoría no opere el concepto.
+    <b>Encuadre.</b> El universo de la v1 es lo que devolvieron las cadenas originales. La cadena en inglés
+    exige el término <code>intersection*</code> (en cualquier sentido, también «at the intersection of…») junto
+    a clima y a un eje social; la cadena en español busca en todos los campos (<code>ALL</code>), referencias
+    incluidas. La v1 <b>no tuvo cribado de elegibilidad</b>: el corpus incluye registros que no invocan la
+    interseccionalidad o cuyo objeto no es climático, y los hallazgos deben leerse con esa reserva. La pestaña
+    v2 usa una cadena más estricta y criba cada registro antes de aplicar la RSI.
   </p>
   <ol style="font-size:13.5px;line-height:1.6;padding-left:20px">
     <li><b>La sustantividad se concentra topográficamente.</b> El RSI medio por tópico va de
@@ -253,8 +254,8 @@ def main():
         return f'<div class="insight"><span class="lbl">{label}</span>{body}</div>'
 
     ins_bowleg = insight("Lectura del dato",
-        f"El <b>{pct_gate_fail}%</b> del corpus no supera el criterio de entrada: invoca la "
-        f"interseccionalidad sin articular ejes de diferenciación relacionados. Solo el <b>{pct_sust}%</b> "
+        f"El <b>{pct_gate_fail}%</b> del corpus no supera el criterio de entrada: no articula ejes de "
+        f"diferenciación relacionados (la cifra incluye registros que ni siquiera invocan el marco; ver la nota inicial). Solo el <b>{pct_sust}%</b> "
         f"alcanza aplicación sustantiva (RSI ≥ 2.5). La forma <b>bimodal</b> sugiere que la "
         f"interseccionalidad, cuando se aplica, tiende a aplicarse con cierta profundidad —pero ese "
         f"caso es minoritario. El patrón es consistente con la hipótesis de un uso predominantemente "
@@ -456,7 +457,12 @@ def main():
 <div class="caveat">
   <strong>⚠ Nota:</strong> los puntajes RSI fueron generados con un modelo de lenguaje (<strong>gpt-4.1</strong>).
   Son <strong>provisionales</strong> hasta completar la validación humana sobre una submuestra (ver §10).
-  El procedimiento es transparente y reproducible: prompt versionado y evidencia textual por criterio.
+  El procedimiento es transparente y auditable: prompt versionado y evidencia textual por criterio.<br>
+  <strong>Corpus sin cribado:</strong> la v1 puntuó todo lo que devolvió la búsqueda. Solo cerca de un tercio
+  de los registros menciona <i>intersectional</i> o <i>interseccional</i> en el título, el resumen o las palabras
+  clave, y la mayoría de los registros en español no trata el clima. Las proporciones de esta pestaña incluyen
+  esos registros. La pestaña v2 aplica un cribado previo, pero cambia también el modelo y las reglas del gate,
+  así que sus cifras no se comparan directamente con estas.
 </div>
 
 <div style="background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;border-radius:12px;padding:22px 26px;margin:20px 0;">
@@ -471,7 +477,7 @@ def main():
   <ul style="margin:0;padding-left:20px;line-height:1.7;font-size:13.5px;">
     <li><b>Pregunta.</b> ¿En qué medida el campo aplica la interseccionalidad de forma sustantiva y en qué medida solo la menciona?</li>
     <li><b>Instrumento.</b> Rúbrica de Sustantividad Interseccional (RSI): un criterio de entrada + 6 criterios + factor de integración, aplicada con un modelo de lenguaje a los {n_tot} trabajos del corpus.</li>
-    <li><b>Adopción ≠ aplicación.</b> El <b>{pct_gate_fail}%</b> invoca el marco sin articular ejes de diferenciación; solo el <b>{pct_sust}%</b> alcanza aplicación sustantiva.</li>
+    <li><b>Adopción ≠ aplicación.</b> El <b>{pct_gate_fail}%</b> no articula ejes de diferenciación (incluye registros que no invocan el marco); solo el <b>{pct_sust}%</b> alcanza aplicación sustantiva.</li>
     <li><b>El eslabón débil es el método.</b> Entre los trabajos que sí aplican el marco, solo el <b>{pct_metodo_gate}%</b> lo traduce en diseño metodológico (criterio IV): el campo teoriza mejor de lo que opera.</li>
     <li><b>El rigor es de nicho.</b> La sustantividad se concentra en comunidades temáticas concretas (desastres situados, pueblos indígenas, género y agricultura), no se distribuye de forma pareja.</li>
     <li><b>Para la tesis.</b> El nicho ciclones × México × género/indigeneidad está casi inexplorado, pero los pocos trabajos que lo tocan figuran entre los más sustantivos: un vacío con piso metodológico sólido.</li>
@@ -803,7 +809,7 @@ tráfico/transporte (sentido vial de "intersection"), reportes corporativos, cit
 
 <h2 id="valid">10 · Notas de validación</h2>
 <div class="theory-block">
-  <p style="margin-top:0;">El scoring RSI v3 se aplicó con <strong>gpt-4.1</strong>, un modelo de alta capacidad seleccionado por su confiabilidad en tareas de juicio interpretativo estructurado. El procedimiento es transparente y reproducible: el prompt está versionado y cada puntaje incluye evidencia textual por criterio.</p>
+  <p style="margin-top:0;">El scoring RSI v3 se aplicó con <strong>gpt-4.1</strong>, un modelo de alta capacidad seleccionado por su confiabilidad en tareas de juicio interpretativo estructurado. El procedimiento es transparente y auditable: el prompt está versionado y cada puntaje incluye evidencia textual por criterio.</p>
   <p style="margin-bottom:0;"><strong>Validación pendiente.</strong> Para consolidar la rúbrica como instrumento, resta una <strong>validación humana</strong>: la codificación a ciegas de una submuestra (40–50 trabajos) por un evaluador experto, para estimar la concordancia humano-modelo (κ de Cohen). Hasta entonces, los puntajes deben interpretarse como provisionales.</p>
 </div>
 
@@ -844,7 +850,7 @@ tráfico/transporte (sentido vial de "intersection"), reportes corporativos, cit
 
 <h2 id="sintesis">12 · Síntesis y discusión</h2>
 <div class="theory-block">
-  <p style="margin-top:0;"><b>Una adopción que no es aplicación.</b> El embudo (§3b) muestra el primer hallazgo: de los {n_tot} trabajos que invocan la interseccionalidad, solo {n_gate} articulan dos o más ejes de diferenciación como relacionados, y apenas una fracción de ellos alcanza aplicación sustantiva. La amplia circulación del término no se corresponde con su uso analítico: predomina la mención.</p>
+  <p style="margin-top:0;"><b>Una adopción que no es aplicación.</b> El embudo (§3b) muestra el primer hallazgo: de los {n_tot} trabajos del corpus, solo {n_gate} articulan dos o más ejes de diferenciación como relacionados, y apenas una fracción de ellos alcanza aplicación sustantiva. La amplia circulación del término no se corresponde con su uso analítico: predomina la mención.</p>
 
   <p><b>Cuando se aplica, se teoriza más de lo que se opera.</b> El perfil por criterio (§3b) precisa <em>dónde</em> falla la aplicación. Entre los trabajos que pasan el criterio de entrada, el poder estructural y el contexto situado superan el 70 %, pero el <b>método no aditivo (criterio IV) se queda en {pct_metodo_gate}%</b>. La interseccionalidad se invoca como marco interpretativo, pero rara vez se traduce en decisiones de diseño —muestreo, codificación, modelos con interacciones—. Es el eslabón débil del campo.</p>
 

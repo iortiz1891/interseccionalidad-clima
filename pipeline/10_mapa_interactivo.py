@@ -784,6 +784,11 @@ def main():
     else:
         html = html + panel_html + custom_js
 
+    # datamapplot carga deck.gl y apache-arrow con @latest: se fijan las versiones para
+    # que el mapa no cambie (ni se rompa) con cada versión nueva de esas librerías.
+    for _lib, _ver in (('deck.gl', '9.4.1'), ('apache-arrow', '21.2.0')):
+        html = html.replace(f'unpkg.com/{_lib}@latest/', f'unpkg.com/{_lib}@{_ver}/')
+
     base_html_path.write_text(html)
     print(f"[OK] enhanced → {base_html_path} ({len(html):,} chars)")
 
