@@ -2,10 +2,16 @@
 """
 04_topicos.py — v3: modelado de tópicos (BERTopic) sobre el corpus elegible.
 
-Mismo diseño que la v1 (pipeline/03_modelado_topicos.py): embeddings
-all-MiniLM-L6-v2 sobre título + keywords + abstract, barrido UMAP (5D) × HDBSCAN
-con el mismo puntaje combinado, y ajuste final de BERTopic con la mejor
-combinación. Además guarda coordenadas UMAP 2D para el mapa.
+Mismo diseño que la v1 (pipeline/03_modelado_topicos.py): embeddings sobre título +
+keywords + abstract, barrido UMAP (5D) × HDBSCAN con el mismo puntaje combinado, y
+ajuste final de BERTopic con la mejor combinación. Además guarda coordenadas UMAP 2D
+para el mapa.
+
+Diferencia con la v1 y la v2: con 148 trabajos elegibles en español y portugués, el modelo
+all-MiniLM-L6-v2 (solo inglés) los separa por idioma y no por tema (el barrido encuentra
+2–3 clústeres). La v3 usa paraphrase-multilingual-MiniLM-L12-v2 (misma dimensión, 384),
+que proyecta los tres idiomas en el mismo espacio, y BERTopic en modo multilingüe
+(conserva los acentos) con palabras vacías en inglés, español y portugués.
 
 Uso:
     python3 pipeline/v3/04_topicos.py embeddings   # solo embeddings (todo el corpus v3)
@@ -25,7 +31,8 @@ import numpy as np
 import pandas as pd
 
 DATA = Path("data")
-CACHE = Path("work/v3_embeddings_minilm.npy")
+CACHE = Path("work/v3_embeddings_multilingual_minilm.npy")
+MODELO = 'paraphrase-multilingual-MiniLM-L12-v2'
 SEED = 42
 
 
@@ -40,7 +47,7 @@ def embeddings(corpus: pd.DataFrame) -> np.ndarray:
         if len(embs) == len(corpus):
             return embs
     from sentence_transformers import SentenceTransformer
-    model = SentenceTransformer('all-MiniLM-L6-v2')
+    model = SentenceTransformer(MODELO)
     embs = model.encode(corpus['doc_text'].tolist(), batch_size=64,
                         show_progress_bar=False, convert_to_numpy=True)
     CACHE.parent.mkdir(parents=True, exist_ok=True)
@@ -114,14 +121,23 @@ def main():
         'su', 'sus', 'al', 'lo', 'como', 'más', 'este', 'esta', 'entre', 'sobre', 'y', 'o',
         'study', 'studies', 'paper', 'article', 'research', 'chapter', 'book', 'findings',
         'results', 'analysis', 'using', 'based', 'elsevier', 'rights', 'reserved', 'author',
-        'authors', 'published', 'springer', 'taylor', 'francis', 'copyright'})
+        'authors', 'published', 'springer', 'taylor', 'francis', 'copyright',
+        # español y portugués
+        'un', 'una', 'unos', 'unas', 'es', 'son', 'fue', 'ha', 'han', 'también', 'cuando', 'donde',
+        'desde', 'hasta', 'sin', 'muy', 'otros', 'otras', 'estos', 'estas', 'esto', 'ese', 'esa',
+        'estudio', 'artículo', 'trabajo', 'análisis', 'resultados', 'capítulo', 'libro',
+        'da', 'do', 'das', 'dos', 'em', 'na', 'no', 'nas', 'nos', 'um', 'uma', 'umas', 'uns', 'e', 'é',
+        'ao', 'aos', 'à', 'às', 'são', 'foi', 'pelo', 'pela', 'pelos', 'pelas', 'com', 'não', 'mais',
+        'seu', 'sua', 'seus', 'suas', 'ou', 'também', 'quando', 'onde', 'entre', 'sobre', 'este',
+        'esta', 'estes', 'estas', 'isso', 'isto', 'esse', 'essa', 'como', 'partir', 'neste', 'nesta',
+        'estudo', 'artigo', 'trabalho', 'análise', 'resultados', 'pesquisa', 'capítulo', 'livro'})
     model = BERTopic(
         umap_model=UMAP(n_neighbors=int(best['n_neighbors']), n_components=5, min_dist=0.0,
                         metric='cosine', random_state=SEED),
         hdbscan_model=HDBSCAN(min_cluster_size=int(best['min_cluster_size']), metric='euclidean',
                               cluster_selection_method='eom', prediction_data=True),
         vectorizer_model=CountVectorizer(stop_words=stop, ngram_range=(1, 2), min_df=2),
-        calculate_probabilities=False, verbose=False)
+        language='multilingual', calculate_probabilities=False, verbose=False)
     topics, _ = model.fit_transform(sub['doc_text'].tolist(), sub_embs)
     info = model.get_topic_info()
     info[['Topic', 'Count', 'Name', 'Representation', 'Representative_Docs']].to_csv(

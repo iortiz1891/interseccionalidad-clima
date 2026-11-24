@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-07_figuras.py — v3: réplica de pipeline/v2/07_figuras.py con las cadenas v3 (Scopus + SciELO).
+07_figuras.py — v3: réplica de pipeline/v2/07_figuras.py con el corpus v3 (Scopus + SciELO + OpenAlex ES/PT).
 
-Cambio de forma: el PRISMA tiene dos fuentes de identificación y dice cuántos registros
+Cambio de forma: el PRISMA tiene tres fuentes de identificación y dice cuántos registros
 reutilizan la evaluación de la v2.
 
 Outputs en assets/:
-  v3_fig01_prisma.png         flujo PRISMA (Scopus + SciELO, EN/ES/PT)
+  v3_fig01_prisma.png         flujo PRISMA (Scopus + SciELO + OpenAlex, EN/ES/PT)
   v3_fig02_bowleg_distribution.png  distribución de la RSI
   v3_fig03_years.png          papers por año
   v3_fig04_topics_x_bowleg.png  tópicos × RSI estratificado
@@ -40,7 +40,7 @@ PROVISIONAL_NOTE = "RSI v3 (Claude · claude-opus-5-5) · provisional hasta vali
 # Fig 01 — PRISMA v6
 # ─────────────────────────────────
 def fig01_prisma():
-    """PRISMA v3: mismo estilo que la v2, con dos fuentes de identificación."""
+    """PRISMA v3: mismo estilo que la v2, con tres fuentes de identificación."""
     fig, ax = plt.subplots(figsize=(10, 13))
     ax.set_xlim(0, 10); ax.set_ylim(0, 15.5); ax.axis('off')
 
@@ -62,25 +62,27 @@ def fig01_prisma():
     cats = meta['rsi']['categorias_pct']
 
     idn, dup = meta['identificados'], meta['duplicados']
-    sc, se = ex['scopus'], ex['scielo']
-    box(0.5, 14.0, 9, 1, "IDENTIFICACIÓN — cadenas v3 (24-11-2026) · EN / ES / PT", color='#fff3e0')
-    box(0.7, 12.3, 4, 1.2, f"Scopus (API)\nn={idn['scopus']:,} registros", color='#e8f5e9')
-    box(5.3, 12.3, 4, 1.2, f"SciELO\nn={idn['scielo']:,} registros", color='#e8f5e9')
-    arrow(2.7, 14.0, 2.7, 13.5); arrow(7.3, 14.0, 7.3, 13.5)
-    box(3, 10.8, 4, 1, f"Filtro abstract ≥100 chars\n−{sc['sin_abstract'] + se['sin_abstract']} sin abstract usable",
+    sc, se, so = ex['scopus'], ex['scielo'], ex['openalex']
+    box(0.5, 14.0, 9, 1, "IDENTIFICACIÓN — cadenas v3 en Scopus, SciELO y OpenAlex (ES/PT) · 24-11-2026 · EN / ES / PT", color='#fff3e0')
+    box(0.5, 12.3, 2.8, 1.2, f"Scopus (API)\nn={idn['scopus']:,}", color='#e8f5e9')
+    box(3.6, 12.3, 2.8, 1.2, f"SciELO\nn={idn['scielo']:,}", color='#e8f5e9')
+    box(6.7, 12.3, 2.8, 1.2, f"OpenAlex (API, ES/PT)\nn={idn['openalex']:,}", color='#e8f5e9')
+    arrow(1.9, 14.0, 1.9, 13.5); arrow(5, 14.0, 5, 13.5); arrow(8.1, 14.0, 8.1, 13.5)
+    box(3, 10.8, 4, 1, f"Filtro abstract ≥100 chars\n−{sc['sin_abstract'] + se['sin_abstract'] + so['sin_abstract']} sin abstract usable",
         color='#fff9c4')
-    arrow(2.7, 12.3, 4.2, 11.8); arrow(7.3, 12.3, 5.8, 11.8)
-    box(3, 9.3, 4, 1, f"Erratas y conference reviews\n−{sc['erratum_o_conference_review'] + se['tipo']}",
+    arrow(1.9, 12.3, 4.0, 11.8); arrow(5, 12.3, 5, 11.8); arrow(8.1, 12.3, 6.0, 11.8)
+    box(2.6, 9.3, 4.8, 1, f"Erratas, conference reviews y otros tipos\n−{sc['erratum_o_conference_review'] + se['tipo'] + so['tipo']}",
         color='#fff9c4')
     arrow(5, 10.8, 5, 10.3)
-    box(2.6, 7.8, 4.8, 1, f"Dedup DOI + título −{dup['dentro_scopus'] + dup['dentro_scielo'] + dup['scielo_ya_en_scopus']}\n"
-        f"{dup['dentro_scopus']} en Scopus · {dup['dentro_scielo']} en SciELO · {dup['scielo_ya_en_scopus']} SciELO ya en Scopus",
-        color='#fff9c4', fontsize=8.5)
+    box(1.6, 7.8, 6.8, 1, f"Dedup DOI + título −{sum(dup.values())}\n"
+        f"{dup['dentro_scopus']} en Scopus · {dup['dentro_scielo']} en SciELO · {dup['dentro_openalex']} en OpenAlex · "
+        f"{dup['scielo_ya_en_scopus']} SciELO ya en Scopus · {dup['openalex_ya_en_scopus_scielo']} OpenAlex ya en Scopus/SciELO",
+        color='#fff9c4', fontsize=8)
     arrow(5, 9.3, 5, 8.8)
     box(2.2, 5.9, 5.6, 1.5,
         f"Cribado de elegibilidad −{cr['excluidos']}\n{cr['solo_no_interseccional']} no interseccional · "
         f"{cr['solo_no_climatico']} no climático · {cr['ambos']} ambos · {cr.get('retractados', 0)} retractado\n"
-        f"de {meta['a_cribado']:,}: {meta['reutilizan_evaluacion_v2']:,} ya evaluados en la v2 · {meta['evaluados_en_v3']} nuevos",
+        f"de {meta['a_cribado']:,}: {meta['reutilizan_evaluacion_v2']:,} ya evaluados en la v2 · {meta['evaluados_en_v3']} nuevos ({meta['openalex_nuevos']} de OpenAlex)",
         color='#fff9c4', fontsize=8.5)
     arrow(5, 7.8, 5, 7.4)
     box(2, 4.0, 6, 1.5, f"CORPUS V3 ELEGIBLE\nn = {cr['elegibles']:,} papers", color='#c8e6c9', fontsize=11)

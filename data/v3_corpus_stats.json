@@ -1,5 +1,5 @@
 {
-  "n_total": 1088,
+  "n_total": 1212,
   "year_distribution": {
     "1999": 1,
     "2006": 1,
@@ -11,35 +11,39 @@
     "2013": 2,
     "2014": 8,
     "2015": 7,
-    "2016": 23,
-    "2017": 5,
-    "2018": 17,
-    "2019": 29,
-    "2020": 39,
-    "2021": 72,
-    "2022": 81,
-    "2023": 114,
-    "2024": 177,
-    "2025": 214,
-    "2026": 287,
+    "2016": 24,
+    "2017": 6,
+    "2018": 18,
+    "2019": 31,
+    "2020": 41,
+    "2021": 76,
+    "2022": 82,
+    "2023": 126,
+    "2024": 198,
+    "2025": 250,
+    "2026": 330,
     "2027": 1
   },
   "language_distribution": {
     "English": 1064,
-    "Spanish": 10,
-    "Portuguese": 7,
+    "Portuguese": 75,
+    "Spanish": 66,
     "English; Spanish": 5,
     "English; Spanish; Portuguese": 2
   },
   "source_distribution": {
     "v3_en": 1064,
-    "v3_es": 17,
-    "v3_pt": 7
+    "v3_pt": 75,
+    "v3_es": 73
   },
   "base_distribution": {
-    "scopus": 1071,
-    "scielo": 13,
-    "scopus+scielo": 4
+    "scopus": 1066,
+    "openalex": 124,
+    "scielo": 7,
+    "scielo+openalex": 6,
+    "scopus+openalex": 5,
+    "scopus+scielo+openalex": 2,
+    "scopus+scielo": 2
   },
   "top_countries": {
     "United States": 581,
@@ -69,46 +73,46 @@
     "Japan": 16
   },
   "bowleg_distribution": {
-    "0.0": 482,
-    "0.5": 29,
-    "1.0": 68,
-    "1.5": 164,
-    "2.0": 175,
-    "2.5": 85,
-    "3.0": 24,
-    "3.5": 42,
+    "0.0": 549,
+    "0.5": 34,
+    "1.0": 80,
+    "1.5": 177,
+    "2.0": 190,
+    "2.5": 88,
+    "3.0": 25,
+    "3.5": 50,
     "4.0": 19
   },
   "category_distribution": {
-    "mencion_sin_aplicacion": 482,
-    "parcial": 339,
-    "sustantivo": 109,
-    "nominal_debil": 97,
-    "sustantivo_fuerte": 61
+    "mencion_sin_aplicacion": 549,
+    "parcial": 367,
+    "nominal_debil": 114,
+    "sustantivo": 113,
+    "sustantivo_fuerte": 69
   },
   "category_percentages": {
-    "mencion_sin_aplicacion": 44.3,
-    "parcial": 31.16,
-    "sustantivo": 10.02,
-    "nominal_debil": 8.92,
-    "sustantivo_fuerte": 5.61
+    "mencion_sin_aplicacion": 45.3,
+    "parcial": 30.28,
+    "nominal_debil": 9.41,
+    "sustantivo": 9.32,
+    "sustantivo_fuerte": 5.69
   },
   "confidence_distribution": {
-    "medium": 619,
-    "high": 269,
-    "low": 200
+    "medium": 697,
+    "high": 280,
+    "low": 235
   },
   "daniel_subcorpus": {
-    "mexico": 11,
-    "cyclonic_events": 55,
-    "coastal": 56,
-    "indigenous": 135,
-    "gender_women": 601,
+    "mexico": 17,
+    "cyclonic_events": 58,
+    "coastal": 61,
+    "indigenous": 160,
+    "gender_women": 651,
     "mexico_AND_cyclonic": 0,
     "mexico_cyclonic_gender_or_indigenous": 0,
     "coastal_AND_cyclonic": 18,
-    "relevant_ge2_axes": 136,
-    "relevant_bowleg_mean": 1.7426470588235294,
-    "relevant_substantive": 42
+    "relevant_ge2_axes": 157,
+    "relevant_bowleg_mean": 1.6464968152866242,
+    "relevant_substantive": 45
   }
 }

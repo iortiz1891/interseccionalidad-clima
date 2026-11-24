@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-12_dashboard.py — v3: réplica de pipeline/v2/12_dashboard.py con las cadenas v3 (Scopus + SciELO).
+12_dashboard.py — v3: réplica de pipeline/v2/12_dashboard.py con el corpus v3
+(Scopus + SciELO con las cadenas trilingües, más OpenAlex en español y portugués).
 
 Genera site/v3/index.html con la misma estructura, figuras y textos que la v2. Cambian los datos
-(data/v3_*), la sección de estrategia de búsqueda (dos cadenas y dos fuentes), el PRISMA y los
-textos sobre idioma y sobre el origen de cada evaluación (reutilizada de la v2 o nueva).
+(data/v3_*), la sección de estrategia de búsqueda (tres fuentes), el PRISMA y los textos sobre
+idioma y sobre el origen de cada evaluación (v2 o v3).
 """
 from __future__ import annotations
 import pandas as pd
@@ -148,7 +149,7 @@ def main():
   <p style="font-size:13px;color:#555;margin-top:0">
     <b>Encuadre.</b> El universo no es «la literatura sobre cambio climático», sino la literatura que
     <b>invoca explícitamente la interseccionalidad</b> en torno al cambio climático o a eventos extremos
-    (la búsqueda v3 exige <code>intersectional*</code> / <code>interseccional*</code> —o frases como «intersection of race and gender»— junto a un término climático, y un cribado posterior excluye lo no pertinente). Por eso los
+    (las búsquedas de la v3 exigen <code>intersectional*</code> / <code>interseccional*</code> / <code>intersecional*</code> —o frases como «intersection of race and gender»— junto a un término climático, y un cribado posterior excluye lo no pertinente). Por eso los
     hallazgos se leen <i>dentro</i> de ese corpus autoseleccionado por mención —lo que vuelve más
     contundente que aun así la mayoría no opere el concepto.
   </p>
@@ -160,8 +161,9 @@ def main():
     <li><b>Sin «trampas léxicas».</b> En la v3, el cribado ya retiró los registros donde «intersection»
       coincidía por otra razón (vialidad, cruce de temas): los tópicos de RSI baja reúnen trabajos pertinentes
       con un uso más nominal del marco.</li>
-    <li><b>Idioma.</b> Aun sumando SciELO, casi toda la literatura elegible está en inglés: el mapa todavía no
-      permite comparar tradiciones lingüísticas. Haría falta una búsqueda más amplia en bases iberoamericanas (Redalyc, LILACS).</li>
+    <li><b>Idioma.</b> Aun sumando SciELO y OpenAlex en español y portugués, la literatura elegible sigue siendo
+      sobre todo en inglés ({int((scored['idioma'] == 'es').sum())} en español y {int((scored['idioma'] == 'pt').sum())} en portugués). Los trabajos iberoamericanos ya tienen presencia
+      en el mapa, pero una comparación por tradición lingüística todavía pide fuentes regionales (Redalyc, LILACS, La Referencia).</li>
     <li><b>El nicho de la tesis no existe como cluster.</b> Los {stats.get('daniel_subcorpus', {}).get('relevant_ge2_axes', 0)} papers del sub-corpus de Daniel ({meta.get('n_tesis_total', 0)} con tópico asignado)
       (México × ciclones × interseccionalidad costera) se <b>dispersan en {n_disp} tópicos</b>
       —sobre todo {tesis_txt}—: el campo no tiene un vecindario propio para ese cruce. Esa fragmentación
@@ -258,14 +260,25 @@ def main():
     n_es = int((scored['idioma'] == 'es').sum())
     n_en = int((scored['idioma'] == 'en').sum())
     n_pt = int((scored['idioma'] == 'pt').sum())
-    n_reut = int((scored['origen_evaluacion'] == 'v2').sum())
+    n_reut = int((scored['origen_evaluacion'] == 'v2').sum())       # evaluación tomada de la v2
+    n_oa = int((scored['_source'] == 'openalex').sum())              # elegibles que solo trajo OpenAlex
+    _cr = pd.read_csv(DATA / 'v3_cribado.csv')
+    reg_origen = _cr['origen_evaluacion'].value_counts().to_dict()
+    oameta = json.loads((DATA / 'v3_openalex_meta.json').read_text())
+    oaq = json.loads((DATA / 'v3_query_openalex.json').read_text())
+    query_oa = _html.escape(
+        'filter=title_and_abstract.search:' + '|'.join(oaq['interseccional']) +
+        ',\n       title_and_abstract.search:' + '|'.join(oaq['clima']) +
+        f",\n       language:{'|'.join(oaq['idiomas'])},publication_year:>{oaq['anio_minimo'] - 1}")
+    _new = scored[scored['_source'] == 'openalex']
+    n_oa_es, n_oa_pt = int((_new['idioma'] == 'es').sum()), int((_new['idioma'] == 'pt').sum())
     rsi_media_corpus = float(scored['bowleg_total'].mean())
     _ts = [t for t in topic_stats.get('topics', []) if t['n'] >= 15]
     top_topicos_txt = ', '.join(t['label'] for t in sorted(_ts, key=lambda t: -t['rsi_mean'])[:3]) or 'tópicos concretos'
     _mx = ds.get('mexico_AND_cyclonic', 0)
     tesis_cruce_txt = ('no aparece ningún trabajo que cruce México y ciclones' if _mx == 0
                        else f'solo {_mx} trabajos cruzan México y ciclones')
-    query_v3 = _html.escape((DATA / 'v3_query_scopus.txt').read_text().strip())
+    query_scopus = _html.escape((DATA / 'v3_query_scopus.txt').read_text().strip())
     query_scielo = _html.escape((DATA / 'v3_query_scielo.txt').read_text().strip())
     smeta = json.loads((DATA / 'v3_search_meta.json').read_text())
     smeta['fecha_busqueda'] = smeta['fecha']
@@ -300,8 +313,9 @@ def main():
 
     ins_lang = insight("Lectura del dato",
         f"En la v3 hay <b>{n_es}</b> trabajos elegibles en español y <b>{n_pt}</b> en portugués, frente a {n_en:,} "
-        f"en inglés. Sumar SciELO y el vocabulario en portugués agregó registros, pero la comparación por idioma "
-        f"<b>sigue sin ser concluyente</b>: haría falta una búsqueda más amplia en bases iberoamericanas (Redalyc, LILACS).")
+        f"en inglés. OpenAlex aportó {n_oa_es} en español y {n_oa_pt} en portugués que no estaban en Scopus ni en SciELO "
+        f"(muchos son tesis y capítulos de libro). La comparación por idioma <b>sigue siendo exploratoria</b>: "
+        f"OpenAlex asigna el idioma por el título y su cobertura de repositorios iberoamericanos es parcial.")
 
     _pais_txt = (f"<b>{pais_top['country']}</b> ({pais_top['pct_substantive']:.0f}% sustantivo) "
                  if pais_top is not None else "")
@@ -475,13 +489,12 @@ def main():
 <nav class="version-tabs" aria-label="Versión del corpus">
   <a href="../index.html">v1 · corpus original<span>mayo 2026</span></a>
   <a href="../v2/index.html">v2 · búsqueda ampliada<span>septiembre 2026</span></a>
-  <a href="index.html" class="active">v3 · Scopus + SciELO<span>{n_tot:,} trabajos · noviembre 2026</span></a>
-  <a href="../v4/index.html">v4 · + OpenAlex ES/PT<span>noviembre 2026</span></a>
+  <a href="index.html" class="active">v3 · Scopus + SciELO + OpenAlex<span>{n_tot:,} trabajos · noviembre 2026</span></a>
 </nav>
 
 <div class="topbar">
   <h1>Interseccionalidad y Cambio Climático</h1>
-  <p>¿Aplicación sustantiva o invocación nominal? · {n_tot:,} trabajos elegibles (Scopus + SciELO · búsqueda del {smeta['fecha_busqueda']}) medidos con la Rúbrica de Sustantividad Interseccional · <span class="badge badge-prov">scoring provisional</span></p>
+  <p>¿Aplicación sustantiva o invocación nominal? · {n_tot:,} trabajos elegibles (Scopus + SciELO + OpenAlex ES/PT · búsqueda del {smeta['fecha_busqueda']}) medidos con la Rúbrica de Sustantividad Interseccional · <span class="badge badge-prov">scoring provisional</span></p>
 </div>
 
 <div class="caveat">
@@ -489,8 +502,9 @@ def main():
   Son <strong>provisionales</strong> hasta completar la validación humana sobre una submuestra (ver §10).
   El procedimiento es transparente y auditable: prompt versionado y evidencia textual por criterio.<br>
   <strong>Comparación con la v2:</strong> misma rúbrica, mismo modelo y mismas reglas. Cambia la búsqueda: cadenas con
-  vocabulario en portugués y un bloque climático más amplio, en Scopus y SciELO. {n_reut:,} de los {n_tot:,} trabajos elegibles
-  conservan la evaluación que recibieron en la v2 (mismo resumen); el resto se evaluó en la v3.
+  vocabulario en portugués y un bloque climático más amplio, en Scopus y SciELO, más los trabajos en español y portugués que
+  OpenAlex encuentra con las mismas cadenas. {n_reut:,} de los {n_tot:,} trabajos elegibles conservan la evaluación que
+  recibieron en la v2 (mismo resumen); el resto se evaluó en la v3 ({n_oa} de ellos solo están en OpenAlex).
   Con la v1 cambian además el modelo (gpt-4.1 → Claude) y las reglas del gate y de los criterios I y IV.
 </div>
 
@@ -644,7 +658,7 @@ def main():
 <h2 id="nums">1 · Números clave</h2>
 <div class="stat-grid">
   <div class="stat"><div class="stat-num">{len(scored):,}</div><div class="stat-lbl">Papers (corpus v3 elegible)</div></div>
-  <div class="stat"><div class="stat-num">{pmeta['identificados']['scopus'] + pmeta['identificados']['scielo']:,}</div><div class="stat-lbl">Registros identificados (Scopus + SciELO)</div></div>
+  <div class="stat"><div class="stat-num">{sum(pmeta['identificados'].values()):,}</div><div class="stat-lbl">Registros identificados (Scopus + SciELO + OpenAlex)</div></div>
   <div class="stat"><div class="stat-num">{int((scored['bowleg_total'] >= 2.5).sum()):,}</div><div class="stat-lbl">RSI ≥ 2.5 (sustantivo)</div></div>
   <div class="stat"><div class="stat-num">{int((scored['bowleg_total'] <= 1.0).sum()):,}</div><div class="stat-lbl">RSI ≤ 1.0 (nominal/mención)</div></div>
   <div class="stat"><div class="stat-num">{cat_pct.get('sustantivo_fuerte', 0):.0f}%</div><div class="stat-lbl">Sustantiva fuerte (≥3.5)</div></div>
@@ -661,20 +675,31 @@ def main():
 <img src="{figs['fig01']}" alt="PRISMA v3">
 
 <h2 id="busqueda">2b · Estrategia de búsqueda</h2>
-<p>La v3 corre dos cadenas trilingües (inglés, español y portugués) el {smeta['fecha_busqueda']}:</p>
+<p>La v3 reúne tres fuentes, todas consultadas el {smeta['fecha_busqueda']} con las mismas cadenas trilingües (inglés, español y portugués):</p>
 <ul style="font-size:13.5px;line-height:1.6">
   <li><b>Scopus</b>, por la API de búsqueda (vista COMPLETE), con <code>PUBYEAR &gt; 1988</code> e idioma inglés, español o portugués.
   La cadena completa no cabe en una sola petición, así que el bloque climático se parte en {smeta['particion']['grupos_descarga']} grupos de
   términos unidos por OR; la unión de las consultas equivale a la cadena original. {smeta['registros_unicos']:,} registros únicos.</li>
   <li><b>SciELO</b> (search.scielo.org), con su propia cadena: {pmeta['identificados']['scielo']} registros; {pmeta['duplicados']['scielo_ya_en_scopus']} ya estaban en Scopus.</li>
+  <li><b>OpenAlex</b>, por su API, solo para trabajos que OpenAlex clasifica en <b>español o portugués</b>: {pmeta['identificados']['openalex']} registros
+  únicos ({oameta['consultas']} consultas). {pmeta['duplicados']['openalex_ya_en_scopus_scielo']} ya estaban en Scopus o SciELO y
+  {pmeta['openalex_nuevos']} son nuevos ({pmeta['tipo_openalex_nuevos'].get('Dissertation', 0)} tesis, {pmeta['tipo_openalex_nuevos'].get('Book chapter', 0)} capítulos de libro,
+  {pmeta['tipo_openalex_nuevos'].get('Article', 0)} artículos). La consulta traduce las cadenas a los filtros de OpenAlex: cada bloque es una lista de términos
+  separados por «|» (OR) que se busca en título y resumen. Tiene tres límites: OpenAlex <b>no acepta comodines ni proximidad</b>
+  (las variantes en español y portugués se escriben completas y las expresiones con <code>W/n</code> se omiten), <b>lematiza en inglés</b>
+  (por eso trae ruido como «intersection», que el cribado retira) y asigna el <b>idioma por el título</b>.</li>
 </ul>
 <p>Como en la v2, la selección no se delega solo al scoring: un <b>cribado de elegibilidad</b> separa antes lo que no es del tema (§2).</p>
 
 <details><summary>Cadena de Scopus</summary>
-<pre style="background:#f8fafc;border:1px solid var(--line);border-radius:6px;padding:12px;font-size:11.5px;line-height:1.5;overflow-x:auto;white-space:pre-wrap;"><code>{query_v3}</code></pre>
+<pre style="background:#f8fafc;border:1px solid var(--line);border-radius:6px;padding:12px;font-size:11.5px;line-height:1.5;overflow-x:auto;white-space:pre-wrap;"><code>{query_scopus}</code></pre>
 </details>
 <details><summary>Cadena de SciELO</summary>
 <pre style="background:#f8fafc;border:1px solid var(--line);border-radius:6px;padding:12px;font-size:11.5px;line-height:1.5;overflow-x:auto;white-space:pre-wrap;"><code>{query_scielo}</code></pre>
+</details>
+<details><summary>Consulta de OpenAlex (data/v3_query_openalex.json)</summary>
+<pre style="background:#f8fafc;border:1px solid var(--line);border-radius:6px;padding:12px;font-size:11.5px;line-height:1.5;overflow-x:auto;white-space:pre-wrap;"><code>{query_oa}</code></pre>
+<p style="font-size:12px;color:#555;">Los bloques se parten en grupos de hasta {max(a for a, _ in oameta['terminos_por_consulta'])} y {max(b for _, b in oameta['terminos_por_consulta'])} términos y se corren todas las combinaciones; los registros se unen por ID de OpenAlex.</p>
 </details>
 
 <table class="data-table" style="margin-top:8px;">
@@ -682,12 +707,12 @@ def main():
 <tr><td>Solo <code>intersectional*</code> / <code>interseccional*</code> / <code>intersecional*</code></td><td>{pmeta['nivel_ancla'].get('A_nucleo', 0):,}</td></tr>
 <tr><td>Además, frases como «intersection of race and gender» (<code>W/4</code>), «interseção de opressões» o «intersecting …»</td><td>{pmeta['nivel_ancla'].get('A_ampliada', 0):,}</td></tr>
 <tr><td>Solo vocabulario afín</td><td>{pmeta['nivel_ancla'].get('B_afin', 0):,}</td></tr>
-<tr><td>Ninguno en título, resumen o palabras clave de autor (entraron por las palabras clave indexadas)</td><td>{pmeta['nivel_ancla'].get('solo_index_keywords', 0):,}</td></tr>
+<tr><td>Ninguno en título, resumen o palabras clave de autor (en Scopus entraron por las palabras clave indexadas; en OpenAlex, por lematización, p. ej. «intersection»)</td><td>{pmeta['nivel_ancla'].get('solo_index_keywords', 0):,}</td></tr>
 <tr><td><b>Total</b></td><td><b>{pmeta['a_cribado']:,}</b></td></tr>
 </table>
 
 <p style="margin-top:16px;">
-  <a class="doc-link" href="../../docs/cadenas_busqueda.md">📋 Documento completo: cadenas de búsqueda (v1, v2 y v3)</a>
+  <a class="doc-link" href="../../docs/cadenas_busqueda.md">📋 Documento completo: cadenas de búsqueda (v1–v3)</a>
 </p>
 
 <h2 id="bowleg">3 · Distribución RSI</h2>
@@ -715,6 +740,9 @@ def main():
 <img src="{figs['fig03']}" alt="Papers por año">
 
 <h2 id="topics">5 · Tópicos × RSI</h2>
+<p style="font-size:13px;color:#555;">Los tópicos se calculan con BERTopic, como en las versiones anteriores, pero con un modelo de embeddings
+multilingüe (<code>paraphrase-multilingual-MiniLM-L12-v2</code>): con el modelo solo en inglés de la v1 y la v2, los trabajos en español y
+portugués formaban un bloque aparte por idioma y no por tema. Por eso los tópicos de la v3 no se comparan uno a uno con los de la v2.</p>
 <img src="{figs['fig04']}" alt="Topics × Bowleg">
 
 <h3>Top 15 tópicos con mayor % sustantividad</h3>
@@ -805,7 +833,7 @@ def main():
 
 <h2 id="valid">10 · Notas de validación</h2>
 <div class="theory-block">
-  <p style="margin-top:0;">El cribado y el scoring RSI de la v3 los aplicó <strong>Claude (claude-opus-5-5)</strong>, con un prompt versionado que aplica la rúbrica RSI v3 al pie de la letra. {n_reut:,} trabajos elegibles conservan la evaluación de la v2, que ya incluye la corrección de la regla del gate (<code>data/v2_reevaluacion_gate.csv</code>); los registros nuevos se evaluaron con <code>prompts/v3_cribado_rsi.md</code>, que es el prompt de la v2 con vocabulario en portugués, en lotes de 40 registros. El procedimiento es transparente y auditable: el prompt está versionado y cada puntaje incluye evidencia textual por criterio. No es reproducible al pie de la letra: el modelo se aplicó en sesiones de Claude Code.</p>
+  <p style="margin-top:0;">El cribado y el scoring RSI de la v3 los aplicó <strong>Claude (claude-opus-5-5)</strong>, con un prompt versionado que aplica la rúbrica RSI v3 al pie de la letra. {n_reut:,} trabajos elegibles conservan la evaluación de la v2, que ya incluye la corrección de la regla del gate (<code>data/v2_reevaluacion_gate.csv</code>); los {reg_origen.get('v3', 0)} registros nuevos (de Scopus, SciELO y OpenAlex) se evaluaron con <code>prompts/v3_cribado_rsi.md</code>, en lotes de 40 registros. El procedimiento es transparente y auditable: el prompt está versionado y cada puntaje incluye evidencia textual por criterio. No es reproducible al pie de la letra: el modelo se aplicó en sesiones de Claude Code.</p>
   <p><strong>Validación pendiente.</strong> Para consolidar la rúbrica como instrumento, resta una <strong>validación humana</strong>. Un evaluador experto repite a ciegas, sobre una muestra, los mismos pasos que siguió el modelo, con las mismas definiciones y reglas: <b>inclusión</b> (¿invoca la interseccionalidad en sentido social? ¿el objeto es climático?), <b>gate</b>, <b>criterios I–VI</b> e <b>integración</b>. La muestra tiene {vmeta["n"]} trabajos en {vmeta["bloques"]} bloques de {vmeta["por_bloque"]}: cada bloque trae 2 registros que el modelo excluyó y 1 de cada categoría RSI. La herramienta calcula la concordancia del cribado, del gate, de cada criterio y de la categoría RSI (κ de Cohen, κ ponderado e IC bootstrap), y estima el acuerdo para el corpus completo. Hasta entonces, los puntajes deben interpretarse como provisionales.</p>
   <p style="margin-bottom:0;"><a href="validacion.html"><b>✓ Abrir la herramienta de validación</b></a> · <a href="corpus.html"><b>☰ Ver la lista completa del corpus</b></a> ({pmeta["a_cribado"]:,} registros cribados, con las respuestas del modelo; conviene revisarla después de codificar la muestra).</p>
 </div>
@@ -873,17 +901,18 @@ def main():
 <tr><th>Fuente</th><th>Origen</th><th>n</th></tr>
 <tr><td>Scopus</td><td>Cadena v3 (data/v3_query_scopus.txt), API de búsqueda, {smeta['fecha_busqueda']}</td><td>{pmeta['identificados']['scopus']:,}</td></tr>
 <tr><td>SciELO</td><td>Cadena v3 (data/v3_query_scielo.txt), export RIS de search.scielo.org, {smeta['fecha_busqueda']}</td><td>{pmeta['identificados']['scielo']:,}</td></tr>
+<tr><td>OpenAlex</td><td>data/v3_query_openalex.json, API de works (español y portugués), {oameta['fecha']}</td><td>{pmeta['identificados']['openalex']:,}</td></tr>
 </table>
 <p style="font-size: 12px;">
-Total identificado: {pmeta['identificados']['scopus'] + pmeta['identificados']['scielo']:,} ·
-Filtro abstract ≥100 chars: −{pmeta['excluidos_regla']['scopus']['sin_abstract'] + pmeta['excluidos_regla']['scielo']['sin_abstract']} ·
-Erratas y conference reviews: −{pmeta['excluidos_regla']['scopus']['erratum_o_conference_review'] + pmeta['excluidos_regla']['scielo']['tipo']} ·
+Total identificado: {sum(pmeta['identificados'].values()):,} ·
+Filtro abstract ≥100 chars: −{sum(v['sin_abstract'] for v in pmeta['excluidos_regla'].values())} ·
+Erratas, conference reviews y otros tipos: −{pmeta['excluidos_regla']['scopus']['erratum_o_conference_review'] + pmeta['excluidos_regla']['scielo']['tipo'] + pmeta['excluidos_regla']['openalex']['tipo']} ·
 Dedup DOI + título: −{sum(pmeta['duplicados'].values())} ·
 Cribado de elegibilidad: −{pmeta['cribado']['excluidos']} ·
 <strong>Corpus v3 elegible: {pmeta['cribado']['elegibles']:,}.</strong>
 </p>
 <p style="font-size: 12px;">
-Cribado + scoring RSI: Claude (claude-opus-5-5); {pmeta['reutilizan_evaluacion_v2']:,} registros con la evaluación de la v2 (<code>prompts/v2_cribado_rsi.md</code>) y {pmeta['evaluados_en_v3']} con <code>prompts/v3_cribado_rsi.md</code>
+Cribado + scoring RSI: Claude (claude-opus-5-5); {reg_origen.get('v2', 0):,} registros con la evaluación de la v2 (<code>prompts/v2_cribado_rsi.md</code>), {reg_origen.get('v3', 0):,} evaluados en la v3 ({pmeta['openalex_nuevos']} de ellos de OpenAlex) con <code>prompts/v3_cribado_rsi.md</code>
 (rúbrica <code>prompts/bowleg_eval_v3.md</code> + razonamiento <code>reasoning_v3.md</code>).
 </p>
 </details>

@@ -1843,3 +1843,432 @@ paper_id,razonamiento,origen_evaluacion
 1841,"Falso positivo: fertilidad de híbridos de arándano, sin contenido social interseccional ni objeto climático.",v2
 1842,"Falso positivo interseccional: estudio geofísico del calentamiento climático en las praderas canadienses, sin categorías sociales.",v2
 1843,Falso positivo: morfología de embriones de Bromus.,v3
+1844,"Mención nominal: el término interseccional califica vulnerabilidades de niños y adolescentes en la migración climática, pero el análisis jurídico se centra en un solo eje, la edad, sin articularlo con género, clase u otras categorías. Por la regla 3 no supera el gate y todos los criterios quedan en cero.",v3
+1845,"Falso positivo: analiza la coherencia entre planes regionales del ABC Paulista, sin contenido interseccional.",v3
+1846,Falso positivo: estudio sobre arte sonoro y conciencia ambiental sin dimensión interseccional.,v3
+1847,"Falso positivo: estudio de recepción sobre desinformación en las inundaciones de Rio Grande do Sul, sin enfoque interseccional.",v3
+1848,Falso positivo técnico: modelos de aprendizaje profundo para mapear inundaciones con datos satelitales.,v3
+1849,"Uso nominal: invoca un análisis interseccional, pero los hallazgos sobre mujeres pantaneiras se expresan solo en clave de género, sin articular sus distintas posiciones (fazendeiras, pescadoras, isqueiras) como clase u otro eje relacionado. Al etiquetar un único eje como interseccional, no supera el gate; la orientación a justicia climática no puntúa.",v3
+1850,Trata asimetrías Norte-Sur en la crisis climática sin invocar interseccionalidad entre categorías sociales.,v3
+1851,"Supera el gate por el enfoque raza-clase y destaca en poder estructural (II=1) y contexto situado en Santos (III=1). El método cartográfico superpone capas sin modelar interacciones (IV=0.5), la articulación de ejes es parcial (I=0.5) y no hay agencia de los afectados (VI=0); la integración queda parcial.",v3
+1852,"Interseccional sobre vivienda y raza, pero sin objeto vinculado al cambio climático ni a amenazas climáticas.",v3
+1853,"Falso positivo técnico: diagnóstico de riesgo erosivo con SIG, sin dimensión social interseccional.",v3
+1854,"Revisión integradora sobre Trabajo Social en desastres que menciona la falta de perspectivas de género e interseccional solo como vacío de la práctica. Al no relacionar ejes de diferenciación entre sí, la regla 3 impide superar el gate y todos los criterios quedan en cero, aunque el registro es elegible.",v3
+1855,"Menciona la interseccionalidad de las luchas, pero el abstract no vincula explícitamente el activismo ambiental italiano con el cambio climático.",v3
+1856,Ensayo sobre ficción climática y cine sin contenido interseccional en sentido social.,v3
+1857,"Supera el gate al vincular marcadores sociales de la diferencia y colonialidad con la ansiedad climática, aunque la articulación de raza y clase es enunciativa (I=0.5). Al ser teórico-bibliográfico no operacionaliza intersecciones (IV=0) ni sitúa un contexto concreto (III=0); poder estructural y justicia se mencionan sin desarrollo.",v3
+1858,"Supera el gate al vincular raza, clase y género en la vulnerabilidad a inundaciones. Destaca en poder estructural (II=1), contexto situado en la Baixada Fluminense (III=1) y orientación a la justicia (V=1), pero el método mixto solo superpone raza e indicadores sociales (IV=0.5) y el género queda poco desarrollado en los resultados.",v3
+1859,"Falso positivo técnico: clasificación de calles inundables con métricas de red, sin dimensión social.",v3
+1860,"Supera el gate por centrarse en mujeres negras desde la teoría interseccional. El análisis del discurso gubernamental en la COP29 muestra invisibilización, pero no examina cómo raza y género co-construyen impactos (I=0.5); poder estructural, contexto y método se quedan en nivel intermedio y la agencia de las mujeres está ausente (VI=0).",v3
+1861,"Reseña jurídica sobre conductas ilícitas en calamidades, sin contenido interseccional.",v3
+1862,Discusión teórica sobre comunicación de riesgos de desastres sin enfoque interseccional en sentido social.,v3
+1863,Falso positivo técnico: correlación entre variables meteorológicas y generación fotovoltaica.,v3
+1864,Proyecto artivista sobre crisis socioambiental que no articula categorías sociales entrelazadas ni invoca interseccionalidad.,v3
+1865,Análisis interseccional del racismo en la Amazonía cuyo objeto ambiental no se vincula con el cambio climático ni con amenazas climáticas.,v3
+1866,"Supera el gate con poca holgura al vincular raza y pobreza en el impacto desigual de los desastres. El trabajo empírico, con dos entrevistas a psicólogos, no operacionaliza intersecciones (IV=0); racismo ambiental y contexto local se nombran sin desarrollo (II y III=0.5) y no aparece agencia de las poblaciones (VI=0).",v3
+1867,"Elegible por invocar la interseccionalidad ante emergencias climáticas, pero el análisis de derechos humanos se organiza solo en torno al género, sin relacionar ese eje con raza, clase u otras categorías. Por la regla 3, la etiqueta interseccional sobre un único eje no basta para superar el gate y los criterios quedan en cero.",v3
+1868,"Tesis filosófica sobre temporalidad y diseño, sin contenido interseccional en sentido social.",v3
+1869,Falso positivo técnico: detección de deforestación y quemas con redes neuronales y Sentinel-2.,v3
+1870,"Supera el gate al señalar a mujeres negras, indígenas y rurales como especialmente afectadas por el clima. Su fuerza es la orientación normativa a la justicia climática (V=1); la articulación de ejes es enunciativa (I=0.5), el análisis es jurídico sin método empírico (IV=0) y la conclusión se reduce a la perspectiva de género.",v3
+1871,"Presentación de un libro sobre derecho, democracia y tecnología, sin contenido interseccional.",v3
+1872,"Estudio interseccional sobre racismo ambiental con datos censales, pero su objeto no son amenazas ni políticas climáticas.",v3
+1873,"Revisión integradora sobre inundaciones y salud que lista por separado grupos más afectados (baja renta, racializados, mujeres, migrantes) y señala la escasez de estudios interseccionales como laguna. Al no relacionar ejes entre sí ni aplicar el marco, la regla 3 impide superar el gate y todos los criterios valen cero.",v3
+1874,"Reflexión sobre la ecoansiedad en América Latina que enumera determinantes sociales por separado e incorpora la interseccionalidad solo como principio para líneas de acción. Sin relación explícita entre ejes, no supera el gate de la regla 3, de modo que los seis criterios y la integración quedan en cero.",v3
+1875,"Revisión del ecofeminismo con perspectiva interseccional donde el clima es una mención de contexto, no el objeto.",v3
+1876,"Presentación de un libro colectivo cuyo único contenido interseccional es un capítulo que relaciona género con territorio, clase, etnia y edad ante la crisis climática; por eso supera el gate con baja confianza. Al tratarse de reseñas de capítulos, todos los criterios quedan en niveles parciales o nulos y sin integración (IV=0).",v3
+1877,"Falso positivo: novela sobre un niño y un gato, sin contenido climático ni interseccional.",v3
+1878,"Analiza derecho privado y vulnerabilidad de género ante la crisis ambiental, sin articular dos categorías sociales.",v3
+1879,"Aborda violencias interseccionales de mujeres wayuu, pero el clima solo aparece en una lista de resultados esperados.",v3
+1880,"Supera el gate con claridad: trata raza, género y clase como mutuamente reforzados en la posición de mujeres negras (I=1) y señala mecanismos estructurales e institucionales (II=1). El clima es solo una de tres dimensiones y el método documental no opera intersecciones formalmente (IV=0.5); falta agencia de las mujeres (VI=0).",v3
+1881,"Revisión interseccional sobre racismo ambiental y salud mental de la población negra, sin objeto climático explícito.",v3
+1882,"Integra una perspectiva interseccional, pero el clima es una mención incidental en una estrategia sobre biodiversidad.",v3
+1883,"Elegible por proponer un enfoque interseccional ante el desplazamiento climático tras el huracán Iota en Providencia. Sin embargo, el abstract trata comunidades étnicas y mujeres como grupos paralelos y los enfoques étnico y de género por separado, sin relacionarlos; aplicando la regla 3 no supera el gate y los criterios quedan en cero.",v3
+1884,Falso positivo: aprendizaje por refuerzo y teoría de valores extremos aplicados a carteras financieras.,v3
+1885,"Reflexión interseccional sobre raza, género y territorio cuyo eje socioambiental no se vincula con el cambio climático.",v3
+1886,"Ensayo sobre límites del seguro ante pérdidas inconmensurables, sin contenido interseccional en sentido social.",v3
+1887,"Revisión documental sobre la feminización de las migraciones climáticas que invoca la interseccionalidad, pero solo para describir desigualdades de las mujeres y la sobrecarga de cuidados. Al aplicarse a un único eje de género sin relacionarlo con etnia, clase u otras categorías, no supera el gate y todos los criterios quedan en cero.",v3
+1888,"Menciona interseccionalidad entre temas de derechos humanos, pero no trata el cambio climático.",v3
+1889,"Interseccional sobre sistema penal brasileño, sin objeto vinculado al cambio climático.",v3
+1890,"Revisión de alcance sobre Trabajo Social y género en desastres socioambientales, elegible por la regla 1. El enfoque interseccional solo se menciona como carencia de la práctica y recomendación, mientras el análisis gira en torno a un único eje de género; por la regla 3 no supera el gate y los criterios valen cero.",v3
+1891,Informe automatizado sobre salud regional sin uso social de la interseccionalidad.,v3
+1892,"Revisión de literatura sobre interpretaciones de la justicia climática que menciona la justicia interseccional como una definición contemporánea más. No relaciona ejes de diferenciación social entre sí ni aplica el marco, por lo que no supera el gate y los seis criterios y la integración quedan en cero.",v3
+1893,"Estudio de representaciones de género en historietas, sin objeto climático.",v3
+1894,"Trabajo interseccional sólido sobre mujeres quilombolas, pero el daño es contaminación ambiental, no una amenaza climática.",v3
+1895,"Interseccional sobre enseñanza de Biblioteconomía, sin objeto vinculado al cambio climático.",v3
+1896,"Menciona la interseccionalidad de las luchas, pero el abstract no vincula explícitamente el activismo ambiental italiano con el cambio climático.",v3
+1897,"Supera el gate porque declara que género, raza, clase y territorio se entrelazan en las experiencias climáticas de las mujeres, aunque los resultados se expresan finalmente en clave de género (I=0.5). Como revisión no operacionaliza intersecciones (IV=0); poder, contexto y justicia aparecen de forma superficial y sin agencia.",v3
+1898,"Falso positivo técnico: evacuación peatonal ante tsunami en Chile, sin contenido interseccional.",v3
+1899,"Estudio de género y performatividad en historietas, sin objeto climático.",v3
+1900,"Supera el gate al afirmar que la justicia climática tiene raza, género, clase y territorio. Destaca en poder estructural colonial (II=1), contexto situado en la COP30 de Belém (III=1) y crítica orientada a la justicia (V=1), pero el análisis documental privilegia la raza y no operacionaliza intersecciones (I=0.5, IV=0).",v3
+1901,"Insuficiencia del abstract: el texto disponible se corta tras enumerar eventos climáticos extremos. El título sugiere un enfoque interseccional sobre jóvenes mujeres en la agricultura familiar, lo que permite superar el gate con baja confianza, pero no hay base para puntuar poder, contexto, método, justicia ni agencia.",v3
+1902,"Sustantivo en lo teórico: articula raza, género y territorio en la posición de mujeres negras periféricas (I=1), explica la exposición por racismo estructural y exclusión territorial (II=1) y documenta su protagonismo comunitario (VI=1). El contexto es poco detallado (III=0.5) y no hay método que opere intersecciones (IV=0).",v3
+1903,"Supera el gate porque la población de juventudes indígenas implica etnia y edad, y el texto nombra su interseccionalidad. La revisión destaca la resistencia y organización juvenil (VI=1), pero la articulación de ejes, el poder colonial y el contexto quedan enunciados (0.5) y no hay operacionalización metodológica (IV=0).",v3
+1904,"Supera el gate por centrarse en mujeres quilombolas desde un análisis interseccional. Su mayor fortaleza son las directrices concretas con perspectiva de género y raza (V=1); el cruce geoespacial y censal describe el subgrupo sin modelar interacciones (IV=0.5) y poder, contexto y agencia quedan en nivel intermedio.",v3
+1905,"Menciona la interseccionalidad como principio del plan español, pero el clima aparece solo como factor de contexto.",v3
+1906,"Usa interseccionalidad como principio jurídico, pero el clima es una mención incidental en la conclusión.",v3
+1907,"Prefacio de actas sobre derecho y sostenibilidad, sin contenido interseccional.",v3
+1908,"Supera el gate porque la población, mujeres indígenas, ribereñas y rurales, implica varios ejes. Su fortaleza es el contexto amazónico detallado (III=1), pero no teoriza estructuras de poder (II=0), no operacionaliza intersecciones (IV=0) y presenta a las mujeres solo como afectadas (VI=0); la articulación de ejes es enunciativa.",v3
+1909,"Supera el gate al relacionar raza, género y condición socioeconómica en la vulnerabilidad climática de mujeres negras. Sin embargo, describe capas adicionales con lógica aditiva (I=0.5), nombra desigualdades sin mecanismos (II=0.5) y, al ser un capítulo reflexivo, no operacionaliza intersecciones (IV=0); justicia y agencia se mencionan sin desarrollo.",v3
+1910,Estudio sobre un ecomuseo costero sin contenido interseccional en sentido social.,v3
+1911,Falso positivo técnico: mapeo de anomalías térmicas para depurar focos de incendio.,v3
+1912,"Elegible por mapear la población expuesta a amenazas hidrogeológicas en Juiz de Fora con lenguaje interseccional. Sin embargo, reporta mujeres, población negra y grupos de edad como proporciones separadas, sin cruzarlos ni relacionarlos; según la regla 3, listar grupos no basta para el gate y los criterios quedan en cero.",v3
+1913,"Propuesta interseccional sobre evaluación de políticas, sin objeto vinculado al cambio climático.",v3
+1914,"Sustantivo fuerte: la etnografía con mujeres migrantes rurales del Reconquista articula género y migración (I=1), con contexto situado (III=1), muestreo intencional del subgrupo (IV=1) y agencia en prácticas de cuidado (VI=1), integradas en una relectura de la justicia ambiental. El poder estructural se nombra sin mecanismos (II=0.5).",v3
+1915,"Propone un enfoque interseccional sobre prácticas de sueño, sin objeto climático.",v3
+1916,"Supera el gate al centrarse en mujeres negras desde la interseccionalidad y la Teoría Crítica de la Raza. Destaca en poder estructural, con racismo y segregación como mediadores (II=1), pero describe superposición de desigualdades (I=0.5), carece de contexto situado (III=0) y, como revisión, no operacionaliza intersecciones (IV=0).",v3
+1917,"Insuficiencia del abstract: el registro solo trae la afiliación de la autora. El título sobre mujeres indígenas y justicia climática interseccional permite superar el gate con baja confianza, pero no hay base para puntuar poder estructural, contexto, método ni agencia; solo identidades (I=0.5) y orientación a la justicia (V=0.5).",v3
+1918,"Supera el gate porque teoriza el entrecruce de género, clase, territorio y etnia en mujeres rurales venezolanas. Explica la vulnerabilidad mediante la división sexual del trabajo (II=1) y orienta los cuidados a la justicia redistributiva (V=1), pero el análisis gira en torno al género (I=0.5) y el método no se describe (IV=0).",v3
+1919,"Estudio de historia oral con lideresas de Petrópolis y Teresópolis, elegible por usar interseccionalidad ante desastres. El abstract solo explicita el eje de género y no relaciona raza, clase u otras categorías, por lo que según la regla 3 no supera el gate pese a documentar agencia comunitaria; criterios en cero.",v3
+1920,"Supera el gate al analizar dinámicas de género y raciales en prácticas de cuidado, aunque el vínculo climático es contextual (crisis posterior a la pandemia). Documenta agencia comunitaria (VI=1), pero no nombra estructuras de poder (II=0) y el cruce de ejes, el contexto y el método quedan en nivel parcial.",v3
+1921,"Victimología interseccional ante crímenes ambientales mineros, sin vínculo con amenazas climáticas.",v3
+1922,"Invoca interseccionalidad y colonialidad, pero no trata el cambio climático ni amenazas climáticas.",v3
+1923,"Revisión crítica de la Psicología brasileña de desastres, elegible por la regla 1, que señala la escasa incorporación de referenciales interseccionales y de racismo ambiental como vacío de la literatura. No relaciona ejes sociales entre sí, por lo que no supera el gate y todos los criterios quedan en cero.",v3
+1924,"Gate no superado: aunque examina si la Opinión Consultiva 32/25 incorpora una perspectiva interseccional, el resumen trata a mujeres, comunidades tradicionales y personas racializadas como grupos separados y centra el análisis en los derechos de las mujeres, sin relacionar ejes entre sí. Por eso los seis criterios y la integración quedan en cero.",v3
+1925,"Gate no superado: el ensayo teoriza la crisis climática desde capitalismo y colonialidad del poder, pero lo interseccional aparece únicamente como reconfiguración paradigmática deseable, sin nombrar ni relacionar ejes de diferenciación social. La crítica estructural no basta para entrar en la rúbrica, de modo que todos los criterios quedan en cero.",v3
+1926,"Aplicación parcial: articula raza, territorio y clase bajo el racismo ambiental con mecanismos estructurales claros (II=1) y un contexto amazónico muy situado (III=1), orientado a justicia ambiental (V=1). Sin embargo, el método mixto no muestra interacciones entre ejes (IV=0.5) y los afectados aparecen solo como víctimas (VI=0).",v3
+1927,"Aplicación parcial con fuerte crítica estructural: el racismo ambiental se teoriza como necropolítica con mecanismos concretos (II=1) en desastres brasileños fechados (III=1) y con agenda de justicia racial (V=1). El cruce de raza, clase y territorio se enuncia sin analizar posiciones (I=0.5), sin método interseccional (IV=0) y sin agencia de los sujetos (VI=0).",v3
+1928,"Cruza raza y clase en sentido social, pero el objeto es la segregación urbana, no el clima.",v3
+1929,Falso positivo de ingeniería vial e hidráulica sin contenido interseccional.,v3
+1930,"Sustantivo: teoriza clase, género y raza como co-constitutivos (I=1) y explica la producción del riesgo por urbanización excluyente, colonialidad y omisión estatal (II=1) en Nova Friburgo (III=1), con fuerte orientación crítica (V=1). Lo más débil es el método, documental y con datos previos, sin operacionalizar intersecciones (IV=0.5).",v3
+1931,"Gate no superado con baja confianza: el ensayo sobre enchentes en la Baixada Fluminense alude a la interseccionalidad de la población y a marcadores indígenas, pero el resumen no relaciona dos ejes entre sí (la condición periférica queda implícita). Abstract breve e insuficiente para juzgar más; criterios en cero.",v3
+1932,Estudio de la cadena del café sin contenido interseccional en sentido social.,v3
+1933,Obra interseccional sobre salud colectiva en la que el clima es mención incidental.,v3
+1934,"Gate no superado: la revisión sobre estrés térmico en trabajadores agrícolas ecuatorianos pide un enfoque interseccional, cuyo sentido social es ambiguo, y solo enumera grupos vulnerables por separado sin relacionar ejes de diferenciación. Los seis criterios y la integración quedan en cero, aunque el tema climático-laboral es pertinente.",v3
+1935,Reseña de seguridad marítima sin contenido interseccional ni climático.,v3
+1936,Tesis jurídica sobre emergencia climática sin uso social de la interseccionalidad.,v3
+1937,Análisis literario interseccional ajeno al cambio climático.,v3
+1938,"Gate no superado: la etnografía sobre fantasmas tras desastres en Petrópolis menciona interseccionalidades solo de pasada, junto a miedos y desarraigos, sin nombrar ni relacionar ejes sociales. Aunque reconoce agencia en las narrativas colectivas, la regla del gate obliga a dejar todos los criterios en cero.",v3
+1939,"Gate no superado: la revisión sistemática sobre agua y género trata el género como eje estructurante único y deja los análisis interseccionales como agenda futura, caso que la regla 3 excluye. El vínculo climático es limitado, como multiplicador de amenazas, por lo que la elegibilidad climática es dudosa.",v3
+1940,Reseña sobre discapacidad y daño ecológico sin articulación interseccional explícita.,v3
+1941,"Propone gobernanza interseccional de género, pero el clima es mención incidental.",v3
+1942,Ensayo jurídico sin uso social de la interseccionalidad.,v3
+1943,Ensayo sobre Krenak y cartografías afectivas sin marco interseccional en sentido social.,v3
+1944,Estudio de literatura y ambientalización curricular sin contenido interseccional.,v3
+1945,Resumen mixto sobre migrantes y salud mental tras un desastre no climático.,v3
+1946,Tesis jurídica sobre comercio y clima sin uso social de la interseccionalidad.,v3
+1947,Estudio sobre mujeres rurales en REDD+ cuyo uso de «intersectional» parece intersectorial.,v3
+1948,"Gate no superado: el resumen, compartido con todo el libro sobre movilidad humana en los Planes Nacionales de Adaptación, solo enumera las perspectivas interseccionales entre los temas tratados, sin relacionar ejes de diferenciación social. El abstract es insuficiente para evaluar el contenido propio de este capítulo; los criterios quedan en cero.",v3
+1949,Estudio educativo sobre racismo ambiental sin objeto climático.,v3
+1950,"Analiza discriminación interseccional, pero en un desastre industrial ajeno al clima.",v3
+1951,"Propone políticas interseccionales, pero el clima no forma parte del objeto.",v3
+1952,"Sustantivo: articula género, raza y clase en la posición de visitantes, mayoritariamente mujeres negras (I=1), con mecanismos del sistema prisional (II=1) durante las enchentes de 2024 en Canoas (III=1). La orientación transformadora queda poco desarrollada (V=0.5) y las mujeres aparecen como sobrecargadas más que como agentes (VI=0).",v3
+1953,Estudio de justicia climática indígena sin marco interseccional en sentido social.,v3
+1954,"Gate no superado: el informe identifica vías concretas por las que el cambio climático agrava la violencia basada en género en Guatemala, pero trabaja un solo eje y deja la interseccionalidad como recomendación para políticas y financiamiento, sin relacionar ejes de diferenciación. Por eso los criterios quedan en cero.",v3
+1955,"Usa la interseccionalidad, pero el clima es mención incidental.",v3
+1956,Revisión normativa socioambiental sin contenido interseccional.,v3
+1957,"Gate no superado: el resumen, compartido con todo el libro sobre movilidad humana en los Planes Nacionales de Adaptación, solo enumera las perspectivas interseccionales entre los temas tratados, sin relacionar ejes de diferenciación social. El abstract es insuficiente para evaluar el contenido propio de este capítulo; los criterios quedan en cero.",v3
+1958,"Menciona vulnerabilidades interseccionales, pero el clima no es el objeto del estudio.",v3
+1959,Tesis sobre debida diligencia empresarial sin contenido interseccional.,v3
+1960,"Estudio jurídico de desplazamiento climático con enfoque diferencial, no interseccional.",v3
+1961,"Gate no superado: la discusión teórica sobre lecturas de la justicia climática concluye que debe ser múltiple e interseccional y antisistémica, pero no nombra ni relaciona ejes de diferenciación social. La etiqueta interseccional no se aplica a posiciones concretas, así que los criterios quedan en cero.",v3
+1962,Estudio de diplomacia científica ambiental sin contenido interseccional.,v3
+1963,"Aplicación nominal-parcial: el ensayo conecta género, raza y clase con la vulnerabilidad habitacional y climática (I=0.5), pero sin mecanismos estructurales desarrollados (II=0.5) ni método que opere las intersecciones (IV=0). Su punto fuerte es la propuesta de política de vivienda interseccional (V=1); la agencia de los sujetos está ausente.",v3
+1964,Estudio jurídico sobre litigio climático sin contenido interseccional.,v3
+1965,"Usa un feminismo interseccional, pero el objeto es cinematográfico y no climático.",v3
+1966,Capítulo sobre emprendimiento sostenible sin contenido interseccional.,v3
+1967,Editorial de derecho animal sin uso social de la interseccionalidad.,v3
+1968,Artículo sobre educación inclusiva y clima sin articulación interseccional.,v3
+1969,"Gate no superado: el resumen, compartido con todo el libro sobre movilidad humana en los Planes Nacionales de Adaptación, solo enumera las perspectivas interseccionales entre los temas tratados, sin relacionar ejes de diferenciación social. El abstract es insuficiente para evaluar el contenido propio de este capítulo; los criterios quedan en cero.",v3
+1970,Análisis jurídico de KlimaSeniorinnen sin articulación interseccional en el resumen.,v3
+1971,"Gate no superado con baja confianza: el estudio ecofeminista de brigadas frente al extractivismo incendiario en Sierras Chicas declara un enfoque interseccional, pero el resumen solo trabaja género y disidencias sin relacionarlos con otra categoría social. Pese a documentar saberes y estrategias de cuidado, los criterios quedan en cero.",v3
+1972,"Gate no superado: el resumen, compartido con todo el libro sobre movilidad humana en los Planes Nacionales de Adaptación, solo enumera las perspectivas interseccionales entre los temas tratados, sin relacionar ejes de diferenciación social. El abstract es insuficiente para evaluar el contenido propio de este capítulo; los criterios quedan en cero.",v3
+1973,"Gate no superado: el resumen, compartido con todo el libro sobre movilidad humana en los Planes Nacionales de Adaptación, solo enumera las perspectivas interseccionales entre los temas tratados, sin relacionar ejes de diferenciación social. El abstract es insuficiente para evaluar el contenido propio de este capítulo; los criterios quedan en cero.",v3
+1974,Crítica feminista materialista donde el colapso ambiental no se vincula explícitamente con el clima.,v3
+1975,Transcripción de entrevista cuyo uso de lo interseccional es temático; el resumen no tiene contenido analítico.,v3
+1976,Tesis sobre gobernanza ambiental en Maranhão sin contenido interseccional.,v3
+1977,"Aplicación nominal-parcial: relaciona género y raza en las demandas del activismo juvenil (I=0.5), pero el método Q describe perfiles sin analizar interacciones (IV=0) y el poder estructural se nombra sin mecanismos (II=0.5). Destaca la agencia de los jóvenes activistas (VI=1) y la orientación crítica de justicia climática (V=1).",v3
+1978,"Sustantivo: trata a las mujeres indígenas como posición específica (I=1) frente a mecanismos de extractivismo verde, colonialidad y militarización (II=1) en tres casos latinoamericanos situados (III=1), con clara orientación a la justicia (V=1). El método documental no opera intersecciones con datos propios (IV=0.5) y la agencia se menciona sin desarrollarse.",v3
+1979,"Sustantivo: centra el análisis en mujeres negras y ribeirinhas como posición interseccional (I=1) y explica mecanismos concretos de gentrificación climática (II=1) en Belém durante la COP30 (III=1), con orientación crítica a la justicia (V=1). El diseño documental limita el método (IV=0.5) y la agencia aparece solo al cierre (VI=0.5).",v3
+1980,Tesis sobre género y educación ajena al cambio climático.,v3
+1981,"Promueve un análisis interseccional, pero el clima es mención incidental.",v3
+1982,Estudio sobre mujeres y eventos climáticos extremos sin articulación interseccional en sentido social.,v3
+1983,"Análisis interseccional sólido, pero el clima es mención incidental en el resumen.",v3
+1984,"Pide perspectiva interseccional en sistemas alimentarios, sin objeto climático.",v3
+1985,Falso positivo: cómic alegórico sobre inteligencia artificial.,v3
+1986,"Menciona enfoques interseccionales, pero el clima es mención incidental.",v3
+1987,"Articula raza y trabajo, pero el objeto no es climático.",v3
+1988,"Gate no superado: aunque el título habla de interseccionalidad de la movilidad humana en los Planes Nacionales de Adaptación, el resumen, compartido con todo el libro, solo menciona perspectivas interseccionales sin relacionar ejes de diferenciación social. El abstract es insuficiente para evaluar el capítulo; criterios en cero.",v3
+1989,Estudio cinematográfico interseccional ajeno al cambio climático.,v3
+1990,Entrevista sobre corrupción y gobernanza climática sin contenido interseccional.,v3
+1991,Estudio de inundaciones y vulnerabilidad social sin marco interseccional en sentido social.,v3
+1992,"Gate no superado: la revisión sobre juventudes amazónidas y crisis climática enumera especificidades étnico-raciales, de género y territoriales y recomienda abordajes interseccionales en políticas públicas, pero no relaciona esos ejes entre sí ni con la edad. Por eso los seis criterios y la integración quedan en cero.",v3
+1993,"Gate no superado: el artículo sobre justicia climática en Brasil enumera comunidades marginadas como grupos separados y defiende políticas públicas interseccionales sin relacionar ejes de diferenciación social. La crítica a la distribución desigual de impactos no alcanza la condición de entrada, así que todo queda en cero.",v3
+1994,"Gate no superado: el artículo sobre la Companhia Baiana de Produção Mineral invoca la interseccionalidad como referencial junto a ESG y los ODS, pero no nombra ni relaciona ejes de diferenciación social y se orienta a recomendaciones corporativas. La rúbrica deja todos los criterios en cero.",v3
+1995,"Gate no superado: la tesis sobre justicia climática en el plan de acción de Recife menciona intersecciones raciales y de género solo al describir la normativa brasileña, sin relacionar esos ejes en su propio análisis, centrado en participación y vulnerabilidad territorial. Caso límite del gate; criterios en cero.",v3
+1996,"Aplicación nominal: identifica a mujeres negras, indígenas y pobres como más afectadas (I=0.5) bajo la justicia climática feminista, pero no teoriza mecanismos estructurales (II=0.5), no sitúa el análisis (III=0) ni lo operacionaliza (IV=0). Su aporte principal es la orientación jurídico-política hacia la incorporación del género en litigios y tratados (V=1).",v3
+1997,"Aplicación parcial: el libro sobre la dana de València enmarca la vulnerabilidad en procesos estructurales como urbanismo y capacitismo (II=1) con contexto muy situado (III=1) y afirma un entrelazamiento interseccional de ejes, aunque los capítulos tratan subgrupos por separado (I=0.5, IV=0.5). El abstract no detalla métodos, lo que limita la evaluación.",v3
+1998,"Gate no superado: la tesis jurídica sobre desplazados climáticos dedica un capítulo al enfoque interseccional, pero el resumen solo habla de grupos vulnerables en general, sin nombrar ni relacionar ejes de diferenciación social. Los seis criterios y la integración quedan en cero.",v3
+1999,Tesis de arquitectura sin contenido interseccional.,v3
+2000,"Estudio interseccional sustantivo sobre teletrabajo, ajeno al clima.",v3
+2001,"Gate no superado: el resumen, compartido con todo el libro sobre movilidad humana en los Planes Nacionales de Adaptación, solo enumera las perspectivas interseccionales entre los temas tratados, sin relacionar ejes de diferenciación social. El abstract es insuficiente para evaluar el contenido propio de este capítulo; los criterios quedan en cero.",v3
+2002,Ensayo ecofenomenológico sin articulación interseccional.,v3
+2003,"Aplicación parcial: relaciona género con clase, etnia o raza y edad (I=0.5) y lo traduce en una matriz para planes de reducción de riesgo (IV=0.5), con clara utilidad para la política pública (V=1). Sin embargo, no teoriza mecanismos estructurales (II=0.5) ni considera la agencia de las poblaciones afectadas (VI=0).",v3
+2004,"Usa la interseccionalidad en sentido social para el urbanismo, pero el clima solo figura como metadato del dossier, no como objeto.",v3
+2005,"Elegible por el enfoque interseccional de género aplicado a la migración climática en Guatemala, pero no supera el gate: enumera grupos (mujeres, niñez, discapacidad, pueblos indígenas) por separado y presenta la interseccionalidad como vacío de la literatura, sin relacionar ejes entre sí. El abstract no permite ver cómo se articulan las categorías en el análisis.",v3
+2006,"Resumen técnico del mismo estudio guatemalteco: invoca un enfoque interseccional de género sobre migración irregular y cambio climático, pero solo alude genéricamente a grupos poblacionales sin nombrar ni relacionar ejes de diferenciación. La interseccionalidad aparece como vacío de la literatura, por lo que el gate no se supera y todos los criterios quedan en cero.",v3
+2007,"Capítulo cuyo registro reproduce el resumen general del libro sobre movilidad humana y planes nacionales de adaptación. Las perspectivas interseccionales aparecen solo como uno de los temas abordados, y el título añade un único eje (niñez y adolescencia). Sin ejes relacionados, el gate no se supera; el abstract es insuficiente para juzgar el contenido propio del capítulo.",v3
+2008,"Libro sobre movilidad humana en la adaptación climática que menciona perspectivas interseccionales solo como uno de varios temas de reflexión. No nombra ni relaciona ejes de diferenciación social, por lo que no supera el gate y los criterios quedan en cero. El resumen es descriptivo del contenido y no permite evaluar la operacionalización interseccional de los capítulos.",v3
+2009,"Ensayo teórico que articula raza, etnia, género, clase y localización geopolítica como marcadores imbricados en la experiencia de eventos extremos (I=1), con crítica al modelo capitalista sin detallar mecanismos (II=0.5). Se orienta a una resiliencia climática interseccional y democrática (V=1), pero carece de operacionalización empírica (IV=0) y el contexto brasileño queda esbozado (III=0.5).",v3
+2010,"Artículo sobre la COP30 con perspectiva interseccional declarada en el título, pero el resumen solo enumera contrapúblicos (indígenas, quilombolas, comunidades negras, juventudes, colectivos urbanos) como grupos separados, sin relacionar ejes de diferenciación entre sí. Por ello no supera el gate; el énfasis en participación y democracia climática no compensa la ausencia de articulación interseccional.",v3
+2011,"Etnografía en tres localidades del Istmo de Tehuantepec que analiza cómo etnicidad y edad se cruzan con el género para subordinar a mujeres defensoras frente a parques eólicos (I=1, III=1). Documenta politicidad y organización de las defensoras (VI=1) con orientación a soluciones inclusivas (V=1); los mecanismos estructurales se nombran sin teorizarse (II=0.5) y el método interseccional no se detalla (IV=0.5).",v3
+2012,"Interseccional sustantivo sobre mujeres en situación de calle, pero las inundaciones de 2024 aparecen en una sola frase y no forman parte del objeto.",v3
+2013,Tesis decolonial sobre hidroeléctricas en el río Madeira sin vocabulario interseccional en sentido social.,v3
+2014,"Menciona una perspectiva interseccional de género, pero el clima solo figura como ejemplo de interfaz temática, no como objeto.",v3
+2015,"Recomienda transversalizar interseccionalidad, pero el clima es solo una de varias metas ODS citadas, sin formar parte del objeto.",v3
+2016,Lectura ecocrítica y decolonial de la crisis hídrica sin uso social del término interseccional.,v3
+2017,"Ensayo literario sobre dos ficciones climáticas latinoamericanas que afirma un entrelazamiento de clase y género en la problematización de la crisis ambiental, sin mostrar cómo se co-construyen (I=0.5). Vincula la crisis con el capitalismo y la idea de progreso (II=0.5) y propone imaginar alternativas (V=0.5), pero no hay sujetos empíricos, método interseccional ni agencia (IV=0, VI=0).",v3
+2018,"Capítulo con enfoque territorial e interseccional en el título, pero su registro reproduce el resumen general del libro sobre movilidad humana y planes de adaptación. Ese resumen solo menciona perspectivas interseccionales como tema, sin articular ejes de diferenciación social, de modo que el gate no se supera. El abstract es insuficiente para evaluar el capítulo específico.",v3
+2019,"Estudio de caso cualitativo con mujeres periféricas de palafitas en Santos que adopta la interseccionalidad de raza, clase y género, aunque la plantea como superposición o suma de vulnerabilidades (I=0.5). El contexto territorial está bien situado (III=1) y registra respuestas y soluciones cotidianas de las mujeres (VI=1); el análisis de poder y de políticas queda poco teorizado (II=0.5).",v3
+2020,Investigación artística sobre biodiversidad del cerrado sin contenido interseccional en sentido social.,v3
+2021,"Usa interseccionalidad entre raza y territorio, pero el objeto es el racismo ambiental en la escuela, no el clima.",v3
+2022,"Mención interseccional en sentido racial, pero el tema es saneamiento básico y producción académica, sin componente climático.",v3
+2023,"Propone acciones interseccionales frente al racismo ambiental, pero sin vínculo con cambio climático o amenazas climáticas.",v3
+2024,Falso positivo: capítulo de enfermería sobre quemas y salud respiratoria sin ningún contenido interseccional.,v3
+2025,"Perspectiva interseccional clara sobre mujeres negras y racismo ambiental, pero el objeto no se vincula con el clima.",v3
+2026,"Marco de desigualdad y transformación educativa interseccional, con el clima solo como mención incidental.",v3
+2027,Falso positivo: tesis de didáctica de lenguas sin dimensión social interseccional ni climática.,v3
+2028,"Perspectiva interseccional de género en el trabajo, pero las crisis climáticas solo aparecen como contexto en una frase.",v3
+2029,"Interseccional (raza, clase, territorio) en infancia negra, pero ante un desastre minero, no climático (regla común 1).",v3
+2030,Falso positivo: estudio literario sobre Hilda Furacão sin contenido interseccional ni climático.,v3
+2031,"Trata descarbonización portuaria y refugiados ambientales, pero sin interseccionalidad en sentido social.",v3
+2032,Revisión sobre disruptores endocrinos y racismo ambiental sin uso social del término ni objeto climático.,v3
+2033,"Capítulo sobre vulnerabilidades de poblaciones en movilidad cuyo registro repite el resumen general del libro. La interseccionalidad aparece solo como uno de los temas del volumen y la vulnerabilidad de las personas migrantes no se cruza con otros ejes nombrados, así que el gate no se supera. El abstract no describe el contenido propio del capítulo.",v3
+2034,"Enfoque interseccional sobre racismo ambiental y vivienda, pero el resumen no vincula el objeto con el clima.",v3
+2035,"Capítulo conceptual sobre migración, desplazamiento, reubicación e inmovilidad cuyo registro repite el resumen del libro. Las perspectivas interseccionales se mencionan como tema del volumen, sin relacionar ejes de diferenciación social; el gate no se supera y los criterios quedan en cero. El abstract es insuficiente para juzgar el aporte del capítulo.",v3
+2036,Tesis histórica sobre la Diócesis de Crateús y la sequía sin interseccionalidad en sentido social.,v3
+2037,"Análisis de narrativas de lideranças travestis idosas afectadas por las inundaciones de 2024 en Rio Grande do Sul: población interseccional seleccionada intencionalmente (IV=1) en un contexto específico (III=1). Destaca redes comunitarias de cuidado como resistencia (VI=1) y reclama políticas interseccionales (V=1), aunque la co-construcción de edad e identidad de género se explicita poco (I=0.5).",v3
+2038,"Usa la interseccionalidad en el campo curricular, pero el clima es mención incidental de contexto.",v3
+2039,"Estudio de inundaciones en Xapuri centrado en articulación de políticas públicas, sin sentido social interseccional.",v3
+2040,"Investigación jurídica sobre litigio climático desde la teoría ecofeminista que dice delimitar a los más vulnerables con base en la interseccionalidad, pero solo trabaja el eje de las mujeres y su protagonismo. No relaciona otras categorías de diferenciación con el género, por lo que el gate no se supera y todos los criterios quedan en cero.",v3
+2041,"Menciona intersecciones entre envejecimiento e identidad LGBT+, pero el clima es institucional, no climático.",v3
+2042,"Capítulo sobre efectos de la transición ecológica en el empleo femenino; el resumen, común al libro, alude a dobles o triples estigmas y discriminación interseccional solo como un ítem de una larga lista, sin nombrar ni relacionar los otros ejes con el género. Se trata como etiqueta sobre un único eje: gate no superado, criterios en cero.",v3
+2043,"Resumen común del libro con mención interseccional, pero el capítulo trata igualdad en mundos rurales y el clima es solo marco.",v3
+2044,Tesis técnica sobre urbanismo e inundabilidad en Murcia sin dimensión social interseccional.,v3
+2045,Falso positivo: sistema de nudges para consumo eléctrico sin contenido interseccional.,v3
+2046,"Metodología interseccional y decolonial clara, pero el clima solo aparece entre los temas hallados en las obras.",v3
+2047,"Abordaje interseccional situado sobre mujeres de São Gonçalo, pero las inundaciones solo se citan entre otras territorialidades.",v3
+2048,"Interseccional (pobreza, género, color, edad) pero ante un desastre industrial, excluido por la regla común 1.",v3
+2049,"Texto conceptual sobre bancos públicos de desarrollo y finanzas climáticas que reconoce el género junto a factores interseccionales (clase, raza, etnia, edad, geografía) como determinantes de impactos, lo que permite pasar el gate con baja confianza. El resto se centra solo en equidad de género institucional (I=0.5), sin poder estructural, contexto situado, método ni agencia (II, III, IV, VI=0).",v3
+2050,"Resumen común del libro con mención interseccional, pero el capítulo trata la brecha salarial y el clima es solo marco.",v3
+2051,Falso positivo: tesis sobre economía circular en energía solar sin contenido interseccional.,v3
+2052,"Estudio sobre carnaval y activismo climático en Curitiba donde lo interseccional alude al cruce de agendas, no a categorías sociales.",v3
+2053,Falso positivo: editorial de aniversario de una revista de diseño de información.,v3
+2054,"Interseccionalidad de género, edad y origen en migración, pero el clima no forma parte del objeto.",v3
+2055,"Enfoque interseccional de raza, género y clase en medios, sin ningún vínculo climático.",v3
+2056,"Estudio cualitativo con mujeres Zenú de San Andrés de Sotavento que entiende extractivismo y crisis climática como violencias del capitalismo y la colonización interrelacionadas (II=1, III=1). Construye relatos con enfoque interseccional desde una población de mujeres indígenas (IV=1) y documenta estrategias comunitarias de resistencia y cuidado (VI=1); la co-construcción de género y etnicidad se explicita poco (I=0.5).",v3
+2057,"Resumen común del libro con mención interseccional, pero el capítulo trata discriminación por género, religión y etnia en el empleo y el clima es solo marco.",v3
+2058,Falso positivo: estudio de derecho penal societario y compliance sin dimensión interseccional ni climática.,v3
+2059,"Presentación de dossier sobre desigualdades ambientales, sanitarias y cambio climático en pueblos indígenas de América Latina. Declara un enfoque interseccional, pero solo nombra la indigeneidad sin relacionarla con otros ejes de diferenciación social, por lo que no supera el gate. Al ser una introducción editorial, el abstract no permite juzgar el análisis de los artículos.",v3
+2060,Falso positivo: texto jurídico sobre ESG y transición energética sin contenido interseccional.,v3
+2061,"Resumen común del libro con mención interseccional, pero el capítulo trata la estatura mínima y la presencia de mujeres en policía y fuerzas armadas y el clima es solo marco.",v3
+2062,Registro biográfico de una entrevista donde clima e interseccionalidad aparecen solo como áreas o proyectos de la entrevistada.,v3
+2063,Falso positivo: marco de industria 4.0 y economía circular en poscosecha sin dimensión social interseccional.,v3
+2064,"Artículo sobre juventudes y riesgos climáticos en Curitiba que adopta la interseccionalidad de Collins y Bilge como marco, pero solo trabaja la edad y alude genéricamente a lugares sociales y fronteras geográficas, sin nombrar ni relacionar otros ejes. El marco declarado no se traduce en categorías entrelazadas, por lo que el gate no se supera.",v3
+2065,"Artículo sobre gobernanza climática y pescadoras de las lagunas del sur de Brasil que anuncia un enfoque interseccional solo en el título. El resumen trata la acción gubernamental, la seguridad alimentaria y la justicia en términos generales, sin nombrar ni relacionar ejes de diferenciación social; abstract insuficiente, por lo que el gate no se supera.",v3
+2066,"Capítulo sobre transición justa y economía social, con el resumen común del libro sobre empleo de las mujeres y reconversión climática. La discriminación interseccional y los estigmas múltiples aparecen de pasada en una enumeración de factores, sin relacionar el género con otros ejes concretos, así que el gate no se supera. El abstract no describe el capítulo específico.",v3
+2067,"Resumen común del libro con mención interseccional, pero el capítulo trata las implicaciones del ecofeminismo en el trabajo y el clima es solo marco.",v3
+2068,"Investigación cualitativa con nueve lideresas de Petrópolis y Teresópolis que se propone comprender cómo se expresan relaciones interseccionales de clase, género y raza en la reconstrucción tras desastres (I=0.5, sin resultados en el resumen). Sitúa bien los desastres históricos de la región (III=1) y enfatiza agencias y resistencias (VI=1), pero no teoriza estructuras de poder (II=0).",v3
+2069,"Análisis documental de registros oficiales y prensa sobre el desastre de mayo de 2022 en Recife y Jaboatão que busca marcadores interseccionales y concluye que no aparecen. Usa la interseccionalidad como herramienta de datos, pero no nombra ni relaciona ejes de diferenciación social en el análisis, por lo que el gate no se supera.",v3
+2070,"Analiza género en el PlanClima SP y menciona mujeres negras, periféricas y de bajos ingresos, pero sin invocar interseccionalidad en sentido social.",v3
+2071,"Resumen común del libro con mención interseccional, pero el capítulo trata la reordenación del tiempo de trabajo con perspectiva de género y el clima es solo marco.",v3
+2072,"Usa un enfoque interseccional sobre mujeres rurales, pero el clima solo aparece en la presentación general del libro.",v3
+2073,Reflexión educativa sobre la policrisis sin contenido interseccional en sentido social.,v3
+2074,Libro de resúmenes de un congreso de artes sin uso social del término ni objeto climático propio.,v3
+2075,"Etnografía feminista interseccional en la II Marcha de Mujeres Indígenas que critica la gobernanza climática tecnocientífica y neoliberal (II=1) y reflexiona sobre la posición de las investigadoras (III=1). Destaca aportes y resistencias de los movimientos de mujeres indígenas (VI=1, V=1), aunque la co-construcción de género e indigeneidad no se analiza explícitamente (I=0.5).",v3
+2076,"Resumen común del libro con mención interseccional, pero el capítulo trata la enfermedad profesional de las mujeres y el clima es solo marco.",v3
+2077,"Texto de revisión sobre mujeres y cambio climático en la Amazonía que argumenta que el recorte de género es insuficiente sin la interseccionalidad con clase y raza, y señala afectación diferenciada de mujeres negras, indígenas, ribereñas y trabajadoras (I=0.5). Destaca el protagonismo y la lucha de esas mujeres (VI=1, V=1), sin método empírico interseccional (IV=0).",v3
+2078,"Tesis etnográfica con mujeres de campamentos en Copiapó que concibe los desastres como construcción social anclada en desigualdades estructurales (II=1, III=1). Relaciona la precariedad habitacional con desigualdades de género y busca diversidad de edad y origen en la muestra, sin análisis interaccional (I=0.5, IV=0.5); documenta tácticas y agencia de las mujeres (VI=1).",v3
+2079,Falso positivo: estudio de empresas del ISE B3 sobre clima y biodiversidad sin contenido interseccional.,v3
+2080,"Interseccionalidad de género, raza y clase en pescadoras, pero el objeto es racismo ambiental sin componente climático.",v3
+2081,"Nota editorial que presenta un número con artículos sobre justicia climática e interseccionalidad de la mujer indígena; cumple ambos criterios de cribado de forma tenue. Como no tiene análisis propio ni relaciona ejes de diferenciación social con el clima, no supera el gate. El abstract solo enumera contribuciones, insuficiente para valorar la sustantividad.",v3
+2082,"Tesis teórica que usa la interseccionalidad para analizar jerarquías en varias dimensiones de la vida bajo Estado, capitalismo y colonialidad, apoyada en el contrato racial (II=1), lo que pasa el gate con baja confianza. Propone rupturas transformadoras desde el MST y Vía Campesina (V=1, VI=1), aunque los ejes sociales se co-construyen poco explícitamente (I=0.5) y no hay método empírico (IV=0).",v3
+2083,Falso positivo: tesis de derecho procesal estructural sobre represas mineras sin dimensión interseccional ni climática.,v3
+2084,"Revisión sobre racismo ambiental con uso social de lo interseccional, pero sin objeto climático.",v3
+2085,"No supera el gate: aunque se presenta como análisis interseccional de la crisis climática en Brasil, el resumen enumera grupos afectados de manera separada y usa el término para designar fenómenos (racismo ambiental, desplazamiento), no para articular ejes entre sí. La orientación a políticas inclusivas y justicia climática no compensa esa ausencia.",v3
+2086,Capítulo jurídico sobre trata de niños con criterio interseccional; el clima es mención incidental.,v3
+2087,"Pasa el gate porque cruza género con etnia y edad, pero lo hace como caracterización descriptiva de una encuesta (I=0,5; IV=0,5). No teoriza estructuras de poder (II=0) ni la agencia de las productoras, y el componente climático queda como una sección más del informe. El abstract es esquemático y limita el juicio.",v3
+2088,Falso positivo: estudio de infraestructura verde en Lima sin dimensión interseccional.,v3
+2089,Estudio sobre agrobiodiversidad y pandemia en Perú sin uso social de la interseccionalidad.,v3
+2090,"Texto sobre salud laboral con mención de discriminación interseccional, pero el clima es incidental.",v3
+2091,Estudio de salud e inundaciones en Campos dos Goytacazes sin contenido interseccional.,v3
+2092,"Texto sobre igualdad en los tribunales con mención de discriminación interseccional, pero el clima es incidental.",v3
+2093,"Aplica clasificación cruzada de género y categoría ocupacional en un diseño de diferencias en diferencias, interpretada como posiciones combinadas (I=1, IV=1 por la regla 4). La dimensión estructural y la orientación transformadora solo se enuncian (II=0,5; V=0,5) y no hay atención a la agencia. Duda: tratar la categoría ocupacional como eje de clase.",v3
+2094,Falso positivo: inventario técnico de servicios ecosistémicos y REDD+ sin dimensión social interseccional.,v3
+2095,Editorial sobre justicia socioambiental sin uso social de la interseccionalidad.,v3
+2096,"Texto sobre trabajadoras de edad y pensiones con mención de discriminación interseccional, pero el clima es incidental.",v3
+2097,"Trabajo sobre educación antirracista y ciudad ante el cambio climático, sin marco interseccional.",v3
+2098,"Tesis de educación ambiental que menciona la interseccionalidad, pero sin objeto climático.",v3
+2099,"Tesis sobre discurso de mujeres afectadas por un desastre minero, fuera de ambos criterios.",v3
+2100,"Tesis interseccional sobre mujeres negras campesinas y agroecología, sin objeto climático.",v3
+2101,"Texto sobre trabajo y género con mención de discriminación interseccional, pero el clima es incidental.",v3
+2102,"Tesis interseccional sobre roles de género en la pandemia, sin objeto climático.",v3
+2103,"Pasa el gate por la población (mujeres indígenas y rurales), aunque el núcleo analítico es la variable género y la intersección solo se reconoce (I=0,5). Nombra violencia histórica y feminización de la pobreza sin teorizarlas (II=0,5), no describe método (IV=0) y presenta a las mujeres solo como afectadas (VI=0).",v3
+2104,"No supera el gate: el informe vincula crisis de cuidados y crisis climática desde la desigualdad de género y menciona el enfoque interseccional solo como recomendación de política, sin relacionar el género con otros ejes de diferenciación. La orientación propositiva hacia derechos e igualdad no basta para la sustantividad.",v3
+2105,Artículo geopolítico sobre urbanismo saudí donde 'intersectional' tiene sentido transversal.,v3
+2106,"Tesis interseccional sobre mujeres negras y vivienda en Olinda, sin objeto climático.",v3
+2107,Estudio geográfico de vulnerabilidad e inundación sin marco interseccional social.,v3
+2108,"Texto sobre cuidados con mención de discriminación interseccional, pero el clima es incidental.",v3
+2109,"Pasa el gate solo por la población implicada (mujeres interétnicas), con baja confianza, porque el resumen es casi todo contexto de política colombiana. Nombra causas estructurales de la desigualdad de género (II=0,5) y la agencia de la red queda en el título (VI=0,5); no hay método (IV=0). El abstract resulta insuficiente para juzgar.",v3
+2110,Falso positivo: reflexión sobre arte ecológico y educación ambiental sin contenido interseccional.,v3
+2111,"Supera el gate al plantear un análisis interseccional que suma el medio ambiente al género y la clase, pero los hallazgos tratan sobre todo a las mujeres frente a los ciclos del río (I=0,5). Carece de teorización del poder (II=0), de método interseccional (IV=0) y de orientación transformadora (V=0); el contexto es sobre todo geográfico.",v3
+2112,"No supera el gate: pese al título interseccional, el estudio vincula el calentamiento global con raza y género por separado y la encuesta identifica grupos vulnerables listados uno a uno, sin relacionar los ejes entre sí. La llamada a políticas públicas de igualdad no alcanza para una aplicación sustantiva del marco.",v3
+2113,"Estudio interseccional de narrativa televisiva, sin objeto climático.",v3
+2114,"Presentación de dossier con uso social de la interseccionalidad, sin objeto climático.",v3
+2115,Artículo sobre feminismo interseccional y permacultura donde el clima queda como mención secundaria.,v3
+2116,"No supera el gate con baja confianza: declara un enfoque metodológico interseccional sobre los huracanes Irma y María, pero el resumen presenta las brechas por género, edad y discapacidad como grupos vulnerables separados, sin relacionar ejes. Esto ocurre pese a su orientación práctica a la gestión de riesgo y a experiencias de mujeres protagonistas.",v3
+2117,"Tesis interseccional sobre violencia en la pandemia, sin objeto climático.",v3
+2118,Falso positivo: tesis sobre teledramaturgia del sertão sin contenido interseccional ni climático.,v3
+2119,"Editorial de revista de arte y educación, fuera de ambos criterios.",v3
+2120,Falso positivo: tesis sobre TIC y ODS en Paraná sin contenido interseccional.,v3
+2121,"Presentación de dossier feminista con mención de interseccionalidades, sin objeto climático.",v3
+2122,Editorial sobre migraciones con uso ambiguo de 'interseccional' y clima secundario.,v3
+2123,"No supera el gate: es un editorial que presenta un bloque sobre instituciones y cambio climático y menciona el enfoque interseccional solo al citar la resolución 3/2021 de la CIDH. No relaciona ejes de diferenciación ni ofrece análisis propio, por lo que la mención es puramente nominal.",v3
+2124,"Artículo de feminismo interseccional sobre trata y conflicto armado, sin objeto climático.",v3
+2125,"Lectura ecocrítica de una novela sobre desertificación, sin marco interseccional.",v3
+2126,Tesis sobre vivienda en laderas de Salvador sin contenido interseccional social.,v3
+2127,"Pasa el gate al tratar género, raza y clase como marcas conjuntas dentro de un marco interseccional, y su punto fuerte es estructural: el racismo ambiental produce desastres socialmente construidos (II=1). Como texto teórico breve no operacionaliza intersecciones (IV=0), no analiza la co-construcción (I=0,5) y no reconoce agencia.",v3
+2128,"Supera el gate al declarar que el género interactúa con raza y clase, aunque los avances analizan sobre todo a las mujeres como grupo (I=0,5; IV=0). Destaca la agencia: los saberes y la contranarrativa de 'vivir con el río' frente al discurso estatal de riesgo (VI=1), en un contexto barrial concreto.",v3
+2129,"No supera el gate: la interseccionalidad aparece solo en el nombre del proyecto GRRIPP, y la reflexión autoetnográfica trata la transversalización de género en clima y riesgo de desastres en el Caribe. Las 'intersecciones' que menciona son temáticas, no entre categorías sociales; la elegibilidad misma es dudosa.",v3
+2130,"No supera el gate: la tesis usa la interseccionalidad como etiqueta aplicada a un único eje, las vulnerabilidades de las mujeres ante el cambio climático, a partir de documentos de la ONU y el IPCC. No articula género con raza, clase u otras categorías, pese a su orientación declarada hacia la justicia climática.",v3
+2131,"No supera el gate: es un estado del arte de quince trabajos que destaca la interseccionalidad como potencial analítico y señala lagunas en Brasil. Solo trabaja el eje racial y alude genéricamente a 'diferentes sujetos y grupos', sin relacionar categorías; la mención funciona como agenda y vacío de investigación.",v3
+2132,"Experiencia docente con perspectiva de género interseccional, sin objeto climático propio.",v3
+2133,Análisis del Green New Deal sin uso social de la interseccionalidad.,v3
+2134,"Tesis sobre campesinos reubicados por la transposición del São Francisco, sin marco interseccional.",v3
+2135,Tesis sobre clima y producción de alimentos en Rio Grande do Sul sin contenido interseccional.,v3
+2136,Falso positivo: estudio técnico de incendios en la Mata Atlántica sin dimensión social.,v3
+2137,"No supera el gate: es una nota institucional sobre la presentación de un estudio de inclusión de género e interseccionalidad en políticas climáticas, agrarias y alimentarias de Colombia. No nombra ni relaciona ejes de diferenciación y no ofrece análisis propio, de modo que la referencia interseccional es nominal.",v3
+2138,Estudio sobre confort térmico escolar sin contenido interseccional social.,v3
+2139,"Tesis sobre racismo ambiental en formación docente, fuera de ambos criterios.",v3
+2140,"Artículo interseccional sobre reparación tras un crimen-desastre minero, sin objeto climático.",v3
+2141,Falso positivo: recopilación de proyectos de extensión de la UDESC.,v3
+2142,Tesis sobre aluviones en Quito sin marco interseccional.,v3
+2143,"Trabajo jurídico sobre racismo ambiental con mención interseccional, sin objeto climático.",v3
+2144,"Tesis sobre campesinas agroecológicas con cruce género-cuestión agraria, donde la sequía es contexto.",v3
+2145,"Ensayo interseccional sobre educación inclusiva, sin objeto climático.",v3
+2146,"No supera el gate: la tesis sobre gestión del riesgo en Santos describe peores condiciones, menor renta y mayores desigualdades de género y raciales en zonas de deslizamiento como indicadores paralelos, y menciona la praxis interseccional solo como horizonte. Su crítica a la resiliencia neoliberal no articula ejes entre sí.",v3
+2147,"Editorial con colonialidad de género e imbricación raza/género, sin objeto climático.",v3
+2148,"Tesis sobre performances de género no binarias, fuera de ambos criterios.",v3
+2149,"Etnografía de racismo ambiental tras una rotura de presa, sin marco interseccional ni objeto climático.",v3
+2150,"Supera el gate con baja confianza, por la población de mujeres migrantes y la discriminación múltiple, aunque la lista de 'intersecciones' mezcla ejes y temas. Su fuerza está en la orientación a la justicia epistémica (V=1); al ser un proyecto no describe método interseccional (IV=0) y el cambio climático es solo un eje temático.",v3
+2151,"Cartografía de prácticas de agentes de salud, fuera de ambos criterios.",v3
+2152,"Llamado a artículos con interseccionalidades de raza, género y clase, sin objeto climático.",v3
+2153,"No supera el gate: el capítulo sobre justicia energética y generación distribuida en São Paulo reclama enfoques interseccionales que incluyan género, raza y clase, pero como agenda; su análisis se centra en la concentración socioespacial de la innovación y en desigualdades regionales, sin relacionar ejes de diferenciación.",v3
+2154,"Estudio literario interseccional de masculinidades, sin objeto climático.",v3
+2155,"Llamado a artículos con interseccionalidades de raza, género y clase, sin objeto climático.",v3
+2156,Proyecto editorial de divulgación de permacultura sin contenido interseccional.,v3
+2157,Artículo decolonial sobre desastres lentos donde la interseccionalidad no tiene sentido social.,v3
+2158,"Capítulo con interseccionalidad de sexo, raza y clase, sin objeto climático.",v3
+2159,Estudio de ecología política del agua en Uruguay sin marco interseccional.,v3
+2160,"Investigación-intervención con luchas interseccionales, sin objeto climático.",v3
+2161,"No supera el gate: el informe trata la igualdad de género en la mitigación y adaptación climática en Brasil y menciona las interseccionalidades solo como acompañante del eje de género, sin relacionar categorías. Su carácter propositivo, con recomendaciones de política, no suple la ausencia de articulación entre ejes.",v3
+2162,Falso positivo: análisis hidráulico de vulnerabilidad por inundación en San Miguel.,v3
+2163,"Estudio interseccional en educación básica, sin objeto climático.",v3
+2164,"Tesis de derecho sobre el Acuerdo de París donde «intersection» designa el cruce de disciplinas, sin contenido interseccional.",v3
+2165,"Falso positivo: arqueología espacial incaica en Tumbes, sin dimensión social interseccional ni climática.",v3
+2166,"Elegible por invocar la interseccionalidad en una reflexión feminista sobre la crisis climática, pero no supera el gate: género, clase y etnia aparecen como lista de impactos diferenciales y la interseccionalidad solo como tema de los foros madrileños, sin articular ejes entrelazados. Por ello los criterios y la integración quedan en cero.",v3
+2167,"Ensayo interseccional de clase, género y raza sobre la pandemia en Brasil, sin objeto climático.",v3
+2168,"Editorial de Early Music que menciona de pasada la intersección de raza y clase, sin relación con el clima.",v3
+2169,"Falso positivo: evaluación técnica de algoritmos de teledetección, sin dimensión social ni climática.",v3
+2170,"Supera el gate porque sitúa a mujeres pobres, indígenas, afrodescendientes y migrantes en inequidades interseccionales agravadas por el clima. Puntúa alto en praxis (V=1) por sus propuestas de justicia reproductiva, pero queda débil en identidades entrelazadas (I=0.5), sin contexto situado (III=0) ni método (IV=0), y sus recomendaciones regresan a un enfoque de género.",v3
+2171,"Tesis con análisis interseccional de la violencia en la novela Temporada de huracanes, sin objeto climático.",v3
+2172,"Artículo sobre teatro infantil que usa la interseccionalidad como concepto feminista, sin vínculo climático.",v3
+2173,Revisión interseccional sobre crisis ambiental y cuidado en Brasil que no aborda el clima.,v3
+2174,"Tesis de ecología sobre primates y cambio climático, con «intersection» en sentido geográfico.",v3
+2175,"Estudio interseccional sobre mujeres quilombolas y la degradación del río, sin vínculo explícito con el clima.",v3
+2176,"Estudio de inundaciones en Teresina donde «intersection» es el cruce de fuentes, sin contenido interseccional.",v3
+2177,"Ensayo de teoría política marxista sobre crisis ecológica, sin interseccionalidad social ni objeto climático.",v3
+2178,"Falso positivo: tesis sobre eficiencia de ingenios sucroenergéticos, sin contenido interseccional.",v3
+2179,"Presentación de número especial sobre enseñanza del turismo en el Antropoceno, con «intersection» como cruce de campos.",v3
+2180,Ensayo interseccional sobre racismo y sexismo estructurales sin ningún vínculo climático.,v3
+2181,"Artículo sobre securitización climática donde «intersection» une agendas políticas, sin categorías sociales.",v3
+2182,"Análisis de acaparamiento de tierras por políticas de mitigación, sin interseccionalidad en sentido social.",v3
+2183,"Elegible: revisión de movimientos de mujeres en México y Argentina que incluye la lucha climática y la transición energética, y alude a una justicia ecológica interseccional. No supera el gate porque el abstract solo articula el género frente al modelo capitalista, sin relacionarlo con raza, clase o etnicidad; criterios e integración quedan en cero.",v3
+2184,"Supera el gate por la regla corregida: teoriza que el género se cruza con otras identidades, aunque no las nombra. El tratamiento sigue siendo aditivo (I=0.5), el poder estructural se nombra sin mecanismos (II=0.5) y el planteamiento global carece de contexto situado (III=0) y de método (IV=0); la orientación a justicia climática queda enunciada.",v3
+2185,"Glosario terminológico sobre comercio y clima, con «intersection» como cruce temático.",v3
+2186,"Estudio técnico de inundaciones y deslizamientos en Uíge, sin contenido interseccional.",v3
+2187,"Artículo de derecho de desastres sobre la pandemia, sin interseccionalidad social ni amenaza climática.",v3
+2188,"Estudio hidrológico de la laguna La Picasa, con «intersection» en sentido geográfico.",v3
+2189,"Falso positivo: pieza de arte y poesía sobre la magnolia, sin contenido interseccional ni climático.",v3
+2190,Análisis geopolítico del Ártico con «intersection» en sentido de confluencia de intereses.,v3
+2191,Presentación de suplemento educativo que menciona de pasada la interseccionalidad de género y el cambio climático.,v3
+2192,"Informe sobre biodiversidad de Laos, con «intersection» en sentido geográfico.",v3
+2193,Descripción de iniciativa de investigación con «intersection» como cruce disciplinar.,v3
+2194,Estudio de desplazamiento indígena en Chiapas sin uso interseccional del término.,v3
+2195,"Obra colectiva que supera el gate al cruzar género con etnia, edad y clase frente al cambio climático en el México rural. Destaca en praxis (V=1) y agencia (VI=1) por su énfasis en saberes locales y estrategias adaptativas, pero el resumen no muestra un método que opere las intersecciones (IV=0) ni cómo se co-construyen los ejes.",v3
+2196,"Artículo sobre pensamiento crítico en salud ante la COVID-19, sin interseccionalidad social ni objeto climático.",v3
+2197,"Artículo sobre determinación social de la salud urbana que menciona resistencias interseccionales, sin objeto climático.",v3
+2198,"Tesis sobre vulnerabilidad institucional ante inundaciones, con «intersección» en sentido cartográfico.",v3
+2199,Análisis normativo de rehabilitación energética donde «interseccional» significa intersectorial.,v3
+2200,"Texto programático con mirada feminista e interseccional, sin objeto climático.",v3
+2201,"Elegible: estudia la vulnerabilidad ante El Niño y La Niña en una vereda de Cucaita desde la interseccionalidad de género. No supera el gate porque la etiqueta se aplica solo al género y las identidades comunitarias no se articulan con otros ejes; el abstract, breve, tampoco detalla el método. Criterios e integración en cero.",v3
+2202,"Tesis sobre la fundación de una escuela rural en Bahía, sin contenido interseccional ni climático.",v3
+2203,"Elegible: estudia la vulnerabilidad ante El Niño y La Niña en una vereda de Cucaita desde la interseccionalidad de género. No supera el gate porque la etiqueta se aplica solo al género y las identidades comunitarias no se articulan con otros ejes; el abstract, breve, tampoco detalla el método. Criterios e integración en cero.",v3
+2204,"Estudio técnico de riesgo de inundación en el río Marinho, sin contenido interseccional.",v3
+2205,"Elegibilidad dudosa: el clima entra como premisa (autos como fuente de CO2) y la interseccionalidad vía Puar en un ensayo sobre carrocracia y ciclismo. No supera el gate: critica el sistema heterosexista y capitalista, pero no articula dos ejes sociales entrelazados. Criterios e integración en cero; confianza baja.",v3
+2206,Falso positivo: estudio fotogramétrico sin dimensión social ni climática.,v3
+2207,Falso positivo: medición de monóxido de carbono en cruces viales de Rioja.,v3
+2208,"Estudio de drenaje pluvial en São Luís, sin contenido interseccional.",v3
+2209,"Estudio forestal sobre prevención de incendios, con «intersección» como método de muestreo.",v3
+2210,Tesis de historia urbana de Sobral sin contenido interseccional ni climático.,v3
+2211,"Supera el gate por su foco explícito en la interseccionalidad género-etnia del pueblo matlatzinca, y la variabilidad climática aparece como hallazgo, aunque secundario. Documenta agencia (VI=1) mediante etnografía feminista, pero el análisis de ejes y el diseño son descriptivos (I=0.5, IV=0.5) y no teoriza estructuras de poder (II=0).",v3
+2212,"Tesis sobre accidentes entre carga y ciclistas en Bogotá, sin contenido interseccional.",v3
+2213,"Falso positivo: tesis sobre una colección editorial, sin dimensión social interseccional ni climática.",v3
+2214,"Ensayo sobre progreso y estado de excepción en territorios quilombolas, sin uso interseccional ni objeto climático.",v3
+2215,"Zonificación de riesgo de incendios en el Distrito Federal, sin contenido interseccional.",v3
+2216,"Tesis sobre gobernanza climática de la aviación, con «intersection» como cruce de regímenes.",v3
+2217,"Estudio geotécnico de susceptibilidad a deslizamientos, sin contenido interseccional.",v3
+2218,"Supera el gate al señalar a las mujeres indígenas Cabécar como el grupo más vulnerable al cambio climático. Sin embargo, edad, género y etnia funcionan como especificidades listadas (I=0.5) dentro de un diagnóstico de capitales, sin orientación a justicia (V=0) ni reconocimiento de agencia (VI=0); el contexto local es correcto pero poco profundo.",v3
+2219,"Mapeo SIG de áreas inundables en Santa Maria, sin contenido interseccional.",v3
+2220,"Falso positivo: modelado de nicho de especies arbóreas, sin dimensión social ni climática.",v3
+2221,Falso positivo: tesis histórico-jurídica sobre clubes deportivos de Madrid.,v3
+2222,Red de información sobre desastres sanitarios agropecuarios donde «intersectional» significa intersectorial.,v3
+2223,"Análisis histórico de infraestructura hídrica y vivienda en Bogotá, con «intersection» como cruce de campos.",v3
+2224,Reseña de libro sobre cambio climático con «intersection» como cruce disciplinar.,v3
+2225,"Tesis sobre arenización en Rio Grande do Sul, sin contenido interseccional.",v3
+2226,"Capítulo geopolítico sobre los Himalayas y el cambio climático, sin uso interseccional.",v3
+2227,"Tesis hidrológica sobre nieve e infiltración en el Alto Tajo, sin contenido interseccional.",v3
+2228,"Artículo sobre la crisis económica neoliberal, sin interseccionalidad ni clima.",v3
+2229,"Editorial que reseña artículos sobre interseccionalidad y uno sobre Katrina, sin objeto climático propio.",v3
+2230,Editorial de revista jurídica sin contenido interseccional ni climático.,v3
+2231,"Mapeo técnico de riesgo de inundación en Jaguari, sin contenido interseccional.",v3
+2232,Falso positivo: tesis sobre trazado de sedimentos en cuencas agrícolas.,v3
+2233,Falso positivo: modelado físico de fallas en cuencas rift.,v3
+2234,"Modelación numérica de inundación en Nechí por La Niña, sin contenido interseccional.",v3
+2235,"Artículo psicoanalítico sobre sexualidad y discapacidad intelectual, sin vínculo climático.",v3
+2236,Falso positivo: tesis sobre trazado de sedimentos en cuencas agrícolas.,v3
+2237,Tesis sobre dengue donde «intersectionality» significa política intersectorial.,v3
+2238,"Tesis jurídica sobre semiárido y eventos extremos, con «intersection» como cruce de campos.",v3
+2239,"Editorial que reseña un artículo sobre interseccionalidad y madres refugiadas, sin objeto climático.",v3
+2240,"Revisión sobre gobernanza y paradiplomacia climática, con «intersections» como cruce conceptual.",v3
+2241,"Nota sobre impactos climáticos en el Ártico, sin contenido interseccional.",v3
+2242,"Mapeo de sensibilidad a la desertificación en Ceará, sin contenido interseccional.",v3
+2243,"Tesis sobre geografía y literatura de los inconfidentes, sin contenido interseccional ni climático.",v3
+2244,"Tesis sobre la interseccionalidad de opresiones en autobiografías de mujeres negras, sin objeto climático.",v3
+2245,"Tesis de planificación urbana ante inundaciones en Atibaia, sin contenido interseccional.",v3
+2246,Falso positivo: análisis de fracturamiento geológico en una franja de ductos.,v3
+2247,Falso positivo: ensayo psicoanalítico sobre la estructuración del sujeto.,v3
+2248,"Método de evaluación de bosques urbanos en Curitiba, sin contenido interseccional ni objeto climático.",v3
+2249,Reflexión sobre políticas de salud infantil donde «interseccionalidad» traduce intersectorialidad.,v3
+2250,Falso positivo: estudio de gestión sobre recuperación de servicios.,v3
+2251,"Tesis sobre peligrosidad de avenidas en cruces viales de Murcia, sin contenido interseccional.",v3
+2252,Falso positivo: nota entomológica sobre un saltamontes en Arizona.,v3
+2253,Falso positivo: estudio estructural de una cueva en Lugo.,v3
+2254,"Mapeo SIG de riesgo de inundación en Muriaé, sin contenido interseccional.",v3
+2255,Falso positivo: estudio estratigráfico de tempestitas cretácicas.,v3
+2256,"Análisis del discurso mediático sobre cambio climático, con «intersection» como cruce disciplinar.",v3
+2257,"Tesis sobre expansión urbana y áreas inundables en Maranhão, sin contenido interseccional.",v3
+2258,"Registro con sumario de revista; el artículo trata imagen y percepción urbana, sin contenido interseccional ni climático.",v3
+2259,"Estudio psicosocial sobre percepción del riesgo tras una inundación, sin interseccionalidad social.",v3
+2260,"Registro con sumario de revista sobre una reunión académica, sin contenido interseccional ni climático.",v3
+2261,"Reseña de un libro sobre reducción de desastres cuyo registro solo trae el sumario, sin contenido interseccional.",v3
+2262,"Registro con sumario de revista sobre hidrografía del Orinoco, sin contenido interseccional.",v3
+2263,"Registro con sumario de revista sobre cadenas de Markov y usos del suelo, sin contenido interseccional.",v3
+2264,"Registro con sumario de revista sobre geodiversidad, sin contenido interseccional ni climático.",v3
+2265,"Registro con sumario de revista: obituario de Jean Tricart, sin contenido interseccional ni climático.",v3
+2266,"Estudio de oferta y demanda hídrica ante sequías en el Limarí, sin contenido interseccional.",v3
+2267,Falso positivo: geología glacial del Permo-Carbonífero.,v3
+2268,Tesis sobre planificación participativa en el Teuco-Bermejito donde «intersectional» significa intersectorial.,v3
+2269,"Tesis sobre desarrollo rural en la Contraviesa, sin interseccionalidad social ni objeto climático.",v3
+2270,Falso positivo: comentario teológico sobre el catecismo católico.,v3
+2271,Falso positivo: tesis de sedimentología y tectónica cenozoica.,v3
+2272,Falso positivo: estudio estratigráfico del Pérmico.,v3

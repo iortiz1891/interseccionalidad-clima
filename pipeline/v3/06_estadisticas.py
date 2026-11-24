@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-06_estadisticas.py — v3: réplica de pipeline/v2/06_estadisticas.py con el corpus v3 (Scopus + SciELO).
+06_estadisticas.py — v3: réplica de pipeline/v2/06_estadisticas.py con el corpus v3 (Scopus + SciELO + OpenAlex ES/PT).
 
 Corrige las regex del sub-corpus de la tesis: el \b de la v1 solo afectaba a la primera
 alternativa (p. ej. "nativ" atrapaba "alternative").

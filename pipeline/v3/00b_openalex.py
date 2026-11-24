@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-00_openalex.py — v4: corre la búsqueda de data/v4_query_openalex.json en la API de OpenAlex,
+00b_openalex.py — v3 (segunda fuente abierta): corre la búsqueda de data/v3_query_openalex.json en la API de OpenAlex,
 solo para trabajos en español y portugués.
 
 OpenAlex limita las búsquedas con más de 5 operadores booleanos, así que no se usa
@@ -19,12 +19,12 @@ variable de entorno o línea OPENALEX_API_KEY=... en ~/.config/openalex_creds. S
 la API comparte un presupuesto diario pequeño por red; esta búsqueda cabe en él.
 
 Salidas:
-  data/v4_openalex_raw.csv      un registro por trabajo (no se versiona)
-  data/v4_openalex_meta.json    fecha, consultas, totales
-  work/v4_openalex/*.json       respuestas crudas (no se versionan)
+  data/v3_openalex_raw.csv      un registro por trabajo (no se versiona)
+  data/v3_openalex_meta.json    fecha, consultas, totales
+  work/v3_openalex/*.json       respuestas crudas (no se versionan)
 
 Uso (desde la raíz del repo):
-  python3 pipeline/v4/00_openalex.py [--solo-contar]
+  python3 pipeline/v3/00b_openalex.py [--solo-contar]
 """
 from __future__ import annotations
 import argparse
@@ -41,7 +41,7 @@ import requests
 
 API = 'https://api.openalex.org/works'
 DATA = Path('data')
-WORK = Path('work/v4_openalex')
+WORK = Path('work/v3_openalex')
 POR_PAGINA = 200
 TAM_INTER = 30
 TAM_CLIMA = 45
@@ -177,7 +177,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--solo-contar', action='store_true')
     args = ap.parse_args()
-    q = json.loads((DATA / 'v4_query_openalex.json').read_text())
+    q = json.loads((DATA / 'v3_query_openalex.json').read_text())
     print(f"[1] {len(q['interseccional'])} términos interseccionales × {len(q['clima'])} climáticos · "
           f"idiomas {q['idiomas']} · clave: {'sí' if _clave() else 'no'}")
 
@@ -194,19 +194,19 @@ def main():
         for w in ws:
             por_id.setdefault(w['id'], w)
     df = pd.DataFrame([fila(w) for w in por_id.values()])
-    df.to_csv(DATA / 'v4_openalex_raw.csv', index=False)
+    df.to_csv(DATA / 'v3_openalex_raw.csv', index=False)
     sin_abs = int((df['Abstract'].str.len() < 100).sum())
-    print(f"[3] {len(df)} registros únicos → data/v4_openalex_raw.csv ({sin_abs} sin resumen) · "
+    print(f"[3] {len(df)} registros únicos → data/v3_openalex_raw.csv ({sin_abs} sin resumen) · "
           f"idioma: {df['Language of Original Document'].value_counts().to_dict()}")
     meta = {'fecha': date.today().isoformat(), 'fuente': 'OpenAlex API (works)',
-            'consulta': 'data/v4_query_openalex.json', 'consultas': len(lotes),
+            'consulta': 'data/v3_query_openalex.json', 'consultas': len(lotes),
             'terminos_por_consulta': [[a, b] for a, b, _ in lotes],
             'suma_conteos_con_repetidos': sum(len(ws) for _, _, ws in lotes),
             'registros_unicos': len(df), 'sin_resumen': sin_abs,
             'idioma': df['Language of Original Document'].value_counts().to_dict(),
             'tipo': df['Document Type'].value_counts().to_dict()}
-    (DATA / 'v4_openalex_meta.json').write_text(json.dumps(meta, indent=2, ensure_ascii=False))
-    print('[OK] data/v4_openalex_meta.json')
+    (DATA / 'v3_openalex_meta.json').write_text(json.dumps(meta, indent=2, ensure_ascii=False))
+    print('[OK] data/v3_openalex_meta.json')
 
 
 if __name__ == '__main__':

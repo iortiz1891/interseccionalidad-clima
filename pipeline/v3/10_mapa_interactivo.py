@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-10_mapa_interactivo.py — v3: réplica de pipeline/v2/10_mapa_interactivo.py con el corpus v3 (Scopus + SciELO).
+10_mapa_interactivo.py — v3: réplica de pipeline/v2/10_mapa_interactivo.py con el corpus v3 (Scopus + SciELO + OpenAlex ES/PT).
 
 Cambios de código: une por paper_id y calcula los conteos de la tesis (la v1 los tenía fijos).
 

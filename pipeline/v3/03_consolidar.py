@@ -6,8 +6,9 @@ Para cada registro de data/v3_corpus_consolidated.csv:
   · reutiliza_v2 = True  → cribado, codificación, RSI y razonamiento se toman de
     data/v2_cribado.csv, data/v2_bowleg_results.csv y data/v2_reasoning_results.csv
     (ya incluyen la reevaluación del gate de la v2).
-  · reutiliza_v2 = False → se leen de work/v3_salidas/lote_*.jsonl (prompts/v3_cribado_rsi.md),
-    que se validan contra el esquema de pipeline/v2/validar_lote.py.
+  · reutiliza_v2 = False → se leen de work/v3_salidas/lote_*.jsonl (Scopus y SciELO) y
+    work/v3_salidas/oa_lote_*.jsonl (OpenAlex), evaluados con prompts/v3_cribado_rsi.md y
+    validados contra el esquema de pipeline/v2/validar_lote.py.
 
 El total de la RSI se recalcula siempre con pipeline/02_scoring_rsi.py::compute_total.
 La columna origen_evaluacion (v2 | v3) dice de dónde viene cada evaluación.
@@ -81,7 +82,7 @@ def registros_v2(corpus: pd.DataFrame) -> list[dict]:
 
 def registros_v3() -> list[dict]:
     recs, errores = [], []
-    for f in sorted(SALIDAS.glob('lote_*.jsonl')):
+    for f in sorted(SALIDAS.glob('lote_*.jsonl')) + sorted(SALIDAS.glob('oa_lote_*.jsonl')):
         for n, line in enumerate(f.read_text().splitlines(), 1):
             if not line.strip():
                 continue
@@ -182,7 +183,7 @@ def main():
         'categorias_n': scored['categoria_bowleg'].value_counts().to_dict(),
         'categorias_pct': (scored['categoria_bowleg'].value_counts(normalize=True) * 100).round(1).to_dict(),
         'modelo': ('claude-opus-5-5 (Claude Code) · prompts/v2_cribado_rsi.md (reutilizados de la v2) '
-                   '+ prompts/v3_cribado_rsi.md (nuevos)'),
+                   '+ prompts/v3_cribado_rsi.md (nuevos de Scopus, SciELO y OpenAlex)'),
     }
     (DATA / 'v3_prisma_meta.json').write_text(json.dumps(meta, indent=2, ensure_ascii=False))
     print("[OK] data/v3_cribado.csv · v3_bowleg_results.csv · v3_reasoning_results.csv · "

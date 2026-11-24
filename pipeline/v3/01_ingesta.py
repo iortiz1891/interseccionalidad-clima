@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-01_ingesta.py — v3: une Scopus (API) y SciELO, depura y deduplica.
+01_ingesta.py — v3: une Scopus (API), SciELO y OpenAlex (ES/PT), depura y deduplica.
 
 Entradas:
   data/v3_scopus_raw.csv        salida de pipeline/v3/00_scopus_api.py (no se versiona)
   data/v3_scielo_export.json    export RIS de search.scielo.org, ya convertido a JSON
+  data/v3_openalex_raw.csv      salida de pipeline/v3/00b_openalex.py (no se versiona)
 
 Salidas:
   data/v3_corpus_consolidated.csv   registros que pasan a cribado, con paper_id
@@ -16,11 +17,15 @@ Pasos:
   3. Deduplica dentro de cada fuente y entre fuentes (Scopus tiene prioridad), por DOI
      y luego por título normalizado + año + primer autor.
   4. Marca el nivel del ancla (ahora también con el vocabulario en portugués) y el idioma.
-  5. Enlaza cada registro con su paper_id de la v2 (por EID, DOI o título), si lo tiene.
+  5. Enlaza cada registro de Scopus o SciELO con su paper_id de la v2 (por EID, DOI o título), si lo tiene.
      Si además el resumen coincide con el de la v2 (similitud ≥ 0.98 sin la línea de
      copyright, que la API no trae), reutiliza_v2 = True y pipeline/v3/03_consolidar.py
      toma el cribado y la RSI de la v2: el modelo vería el mismo texto con el mismo prompt
      base. Los demás registros se evalúan de nuevo en la v3.
+  6. Agrega los trabajos en español y portugués de OpenAlex (búsqueda hecha después de la de
+     Scopus y SciELO): mismas reglas de exclusión, deduplicación entre sí y contra lo anterior,
+     y paper_id a partir del último de Scopus + SciELO. Ninguno reutiliza la evaluación de la
+     v2; se evaluaron en lotes propios (work/v3_salidas/oa_lote_*.jsonl).
 """
 from __future__ import annotations
 import importlib.util
@@ -166,6 +171,9 @@ def enlazar_v2(df: pd.DataFrame) -> pd.Series:
 
 SIMILITUD_MIN = 0.98
 
+# Tipos de OpenAlex que no son trabajos de investigación o ensayo.
+TIPOS_EXCLUIDOS_OA = {'erratum', 'paratext', 'dataset', 'book review', 'retraction', 'peer review'}
+
 
 def _limpio(s) -> str:
     s = re.sub(r'\s*(©|\(c\)|Copyright).*$', '', '' if pd.isna(s) else str(s), flags=re.S | re.I)
@@ -182,6 +190,52 @@ def similitud_v2(df: pd.DataFrame) -> pd.Series:
         a, b = _limpio(r['Abstract']), _limpio(v2.loc[int(r['v2_paper_id'])])
         out.append(1.0 if a == b else difflib.SequenceMatcher(None, a, b, autojunk=False).ratio())
     return pd.Series(out, index=df.index, dtype=float)
+
+
+def leer_openalex() -> pd.DataFrame:
+    df = pd.read_csv(DATA / 'v3_openalex_raw.csv', dtype={'Year': str})
+    df['Document Type'] = df['Document Type'].fillna('').map(tipo_doc)
+    df['_source'] = 'openalex'
+    df['_scielo_id'] = ''
+    return df
+
+
+def agregar_openalex(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
+    """Agrega a df (Scopus + SciELO, ya con paper_id) los registros nuevos de OpenAlex."""
+    oa = leer_openalex()
+    n_oa = len(oa)
+    abs_txt = oa['Abstract'].fillna('').astype(str).str.strip()
+    sin_abs = abs_txt.str.len() < 100
+    tipo = oa['Document Type'].str.lower().isin(TIPOS_EXCLUIDOS_OA) & ~sin_abs
+    oa = claves(oa[~(sin_abs | tipo)].copy())
+    n0 = len(oa)
+    oa = dedup(oa)
+    dup_oa = n0 - len(oa)
+    en_prev = (oa['_doi'].str.startswith('10.') & oa['_doi'].isin(set(df['_doi']))) | oa['_key'].isin(set(df['_key']))
+    # Registros de Scopus o SciELO que OpenAlex también encontró (para el conteo por fuente).
+    ambas = (df['_doi'].str.startswith('10.') & df['_doi'].isin(set(oa.loc[en_prev, '_doi']))) | \
+        df['_key'].isin(set(oa.loc[en_prev, '_key']))
+    df = df.copy()
+    df.loc[ambas, '_source'] = df.loc[ambas, '_source'] + '+openalex'
+    nuevos = oa[~en_prev].copy()
+    print(f"[5] OpenAlex (ES/PT): {n_oa} identificados · {int(sin_abs.sum())} sin resumen · "
+          f"{int(tipo.sum())} por tipo · {dup_oa} duplicados internos · {int(en_prev.sum())} ya en "
+          f"Scopus o SciELO → {len(nuevos)} nuevos")
+
+    nuevos['nivel_ancla'] = nuevos.apply(nivel_ancla, axis=1)
+    lang = nuevos['Language of Original Document'].fillna('').astype(str)
+    nuevos['idioma'] = ['es' if 'Spanish' in l else 'pt' if 'Portuguese' in l else
+                        'en' if 'English' in l else 'otro' for l in lang]
+    nuevos['v2_paper_id'] = pd.Series(pd.NA, index=nuevos.index, dtype='Int64')
+    nuevos['sim_resumen_v2'] = float('nan')
+    nuevos['reutiliza_v2'] = False
+    nuevos['_ord'] = pd.to_numeric(nuevos['Year'], errors='coerce')
+    nuevos = nuevos.sort_values(['_ord', 'Title'], ascending=[False, True]).reset_index(drop=True)
+    inicio = int(df['paper_id'].max()) + 1
+    nuevos.insert(0, 'paper_id', range(inicio, inicio + len(nuevos)))
+    meta = {'n': n_oa, 'sin_abstract': int(sin_abs.sum()), 'tipo': int(tipo.sum()), 'dup': dup_oa,
+            'ya_en_scopus_scielo': int(en_prev.sum()), 'nuevos': len(nuevos)}
+    return pd.concat([df, nuevos], ignore_index=True), meta
 
 
 def main():
@@ -227,17 +281,20 @@ def main():
     df['_ord'] = pd.to_numeric(df['Year'], errors='coerce')
     df = df.sort_values(['_ord', 'Title'], ascending=[False, True]).reset_index(drop=True)
     df.insert(0, 'paper_id', range(len(df)))
+    df, oa = agregar_openalex(df)
     out_cols = (['paper_id'] + PIPELINE_COLS + EXTRA_COLS
                 + ['nivel_ancla', 'idioma', '_source', '_doi', '_scielo_id', 'v2_paper_id',
-                   'sim_resumen_v2', 'reutiliza_v2'])
+                   'sim_resumen_v2', 'reutiliza_v2', 'OpenAlex ID'])
     df[out_cols].to_csv(DATA / 'v3_corpus_consolidated.csv', index=False)
 
     meta = {
-        'identificados': {'scopus': n_sc, 'scielo': n_se},
+        'identificados': {'scopus': n_sc, 'scielo': n_se, 'openalex': oa['n']},
         'excluidos_regla': {'scopus': {'sin_abstract': sc_abs, 'erratum_o_conference_review': sc_tipo},
-                            'scielo': {'sin_abstract': se_abs, 'tipo': se_tipo}},
+                            'scielo': {'sin_abstract': se_abs, 'tipo': se_tipo},
+                            'openalex': {'sin_abstract': oa['sin_abstract'], 'tipo': oa['tipo']}},
         'duplicados': {'dentro_scopus': dup_sc, 'dentro_scielo': dup_se,
-                       'scielo_ya_en_scopus': int(en_sc.sum())},
+                       'scielo_ya_en_scopus': int(en_sc.sum()), 'dentro_openalex': oa['dup'],
+                       'openalex_ya_en_scopus_scielo': oa['ya_en_scopus_scielo']},
         'a_cribado': len(df),
         'fuente': df['_source'].value_counts().to_dict(),
         'nivel_ancla': df['nivel_ancla'].value_counts().to_dict(),
@@ -245,6 +302,8 @@ def main():
         'enlazados_v2': int(df['v2_paper_id'].notna().sum()),
         'reutilizan_evaluacion_v2': int(df['reutiliza_v2'].sum()),
         'evaluados_en_v3': int((~df['reutiliza_v2']).sum()),
+        'openalex_nuevos': oa['nuevos'],
+        'tipo_openalex_nuevos': df.loc[df['_source'] == 'openalex', 'Document Type'].value_counts().to_dict(),
     }
     (DATA / 'v3_prisma_meta.json').write_text(json.dumps(meta, indent=2, ensure_ascii=False))
     print(f"\n[OK] data/v3_corpus_consolidated.csv ({len(df)}) + data/v3_prisma_meta.json")

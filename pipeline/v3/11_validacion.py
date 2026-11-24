@@ -265,7 +265,7 @@ def main():
     version = hashlib.sha1(json.dumps(llm_payload, sort_keys=True).encode()).hexdigest()[:10]
     meta = {"n": len(items), "bloques": N_BLOQUES, "por_bloque": len(ESTRATOS), "seed": SEED,
             "version": version, "corpus_cribado": int(len(cr)),
-            "fuente": "Scopus + SciELO · cadenas v3 (24-11-2026)"}
+            "fuente": "Scopus + SciELO + OpenAlex ES/PT (cadenas v3) · 24-11-2026"}
 
     full = {"meta": {**meta, **llm_meta},
             "items": [{**it, "llm": llm[it['paper_id']]} for it in items]}
@@ -274,7 +274,7 @@ def main():
 
     (DASHBOARD / 'validacion_llm.js').write_text(
         "// Respuestas del LLM para la muestra de validación (las carga validacion.html al revelar).\n"
-        f"window.LLM_V3 = {json.dumps(llm_payload, ensure_ascii=False)};\n")
+        f"window.LLM_V4 = {json.dumps(llm_payload, ensure_ascii=False)};\n")
     print(f"    → {DASHBOARD / 'validacion_llm.js'}")
 
     html = (HTML_TEMPLATE
@@ -468,7 +468,9 @@ const DATA = __SAMPLE_JSON__;
 const INS = __INSTRUMENTO_JSON__;
 const ITEMS = DATA.items;
 const POS = Object.fromEntries(ITEMS.map((it, i) => [it.paper_id, i]));
-const LSKEY = 'revisa_v3_validacion';
+// Muestra sorteada sobre el corpus completo (con OpenAlex): clave nueva, para no mezclarla
+// con códigos guardados de la muestra anterior de la v3 ('revisa_v3_validacion').
+const LSKEY = 'revisa_v3oa_validacion';
 const K6 = ['I','II','III','IV','V','VI'];
 const CATS = ['mencion_sin_aplicacion','nominal_debil','parcial','sustantivo','sustantivo_fuerte'];
 const CATS6 = ['excluido'].concat(CATS);
@@ -671,10 +673,10 @@ function nextTodo() {
 // ── Concordancia ──
 function loadLLM() {
   return new Promise((resolve, reject) => {
-    if (window.LLM_V3) return resolve(window.LLM_V3);
+    if (window.LLM_V4) return resolve(window.LLM_V4);
     const s = document.createElement('script');
     s.src = 'validacion_llm.js?v=' + DATA.meta.version;
-    s.onload = () => window.LLM_V3 ? resolve(window.LLM_V3) : reject(new Error('archivo vacío'));
+    s.onload = () => window.LLM_V4 ? resolve(window.LLM_V4) : reject(new Error('archivo vacío'));
     s.onerror = () => reject(new Error('no se pudo cargar validacion_llm.js'));
     document.head.appendChild(s);
   });

@@ -1,7 +1,7 @@
 {
   "fecha": "2026-11-24",
   "fuente": "OpenAlex API (works)",
-  "consulta": "data/v4_query_openalex.json",
+  "consulta": "data/v3_query_openalex.json",
   "consultas": 8,
   "terminos_por_consulta": [
     [

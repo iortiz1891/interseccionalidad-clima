@@ -2,12 +2,11 @@
 
 ### ¿Aplicación sustantiva o invocación nominal?
 
-Una revisión sistemática que mide **en qué medida la investigación sobre cambio climático aplica la interseccionalidad de forma sustantiva, y en qué medida solo la menciona.** Tiene cuatro versiones:
+Una revisión sistemática que mide **en qué medida la investigación sobre cambio climático aplica la interseccionalidad de forma sustantiva, y en qué medida solo la menciona.** Tiene tres versiones:
 
 - **v1** (mayo 2026): **971 registros** recuperados por las cadenas originales (inglés y español), puntuados sin cribado de elegibilidad.
 - **v2** (septiembre 2026): **1,696 registros** de una cadena bilingüe más estricta; un cribado previo deja **1,016 trabajos elegibles** que invocan la interseccionalidad en sentido social y tienen un objeto climático.
-- **v3** (noviembre 2026): cadenas trilingües (inglés, español y portugués) en **Scopus y SciELO**, con un bloque climático más amplio: **1,844 registros** a cribado y **1,088 trabajos elegibles**. Los registros que ya estaban en la v2 con el mismo resumen conservan su evaluación; solo se evaluaron los 158 nuevos.
-- **v4** (noviembre 2026): el corpus de la v3 más los trabajos en **español y portugués de OpenAlex** (tesis, capítulos de libro, revistas regionales): **2,273 registros** a cribado y **1,212 trabajos elegibles**. Los 1,844 registros de la v3 conservan su evaluación; solo se evaluaron los 429 nuevos de OpenAlex.
+- **v3** (noviembre 2026): cadenas trilingües (inglés, español y portugués) en **Scopus y SciELO**, con un bloque climático más amplio, más los trabajos en **español y portugués de OpenAlex** (tesis, capítulos de libro, revistas regionales): **2,273 registros** a cribado y **1,212 trabajos elegibles**. Los registros que ya estaban en la v2 con el mismo resumen conservan su evaluación; se evaluaron los 587 nuevos (158 de Scopus y SciELO, 429 de OpenAlex).
 
 🔗 **Dashboard interactivo:** https://iortiz1891.github.io/interseccionalidad-clima/
 
@@ -32,7 +31,7 @@ La rúbrica se aplica a escala de corpus con un modelo de lenguaje (GPT-4.1 en l
 ## Hallazgos principales
 
 - **Adopción ≠ aplicación.** En la v2, el 43.8 % de los trabajos elegibles invoca el marco sin articular ejes de diferenciación (no pasa el gate) y solo el 16 % alcanza aplicación sustantiva (RSI ≥ 2.5). En la v1 las cifras son 57.5 % y 25.7 %, pero ese corpus no tuvo cribado (ver *Advertencias*).
-- **La v3 confirma la v2.** Con la búsqueda ampliada a SciELO y al portugués, las cifras casi no se mueven: 44.3 % no pasa el gate y 15.6 % alcanza aplicación sustantiva. La v4, con OpenAlex en español y portugués, tampoco las mueve (45.3 % y 15.0 %).
+- **La v3 confirma la v2.** Con la búsqueda ampliada a SciELO, OpenAlex y el portugués, las cifras casi no se mueven: 45.3 % no pasa el gate y 15.0 % alcanza aplicación sustantiva.
 - **El eslabón débil es el método.** Entre los trabajos que pasan el gate, el criterio metodológico (IV) es el menos cumplido (22 % en la v2, 34 % en la v1): el campo *teoriza* la interseccionalidad mejor de lo que la *opera*.
 - **El rigor es de nicho.** La sustantividad no se distribuye al azar: se concentra en vecindarios temáticos concretos (desastres situados, conocimientos indígenas, género y agricultura), visibles en el mapa temático.
 
@@ -42,18 +41,17 @@ La rúbrica se aplica a escala de corpus con un modelo de lenguaje (GPT-4.1 en l
 - **La v1 y la v2 no se comparan directamente.** Entre una y otra cambian el corpus, el modelo (gpt-4.1 vía Batch API → Claude en sesiones de Claude Code) y las reglas del gate y de los criterios I y IV (`prompts/v2_cribado_rsi.md`, reglas 3 y 4).
 - **La v2 no es reproducible al pie de la letra.** El cribado y la RSI se aplicaron por lotes de 70 registros en sesiones de Claude Code; las reglas comunes se fijaron tras el lote piloto y se aplicaron también a los registros ya escritos; las salidas crudas (`work/`) no se versionan.
 - **La v2 casi no tiene trabajos en español.** La cadena bilingüe devolvió 19 registros en español (12 tras la ingesta, 6 elegibles), frente a 219 en la v1. Falta ejecutar las cadenas de Web of Science / SciELO (`docs/cadenas_busqueda.md` §3.2).
-- **La v3 reutiliza la evaluación de la v2.** 1,686 de los 1,844 registros ya estaban en la v2 con el mismo resumen (similitud ≥ 0.98 sin la línea de copyright) y conservan su cribado y su RSI; los 158 nuevos se evaluaron con `prompts/v3_cribado_rsi.md`, que es el prompt de la v2 con vocabulario en portugués. La columna `origen_evaluacion` dice de dónde viene cada evaluación.
-- **El portugués y el español siguen siendo minoritarios.** Aun con SciELO, la v3 tiene 17 trabajos elegibles en español y 7 en portugués, frente a 1,064 en inglés. OpenAlex los sube a 73 y 75 en la v4, pero su búsqueda es menos fina (sin comodines ni proximidad, lematización en inglés, idioma asignado por el título) y muchos de los nuevos son tesis y capítulos de libro.
+- **La v3 reutiliza la evaluación de la v2.** 1,686 de los 2,273 registros ya estaban en la v2 con el mismo resumen (similitud ≥ 0.98 sin la línea de copyright) y conservan su cribado y su RSI; los 587 nuevos (158 de Scopus y SciELO, 429 de OpenAlex) se evaluaron con `prompts/v3_cribado_rsi.md`, que es el prompt de la v2 con vocabulario en portugués. La columna `origen_evaluacion` dice de dónde viene cada evaluación.
+- **El portugués y el español siguen siendo minoritarios.** La v3 tiene 73 trabajos elegibles en español y 75 en portugués, frente a 1,064 en inglés. Sin OpenAlex serían 17 y 7; pero la búsqueda de OpenAlex es menos fina (sin comodines ni proximidad, lematización en inglés, idioma asignado por el título) y muchos de los nuevos son tesis y capítulos de libro.
 - **Redondeo corregido (noviembre 2026).** Hasta entonces el total usaba `round()` de Python, que manda los empates al número par (2.5 → 2 pero 1.5 → 2) y bajaba de categoría a 44 trabajos de la v1 y 114 de la v2. Los totales se recalcularon con `pipeline/recalcular_totales.py`, sin volver a llamar al modelo; las muestras de validación se conservaron.
 
 ## El dashboard
 
-El dashboard tiene cuatro pestañas:
+El dashboard tiene tres pestañas:
 
 - **v1 · corpus original** (mayo 2026): las 971 publicaciones de las cadenas de búsqueda originales.
 - **v2 · búsqueda ampliada** (septiembre 2026, [site/v2/](site/v2/index.html)): una cadena bilingüe nueva en Scopus ([docs/cadenas_busqueda.md §3](docs/cadenas_busqueda.md)). Agrega un cribado de elegibilidad antes de la RSI y se construye solo con esos datos, sin reutilizar registros ni puntajes de la v1.
-- **v3 · Scopus + SciELO** (noviembre 2026, [site/v3/](site/v3/index.html)): cadenas trilingües en Scopus (por la API) y SciELO ([docs/cadenas_busqueda.md §7](docs/cadenas_busqueda.md)). Misma rúbrica, mismo modelo y mismas reglas que la v2; tiene su propia herramienta de validación y su lista del corpus.
-- **v4 · + OpenAlex ES/PT** (noviembre 2026, [site/v4/](site/v4/index.html)): el corpus de la v3 más los trabajos en español y portugués que OpenAlex recupera con las mismas cadenas ([docs/cadenas_busqueda.md §8](docs/cadenas_busqueda.md)). Misma rúbrica, mismo modelo y mismo prompt que la v3.
+- **v3 · Scopus + SciELO + OpenAlex** (noviembre 2026, [site/v3/](site/v3/index.html)): cadenas trilingües en Scopus (por la API) y SciELO ([docs/cadenas_busqueda.md §7](docs/cadenas_busqueda.md)), más los trabajos en español y portugués que OpenAlex recupera con las mismas cadenas (§8). Misma rúbrica, mismo modelo y mismas reglas que la v2; tiene su propia herramienta de validación y su lista del corpus.
 
 
 Una sola página que recorre el marco, el corpus, los hallazgos y el método. Incluye:
@@ -75,15 +73,13 @@ Separación clara entre el **sitio publicado**, los **datos**, el **pipeline** y
 │   ├── mapa.html           #   · mapa temático interactivo
 │   ├── validacion.html     #   · herramienta de validación humana
 │   ├── v2/                 #   · pestaña v2 (index, mapa, validación y lista del corpus de la búsqueda ampliada)
-│   ├── v3/                 #   · pestaña v3 (Scopus + SciELO)
-│   └── v4/                 #   · pestaña v4 (v3 + OpenAlex ES/PT)
+│   └── v3/                 #   · pestaña v3 (Scopus + SciELO + OpenAlex ES/PT)
 ├── data/                   # datos procesados (corpus, puntajes, tópicos, estadísticas)
 ├── assets/                 # figuras y mapas estáticos
 ├── prompts/                # prompts del modelo (Rúbrica de Sustantividad Interseccional)
 ├── pipeline/               # scripts de reproducción, en orden lógico (01 → 12)
 │   ├── v2/                 #   · pipeline de la búsqueda ampliada (01 → 13)
-│   ├── v3/                 #   · pipeline de la v3 (00 → 13)
-│   └── v4/                 #   · pipeline de la v4 (00 → 13)
+│   └── v3/                 #   · pipeline de la v3 (00 → 13)
 ├── docs/                   # fundamentación teórica de la RSI
 ├── requirements.txt
 └── LICENSE
@@ -127,7 +123,7 @@ python3 pipeline/11_validacion.py            # validación → site/validacion.h
 python3 pipeline/12_dashboard.py             # dashboard → site/index.html
 ```
 
-Para la v2, la v3 o la v4, cambia `pipeline/` por `pipeline/v2/`, `pipeline/v3/` o `pipeline/v4/` y corre `05`, `06`, `07`, `08`, `09`, `09b`, `10`, `11`, `12` y `13`. Si cambia la fórmula del total, corre antes `python3 pipeline/recalcular_totales.py`. Los pasos `11` conservan la muestra de validación ya sorteada (con `--remuestrear` se sortea otra).
+Para la v2 o la v3, cambia `pipeline/` por `pipeline/v2/` o `pipeline/v3/` y corre `05`, `06`, `07`, `08`, `09`, `09b`, `10`, `11`, `12` y `13`. Si cambia la fórmula del total, corre antes `python3 pipeline/recalcular_totales.py`. Los pasos `11` conservan la muestra de validación ya sorteada (con `--remuestrear` se sortea otra).
 
 La cadena completa desde las bases Scopus crudas (`01` ingesta → `02` scoring con la API de OpenAI → `03` BERTopic → `04` etiquetado → `05`/`06` análisis) requiere las bases crudas (`.xlsx`), que **no se incluyen** por términos de redistribución, y una clave de API de OpenAI (`OPENAI_API_KEY`) para el scoring.
 
@@ -149,33 +145,21 @@ La pestaña v2 es una **réplica de la v1 con la búsqueda nueva**. Los pasos 05
 
 El cribado, la codificación y la RSI de la v2 los aplicó Claude (claude-opus-5-5) con `prompts/v2_cribado_rsi.md`, en lotes independientes. El export crudo de Scopus (`data/v2_scopus_raw.csv`) no se versiona.
 
-### Pipeline v3 (Scopus + SciELO)
+### Pipeline v3 (Scopus + SciELO + OpenAlex)
 
-La v3 replica la v2 con las cadenas nuevas. Los pasos 04–13 son copias de los de la v2 con rutas `data/v3_*`, `assets/v3_*` y `site/v3/`; cambian el PRISMA (dos fuentes) y los textos sobre la búsqueda, el idioma y el origen de cada evaluación.
+La v3 replica la v2 con las cadenas nuevas. Los pasos 05–13 son copias de los de la v2 con rutas `data/v3_*`, `assets/v3_*` y `site/v3/`; cambian el PRISMA (tres fuentes) y los textos sobre la búsqueda, el idioma y el origen de cada evaluación. Los tópicos (paso 04) usan un modelo de embeddings multilingüe.
 
 | # | Script | Qué hace |
 |---|--------|----------|
 | 00 | `v3/00_scopus_api.py` | Corre la cadena de `data/v3_query_scopus.txt` en la Scopus Search API (vista COMPLETE). La cadena no cabe en una petición: parte el bloque climático en grupos unidos por OR y une los resultados por EID |
-| 01 | `v3/01_ingesta.py` | Une Scopus y SciELO (`data/v3_scielo_export.json`), excluye por regla, deduplica, marca el ancla y el idioma, y enlaza cada registro con la v2 |
-| 02 | `v3/02_preparar_lotes.py` | Lotes de 40 con los registros que no reutilizan la evaluación de la v2 |
+| 00b | `v3/00b_openalex.py` | Corre `data/v3_query_openalex.json` en la API de OpenAlex (`title_and_abstract.search`, idioma `es\|pt`). Parte los bloques en grupos, corre todas las combinaciones y une por ID de OpenAlex; reconstruye el resumen del índice invertido |
+| 01 | `v3/01_ingesta.py` | Une Scopus y SciELO (`data/v3_scielo_export.json`), excluye por regla, deduplica, marca el ancla y el idioma, y enlaza cada registro con la v2. Después agrega OpenAlex: mismas exclusiones, deduplicación contra Scopus y SciELO, y `paper_id` a partir del último de esas dos fuentes |
+| 02 | `v3/02_preparar_lotes.py` | Lotes de 40 con los registros que no reutilizan la evaluación de la v2 (`lote_XX` para Scopus y SciELO, `oa_lote_XX` para OpenAlex) |
 | 03 | `v3/03_consolidar.py` | Une la evaluación reutilizada de la v2 con la nueva (`work/v3_salidas/`, versionada) y calcula la RSI |
-| 04–13 | `v3/04_topicos.py` … `v3/13_lista_corpus.py` | Réplica de los pasos de la v2 |
+| 04 | `v3/04_topicos.py` · `04b_etiquetas.py` | BERTopic con `paraphrase-multilingual-MiniLM-L12-v2` (con el modelo solo en inglés, los trabajos en español y portugués se agrupan por idioma) y etiquetas manuales de los tópicos |
+| 05–13 | `v3/05_analisis_cruzados.py` … `v3/13_lista_corpus.py` | Réplica de los pasos de la v2 |
 
-Para el paso 00 hace falta una clave de la API de Elsevier (`SCOPUS_API_KEY`, y `SCOPUS_INSTTOKEN` fuera de la red institucional), como variable de entorno o en `~/.config/scopus_creds`. La respuesta cruda (`data/v3_scopus_raw.csv`, `work/v3_scopus_api/`) no se versiona. El export de SciELO se descargó de search.scielo.org en formato RIS.
-
-### Pipeline v4 (v3 + OpenAlex en español y portugués)
-
-La v4 parte del corpus de la v3 y le suma lo que OpenAlex encuentra en español y portugués con las mismas cadenas. Los pasos 04–13 son copias de los de la v3 con rutas `data/v4_*`, `assets/v4_*` y `site/v4/`; cambian el PRISMA (tres fuentes), la estrategia de búsqueda y los textos sobre idioma y origen de cada evaluación.
-
-| # | Script | Qué hace |
-|---|--------|----------|
-| 00 | `v4/00_openalex.py` | Corre `data/v4_query_openalex.json` en la API de OpenAlex (`title_and_abstract.search`, idioma `es\|pt`). Parte los bloques en grupos, corre todas las combinaciones y une por ID de OpenAlex; reconstruye el resumen del índice invertido |
-| 01 | `v4/01_ingesta.py` | Excluye por regla, deduplica OpenAlex contra sí mismo y contra la v3 (DOI o título + año + primer autor) y numera los registros nuevos a partir del último de la v3 |
-| 02 | `v4/02_preparar_lotes.py` | Lotes de 40 con los registros nuevos de OpenAlex |
-| 03 | `v4/03_consolidar.py` | Une la evaluación de la v3 con la de los registros nuevos (`work/v4_salidas/`, versionada) |
-| 04–13 | `v4/04_topicos.py` … `v4/13_lista_corpus.py` | Réplica de los pasos de la v3 |
-
-El paso 00 no necesita clave: la consulta cabe en el presupuesto diario gratuito de OpenAlex. Con una clave (gratuita, en openalex.org) se puede guardar como `OPENALEX_API_KEY` en el entorno o en `~/.config/openalex_creds`. La respuesta cruda (`data/v4_openalex_raw.csv`, `work/v4_openalex/`) no se versiona.
+Para el paso 00 hace falta una clave de la API de Elsevier (`SCOPUS_API_KEY`, y `SCOPUS_INSTTOKEN` fuera de la red institucional), como variable de entorno o en `~/.config/scopus_creds`. La respuesta cruda (`data/v3_scopus_raw.csv`, `work/v3_scopus_api/`) no se versiona. El export de SciELO se descargó de search.scielo.org en formato RIS. El paso 00b no necesita clave: la consulta cabe en el presupuesto diario gratuito de OpenAlex. Con una clave (gratuita, en openalex.org) se puede guardar como `OPENALEX_API_KEY` en el entorno o en `~/.config/openalex_creds`. La respuesta cruda de OpenAlex (`data/v3_openalex_raw.csv`, `work/v3_openalex/`) tampoco se versiona.
 
 ## Créditos
 

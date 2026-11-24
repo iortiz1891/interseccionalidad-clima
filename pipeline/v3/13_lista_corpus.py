@@ -2,7 +2,7 @@
 """
 13_lista_corpus.py — v3: lista completa del corpus, con búsqueda y filtros.
 
-Una fila por cada registro cribado de la búsqueda v3 en Scopus y SciELO (elegibles y excluidos), con
+Una fila por cada registro cribado de la v3 —Scopus, SciELO y OpenAlex ES/PT— (elegibles y excluidos), con
 la decisión de cribado del LLM y, si es elegible, el puntaje RSI, los criterios, la
 evidencia, la codificación (tipo de estudio, amenaza, lugar) y el tópico. Cada fila se
 despliega para ver el resumen y el razonamiento del modelo. El filtro vigente se guarda
@@ -89,6 +89,7 @@ def main():
              "l": _lang(b.get('Language of Original Document')), "dt": _s(b.get('Document Type')),
              "kw": _s(b.get('Author Keywords'), 400), "ab": _s(b.get('Abstract')),
              "ci": int(cited) if cited is not None else 0,
+             "bd": 'OpenAlex' if b['_source'] == 'openalex' else 'SciELO' if str(b['_source']).startswith('scielo') else 'Scopus',
              "e": 1 if x == '' else 0, "x": x, "m": _s(c.get('motivo_exclusion')),
              "c": _s(c.get('confidence')), "rz": _s(razon.get(pid))}
         if x == '':
@@ -240,7 +241,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   </div>
 </div>
 <div class="wrap">
-  <p class="lead">Los <b>__N__ registros cribados</b> de la búsqueda v3 en Scopus y SciELO: <b>__ELEG__ elegibles</b> y <b>__EXCL__ excluidos</b>. Cada fila trae la decisión de cribado del LLM y, si el trabajo es elegible, su puntaje RSI, los criterios y el tópico. Haz clic en una fila para ver el resumen, el razonamiento del modelo y la evidencia de cada criterio.</p>
+  <p class="lead">Los <b>__N__ registros cribados</b> de la v3 (Scopus y SciELO, más OpenAlex en español y portugués): <b>__ELEG__ elegibles</b> y <b>__EXCL__ excluidos</b>. Cada fila trae la decisión de cribado del LLM y, si el trabajo es elegible, su puntaje RSI, los criterios y el tópico. Haz clic en una fila para ver el resumen, el razonamiento del modelo y la evidencia de cada criterio.</p>
   <div class="warn"><b>Antes de la validación humana:</b> esta lista muestra las respuestas del LLM. Si vas a codificar la <a href="validacion.html">muestra de validación</a>, hazlo antes de revisarla, para que la codificación sea a ciegas.</div>
 
   <div class="chips" id="chips"></div>
@@ -400,7 +401,7 @@ function detail(r) {
   return `<div class="dgrid">
     <div class="dbox"><h4>Resumen</h4><div class="abs">${esc(r.ab) || '—'}</div>
       ${r.kw ? `<h4>Palabras clave</h4><div class="kv">${esc(r.kw)}</div>` : ''}
-      <h4>Referencia</h4><div class="kv">${esc(String(r.a || '').replace(/\.$/, ''))}. ${r.y || ''}. ${esc(r.s)} · ${esc(r.dt)} · citas en Scopus: ${r.ci}</div>
+      <h4>Referencia</h4><div class="kv">${esc(String(r.a || '').replace(/\.$/, ''))}. ${r.y || ''}. ${esc(r.s)} · ${esc(r.dt)} · base: ${esc(r.bd)} · citas (${esc(r.bd)}): ${r.ci}</div>
       <div class="kv"><b>DOI:</b> ${doi}</div></div>
     <div class="dbox">${right}</div></div>`;
 }
@@ -464,13 +465,13 @@ window.addEventListener('hashchange', () => { readHash(); syncInputs(); update(f
 
 // CSV del filtro vigente
 document.getElementById('csv').onclick = () => {
-  const cols = ['paper_id','titulo','anio','autores','fuente','doi','idioma','tipo_documento','citas_scopus','elegible','motivo_exclusion',
+  const cols = ['paper_id','titulo','anio','autores','fuente','doi','idioma','tipo_documento','base','citas','elegible','motivo_exclusion',
     'confianza_llm','rsi_total','categoria','gate','I','II','III','IV','V','VI','integracion','tipo_estudio','amenaza','lugar','topico','razonamiento_llm'];
   const q = s => '"' + String(s == null ? '' : s).replace(/"/g, '""').replace(/\r?\n/g, ' ') + '"';
   let out = '﻿' + cols.join(',') + '\n';
   current.forEach(r => {
     const v = r.v || [];
-    out += [r.id, r.t, r.y, r.a, r.s, r.d, r.l, r.dt, r.ci, r.e, r.m, r.c, r.e ? r.r : '', r.e ? r.k : '', r.e ? r.g : '',
+    out += [r.id, r.t, r.y, r.a, r.s, r.d, r.l, r.dt, r.bd, r.ci, r.e, r.m, r.c, r.e ? r.r : '', r.e ? r.k : '', r.e ? r.g : '',
       ...(r.e ? v : ['', '', '', '', '', '', '']), r.te || '', r.am || '', r.lu || '',
       r.tp == null ? '' : (r.tp === -1 ? 'sin tópico' : INFO.topics[r.tp] || ''), r.rz].map(q).join(',') + '\n';
   });
@@ -479,7 +480,7 @@ document.getElementById('csv').onclick = () => {
   document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 };
 
-document.getElementById('foot').innerHTML = `Búsqueda en Scopus y SciELO del ${esc(INFO.fecha)}. Cribado y RSI: Claude (claude-opus-5-5); los registros que ya estaban en la v2 conservan su evaluación (<a href="${INFO.repo}/prompts/v2_cribado_rsi.md" target="_blank" rel="noopener">v2_cribado_rsi.md</a>) y los nuevos se evaluaron con <a href="${INFO.repo}/prompts/v3_cribado_rsi.md" target="_blank" rel="noopener">v3_cribado_rsi.md</a>. ` +
+document.getElementById('foot').innerHTML = `Búsqueda en Scopus, SciELO y OpenAlex del ${esc(INFO.fecha)}. Cribado y RSI: Claude (claude-opus-5-5); los registros que ya estaban en la v2 conservan su evaluación (<a href="${INFO.repo}/prompts/v2_cribado_rsi.md" target="_blank" rel="noopener">v2_cribado_rsi.md</a>) y los nuevos (de Scopus, SciELO y OpenAlex) se evaluaron con <a href="${INFO.repo}/prompts/v3_cribado_rsi.md" target="_blank" rel="noopener">v3_cribado_rsi.md</a>. ` +
   `Datos completos en <a href="${INFO.repo}/data/v3_cribado.csv" target="_blank" rel="noopener">data/v3_cribado.csv</a> (cribado) y <a href="${INFO.repo}/data/v3_corpus_final.csv" target="_blank" rel="noopener">data/v3_corpus_final.csv</a> (RSI y tópicos).`;
 readHash(); syncInputs(); update(false);
 </script>

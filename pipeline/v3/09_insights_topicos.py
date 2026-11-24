@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-09_insights_topicos.py — v3: réplica de pipeline/v2/09_insights_topicos.py con el corpus v3 (Scopus + SciELO).
+09_insights_topicos.py — v3: réplica de pipeline/v2/09_insights_topicos.py con el corpus v3 (Scopus + SciELO + OpenAlex ES/PT).
 
 Genera:
   data/v3_topic_stats.json            radiografía por tópico (RSI, gate%, idioma, n, n_tesis)

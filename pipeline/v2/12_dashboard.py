@@ -471,8 +471,7 @@ def main():
 <nav class="version-tabs" aria-label="Versión del corpus">
   <a href="../index.html">v1 · corpus original<span>mayo 2026</span></a>
   <a href="index.html" class="active">v2 · búsqueda ampliada<span>{n_tot:,} trabajos · septiembre 2026</span></a>
-  <a href="../v3/index.html">v3 · Scopus + SciELO<span>noviembre 2026</span></a>
-  <a href="../v4/index.html">v4 · + OpenAlex ES/PT<span>noviembre 2026</span></a>
+  <a href="../v3/index.html">v3 · Scopus + SciELO + OpenAlex<span>noviembre 2026</span></a>
 </nav>
 
 <div class="topbar">

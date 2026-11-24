@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-05_analisis_cruzados.py — v3: réplica de pipeline/v2/05_analisis_cruzados.py con el corpus v3 (Scopus + SciELO).
+05_analisis_cruzados.py — v3: réplica de pipeline/v2/05_analisis_cruzados.py con el corpus v3 (Scopus + SciELO + OpenAlex ES/PT).
 
 Única diferencia de código: une los tópicos por paper_id (la v1 unía por título normalizado).
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-08_figuras_explicativas.py — v3: réplica de pipeline/v2/08_figuras_explicativas.py con el corpus v3 (Scopus + SciELO).
+08_figuras_explicativas.py — v3: réplica de pipeline/v2/08_figuras_explicativas.py con el corpus v3 (Scopus + SciELO + OpenAlex ES/PT).
 
 Genera:
   A  assets/v3_figA_criterios.png       perfil por criterio I-VI (barras apiladas)
