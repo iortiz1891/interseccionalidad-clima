@@ -570,6 +570,11 @@ Solo el JSON, sin markdown fences, sin texto adicional.</pre>
   separados por «|» (OR) que se busca en título y resumen. Tiene tres límites: OpenAlex <b>no acepta comodines ni proximidad</b>
   (las variantes en español y portugués se escriben completas y las expresiones con <code>W/n</code> se omiten), <b>lematiza en inglés</b>
   (por eso trae ruido como «intersection», que el cribado retira) y asigna el <b>idioma por el título</b>.</li>
+  <li><b>Redalyc</b>, como verificación de cobertura: no tiene API ni exportación y su buscador busca en el texto completo, así que la cadena de SciELO
+  se corrió en redalyc.org y se recorrieron los resultados en el navegador (1,262 artículos únicos). Solo
+  7 tienen ambos bloques en el título, el resumen o las palabras clave, y los
+  7 ya estaban por las otras fuentes: <b>no aporta registros nuevos</b>
+  (<code>data/v3_redalyc_meta.json</code>).</li>
 </ul>
 <p>Como en la v2, la selección no se delega solo al scoring: un <b>cribado de elegibilidad</b> separa antes lo que no es del tema (§2).</p>
 
@@ -1515,6 +1520,7 @@ portugués formaban un bloque aparte por idioma y no por tema. Por eso los tópi
 <tr><td>Scopus</td><td>Cadena v3 (data/v3_query_scopus.txt), API de búsqueda, 2026-11-24</td><td>1,882</td></tr>
 <tr><td>SciELO</td><td>Cadena v3 (data/v3_query_scielo.txt), export RIS de search.scielo.org, 2026-11-24</td><td>34</td></tr>
 <tr><td>OpenAlex</td><td>data/v3_query_openalex.json, API de works (español y portugués), 2026-11-24</td><td>470</td></tr>
+<tr><td>Redalyc</td><td>Verificación: cadena de SciELO en redalyc.org (data/v3_redalyc_meta.json), 2026-11-24; 7 pertinentes, todos ya incluidos</td><td>0 nuevos</td></tr>
 </table>
 <p style="font-size: 12px;">
 Total identificado: 2,386 ·

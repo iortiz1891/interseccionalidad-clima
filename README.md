@@ -6,7 +6,7 @@ Una revisión sistemática que mide **en qué medida la investigación sobre cam
 
 - **v1** (mayo 2026): **971 registros** recuperados por las cadenas originales (inglés y español), puntuados sin cribado de elegibilidad.
 - **v2** (septiembre 2026): **1,696 registros** de una cadena bilingüe más estricta; un cribado previo deja **1,016 trabajos elegibles** que invocan la interseccionalidad en sentido social y tienen un objeto climático.
-- **v3** (noviembre 2026): cadenas trilingües (inglés, español y portugués) en **Scopus y SciELO**, con un bloque climático más amplio, más los trabajos en **español y portugués de OpenAlex** (tesis, capítulos de libro, revistas regionales): **2,273 registros** a cribado y **1,212 trabajos elegibles**. Los registros que ya estaban en la v2 con el mismo resumen conservan su evaluación; se evaluaron los 587 nuevos (158 de Scopus y SciELO, 429 de OpenAlex).
+- **v3** (noviembre 2026): cadenas trilingües (inglés, español y portugués) en **Scopus y SciELO**, con un bloque climático más amplio, más los trabajos en **español y portugués de OpenAlex** (tesis, capítulos de libro, revistas regionales): **2,273 registros** a cribado y **1,212 trabajos elegibles**. Los registros que ya estaban en la v2 con el mismo resumen conservan su evaluación; se evaluaron los 587 nuevos (158 de Scopus y SciELO, 429 de OpenAlex). Redalyc se revisó como verificación de cobertura y no aporta registros nuevos ([docs/cadenas_busqueda.md §8.4](docs/cadenas_busqueda.md)).
 
 🔗 **Dashboard interactivo:** https://iortiz1891.github.io/interseccionalidad-clima/
 

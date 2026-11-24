@@ -265,6 +265,7 @@ def main():
     _cr = pd.read_csv(DATA / 'v3_cribado.csv')
     reg_origen = _cr['origen_evaluacion'].value_counts().to_dict()
     oameta = json.loads((DATA / 'v3_openalex_meta.json').read_text())
+    rdmeta = json.loads((DATA / 'v3_redalyc_meta.json').read_text())
     oaq = json.loads((DATA / 'v3_query_openalex.json').read_text())
     query_oa = _html.escape(
         'filter=title_and_abstract.search:' + '|'.join(oaq['interseccional']) +
@@ -688,6 +689,11 @@ def main():
   separados por «|» (OR) que se busca en título y resumen. Tiene tres límites: OpenAlex <b>no acepta comodines ni proximidad</b>
   (las variantes en español y portugués se escriben completas y las expresiones con <code>W/n</code> se omiten), <b>lematiza en inglés</b>
   (por eso trae ruido como «intersection», que el cribado retira) y asigna el <b>idioma por el título</b>.</li>
+  <li><b>Redalyc</b>, como verificación de cobertura: no tiene API ni exportación y su buscador busca en el texto completo, así que la cadena de SciELO
+  se corrió en redalyc.org y se recorrieron los resultados en el navegador ({rdmeta['registros_unicos']:,} artículos únicos). Solo
+  {rdmeta['con_ambos_bloques_en_titulo_resumen_o_palabras_clave']} tienen ambos bloques en el título, el resumen o las palabras clave, y los
+  {rdmeta['con_ambos_bloques_en_titulo_resumen_o_palabras_clave']} ya estaban por las otras fuentes: <b>no aporta registros nuevos</b>
+  (<code>data/v3_redalyc_meta.json</code>).</li>
 </ul>
 <p>Como en la v2, la selección no se delega solo al scoring: un <b>cribado de elegibilidad</b> separa antes lo que no es del tema (§2).</p>
 
@@ -902,6 +908,7 @@ portugués formaban un bloque aparte por idioma y no por tema. Por eso los tópi
 <tr><td>Scopus</td><td>Cadena v3 (data/v3_query_scopus.txt), API de búsqueda, {smeta['fecha_busqueda']}</td><td>{pmeta['identificados']['scopus']:,}</td></tr>
 <tr><td>SciELO</td><td>Cadena v3 (data/v3_query_scielo.txt), export RIS de search.scielo.org, {smeta['fecha_busqueda']}</td><td>{pmeta['identificados']['scielo']:,}</td></tr>
 <tr><td>OpenAlex</td><td>data/v3_query_openalex.json, API de works (español y portugués), {oameta['fecha']}</td><td>{pmeta['identificados']['openalex']:,}</td></tr>
+<tr><td>Redalyc</td><td>Verificación: cadena de SciELO en redalyc.org (data/v3_redalyc_meta.json), {rdmeta['fecha']}; {rdmeta['con_ambos_bloques_en_titulo_resumen_o_palabras_clave']} pertinentes, todos ya incluidos</td><td>0 nuevos</td></tr>
 </table>
 <p style="font-size: 12px;">
 Total identificado: {sum(pmeta['identificados'].values()):,} ·
